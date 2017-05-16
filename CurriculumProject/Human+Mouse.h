@@ -13,7 +13,7 @@
 //    NSString *ivar;
 }
 @property NSString *country;
-
+@property (readonly) NSString *gender;
 - (void)speak;
 
 @end

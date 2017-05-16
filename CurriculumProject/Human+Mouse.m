@@ -9,6 +9,22 @@
 #import "Human+Mouse.h"
 
 #import <objc/runtime.h>
+
+//@interface UIImage()
+//- (void)hi;
+//@end
+//
+//@implementation UIImage
+//- (void)hi {
+//    NSLog(@"hi");
+//}
+//@end
+
+@interface Human()
+@property NSString *gender;
+@end
+
+
 @implementation Human(Mouse)
 @dynamic country;
 
