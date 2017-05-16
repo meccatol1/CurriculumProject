@@ -8,6 +8,17 @@
 
 #import <UIKit/UIKit.h>
 
+@interface Human : NSObject <NSCopying>
+
+-(id)initWithName:(NSString *)name age:(int)age;
+
+@property (retain, nonatomic) NSString *name;
+@property (assign, nonatomic) int age;
+
+- (void)speak;
+
+@end
+
 @interface ViewController : UIViewController
 
 
