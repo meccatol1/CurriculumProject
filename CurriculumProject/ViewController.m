@@ -36,9 +36,9 @@
 - (NSString *)description {
     return [NSString stringWithFormat:@"<%p> name:[%@], age:[%zd]", self, _name, _age];
 }
-- (void)speak {
-    NSLog(@"왈!");
-}
+//- (void)speak {
+//    NSLog(@"왈!");
+//}
 @end
 
 @interface ViewController () {
@@ -63,7 +63,13 @@
 //@property NSString *string;
 //@end
 
+typedef struct {
+    int i;
+    float f;
+} MyIntegerFloatStruct;
+
 @implementation ViewController
+//@synthesize helloString;
 
 - (void)awakeFromNib {
     [super awakeFromNib];
@@ -72,16 +78,61 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-
-    Human *human1 = [[Human alloc] initWithName:@"데이빗" age:50];
-    Human *human2 = [human1 copy];
-    NSLog(@"human1 = %@", human1);
-    NSLog(@"human2 = %@", human2);
     
-    [human1 setCountry:@"us"];
-    for (int i = 0; i < 1000; i++) {
-        [human1 speak];
+    
+    
+    NSSet *set = [NSSet setWithObjects:@"1",@"2",@"3",@"4",@"5",@"6",nil];
+    
+    for (NSString *s in set) {
+        NSLog(@"s = %@", s);
     }
+    NSEnumerator *enumerator = [set objectEnumerator];
+    id value;
+    while (value = [enumerator nextObject]) {
+        NSLog(@"value = %@", value);
+    }
+    
+    // 벨류와 콜렉션!
+//    MyIntegerFloatStruct aStruct;
+//    aStruct.i = 42;
+//    aStruct.f = 3.14;
+//    
+//    NSValue *structValue = [NSValue value:&aStruct
+//                             withObjCType:@encode(MyIntegerFloatStruct)];
+//    MyIntegerFloatStruct bStruct;
+//    [structValue getValue:&bStruct];
+//    NSLog(@"bStruct.i = %zd, bStruct.f = %f", bStruct.i, bStruct.f);
+//    
+//    
+//    NSLog(@"structValue = %@", structValue);
+//    
+//    NSString *stringArray[4] = {@"a",@"b",@"c",@"d"};
+//    NSLog(@"stringArray = %@", stringArray[1]);
+//    
+//    NSDictionary *dictionary = [NSDictionary dictionaryWithObjectsAndKeys:
+//                                @"NotNil", @"anObject",
+//                                @"Hello, World!", @"helloString",
+//                                @42, @"magicNumber",
+//                                @"NotNil", @"aValue", nil];
+////                                @"isNil?", nil];
+//    NSLog(@"dictionary = %@", dictionary);
+    
+//    NSArray *array = @[@"asfd", @"asdf", nil, @"asdf"];
+    
+//    NSInteger a = 0;
+//    size_t size = sizeof(a);
+//    printf("size = %lu", size);
+    
+    
+    // 뭐였지 이건.. 암튼 테스트인데
+//    Human *human1 = [[Human alloc] initWithName:@"데이빗" age:50];
+//    Human *human2 = [human1 copy];
+//    NSLog(@"human1 = %@", human1);
+//    NSLog(@"human2 = %@", human2);
+//    [human1 setCountry:@"us"];
+//    for (int i = 0; i < 1000; i++) {
+//        [human1 speak];
+//    }
     
     
     // weak 와 unsafe_unretained 테스트
@@ -131,6 +182,12 @@
 //    
 //    SubViewController *subViewController;
 //    NSLog(@"subViewController = %@", subViewController);
+    
+    /// 로컬변수의 nil 자동 초기화
+//    id object;
+//    NSLog(@"object = %@", object);
+//    [object removeAllObjects];
+//    NSLog(@"object = %@", object);
 }
 - (void)viewWillAppear:(BOOL)animated {
     [super viewWillAppear:animated];
@@ -152,5 +209,19 @@
 }
 - (IBAction)action:(UIButton *)sender {
 //    NSLog(@"ivar_string = %@", ivar_string);
+//    self.delegate.helloString = @"hello?";
+//    [self printHelloString];
+    
+    if ([self.delegate respondsToSelector:@selector(printHelloString)]) {
+        
+    }
 }
+
+- (void)printHelloString {
+    NSLog(@"%@", self.delegate.helloString);
+}
+
+//- (BOOL)respondsToSelector:(SEL)aSelector {
+//    return YES;
+//}
 @end

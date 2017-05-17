@@ -15,12 +15,24 @@
 @property (retain, nonatomic) NSString *name;
 @property (assign, nonatomic) int age;
 
-- (void)speak;
+//- (void)speak;
 
+@end
+@protocol NewWorld
+
+@end
+
+@protocol HelloWorld <NSObject, NewWorld>
+// NSObject Protocol을 따르는 Helloworld Protocol
+@property NSString *helloString;
+@optional
+- (void)printHelloString;
 @end
 
 @interface ViewController : UIViewController
-
+@property (weak) id <HelloWorld> delegate;
 
 @end
+
+
 
