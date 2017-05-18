@@ -15,7 +15,7 @@
 		76131FF01ECA973500CBA227 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 76131FEF1ECA973500CBA227 /* Assets.xcassets */; };
 		76131FF31ECA973500CBA227 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 76131FF11ECA973500CBA227 /* LaunchScreen.storyboard */; };
 		76131FFC1ECA9FEB00CBA227 /* SubViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 76131FFB1ECA9FEB00CBA227 /* SubViewController.m */; };
-		765A7D771ECAF603008D5C43 /* Human+Mouse.m in Sources */ = {isa = PBXBuildFile; fileRef = 765A7D761ECAF603008D5C43 /* Human+Mouse.m */; };
+		765A7D771ECAF603008D5C43 /* Human+Mouth.m in Sources */ = {isa = PBXBuildFile; fileRef = 765A7D761ECAF603008D5C43 /* Human+Mouth.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -32,8 +32,8 @@
 		76131FF41ECA973500CBA227 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		76131FFA1ECA9FEB00CBA227 /* SubViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SubViewController.h; sourceTree = "<group>"; };
 		76131FFB1ECA9FEB00CBA227 /* SubViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SubViewController.m; sourceTree = "<group>"; };
-		765A7D751ECAF603008D5C43 /* Human+Mouse.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "Human+Mouse.h"; sourceTree = "<group>"; };
-		765A7D761ECAF603008D5C43 /* Human+Mouse.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "Human+Mouse.m"; sourceTree = "<group>"; };
+		765A7D751ECAF603008D5C43 /* Human+Mouth.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "Human+Mouth.h"; sourceTree = "<group>"; };
+		765A7D761ECAF603008D5C43 /* Human+Mouth.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "Human+Mouth.m"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -72,8 +72,8 @@
 				76131FE71ECA973500CBA227 /* ViewController.m */,
 				76131FFA1ECA9FEB00CBA227 /* SubViewController.h */,
 				76131FFB1ECA9FEB00CBA227 /* SubViewController.m */,
-				765A7D751ECAF603008D5C43 /* Human+Mouse.h */,
-				765A7D761ECAF603008D5C43 /* Human+Mouse.m */,
+				765A7D751ECAF603008D5C43 /* Human+Mouth.h */,
+				765A7D761ECAF603008D5C43 /* Human+Mouth.m */,
 				76131FE91ECA973500CBA227 /* Main.storyboard */,
 				76131FEF1ECA973500CBA227 /* Assets.xcassets */,
 				76131FF11ECA973500CBA227 /* LaunchScreen.storyboard */,
@@ -168,7 +168,7 @@
 				76131FE81ECA973500CBA227 /* ViewController.m in Sources */,
 				76131FE51ECA973500CBA227 /* AppDelegate.m in Sources */,
 				76131FE21ECA973500CBA227 /* main.m in Sources */,
-				765A7D771ECAF603008D5C43 /* Human+Mouse.m in Sources */,
+				765A7D771ECAF603008D5C43 /* Human+Mouth.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

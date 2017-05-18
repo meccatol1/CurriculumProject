@@ -1,5 +1,5 @@
 //
-//  Human+Mouse.h
+//  Human+Mouth.h
 //  CurriculumProject
 //
 //  Created by meccatol_iMac on 2017. 5. 16..
@@ -9,7 +9,7 @@
 #import <Foundation/Foundation.h>
 #import "ViewController.h"
 
-@interface Human(Mouse) {
+@interface Human(Mouth) {
 //    NSString *ivar;
 }
 @property NSString *country;

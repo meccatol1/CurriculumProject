@@ -9,7 +9,23 @@
 #import "ViewController.h"
 #import "SubViewController.h"
 
-#import "Human+Mouse.h"
+#import "Human+Mouth.h"
+
+@implementation XYZBlockKeeper
+- (void)configureBlock {
+    XYZBlockKeeper * __weak weakSelf = self;
+    self.block = ^{
+//        [self print]; // strong reference cycle
+        [weakSelf print];
+        
+//        [self doSomething];    // capturing a strong reference to self
+        // creates a strong reference cycle
+    };
+}
+- (void)print {
+    NSLog(@"asldfjka");
+}
+@end
 
 @implementation Human
 -(id)initWithName:(NSString *)name age:(int)age
@@ -79,18 +95,84 @@ typedef struct {
 - (void)viewDidLoad {
     [super viewDidLoad];
     
+    NSString *string1 = @"before1";
+    NSLog(@"string1 = %@, %p", string1, string1);
+    [self printThisString:string1];
+    NSLog(@"string1 = %@, %p", string1, string1);
+    NSString *string2 = @"before2";
+    NSLog(@"string2 = %@, %p", string2, string2);
+    [self printThisStringAndFix:&string2];
+    NSLog(@"string2 = %@, %p", string2, string2);
     
+    NSError *error;
+    [self makeError:&error];
+    NSLog(@"after makeError = %@", error);
+    NSError *error2;
+    NSLog(@"error2 = %@", error2);
+    NSLog(@"error2's address = %p", &error2);
     
-    NSSet *set = [NSSet setWithObjects:@"1",@"2",@"3",@"4",@"5",@"6",nil];
+    [self makeError:nil];
     
-    for (NSString *s in set) {
-        NSLog(@"s = %@", s);
+    NSArray *array1 = @[@"1",@"2",@"3",@"4",@"5",@"6",@"7"];
+    @try {
+        id object = [array1 objectAtIndex:10];
+    } @catch (NSException *exception) {
+        NSLog(@"exception = %@", exception);
+    } @finally {
+        
     }
-    NSEnumerator *enumerator = [set objectEnumerator];
-    id value;
-    while (value = [enumerator nextObject]) {
-        NSLog(@"value = %@", value);
-    }
+    
+    
+    // Collecion의 Block Enumeration
+//    NSArray *array1 = @[@"1",@"2",@"3",@"4",@"5",@"6",@"7"];
+//    NSArray *array2 = [array1 copy];
+//    for (int i = 0; i < array1.count; i++) {
+//        NSString *s1 = array1[i];
+//        NSString *s2 = array2[i];
+//        NSLog(@"1:<%p>,2:<%p>, %@", s1, s2, s1);
+//    }
+//    [array1 enumerateObjectsUsingBlock:^(id  _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
+//        NSLog(@"Object at index %lu is %@", idx, obj);
+//        if ([obj isEqual:@"3"]) {
+//            *stop = YES;
+//        }
+//    }];
+//    NSMutableArray *testArray = [NSMutableArray array];
+//    for (int i = 0; i < 10000; i++) {
+//        [testArray addObject:[NSString stringWithFormat:@"%zd", i]];
+//    }
+//    __block NSTimeInterval stamp;
+    // stamp = 0.000358
+//    [testArray enumerateObjectsUsingBlock:^(id  _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
+//        if (idx == 0) {
+//            stamp = [[NSDate date] timeIntervalSince1970];
+//        }else if (idx == 9999) {
+//            stamp = ([[NSDate date] timeIntervalSince1970] - stamp);
+//            NSLog(@"stamp = %f", stamp);
+//        }
+//    }];
+//     stamp = 0.000294
+//    [testArray enumerateObjectsWithOptions:NSEnumerationConcurrent
+//                                usingBlock:^(id  _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
+//                                    if (idx == 0) {
+//                                        stamp = [[NSDate date] timeIntervalSince1970];
+//                                    }else if (idx == 9999) {
+//                                        stamp = ([[NSDate date] timeIntervalSince1970] - stamp);
+//                                        NSLog(@"stamp = %f", stamp);
+//                                    }
+//                                }];
+    
+    // Collection Enumeration 테스트
+//    NSSet *set = [NSSet setWithObjects:@"1",@"2",@"3",@"4",@"5",@"6",nil];
+//    
+//    for (NSString *s in set) {
+//        NSLog(@"s = %@", s);
+//    }
+//    NSEnumerator *enumerator = [set objectEnumerator];
+//    id value;
+//    while (value = [enumerator nextObject]) {
+//        NSLog(@"value = %@", value);
+//    }
     
     // 벨류와 콜렉션!
 //    MyIntegerFloatStruct aStruct;
@@ -224,4 +306,31 @@ typedef struct {
 //- (BOOL)respondsToSelector:(SEL)aSelector {
 //    return YES;
 //}
+
+- (void)printThisString:(NSString *)__string {
+    NSLog(@"%@, %p", __string, __string);
+    __string = @"after1";
+}
+- (void)printThisStringAndFix:(NSString **)__string {
+    NSLog(@"what is it? = %p", __string);
+    NSLog(@"%@, %p", *__string, *__string);
+    *__string = @"after2";
+}
+
+- (void)makeError:(NSError **)__error {
+    NSLog(@"error's address = %p", __error);
+    
+    if (__error) {
+        NSLog(@"setting");
+        *__error = [NSError errorWithDomain:@"com.MyCompany.MyApplication.ErrorDomain"
+                                       code:400
+                                   userInfo:@{NSLocalizedDescriptionKey:@"help!!"}];
+    } else {
+        NSLog(@"fail");
+        // 크래쉬
+//        *__error = [NSError errorWithDomain:@"com.MyCompany.MyApplication.ErrorDomain"
+//                                       code:400
+//                                   userInfo:@{NSLocalizedDescriptionKey:@"help!!"}];
+    }
+}
 @end

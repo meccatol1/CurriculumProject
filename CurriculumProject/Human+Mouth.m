@@ -1,12 +1,12 @@
 //
-//  Human+Mouse.m
+//  Human+Mouth.m
 //  CurriculumProject
 //
 //  Created by meccatol_iMac on 2017. 5. 16..
 //  Copyright © 2017년 meccatol_iMac. All rights reserved.
 //
 
-#import "Human+Mouse.h"
+#import "Human+Mouth.h"
 
 #import <objc/runtime.h>
 
@@ -25,7 +25,7 @@
 @end
 
 
-@implementation Human(Mouse)
+@implementation Human(Mouth)
 @dynamic country;
 
 static char const *Key = "country";

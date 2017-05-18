@@ -8,6 +8,11 @@
 
 #import <UIKit/UIKit.h>
 
+@interface XYZBlockKeeper : NSObject
+@property (copy) void (^block)(void);
+- (void)print;
+@end
+
 @interface Human : NSObject <NSCopying>
 
 -(id)initWithName:(NSString *)name age:(int)age;
@@ -32,6 +37,8 @@
 @interface ViewController : UIViewController
 @property (weak) id <HelloWorld> delegate;
 
+- (void)printThisString:(NSString *)__string;
+- (void)printThisStringAndFix:(NSString **)__string;
 @end
 
 
