@@ -9,7 +9,7 @@
 #import "ViewController.h"
 #import "SubViewController.h"
 
-#import "Human+Mouth.h"
+//#import "Human+Mouth.h"
 
 @implementation XYZBlockKeeper
 - (void)configureBlock {
@@ -57,6 +57,8 @@
 //}
 @end
 
+typedef void (^BinBlock)(void);
+
 @interface ViewController () {
     
 }
@@ -95,32 +97,128 @@ typedef struct {
 - (void)viewDidLoad {
     [super viewDidLoad];
     
-    NSString *string1 = @"before1";
-    NSLog(@"string1 = %@, %p", string1, string1);
-    [self printThisString:string1];
-    NSLog(@"string1 = %@, %p", string1, string1);
-    NSString *string2 = @"before2";
-    NSLog(@"string2 = %@, %p", string2, string2);
-    [self printThisStringAndFix:&string2];
-    NSLog(@"string2 = %@, %p", string2, string2);
+    void (^testBlock)(void) = ^ {
+        NSLog(@"log log log");
+    };
+    testBlock();
+//    
+//    (^complexBlock)(void (^)(void))
+//    
+    int (^  (^complexBlock)(void (^)(void))    )(void) = ^ (void (^aBlock)(void)) {
+        aBlock();
+        NSLog(@"inside");
+        return ^{
+            NSLog(@"returned");
+            return 1;
+        };
+    };
+    int (^returnBlock)(void) = complexBlock(^{
+        NSLog(@"argument");
+    });
+    returnBlock();
+
     
-    NSError *error;
-    [self makeError:&error];
-    NSLog(@"after makeError = %@", error);
-    NSError *error2;
-    NSLog(@"error2 = %@", error2);
-    NSLog(@"error2's address = %p", &error2);
-    
-    [self makeError:nil];
-    
-    NSArray *array1 = @[@"1",@"2",@"3",@"4",@"5",@"6",@"7"];
-    @try {
-        id object = [array1 objectAtIndex:10];
-    } @catch (NSException *exception) {
-        NSLog(@"exception = %@", exception);
-    } @finally {
+    //안됨
+    BinBlock (^complexBlock2)(BinBlock) = ^(BinBlock _bin) {
+        return ^{
+            
+        };
+    };
+    void (^arrayOfTenBlocksReturningVoidWithIntArgument[10])(int);
+    arrayOfTenBlocksReturningVoidWithIntArgument[0] = ^(int v) {
         
+    };
+    
+    float (^oneFrom)(float);
+    
+    oneFrom = ^(float aFloat) {
+        float result = aFloat - 1.0;
+        return result;
+    };
+    
+    NSArray *stringsArray = @[ @"string 1",
+                               @"String 21", // <-
+                               @"string 12",
+                               @"String 11",
+                               @"strîng 21", // <-
+                               @"Striñg 21", // <-
+                               @"String 02",
+                               @"S",
+                               @"SSSSSSSSSSSSS"];
+    
+    NSLocale *currentLocale = [NSLocale currentLocale];
+    __block NSUInteger orderedSameCount = 0;
+    
+    NSArray *diacriticInsensitiveSortArray = [stringsArray sortedArrayUsingComparator:^(id string1, id string2) {
+        NSLog(@"1 = [%@], 2 = [%@]", string1, string2);
+        
+        NSRange string1Range = NSMakeRange(0, [string1 length]);
+        NSComparisonResult comparisonResult = [string1 compare:string2 options:NSDiacriticInsensitiveSearch range:string1Range locale:currentLocale];
+        
+        if (comparisonResult == NSOrderedSame) {
+            orderedSameCount++;
+        }
+        return comparisonResult;
+    }];
+    
+    NSLog(@"diacriticInsensitiveSortArray: %@", diacriticInsensitiveSortArray);
+    NSLog(@"orderedSameCount: %zd", orderedSameCount);
+    
+    size_t count = 10;
+    dispatch_queue_t queue = dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0);
+    
+    dispatch_apply(count, queue, ^(size_t i) {
+        printf("%zu\n", i);
+    });
+
+    
+    void (^blockArray[3])(void);  // an array of 3 block references
+    
+    for (int i = 0; i < 3; ++i) {
+        blockArray[i] = ^{ printf("hello, %d\n", i); };
+        // WRONG: The block literal scope is the "for" loop.
     }
+    blockArray[0]();
+    blockArray[1]();
+    blockArray[2]();
+    
+//    binBlock _block;
+//    _Block_copy(&_block);
+    
+    // 카테고리도 컴파일 단계에서 추가되는것같음
+//    Human *human1 = [[Human alloc] initWithName:@"데이빗" age:50];
+//    if ([human1 respondsToSelector:@selector(speak)]) {
+//        NSLog(@"speak 가능");
+//        [human1 performSelector:@selector(speak)];
+//    }
+
+    //
+//    NSString *string1 = @"before1";
+//    NSLog(@"string1 = %@, %p", string1, string1);
+//    [self printThisString:string1];
+//    NSLog(@"string1 = %@, %p", string1, string1);
+//    NSString *string2 = @"before2";
+//    NSLog(@"string2 = %@, %p", string2, string2);
+//    [self printThisStringAndFix:&string2];
+//    NSLog(@"string2 = %@, %p", string2, string2);
+//    
+//    NSError *error;
+//    [self makeError:&error];
+//    NSLog(@"after makeError = %@", error);
+//    NSError *error2;
+//    NSLog(@"error2 = %@", error2);
+//    NSLog(@"error2's address = %p", &error2);
+//    
+//    [self makeError:nil];
+//
+//    NSArray *array1 = @[@"1",@"2",@"3",@"4",@"5",@"6",@"7"];
+//    @try {
+//        id object = [array1 objectAtIndex:10];
+//    } @catch (NSException *exception) {
+//        NSLog(@"exception = %@", exception);
+//    } @finally {
+//        
+//    }
     
     
     // Collecion의 Block Enumeration
@@ -310,6 +408,7 @@ typedef struct {
 - (void)printThisString:(NSString *)__string {
     NSLog(@"%@, %p", __string, __string);
     __string = @"after1";
+    NSLog(@"%@, %p", __string, __string);
 }
 - (void)printThisStringAndFix:(NSString **)__string {
     NSLog(@"what is it? = %p", __string);
