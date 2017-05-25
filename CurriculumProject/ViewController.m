@@ -18,12 +18,13 @@
 //        [self print]; // strong reference cycle
         [weakSelf print];
         
-//        [self doSomething];    // capturing a strong reference to self
+//        [self print];
+        // capturing a strong reference to self
         // creates a strong reference cycle
     };
 }
-- (void)print {
-    NSLog(@"asldfjka");
+//- (void)print {
+    NSLog(@"print");
 }
 @end
 
@@ -63,6 +64,9 @@ typedef void (^BinBlock)(void);
 @interface ViewController () {
     
 }
+@property (strong) BinBlock propertyBlock;
+@property (copy) BinBlock propertyBlock2;
+
 @property (readwrite, atomic, strong) NSObject *object1;
 @property NSObject *object2;
 
@@ -97,8 +101,8 @@ typedef struct {
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    
-    [self methodForSelector:@selector(viewDidLoad)];
+//    
+//    [self methodForSelector:@selector(viewDidLoad)];
     
     //// ivar도 key value coding을 통해 접근이 가능하다
 //    Human *human1 = [[Human alloc] initWithName:@"name" age:2];
@@ -141,6 +145,191 @@ typedef struct {
 //        NSLog(@"Finally, boolTest2");
 //    }
     
+//    NSInteger int1 = 10;
+//    __block NSInteger int2 = 20;
+//    BinBlock newBlock = ^{
+//        NSLog(@"newBlock!!");
+//        int2 += int1;
+//        NSLog(@"int2 = %zd", int2);
+//        NSLog(@"int1<%p>, int2<%p>", &int1, &int2);
+//    };
+//    NSLog(@"newBlock = %@ <%p>", newBlock, newBlock);
+//    self.propertyBlock = newBlock;
+//    NSLog(@"self.propertyBlock = %@ <%p>",
+//          self.propertyBlock, self.propertyBlock);
+//    newBlock();
+//    self.propertyBlock2 = newBlock;
+//    NSLog(@"self.propertyBlock2 = %@ <%p>",
+//          self.propertyBlock2, self.propertyBlock2);
+//    [self checkBlock:newBlock];
+    
+//    int anInteger = 42;
+//    NSString *hello = @"hello";
+//    NSLog(@"Integer is: %i, %@", anInteger, hello);
+//    NSLog(@"anInteger = %p, hello = %p", &anInteger, hello);
+//    void (^testBlock)(void) = ^{
+//        NSLog(@"____block started");
+//        NSLog(@"Integer is: %i, %@", anInteger, hello);
+//        NSLog(@"anInteger = %p, hello = %p", &anInteger, hello);
+//    };
+//    anInteger = 84;
+//    hello = @"~~~~hello~~~~";
+//    testBlock();
+    
+    
+//    int anInteger = 42;
+//    NSString *hello = @"hello";
+//    NSLog(@"Integer is: %i, %@", anInteger, hello);
+//    NSLog(@"anInteger = %p, hello = %p", &anInteger, hello);
+//    void (^testBlock)(void) = ^{
+//        NSLog(@"____block started");
+//        NSLog(@"Integer is: %i, %@", anInteger, hello);
+//        NSLog(@"anInteger = %p, hello = %p", &anInteger, hello);
+//        int anInteger = 20;
+//        NSString *hello = @"new_hello";
+//        NSLog(@"Integer is: %i, %@", anInteger, hello);
+//        NSLog(@"anInteger = %p, hello = %p", &anInteger, hello);
+//        // Can't
+////        NSLog(@"anInteger2 = %i", anInteger2);
+//    };
+//    int anInteger2 = 24;
+//    anInteger = 84;
+//    testBlock();
+
+    
+//    __block int anInteger = 42;
+//    __block NSString *hello = @"hello";
+//    NSLog(@"Integer is: %i, %@", anInteger, hello);
+//    NSLog(@"anInteger = %p, hello = %p", &anInteger, hello);
+//    void (^testBlock)(void) = ^{
+//        NSLog(@"____block started");
+//        NSLog(@"Integer is: %i, %@", anInteger, hello);
+//        NSLog(@"anInteger = %p, hello = %p", &anInteger, hello);
+//        anInteger = 20;
+//        hello = @"new_hello";
+//        NSLog(@"Integer is: %i, %@", anInteger, hello);
+//        NSLog(@"anInteger = %p, hello = %p", &anInteger, hello);
+//    };
+//    NSLog(@"Integer is: %i, %@", anInteger, hello);
+//    NSLog(@"anInteger = %p, hello = %p", &anInteger, hello);
+//    anInteger = 84;
+//    NSLog(@"Integer is: %i, %@", anInteger, hello);
+//    NSLog(@"anInteger = %p, hello = %p", &anInteger, hello);
+//    testBlock();
+//    NSLog(@"____after block");
+//    NSLog(@"Integer is: %i, %@", anInteger, hello);
+//    NSLog(@"anInteger = %p, hello = %p", &anInteger, hello);
+    
+    // empty block
+//    void (^emptyBlock)(void);
+//    NSLog(@"emptyBlock = %@", emptyBlock);
+//    emptyBlock();
+    
+    
+//    void (^testBlock)(void) = ^ {
+//        NSLog(@"log log log");
+//    };
+//    testBlock();
+//
+//    
+//    int (^(^complexBlock)(void (^)(void))    )(void) = ^(void (^aBlock)(void)) {
+//        aBlock();
+//        NSLog(@"inside");
+//        return ^{
+//            NSLog(@"returned");
+//            return 1;
+//        };
+//    };
+//    int (^returnBlock)(void) = complexBlock(^{
+//        NSLog(@"argument");
+//    });
+//    returnBlock();
+
+    
+//    BinBlock block1 = ^{
+//        NSLog(@"creating block");
+//    };
+//    
+//    BinBlock (^complexBlock2)(BinBlock) = ^(BinBlock aBlock) {
+//        aBlock();
+//        NSLog(@"inside of block");
+//        return ^{
+//            NSLog(@"returned block");
+//            return;
+//        };
+//    };
+//    BinBlock returnBlock2 = complexBlock2(^{
+//        NSLog(@"argument block");
+//    });
+//    returnBlock2();
+//    
+//    void (^ (^complexBlock)(void (^)(void)) )(void) = ^(void (^aBlock)(void)) {
+//        aBlock();
+//        NSLog(@"inside of block");
+//        return ^{
+//            NSLog(@"returned block");
+//            return;
+//        };
+//    };
+//    void (^returnBlock)(void) = complexBlock(^{
+//        NSLog(@"argument block");
+//    });
+//    returnBlock();
+    
+    
+    void (^arrayOfTenBlocksReturningVoidWithIntArgument[10])(int);
+    arrayOfTenBlocksReturningVoidWithIntArgument[0] = ^(int v) {
+        
+    };
+    
+    float (^oneFrom)(float);
+    
+    oneFrom = ^(float aFloat) {
+        float result = aFloat - 1.0;
+        return result;
+    };
+    
+    NSArray *stringsArray = @[ @"string 1",
+                               @"String 21", // <-
+                               @"string 12",
+                               @"String 11",
+                               @"strîng 21", // <-
+                               @"striñg 21", // <-
+                               @"String 02",
+                               @"S",
+                               @"SSSSSSSSSSSSS"];
+
+    [stringsArray enumerateObjectsUsingBlock:^(id  _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
+        NSLog(@"obj = %@<%p>", obj, obj);
+    }];
+    
+//    NSMutableArray *mutableStringArray = [stringsArray mutableCopy];
+//    [mutableStringArray enumerateObjectsUsingBlock:^(id  _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
+//        NSLog(@"obj = %@<%p>", obj, obj);
+//    }];
+    
+    NSLocale *currentLocale = [NSLocale currentLocale];
+    __block NSUInteger orderedSameCount = 0;
+    
+    NSArray *diacriticInsensitiveSortArray = [stringsArray sortedArrayUsingComparator:^(id string1, id string2) {
+        NSLog(@"1 = [%@], 2 = [%@]", string1, string2);
+        
+        NSRange string1Range = NSMakeRange(0, [string1 length]);
+        NSComparisonResult comparisonResult = [string1 compare:string2 options:NSDiacriticInsensitiveSearch range:string1Range locale:currentLocale];
+        
+        if (comparisonResult == NSOrderedSame) {
+            orderedSameCount++;
+        }
+        return comparisonResult;
+    }];
+    
+    NSLog(@"diacriticInsensitiveSortArray: %@", diacriticInsensitiveSortArray);
+    NSLog(@"orderedSameCount: %zd", orderedSameCount);
+    
+//    size_t count = 10;
+//    dispatch_queue_t queue = dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0);
+    
+//>>>>>>> 2606ee6b8f56101e931d723d4648a5dd0538bf56
     
     
     //// Block Sample!
@@ -259,13 +448,14 @@ typedef struct {
 //    
 //    [self makeError:nil];
 //
+    
 //    NSArray *array1 = @[@"1",@"2",@"3",@"4",@"5",@"6",@"7"];
 //    @try {
 //        id object = [array1 objectAtIndex:10];
 //    } @catch (NSException *exception) {
 //        NSLog(@"exception = %@", exception);
 //    } @finally {
-//        
+//        NSLog(@"always");
 //    }
     
     
@@ -443,6 +633,11 @@ typedef struct {
     if ([self.delegate respondsToSelector:@selector(printHelloString)]) {
         
     }
+    
+    NSLog(@"self.propertyBlock = %@ <%p>",
+          self.propertyBlock, self.propertyBlock);
+    NSLog(@"self.propertyBlock2 = %@ <%p>",
+          self.propertyBlock2, self.propertyBlock2);
 }
 
 - (void)printHelloString {
@@ -464,20 +659,36 @@ typedef struct {
     *__string = @"after2";
 }
 
-- (void)makeError:(NSError **)__error {
-    NSLog(@"error's address = %p", __error);
+- (BOOL)doSomethingThatMayGenerateAnError:(NSError **)error {
+    NSLog(@"error's address = %p", error);
     
-    if (__error) {
+    if (error) {
         NSLog(@"setting");
-        *__error = [NSError errorWithDomain:@"com.MyCompany.MyApplication.ErrorDomain"
+        *error = [NSError errorWithDomain:@"com.MyCompany.MyApplication.ErrorDomain"
                                        code:400
                                    userInfo:@{NSLocalizedDescriptionKey:@"help!!"}];
     } else {
         NSLog(@"fail");
         // 크래쉬
-//        *__error = [NSError errorWithDomain:@"com.MyCompany.MyApplication.ErrorDomain"
-//                                       code:400
-//                                   userInfo:@{NSLocalizedDescriptionKey:@"help!!"}];
+//        *error = [NSError errorWithDomain:@"com.MyCompany.MyApplication.ErrorDomain"
+//                                     code:400
+//                                 userInfo:@{NSLocalizedDescriptionKey:@"help!!"}];
     }
+    return NO;
+}
+
+- (void (^)(void))newBlock {
+    return ^{
+        
+    };
+}
+
+- (void)checkBlock:(BinBlock)block {
+    block();
+    NSLog(@"block = %@ <%p>", block, block);
+    
+//    int k = 10;
+//    __block int array[k];
+    
 }
 @end
