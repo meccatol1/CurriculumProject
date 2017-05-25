@@ -13,7 +13,9 @@
 - (void)print;
 @end
 
-@interface Human : NSObject <NSCopying>
+@interface Human : NSObject <NSCopying> {
+    NSString *problem;
+}
 
 -(id)initWithName:(NSString *)name age:(int)age;
 

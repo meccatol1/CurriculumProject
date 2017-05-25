@@ -34,6 +34,7 @@
     if (self) { //슈퍼 클래스의 인스턴스가 반환된 경우
         self.name = name;
         self.age = age;
+        problem = @"what is your problem?";
     }
     
     return self;
@@ -97,90 +98,137 @@ typedef struct {
 - (void)viewDidLoad {
     [super viewDidLoad];
     
-    void (^testBlock)(void) = ^ {
-        NSLog(@"log log log");
-    };
-    testBlock();
+    [self methodForSelector:@selector(viewDidLoad)];
+    
+    //// ivar도 key value coding을 통해 접근이 가능하다
+//    Human *human1 = [[Human alloc] initWithName:@"name" age:2];
+//    NSString *problem = [human1 valueForKey:@"problem"];
+//    NSLog(@"problem is = %@", problem);
+//    [human1 setValue:@"메롱~" forKey:@"problem"]; // 변경됨
+//    NSString *_problem = [human1 valueForKey:@"problem"];
+//    NSLog(@"problem is = %@", _problem);
+////    NSString *problem1 = [human1 valueForKey:@"problem1"]; // 없는 value에 접근하면 NSUnknownKeyException이 발생한다.
+////    NSLog(@"problem1 is = %@", problem1);
+    
+    //// boolean test
+//    bool boolTest1 = true;
+//    if (boolTest1) {
+//        NSLog(@"boolTest1");
+//    }
+//    boolTest1 = -10;
+//    if (boolTest1) {
+//        NSLog(@"Again, boolTest1");
+//    }
+//    if (boolTest1 == true) {
+//        NSLog(@"By repeated, boolTest1");
+//    }
+//    if ( (-5) == true) { // 안불림
+//        NSLog(@"Finally, boolTest1");
+//    }
 //    
-//    (^complexBlock)(void (^)(void))
+//    BOOL boolTest2 = YES;
+//    if (boolTest2) {
+//        NSLog(@"boolTest2");
+//    }
+//    boolTest2 = -10;
+//    if (boolTest2) {
+//        NSLog(@"Again, boolTest2");
+//    }
+//    if (boolTest2 == YES) {
+//        NSLog(@"By repeated, boolTest2");
+//    }
+//    if ( (-5) == YES) { // 안불림
+//        NSLog(@"Finally, boolTest2");
+//    }
+    
+    
+    
+    //// Block Sample!
+//    void (^testBlock)(void) = ^ {
+//        NSLog(@"log log log");
+//    };
+//    testBlock();
+////    
+////    (^complexBlock)(void (^)(void))
+////    
+//    int (^  (^complexBlock)(void (^)(void))    )(void) = ^ (void (^aBlock)(void)) {
+//        aBlock();
+//        NSLog(@"inside");
+//        return ^{
+//            NSLog(@"returned");
+//            return 1;
+//        };
+//    };
+//    int (^returnBlock)(void) = complexBlock(^{
+//        NSLog(@"argument");
+//    });
+//    returnBlock();
+//
 //    
-    int (^  (^complexBlock)(void (^)(void))    )(void) = ^ (void (^aBlock)(void)) {
-        aBlock();
-        NSLog(@"inside");
-        return ^{
-            NSLog(@"returned");
-            return 1;
-        };
-    };
-    int (^returnBlock)(void) = complexBlock(^{
-        NSLog(@"argument");
-    });
-    returnBlock();
-
-    
-    //안됨
-    BinBlock (^complexBlock2)(BinBlock) = ^(BinBlock _bin) {
-        return ^{
-            
-        };
-    };
-    void (^arrayOfTenBlocksReturningVoidWithIntArgument[10])(int);
-    arrayOfTenBlocksReturningVoidWithIntArgument[0] = ^(int v) {
-        
-    };
-    
-    float (^oneFrom)(float);
-    
-    oneFrom = ^(float aFloat) {
-        float result = aFloat - 1.0;
-        return result;
-    };
-    
-    NSArray *stringsArray = @[ @"string 1",
-                               @"String 21", // <-
-                               @"string 12",
-                               @"String 11",
-                               @"strîng 21", // <-
-                               @"Striñg 21", // <-
-                               @"String 02",
-                               @"S",
-                               @"SSSSSSSSSSSSS"];
-    
-    NSLocale *currentLocale = [NSLocale currentLocale];
-    __block NSUInteger orderedSameCount = 0;
-    
-    NSArray *diacriticInsensitiveSortArray = [stringsArray sortedArrayUsingComparator:^(id string1, id string2) {
-        NSLog(@"1 = [%@], 2 = [%@]", string1, string2);
-        
-        NSRange string1Range = NSMakeRange(0, [string1 length]);
-        NSComparisonResult comparisonResult = [string1 compare:string2 options:NSDiacriticInsensitiveSearch range:string1Range locale:currentLocale];
-        
-        if (comparisonResult == NSOrderedSame) {
-            orderedSameCount++;
-        }
-        return comparisonResult;
-    }];
-    
-    NSLog(@"diacriticInsensitiveSortArray: %@", diacriticInsensitiveSortArray);
-    NSLog(@"orderedSameCount: %zd", orderedSameCount);
-    
-    size_t count = 10;
-    dispatch_queue_t queue = dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0);
-    
-    dispatch_apply(count, queue, ^(size_t i) {
-        printf("%zu\n", i);
-    });
-
-    
-    void (^blockArray[3])(void);  // an array of 3 block references
-    
-    for (int i = 0; i < 3; ++i) {
-        blockArray[i] = ^{ printf("hello, %d\n", i); };
-        // WRONG: The block literal scope is the "for" loop.
-    }
-    blockArray[0]();
-    blockArray[1]();
-    blockArray[2]();
+//    //안됨
+//    BinBlock (^complexBlock2)(BinBlock) = ^(BinBlock _bin) {
+//        return ^{
+//            
+//        };
+//    };
+//    
+//    void (^arrayOfTenBlocksReturningVoidWithIntArgument[10])(int);
+//    arrayOfTenBlocksReturningVoidWithIntArgument[0] = ^(int v) {
+//        
+//    };
+//    
+//    float (^oneFrom)(float);
+//    
+//    oneFrom = ^(float aFloat) {
+//        float result = aFloat - 1.0;
+//        return result;
+//    };
+//    
+//    NSArray *stringsArray = @[ @"string 1",
+//                               @"String 21", // <-
+//                               @"string 12",
+//                               @"String 11",
+//                               @"strîng 21", // <-
+//                               @"Striñg 21", // <-
+//                               @"String 02",
+//                               @"S",
+//                               @"SSSSSSSSSSSSS"];
+//    
+//    NSLocale *currentLocale = [NSLocale currentLocale];
+//    __block NSUInteger orderedSameCount = 0;
+//    
+//    NSArray *diacriticInsensitiveSortArray = [stringsArray sortedArrayUsingComparator:^(id string1, id string2) {
+//        NSLog(@"1 = [%@], 2 = [%@]", string1, string2);
+//        
+//        NSRange string1Range = NSMakeRange(0, [string1 length]);
+//        NSComparisonResult comparisonResult = [string1 compare:string2 options:NSDiacriticInsensitiveSearch range:string1Range locale:currentLocale];
+//        
+//        if (comparisonResult == NSOrderedSame) {
+//            orderedSameCount++;
+//        }
+//        return comparisonResult;
+//    }];
+//    
+//    NSLog(@"diacriticInsensitiveSortArray: %@", diacriticInsensitiveSortArray);
+//    NSLog(@"orderedSameCount: %zd", orderedSameCount);
+//    
+//    size_t count = 10;
+//    dispatch_queue_t queue = dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0);
+//    
+//    dispatch_apply(count, queue, ^(size_t i) {
+//        printf("%zu\n", i);
+//    });
+//
+//    
+//    void (^blockArray[3])(void);  // an array of 3 block references
+//    
+//    for (int i = 0; i < 3; ++i) {
+//        blockArray[i] = ^{ printf("hello, %d\n", i); };
+//        // WRONG: The block literal scope is the "for" loop.
+//    }
+//    blockArray[0]();
+//    blockArray[1]();
+//    blockArray[2]();
     
 //    binBlock _block;
 //    _Block_copy(&_block);
