@@ -36,10 +36,13 @@
 - (void)printHelloString;
 @end
 
-@interface ViewController : UIViewController
+@interface ViewController : UIViewController {
+    NSString *weather;
+}
+@property NSString *temperature;
 @property (weak) id <HelloWorld> delegate;
 
-- (void)printThisString:(NSString *)__string;
+//- (void)printThisString:(NSString *)__string;
 - (void)printThisStringAndFix:(NSString **)__string;
 @end
 

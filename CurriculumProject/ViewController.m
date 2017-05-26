@@ -8,6 +8,9 @@
 
 #import "ViewController.h"
 #import "SubViewController.h"
+#import "ForwardingObject.h"
+
+#import <objc/runtime.h>
 
 //#import "Human+Mouth.h"
 
@@ -23,7 +26,7 @@
         // creates a strong reference cycle
     };
 }
-//- (void)print {
+- (void)print {
     NSLog(@"print");
 }
 @end
@@ -64,13 +67,18 @@ typedef void (^BinBlock)(void);
 @interface ViewController () {
     
 }
-@property (strong) BinBlock propertyBlock;
-@property (copy) BinBlock propertyBlock2;
-
-@property (readwrite, atomic, strong) NSObject *object1;
-@property NSObject *object2;
+@property ForwardingObject *otherObject;
 
 @end
+
+
+//@property (strong) BinBlock propertyBlock;
+//@property (copy) BinBlock propertyBlock2;
+//
+//@property (readwrite, atomic, strong) NSObject *object1;
+//@property NSObject *object2;
+//
+//@end
 
 //@interface ViewController () {
 //    NSObject * __weak ivar_weak_object;
@@ -99,9 +107,70 @@ typedef struct {
     
 }
 
+void function(id self, SEL _cmd) {
+    NSLog(@"function is dynamically called");
+    NSLog(@"_cmd = %@", NSStringFromSelector(_cmd));
+    // implementation ....
+    ViewController *realSelf = self;
+    realSelf.temperature = @"27도!!";
+    
+    NSLog(@"temperature = %@", realSelf.temperature);
+}
+//
++ (BOOL)resolveInstanceMethod:(SEL)sel {
+    NSLog(@"resolveInstanceMethod = %@", NSStringFromSelector(sel));
+    if (sel == @selector(resolveThisMethodDynamically)) {
+        return class_addMethod([self class], sel, (IMP)function, "v@:");
+    }
+    return [super resolveInstanceMethod:sel];
+}
+
+typedef struct example {
+    char *aString;
+    int  anInt;
+} Example;
+
 - (void)viewDidLoad {
     [super viewDidLoad];
+    
+    // Messaging 예제
+//    NSLog(@"perform resolveThisMethodDynamically");
+//    [self performSelector:@selector(resolveThisMethodDynamically)];
 //    
+////    NSArray *array = @[@"1",@"1",@"1",@"1",@"1"];
+//    
+//    char *buf1 = @encode(int **);
+//    char *buf2 = @encode(int);
+//    char *buf3 = @encode(NSArray *);
+//    char *buf4 = @encode(NSDictionary *);
+//    char *buf5 = @encode(Example);
+//    char *buf6 = @encode(NSObject);
+//    char *buf7 = @encode(ViewController);
+//    
+//    NSLog(@"%s, %s, %s, %s, %s, %s, %s",
+//          buf1, buf2, buf3, buf4, buf5, buf6, buf7);
+//    
+//    size_t size1 = sizeof(buf1);
+//    size_t size2 = sizeof(buf2);
+//    size_t size3 = sizeof(buf3);
+//    NSLog(@"%lu, %lu, %lu", size1, size2, size3);
+    
+    self.otherObject = [[ForwardingObject alloc] init];
+    
+    if ([self respondsToSelector:@selector(printThisString:)]) {
+        NSLog(@"가능");
+    } else {
+        NSLog(@"불가능");
+    }
+    [self performSelector:@selector(printThisString:) withObject:@"this is forwarding"];
+    
+    NSString *fix = @"asdfasdf";
+    [self printThisStringAndFix:&fix];
+    
+//    [self performSelector:@selector(asdlfjasdf)];
+//    [self printThisString:@"this is forwarding"];
+    
+//
 //    [self methodForSelector:@selector(viewDidLoad)];
     
     //// ivar도 key value coding을 통해 접근이 가능하다
@@ -276,55 +345,55 @@ typedef struct {
 //    });
 //    returnBlock();
     
-    
-    void (^arrayOfTenBlocksReturningVoidWithIntArgument[10])(int);
-    arrayOfTenBlocksReturningVoidWithIntArgument[0] = ^(int v) {
-        
-    };
-    
-    float (^oneFrom)(float);
-    
-    oneFrom = ^(float aFloat) {
-        float result = aFloat - 1.0;
-        return result;
-    };
-    
-    NSArray *stringsArray = @[ @"string 1",
-                               @"String 21", // <-
-                               @"string 12",
-                               @"String 11",
-                               @"strîng 21", // <-
-                               @"striñg 21", // <-
-                               @"String 02",
-                               @"S",
-                               @"SSSSSSSSSSSSS"];
-
-    [stringsArray enumerateObjectsUsingBlock:^(id  _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
-        NSLog(@"obj = %@<%p>", obj, obj);
-    }];
-    
-//    NSMutableArray *mutableStringArray = [stringsArray mutableCopy];
-//    [mutableStringArray enumerateObjectsUsingBlock:^(id  _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
+    // block
+//    void (^arrayOfTenBlocksReturningVoidWithIntArgument[10])(int);
+//    arrayOfTenBlocksReturningVoidWithIntArgument[0] = ^(int v) {
+//        
+//    };
+//    
+//    float (^oneFrom)(float);
+//    
+//    oneFrom = ^(float aFloat) {
+//        float result = aFloat - 1.0;
+//        return result;
+//    };
+//    
+//    NSArray *stringsArray = @[ @"string 1",
+//                               @"String 21", // <-
+//                               @"string 12",
+//                               @"String 11",
+//                               @"strîng 21", // <-
+//                               @"striñg 21", // <-
+//                               @"String 02",
+//                               @"S",
+//                               @"SSSSSSSSSSSSS"];
+//
+//    [stringsArray enumerateObjectsUsingBlock:^(id  _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
 //        NSLog(@"obj = %@<%p>", obj, obj);
 //    }];
-    
-    NSLocale *currentLocale = [NSLocale currentLocale];
-    __block NSUInteger orderedSameCount = 0;
-    
-    NSArray *diacriticInsensitiveSortArray = [stringsArray sortedArrayUsingComparator:^(id string1, id string2) {
-        NSLog(@"1 = [%@], 2 = [%@]", string1, string2);
-        
-        NSRange string1Range = NSMakeRange(0, [string1 length]);
-        NSComparisonResult comparisonResult = [string1 compare:string2 options:NSDiacriticInsensitiveSearch range:string1Range locale:currentLocale];
-        
-        if (comparisonResult == NSOrderedSame) {
-            orderedSameCount++;
-        }
-        return comparisonResult;
-    }];
-    
-    NSLog(@"diacriticInsensitiveSortArray: %@", diacriticInsensitiveSortArray);
-    NSLog(@"orderedSameCount: %zd", orderedSameCount);
+//    
+////    NSMutableArray *mutableStringArray = [stringsArray mutableCopy];
+////    [mutableStringArray enumerateObjectsUsingBlock:^(id  _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
+////        NSLog(@"obj = %@<%p>", obj, obj);
+////    }];
+//    
+//    NSLocale *currentLocale = [NSLocale currentLocale];
+//    __block NSUInteger orderedSameCount = 0;
+//    
+//    NSArray *diacriticInsensitiveSortArray = [stringsArray sortedArrayUsingComparator:^(id string1, id string2) {
+//        NSLog(@"1 = [%@], 2 = [%@]", string1, string2);
+//        
+//        NSRange string1Range = NSMakeRange(0, [string1 length]);
+//        NSComparisonResult comparisonResult = [string1 compare:string2 options:NSDiacriticInsensitiveSearch range:string1Range locale:currentLocale];
+//        
+//        if (comparisonResult == NSOrderedSame) {
+//            orderedSameCount++;
+//        }
+//        return comparisonResult;
+//    }];
+//    
+//    NSLog(@"diacriticInsensitiveSortArray: %@", diacriticInsensitiveSortArray);
+//    NSLog(@"orderedSameCount: %zd", orderedSameCount);
     
 //    size_t count = 10;
 //    dispatch_queue_t queue = dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0);
@@ -634,10 +703,10 @@ typedef struct {
         
     }
     
-    NSLog(@"self.propertyBlock = %@ <%p>",
-          self.propertyBlock, self.propertyBlock);
-    NSLog(@"self.propertyBlock2 = %@ <%p>",
-          self.propertyBlock2, self.propertyBlock2);
+//    NSLog(@"self.propertyBlock = %@ <%p>",
+//          self.propertyBlock, self.propertyBlock);
+//    NSLog(@"self.propertyBlock2 = %@ <%p>",
+//          self.propertyBlock2, self.propertyBlock2);
 }
 
 - (void)printHelloString {
@@ -648,11 +717,49 @@ typedef struct {
 //    return YES;
 //}
 
-- (void)printThisString:(NSString *)__string {
-    NSLog(@"%@, %p", __string, __string);
-    __string = @"after1";
-    NSLog(@"%@, %p", __string, __string);
+- (NSMethodSignature *)methodSignatureForSelector:(SEL)aSelector {
+    NSLog(@"methodSignatureForSelector = %@", NSStringFromSelector(aSelector));
+    
+    NSMethodSignature *signature = [super methodSignatureForSelector:aSelector];
+    if (!signature) {
+        signature = [self.otherObject methodSignatureForSelector:aSelector];
+    }
+    return signature;
 }
+
+- (BOOL)respondsToSelector:(SEL)aSelector
+{
+    if ( [super respondsToSelector:aSelector] )
+        return YES;
+    else {
+        /* Here, test whether the aSelector message can     *
+         * be forwarded to another object and whether that  *
+         * object can respond to it. Return YES if it can.  */
+        return [self.otherObject respondsToSelector:aSelector];
+    }
+    return NO;
+}
+
+- (void)forwardInvocation:(NSInvocation *)anInvocation {
+    NSLog(@"forwardInvocation = %@", anInvocation);
+    
+    if ([self.otherObject respondsToSelector:[anInvocation selector]]) {
+        [anInvocation invokeWithTarget:self.otherObject];
+    }else {
+        [super forwardInvocation:anInvocation];
+    }
+}
+
+//- (void)printThisString:(NSString *)__string {
+//    NSLog(@"%@, %p", __string, __string);
+////    __string = @"after1";
+////    NSLog(@"%@, %p", __string, __string);
+//    
+//    if ([self.otherObject respondsToSelector:@selector(printThisString:)]) {
+//        [self.otherObject performSelector:@selector(printThisString:) withObject:__string];
+//    }
+//}
+
 - (void)printThisStringAndFix:(NSString **)__string {
     NSLog(@"what is it? = %p", __string);
     NSLog(@"%@, %p", *__string, *__string);
