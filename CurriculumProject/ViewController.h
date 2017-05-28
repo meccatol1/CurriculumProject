@@ -13,7 +13,9 @@
 - (void)print;
 @end
 
-@interface Human : NSObject <NSCopying>
+@interface Human : NSObject <NSCopying> {
+    NSString *problem;
+}
 
 -(id)initWithName:(NSString *)name age:(int)age;
 
@@ -37,9 +39,10 @@
 @interface ViewController : UIViewController {
     NSString *rewards;
 }
+@property NSString *temperature;
 @property (weak) id <HelloWorld> delegate;
 
-- (void)printThisString:(NSString *)__string;
+//- (void)printThisString:(NSString *)__string;
 - (void)printThisStringAndFix:(NSString **)__string;
 @end
 
