@@ -8,6 +8,9 @@
 
 #import "SubViewController.h"
 
+#import "AFNetworking.h"
+
+
 @interface SubViewController ()
 
 @end
@@ -33,5 +36,45 @@
     // Pass the selected object to the new view controller.
 }
 */
+
+- (void)test {
+    NSDictionary *param = @{@"key1":@"value1",
+                            @"key2":@"value2"};
+    NSString *strImagePath = @"large_image_Path";
+    
+    NSMutableURLRequest *request1 =
+    [[AFHTTPRequestSerializer serializer] multipartFormRequestWithMethod:@"POST"
+                                                               URLString:@"URLString"
+                                                              parameters:param
+                                               constructingBodyWithBlock:^(id formData) {
+                                                   [formData appendPartWithFileURL:[NSURL fileURLWithPath:strImagePath]
+                                                                              name:@"sendimage"
+                                                                          fileName:[strImagePath lastPathComponent]
+                                                                          mimeType:@"image/png"
+                                                                             error:nil];
+                                               }
+                                                                   error:nil];
+    
+    
+    //    [[AFHTTPRequestSerializer serializer] requestW]
+    [[AFHTTPRequestSerializer serializer] requestWithMultipartFormRequest:request1
+                                              writingStreamContentsToFile:[NSURL fileURLWithPath:[strImagePath stringByDeletingPathExtension]]
+                                                        completionHandler:^(NSError *error) {
+                                                            
+                                                        }];
+    
+    NSURLSessionConfiguration *configuration = [[NSURLSessionConfiguration alloc] init];
+    AFURLSessionManager *manager = [[AFURLSessionManager alloc] initWithSessionConfiguration:configuration];
+    NSProgress *progress = nil;
+    NSURLSessionUploadTask *uploadTask = [manager uploadTaskWithRequest:request1
+                                                               fromFile:[NSURL fileURLWithPath:strImagePath]
+                                                               progress:^(NSProgress *progress) {
+                                                                   
+                                                               }
+                                                      completionHandler:^(NSURLResponse *response, id responseObject, NSError *error) {
+                                                          NSLog(@"response : %@\n\n responseObject : %@\n\n error : %@", response, responseObject, error);
+                                                      }];
+    [uploadTask resume];
+}
 
 @end

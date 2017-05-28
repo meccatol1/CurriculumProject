@@ -34,7 +34,9 @@
 - (void)printHelloString;
 @end
 
-@interface ViewController : UIViewController
+@interface ViewController : UIViewController {
+    NSString *rewards;
+}
 @property (weak) id <HelloWorld> delegate;
 
 - (void)printThisString:(NSString *)__string;

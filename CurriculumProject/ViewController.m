@@ -9,6 +9,8 @@
 #import "ViewController.h"
 #import "SubViewController.h"
 
+#import <objc/runtime.h>
+
 //#import "Human+Mouth.h"
 
 @implementation XYZBlockKeeper
@@ -98,8 +100,30 @@ typedef struct {
     
 }
 
+void function1(id self, SEL _cmd) {
+    ViewController *realSelf = self;
+    
+    NSString *realRewards = realSelf->rewards;
+}
+
 - (void)viewDidLoad {
     [super viewDidLoad];
+    int type;
+    
+    id list;
+    
+//    class_addMethod([self class], @selector(blahblah), (IMP)function, "v@:");
+    
+    if (type) {
+        list =
+        @[@"1", @"2"];
+    } else {
+        list =
+        [NSMutableArray arrayWithArray:@[@"1", @"2"]];
+    }
+    
+    [self methodForSelector:@selector(viewDidLoad)];
+    
     
 //    NSInteger int1 = 10;
 //    __block NSInteger int2 = 20;
@@ -572,4 +596,15 @@ typedef struct {
 //    __block int array[k];
     
 }
+
+- (void)message {
+    // implementation
+    self;
+    _cmd;
+}
+
+
+
+
+
 @end
