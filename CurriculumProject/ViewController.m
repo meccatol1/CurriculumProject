@@ -139,21 +139,84 @@ typedef struct example {
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    int type;
     
-    id list;
+    NSLog(@"%@", [NSThread currentThread]);
     
-//    class_addMethod([self class], @selector(blahblah), (IMP)function, "v@:");
     
-    if (type) {
-        list =
-        @[@"1", @"2"];
-    } else {
-        list =
-        [NSMutableArray arrayWithArray:@[@"1", @"2"]];
+    id protocol = objc_getProtocol("asdf");
+    NSLog(@"protocol = %@", protocol);
+    
+    id LenderClass = objc_getClass("ViewController");
+    unsigned int outCount, i;
+    objc_property_t *properties = class_copyPropertyList(LenderClass, &outCount);
+    for (i = 0; i < outCount; i++) {
+        objc_property_t property = properties[i];
+        fprintf(stdout, "%s %s\n", property_getName(property), property_getAttributes(property));
     }
+
     
-    [self methodForSelector:@selector(viewDidLoad)];
+    
+//    NSOperation *o = [[NSOperation alloc] init];
+//    o.isCancelled = NO;
+    
+//    NSOperationQueue *queue = [[NSOperationQueue alloc] init];
+//    [queue addOperations:<#(nonnull NSArray<NSOperation *> *)#> waitUntilFinished:<#(BOOL)#>]
+    
+    //// NSBlockOperation and Separate thread
+//    __block int total = 100;
+//    
+//    NSBlockOperation *o1 = [NSBlockOperation blockOperationWithBlock:^{
+//        for (int i = 1; i <= total; i++) {
+//            NSLog(@"[o1_1] i = %zd, %@", i, [NSThread currentThread]);
+//        }
+//    }];
+//    [o1 addExecutionBlock:^{
+//        for (int i = 1; i <= total; i++) {
+//            NSLog(@"[o1_2] i = %zd, %@", i, [NSThread currentThread]);
+//        }
+//    }];
+//    [o1 addExecutionBlock:^{
+//        for (int i = 1; i <= total; i++) {
+//            NSLog(@"[o1_3] i = %zd, %@", i, [NSThread currentThread]);
+//        }
+//    }];
+////    [o1 start];
+//    NSOperationQueue *queue = [[NSOperationQueue alloc] init];
+//    [queue setMaxConcurrentOperationCount:1];
+//    [queue addOperation:o1];
+    
+    //// NSInvocationOperation and Dependency
+//    NSInvocationOperation *o1 = [[NSInvocationOperation alloc] initWithTarget:self
+//                                                                     selector:@selector(emptyMethod)
+//                                                                       object:nil];
+//    NSInvocationOperation *o2 = [[NSInvocationOperation alloc] initWithTarget:self
+//                                                                     selector:@selector(iteratorMethod)
+//                                                                       object:nil];
+//    [o1 addDependency:o2];
+//    NSOperationQueue *queue = [[NSOperationQueue alloc] init];
+//    [queue setMaxConcurrentOperationCount:5];
+//    [queue addOperation:o1];
+//    sleep(1);
+//    [queue addOperation:o2];
+    
+    
+    ///////////////////////////////////////////////     4주차       ///////////////////////
+    //// Runtime Sample
+//    int type;
+//    
+//    id list;
+//    
+////    class_addMethod([self class], @selector(blahblah), (IMP)function, "v@:");
+//    
+//    if (type) {
+//        list =
+//        @[@"1", @"2"];
+//    } else {
+//        list =
+//        [NSMutableArray arrayWithArray:@[@"1", @"2"]];
+//    }
+//    
+//    [self methodForSelector:@selector(viewDidLoad)];
     
     
     // Messaging 예제
@@ -177,18 +240,19 @@ typedef struct example {
 //    size_t size2 = sizeof(buf2);
 //    size_t size3 = sizeof(buf3);
 //    NSLog(@"%lu, %lu, %lu", size1, size2, size3);
-    
-    self.otherObject = [[ForwardingObject alloc] init];
-    
-    if ([self respondsToSelector:@selector(printThisString:)]) {
-        NSLog(@"가능");
-    } else {
-        NSLog(@"불가능");
-    }
-    [self performSelector:@selector(printThisString:) withObject:@"this is forwarding"];
-    
-    NSString *fix = @"asdfasdf";
-    [self printThisStringAndFix:&fix];
+
+    //// Runtime Sample
+//    self.otherObject = [[ForwardingObject alloc] init];
+//    
+//    if ([self respondsToSelector:@selector(printThisString:)]) {
+//        NSLog(@"가능");
+//    } else {
+//        NSLog(@"불가능");
+//    }
+//    [self performSelector:@selector(printThisString:) withObject:@"this is forwarding"];
+//    
+//    NSString *fix = @"asdfasdf";
+//    [self printThisStringAndFix:&fix];
     
 //    [self performSelector:@selector(asdlfjasdf)];
 //    [self printThisString:@"this is forwarding"];
@@ -718,6 +782,7 @@ typedef struct example {
 //    NSLog(@"ivar_string = %@", ivar_string);
 }
 - (IBAction)action:(UIButton *)sender {
+    NSLog(@"button selected");
 //    NSLog(@"ivar_string = %@", ivar_string);
 //    self.delegate.helloString = @"hello?";
 //    [self printHelloString];
@@ -725,7 +790,6 @@ typedef struct example {
     if ([self.delegate respondsToSelector:@selector(printHelloString)]) {
         
     }
-    
 //    NSLog(@"self.propertyBlock = %@ <%p>",
 //          self.propertyBlock, self.propertyBlock);
 //    NSLog(@"self.propertyBlock2 = %@ <%p>",
@@ -789,6 +853,15 @@ typedef struct example {
     *__string = @"after2";
 }
 
+- (void)emptyMethod {
+    NSLog(@"emptyMethod");
+}
+- (void)iteratorMethod {
+    for (int i = 1; i <= 100; i++) {
+        NSLog(@"i = %zd", i);
+    }
+}
+
 - (BOOL)doSomethingThatMayGenerateAnError:(NSError **)error {
     NSLog(@"error's address = %p", error);
     
@@ -822,14 +895,11 @@ typedef struct example {
     
 }
 
+
 - (void)message {
     // implementation
     self;
     _cmd;
 }
-
-
-
-
 
 @end
