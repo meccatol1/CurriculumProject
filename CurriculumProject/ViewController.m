@@ -12,7 +12,7 @@
 
 #import <objc/runtime.h>
 
-#import <objc/runtime.h>
+#import "CustomOperation.h"
 
 //#import "Human+Mouth.h"
 
@@ -72,8 +72,6 @@ typedef void (^BinBlock)(void);
 @property ForwardingObject *otherObject;
 
 @end
-
-
 //@property (strong) BinBlock propertyBlock;
 //@property (copy) BinBlock propertyBlock2;
 //
@@ -143,17 +141,59 @@ typedef struct example {
     NSLog(@"%@", [NSThread currentThread]);
     
     
-    id protocol = objc_getProtocol("asdf");
-    NSLog(@"protocol = %@", protocol);
     
-    id LenderClass = objc_getClass("ViewController");
-    unsigned int outCount, i;
-    objc_property_t *properties = class_copyPropertyList(LenderClass, &outCount);
-    for (i = 0; i < outCount; i++) {
-        objc_property_t property = properties[i];
-        fprintf(stdout, "%s %s\n", property_getName(property), property_getAttributes(property));
-    }
+    //// CustomOperation 예제
+//    
+//    CustomOperation *o1 = [[CustomOperation alloc] initWithIndex:0];
+//    CustomOperation *o2 = [[CustomOperation alloc] initWithIndex:100];
+//    CustomOperation *o3 = [[CustomOperation alloc] initWithIndex:200];
+//    NSOperationQueue *queue = [[NSOperationQueue alloc] init];
+//    [queue addOperations:@[o1, o2, o3] waitUntilFinished:NO];
+    
+//    CustomOperation *o1 = [[CustomOperation alloc] initWithIndex:0];
+//    NSOperationQueue *queue = [[NSOperationQueue alloc] init];
+//    [queue addOperations:@[o1] waitUntilFinished:NO];
+//    NSLog(@"started~! = %@", queue.operations);
+//    [NSThread sleepForTimeInterval:0.001];
+//    [o1 cancel];
+//    [NSThread sleepForTimeInterval:0.2];
+//    NSLog(@"canceled~! = %@", queue.operations);
 
+//    CustomOperation *o1 = [[CustomOperation alloc] initWithIndex:0];
+//    [o1 setCompletionBlock:^{
+//        NSLog(@"finish!");
+//    }];
+//    NSOperationQueue *queue = [[NSOperationQueue alloc] init];
+//    [queue addOperations:@[o1] waitUntilFinished:NO];
+//    NSLog(@"started~! = %@", queue.operations);
+
+    CustomOperation *o1 =
+    [[CustomOperation alloc] initWithIndex:0];
+    [o1 setCompletionBlock:^{
+        NSLog(@"finish!");
+    }];
+    [o1 start];
+    NSLog(@"started~!");
+    
+    
+//    NSMutableArray *operationArray = [NSMutableArray array];
+//    for (int i = 0; i < 100; i++) {
+//        CustomOperation *o = [[CustomOperation alloc] initWithIndex:100*i];
+//        [operationArray addObject:o];
+//    }
+//    [queue addOperations:operationArray waitUntilFinished:NO];
+//    NSLog(@"finished~! = %@", queue.operations);
+
+    
+//    [queue setMaxConcurrentOperationCount:5];
+//    
+//    [queue setSuspended:YES];
+//    
+//    [queue waitUntilAllOperationsAreFinished];
+    
+    
+    
+//    class_addProperty(<#__unsafe_unretained Class cls#>, <#const char *name#>, <#const objc_property_attribute_t *attributes#>, <#unsigned int attributeCount#>)
     
     
 //    NSOperation *o = [[NSOperation alloc] init];
@@ -163,7 +203,7 @@ typedef struct example {
 //    [queue addOperations:<#(nonnull NSArray<NSOperation *> *)#> waitUntilFinished:<#(BOOL)#>]
     
     //// NSBlockOperation and Separate thread
-//    __block int total = 100;
+//    int total = 3;
 //    
 //    NSBlockOperation *o1 = [NSBlockOperation blockOperationWithBlock:^{
 //        for (int i = 1; i <= total; i++) {
@@ -180,12 +220,30 @@ typedef struct example {
 //            NSLog(@"[o1_3] i = %zd, %@", i, [NSThread currentThread]);
 //        }
 //    }];
-////    [o1 start];
 //    NSOperationQueue *queue = [[NSOperationQueue alloc] init];
 //    [queue setMaxConcurrentOperationCount:1];
 //    [queue addOperation:o1];
     
-    //// NSInvocationOperation and Dependency
+    // NSInvocationOperation and Dependency
+    
+//    NSInvocationOperation *o0 = [[NSInvocationOperation alloc] initWithTarget:self
+//                                                                     selector:@selector(emptyMethod2)
+//                                                                       object:nil];
+//    NSInvocationOperation *o1 = [[NSInvocationOperation alloc] initWithTarget:self
+//                                                                     selector:@selector(emptyMethod)
+//                                                                       object:nil];
+//    NSInvocationOperation *o2 = [[NSInvocationOperation alloc] initWithTarget:self
+//                                                                     selector:@selector(iteratorMethod)
+//                                                                       object:nil];
+//    [o0 addDependency:o1];
+//    [o1 addDependency:o2];
+//    
+//    NSOperationQueue *queue = [[NSOperationQueue alloc] init];
+//    [queue addOperation:o0];
+//    [queue addOperation:o1];
+//    [queue addOperation:o2];
+//    NSLog(@"started!");
+    
 //    NSInvocationOperation *o1 = [[NSInvocationOperation alloc] initWithTarget:self
 //                                                                     selector:@selector(emptyMethod)
 //                                                                       object:nil];
@@ -218,6 +276,21 @@ typedef struct example {
 //    
 //    [self methodForSelector:@selector(viewDidLoad)];
     
+    
+    //// Runtime, Declared Property 예제
+//    id protocol = objc_getProtocol("Protocol");
+//    NSLog(@"protocol = %@", protocol);
+//    
+//    id ThisClass = objc_getClass("ViewController");
+//    unsigned int outCount, i;
+//    objc_property_t *properties =
+//    class_copyPropertyList(ThisClass, &outCount);
+//    for (i = 0; i < outCount; i++) {
+//        objc_property_t property = properties[i];
+//        NSLog(@"name = %s, attributes = %s",
+//              property_getName(property),
+//              property_getAttributes(property));
+//    }
     
     // Messaging 예제
 //    NSLog(@"perform resolveThisMethodDynamically");
@@ -856,8 +929,12 @@ typedef struct example {
 - (void)emptyMethod {
     NSLog(@"emptyMethod");
 }
+- (void)emptyMethod2 {
+    NSLog(@"22emptyMethod22");
+}
+
 - (void)iteratorMethod {
-    for (int i = 1; i <= 100; i++) {
+    for (int i = 1; i <= 10; i++) {
         NSLog(@"i = %zd", i);
     }
 }

@@ -45,6 +45,7 @@
 //- (void)printThisString:(NSString *)__string;
 - (void)printThisStringAndFix:(NSString **)__string;
 - (void)emptyMethod;
+- (void)emptyMethod2;
 - (void)iteratorMethod;
 
 @end

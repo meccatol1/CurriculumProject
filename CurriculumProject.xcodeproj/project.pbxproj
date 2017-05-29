@@ -17,10 +17,10 @@
 		76131FF31ECA973500CBA227 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 76131FF11ECA973500CBA227 /* LaunchScreen.storyboard */; };
 		76131FFC1ECA9FEB00CBA227 /* SubViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 76131FFB1ECA9FEB00CBA227 /* SubViewController.m */; };
 		765A7D771ECAF603008D5C43 /* Human+Mouth.m in Sources */ = {isa = PBXBuildFile; fileRef = 765A7D761ECAF603008D5C43 /* Human+Mouth.m */; };
-		C75271F429E69FD5C27E660C /* libPods-CurriculumProject.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 425CE85A8EF68C6D7CAC45EC /* libPods-CurriculumProject.a */; };
 		7666F7391ED7F59A00201030 /* ForwardingObject.m in Sources */ = {isa = PBXBuildFile; fileRef = 7666F7381ED7F59A00201030 /* ForwardingObject.m */; };
 		76BBE4D61ED6889300E67C05 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 76BBE4D51ED6889300E67C05 /* Foundation.framework */; };
-
+		76C748761EDBBB6D00C84062 /* CustomOperation.m in Sources */ = {isa = PBXBuildFile; fileRef = 76C748751EDBBB6D00C84062 /* CustomOperation.m */; };
+		C75271F429E69FD5C27E660C /* libPods-CurriculumProject.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 425CE85A8EF68C6D7CAC45EC /* libPods-CurriculumProject.a */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -46,6 +46,8 @@
 		7666F7371ED7F59A00201030 /* ForwardingObject.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ForwardingObject.h; sourceTree = "<group>"; };
 		7666F7381ED7F59A00201030 /* ForwardingObject.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ForwardingObject.m; sourceTree = "<group>"; };
 		76BBE4D51ED6889300E67C05 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
+		76C748741EDBBB6D00C84062 /* CustomOperation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CustomOperation.h; sourceTree = "<group>"; };
+		76C748751EDBBB6D00C84062 /* CustomOperation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CustomOperation.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -102,6 +104,8 @@
 				765A7D761ECAF603008D5C43 /* Human+Mouth.m */,
 				7666F7371ED7F59A00201030 /* ForwardingObject.h */,
 				7666F7381ED7F59A00201030 /* ForwardingObject.m */,
+				76C748741EDBBB6D00C84062 /* CustomOperation.h */,
+				76C748751EDBBB6D00C84062 /* CustomOperation.m */,
 				76131FE91ECA973500CBA227 /* Main.storyboard */,
 				76131FEF1ECA973500CBA227 /* Assets.xcassets */,
 				76131FF11ECA973500CBA227 /* LaunchScreen.storyboard */,
@@ -251,6 +255,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				76C748761EDBBB6D00C84062 /* CustomOperation.m in Sources */,
 				7666F7391ED7F59A00201030 /* ForwardingObject.m in Sources */,
 				76131FFC1ECA9FEB00CBA227 /* SubViewController.m in Sources */,
 				76131FEE1ECA973500CBA227 /* CurriculumProject.xcdatamodeld in Sources */,
