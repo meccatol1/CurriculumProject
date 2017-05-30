@@ -174,16 +174,15 @@ typedef struct example {
 //    [o1 start];
 //    NSLog(@"started~!");
     
-    
-    NSMutableArray *operationArray = [NSMutableArray array];
-    for (int i = 0; i < 100; i++) {
-        CustomOperation *o = [[CustomOperation alloc] initWithIndex:i];
-        [operationArray addObject:o];
-    }
-    NSOperationQueue *queue = [[NSOperationQueue alloc] init];
-    [queue setMaxConcurrentOperationCount:3];
-    [queue addOperations:operationArray waitUntilFinished:NO];
-    NSLog(@"finished~!");
+//    NSMutableArray *operationArray = [NSMutableArray array];
+//    for (int i = 0; i < 100; i++) {
+//        CustomOperation *o = [[CustomOperation alloc] initWithIndex:i];
+//        [operationArray addObject:o];
+//    }
+//    NSOperationQueue *queue = [[NSOperationQueue alloc] init];
+//    [queue setMaxConcurrentOperationCount:3];
+//    [queue addOperations:operationArray waitUntilFinished:NO];
+//    NSLog(@"finished~!");
 
     
 //    [queue setMaxConcurrentOperationCount:5];

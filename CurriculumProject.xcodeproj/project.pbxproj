@@ -18,6 +18,7 @@
 		76131FFC1ECA9FEB00CBA227 /* SubViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 76131FFB1ECA9FEB00CBA227 /* SubViewController.m */; };
 		765A7D771ECAF603008D5C43 /* Human+Mouth.m in Sources */ = {isa = PBXBuildFile; fileRef = 765A7D761ECAF603008D5C43 /* Human+Mouth.m */; };
 		7666F7391ED7F59A00201030 /* ForwardingObject.m in Sources */ = {isa = PBXBuildFile; fileRef = 7666F7381ED7F59A00201030 /* ForwardingObject.m */; };
+		767FA4361EDD1482006CF15D /* CPView2Controller.m in Sources */ = {isa = PBXBuildFile; fileRef = 767FA4351EDD1482006CF15D /* CPView2Controller.m */; };
 		76BBE4D61ED6889300E67C05 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 76BBE4D51ED6889300E67C05 /* Foundation.framework */; };
 		76C748761EDBBB6D00C84062 /* CustomOperation.m in Sources */ = {isa = PBXBuildFile; fileRef = 76C748751EDBBB6D00C84062 /* CustomOperation.m */; };
 		C75271F429E69FD5C27E660C /* libPods-CurriculumProject.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 425CE85A8EF68C6D7CAC45EC /* libPods-CurriculumProject.a */; };
@@ -45,6 +46,8 @@
 		765A7D761ECAF603008D5C43 /* Human+Mouth.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "Human+Mouth.m"; sourceTree = "<group>"; };
 		7666F7371ED7F59A00201030 /* ForwardingObject.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ForwardingObject.h; sourceTree = "<group>"; };
 		7666F7381ED7F59A00201030 /* ForwardingObject.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ForwardingObject.m; sourceTree = "<group>"; };
+		767FA4341EDD1482006CF15D /* CPView2Controller.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CPView2Controller.h; sourceTree = "<group>"; };
+		767FA4351EDD1482006CF15D /* CPView2Controller.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CPView2Controller.m; sourceTree = "<group>"; };
 		76BBE4D51ED6889300E67C05 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		76C748741EDBBB6D00C84062 /* CustomOperation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CustomOperation.h; sourceTree = "<group>"; };
 		76C748751EDBBB6D00C84062 /* CustomOperation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CustomOperation.m; sourceTree = "<group>"; };
@@ -96,6 +99,8 @@
 			children = (
 				76131FE31ECA973500CBA227 /* AppDelegate.h */,
 				76131FE41ECA973500CBA227 /* AppDelegate.m */,
+				767FA4341EDD1482006CF15D /* CPView2Controller.h */,
+				767FA4351EDD1482006CF15D /* CPView2Controller.m */,
 				76131FE61ECA973500CBA227 /* ViewController.h */,
 				76131FE71ECA973500CBA227 /* ViewController.m */,
 				76131FFA1ECA9FEB00CBA227 /* SubViewController.h */,
@@ -262,6 +267,7 @@
 				76131FE81ECA973500CBA227 /* ViewController.m in Sources */,
 				76131FE51ECA973500CBA227 /* AppDelegate.m in Sources */,
 				76131FE21ECA973500CBA227 /* main.m in Sources */,
+				767FA4361EDD1482006CF15D /* CPView2Controller.m in Sources */,
 				765A7D771ECAF603008D5C43 /* Human+Mouth.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
