@@ -67,6 +67,7 @@ void funcForBlock(void * context) {
 #pragma mark - Concurrent Queue
     //// Concurrent Queue
 //    dispatch_queue_t global_c_queue = dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0);
+//    dispatch_queue_t global_c_queue = dispatch_get_global_queue(QOS_CLASS_USER_INITIATED, 0);
     dispatch_queue_t serial = dispatch_queue_create("", DISPATCH_QUEUE_SERIAL);
     dispatch_queue_t serial2 = dispatch_queue_create("", DISPATCH_QUEUE_SERIAL);
     
