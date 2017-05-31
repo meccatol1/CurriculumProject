@@ -67,30 +67,72 @@ void funcForBlock(void * context) {
 #pragma mark - Concurrent Queue
     //// Concurrent Queue
 //    dispatch_queue_t global_c_queue = dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0);
+    dispatch_queue_t serial = dispatch_queue_create("", DISPATCH_QUEUE_SERIAL);
+    dispatch_queue_t serial2 = dispatch_queue_create("", DISPATCH_QUEUE_SERIAL);
     
-#pragma mark apply
+    dispatch_sync(serial2, ^{
+        dispatch_sync(serial, ^{
+            NSLog(@"aa");
+        });
+    });
+    dispatch_sync(serial, ^{
+        dispatch_sync(serial2, ^{
+            NSLog(@"bb");
+        });
+    });
+    
+//    dispatch_set_finalizer_f(<#dispatch_object_t  _Nonnull object#>, <#dispatch_function_t  _Nullable finalizer#>)
+        
+    NSLog(@"1gogo, %@", [NSThread currentThread]);
+    dispatch_sync(serial , ^{
+        NSLog(@"2gogo, %@", [NSThread currentThread]);
+        
+        dispatch_sync(serial, ^{
+            NSLog(@"3gogo, %@", [NSThread currentThread]);
+        });
+    });
     
     dispatch_queue_t concurrentQueue =
     dispatch_queue_create("Concurrent_1", DISPATCH_QUEUE_CONCURRENT);
-//    self.currentQueue = concurrentQueue;
-    
-    NSLog(@"start~");
-    int total = 5;
-    for (int i = 0; i < total; i++) {
-        dispatch_async(concurrentQueue, ^{
-            // Do Something
-            NSLog(@"#%zd for", i);
+
+    dispatch_sync(concurrentQueue, ^{
+        NSLog(@"1gogo, %@", [NSThread currentThread]);
+        dispatch_sync(concurrentQueue, ^{
+            NSLog(@"2gogo, %@", [NSThread currentThread]);
         });
-    }
-    NSLog(@"mid~");
-//    dispatch_apply(total, concurrentQueue, ^(size_t i) {
-//        // Do Something
-//        NSLog(@"#%zd apply", i);
-//    });
-    NSLog(@"end~");
+        NSLog(@"3gogo, %@", [NSThread currentThread]);
+        
+        dispatch_queue_t mainQ = dispatch_get_main_queue();
+        NSLog(@"3_1gogo, %@", [NSThread currentThread]);
+        
+        dispatch_sync(mainQ, ^{
+            NSLog(@"4gogo, %@", [NSThread currentThread]);
+        });
+        NSLog(@"5gogo, %@", [NSThread currentThread]);
+    });
+#pragma mark apply
     
-    dispatch_async(<#dispatch_queue_t  _Nonnull queue#>, <#^(void)block#>)
-//    dispatch_set_target_queue(<#dispatch_object_t  _Nonnull object#>, <#dispatch_queue_t  _Nullable queue#>)
+//    dispatch_queue_t concurrentQueue =
+//    dispatch_queue_create("Concurrent_1", DISPATCH_QUEUE_CONCURRENT);
+////    self.currentQueue = concurrentQueue;
+//    
+//    NSLog(@"start~");
+//    int total = 5;
+//    for (int i = 0; i < total; i++) {
+//        dispatch_async(concurrentQueue, ^{
+//            // Do Something
+//            NSLog(@"#%zd for", i);
+//        });
+//    }
+//    NSLog(@"mid~");
+////    dispatch_apply(total, concurrentQueue, ^(size_t i) {
+////        // Do Something
+////        NSLog(@"#%zd apply", i);
+////    });
+//    NSLog(@"end~");
+//    
+//    dispatch_async(<#dispatch_queue_t  _Nonnull queue#>, <#^(void)block#>)
+////    dispatch_set_target_queue(<#dispatch_object_t  _Nonnull object#>, <#dispatch_queue_t  _Nullable queue#>)
     
 #pragma mark set_context
 //    dispatch_queue_t concurrentQueue =
