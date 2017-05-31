@@ -45,7 +45,15 @@
     
     return self;
 }
-
+- (void)changeName:(NSString *)name {
+    self.name = name;
+}
+- (void)changeAge:(int)age {
+    self.age = age;
+}
+- (void)eat {
+    self.age += 1;
+}
 - (id)copyWithZone:(NSZone *)zone
 {
     NSLog(@"copyWithZone");

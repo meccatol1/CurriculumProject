@@ -17,11 +17,13 @@
     NSString *problem;
 }
 
--(id)initWithName:(NSString *)name age:(int)age;
+- (id)initWithName:(NSString *)name age:(int)age;
+- (void)changeName:(NSString *)name;
+- (void)changeAge:(int)age;
+- (void)eat;
 
 @property (retain, nonatomic) NSString *name;
 @property (assign, nonatomic) int age;
-
 //- (void)speak;
 
 @end

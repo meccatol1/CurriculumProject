@@ -10,11 +10,11 @@
 #import "ViewController.h"
 
 @interface CPView2Controller ()
+@property (weak, nonatomic) IBOutlet UILabel *label;
 
 @property (nonatomic) dispatch_queue_t currentQueue;
 @property (nonatomic, weak) NSString *d;
-@property (nonatomic, weak) Human *human;
-
+@property (nonatomic) Human *human;
 @end
 
 @implementation CPView2Controller
@@ -110,6 +110,137 @@ void funcForBlock(void * context) {
         });
         NSLog(@"5gogo, %@", [NSThread currentThread]);
     });
+
+#pragma mark Group2    
+//    dispatch_time_t popTime = dispatch_time(DISPATCH_TIME_NOW, (int64_t)(1 * NSEC_PER_SEC));
+//    
+//    dispatch_queue_t concurrentQueue =
+//    dispatch_queue_create("Concurrent_1", DISPATCH_QUEUE_CONCURRENT);
+//    
+//    dispatch_group_t group = dispatch_group_create();
+//    
+//    self.human = [[Human alloc] initWithName:@"영희" age:13];
+//    NSLog(@"######## start");
+//    dispatch_async(concurrentQueue, ^{
+//        NSLog(@"#### start async");
+//        dispatch_group_enter(group);
+//        dispatch_async(concurrentQueue, ^{
+//            [NSThread sleepForTimeInterval:0.5];
+//            [self.human eat];
+//            NSLog(@"#[1] human = %@", self.human);
+//            dispatch_group_leave(group);
+//        });
+//        dispatch_group_enter(group);
+//        dispatch_async(concurrentQueue, ^{
+//            [NSThread sleepForTimeInterval:1.0];
+//            [self.human eat]; [self.human setName:@"철수"];
+//            NSLog(@"#[2] human = %@", self.human);
+//            dispatch_group_leave(group);
+//        });
+//        dispatch_group_enter(group);
+//        dispatch_async(concurrentQueue, ^{
+//            [NSThread sleepForTimeInterval:1.5];
+//            [self.human eat];
+//            NSLog(@"#[3] human = %@", self.human);
+//            dispatch_group_leave(group);
+//        });
+//        dispatch_group_wait(group, popTime);
+//        NSLog(@"#### end async");
+////        dispatch_group_notify(group, concurrentQueue, ^{
+////            NSLog(@"#### end async");
+////        });
+//    });
+//    NSLog(@"######## end");
+    
+    
+//    self.label.text = @"asdf";
+//    dispatch_barrier_async(concurrentQueue, ^{
+//        NSLog(@"label.text = %@", self.label.text);
+//    });
+    
+#pragma mark Group1
+//    dispatch_queue_t concurrentQueue =
+//    dispatch_queue_create("Concurrent_1", DISPATCH_QUEUE_CONCURRENT);
+//    
+//    dispatch_group_t group = dispatch_group_create();
+//    
+//    self.human = [[Human alloc] initWithName:@"영희" age:13];
+//    NSLog(@"######## start");
+//    dispatch_async(concurrentQueue, ^{
+//        NSLog(@"#### start async");
+//        dispatch_group_async(group, concurrentQueue, ^{
+//            [NSThread sleepForTimeInterval:0.5];
+//            [self.human eat];
+//            NSLog(@"#[1] human = %@", self.human);
+//        });
+//        dispatch_group_async(group, concurrentQueue, ^{
+//            [NSThread sleepForTimeInterval:1];
+//            [self.human eat];
+//            NSLog(@"#[2] human = %@", self.human);
+//        });
+//        dispatch_group_async(group, concurrentQueue, ^{
+//            [NSThread sleepForTimeInterval:1.5];
+//            [self.human eat];
+//            NSLog(@"#[3] human = %@", self.human);
+//        });
+//        dispatch_group_wait(group, DISPATCH_TIME_FOREVER);
+//        NSLog(@"#### end async");
+//    });
+//    NSLog(@"######## end");
+#pragma mark Semaphore
+//    dispatch_queue_t concurrentQueue =
+//    dispatch_queue_create("Concurrent_1", DISPATCH_QUEUE_CONCURRENT);
+//    
+//    dispatch_semaphore_t semaphore = dispatch_semaphore_create(3);
+//    
+//    self.human = [[Human alloc] initWithName:@"데이빗" age:80];
+//    
+//    for (int i = 0; i < 9; i++) {
+//        dispatch_async(concurrentQueue, ^{
+//            dispatch_semaphore_wait(semaphore, DISPATCH_TIME_FOREVER);
+//            NSLog(@"#[%zd] human = %@", i, self.human);
+//            [NSThread sleepForTimeInterval:1];
+//            dispatch_semaphore_signal(semaphore);
+//        });
+//    }
+#pragma mark Barrier
+//    dispatch_queue_t concurrentQueue =
+//    dispatch_queue_create("Concurrent_1", DISPATCH_QUEUE_CONCURRENT);
+//    self.human = [[Human alloc] initWithName:@"영희" age:0];
+//    for (int i = 0; i < 10; i++) {
+//        dispatch_async(concurrentQueue, ^{
+//            [self.human eat];
+//            NSLog(@"#[%zd] human = %@", i, self.human);
+//        });
+//    }
+//    dispatch_barrier_async(concurrentQueue, ^{
+//        NSLog(@"### barrier human = %@", self.human);
+//        [NSThread sleepForTimeInterval:1];
+//    });
+//    for (int i = 10; i < 20; i++) {
+//        dispatch_async(concurrentQueue, ^{
+//            [self.human eat];
+//            NSLog(@"#[%zd] human = %@", i, self.human);
+//        });
+//    }
+#pragma mark Autorelease Pool
+//    dispatch_queue_t concurrentQueue =
+//    dispatch_queue_create("Concurrent_1", DISPATCH_QUEUE_CONCURRENT);
+//
+//    dispatch_async(concurrentQueue, ^{
+//        @autoreleasepool {
+//            NSObject *newObject = [NSObject new];
+//            
+//            NSMutableArray *m_array = [NSMutableArray array];
+//            
+//            for (int i = 0; i < 10000; i++) {
+//                [m_array addObject:@(i)];
+//            }
+//            
+//            [m_array addObject:newObject];
+//        }
+//    });
+    
 #pragma mark apply
     
 //    dispatch_queue_t concurrentQueue =
@@ -130,9 +261,6 @@ void funcForBlock(void * context) {
 ////        NSLog(@"#%zd apply", i);
 ////    });
 //    NSLog(@"end~");
-//    
-//    dispatch_async(<#dispatch_queue_t  _Nonnull queue#>, <#^(void)block#>)
-////    dispatch_set_target_queue(<#dispatch_object_t  _Nonnull object#>, <#dispatch_queue_t  _Nullable queue#>)
     
 #pragma mark set_context
 //    dispatch_queue_t concurrentQueue =
@@ -232,7 +360,7 @@ void funcForBlock(void * context) {
 #pragma mark 동기 실행 주의사항
 //    dispatch_queue_t concurrentQueue =
 //    dispatch_queue_create("Concurrent_1", DISPATCH_QUEUE_CONCURRENT);
-//
+//    
 //    NSLog(@"start! %@", [NSThread currentThread]);
 //    dispatch_sync(concurrentQueue, ^{
 //        NSLog(@"#1 sync!!, %@", [NSThread currentThread]);
@@ -242,27 +370,33 @@ void funcForBlock(void * context) {
 //    });
 //    dispatch_async(concurrentQueue, ^{
 //        NSLog(@"#3_1 async!!, %@", [NSThread currentThread]);
-//        
 //        dispatch_sync(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
 //            NSLog(@"###3_2 sync again!!, %@", [NSThread currentThread]);
-//            for (int i = 0; i < 3; i++) {
-//                NSLog(@"###3_2 sync again!!");
-//            }
+//            NSLog(@"###3_2 sync again!!");
+//        });
+//        dispatch_sync(dispatch_get_main_queue(), ^{
+//            NSLog(@"###3_3 sync again!!, %@", [NSThread currentThread]);
+//            NSLog(@"###3_3 sync again!!");
+//        });
+//        dispatch_sync(concurrentQueue, ^{
+//            NSLog(@"###3_4 sync again!!, %@", [NSThread currentThread]);
+//            NSLog(@"###3_4 sync again!!");
 //        });
 //        
 //        NSLog(@"#3_1 async!!");
-//        
-//        // deadlock
+//        NSLog(@"concurrentQueue = %@", concurrentQueue);
+//        NSLog(@"currentQueue = %@", dispatch_get_current_queue());
+//        // deadlock // but, this function are deprecated
 //        dispatch_sync(dispatch_get_current_queue(), ^{
 //            NSLog(@"deadLock");
 //        });
+//        NSLog(@"deadLock finished");
 //    });
-//    
 //    // deadlock
 //    dispatch_sync(dispatch_get_main_queue(), ^{
 //        NSLog(@"deadLock");
 //    });
-
+    
 #pragma mark 비동기/동기 비교
 //    dispatch_queue_t concurrentQueue =
 //    dispatch_queue_create("Concurrent_1", DISPATCH_QUEUE_CONCURRENT);
@@ -309,10 +443,162 @@ void funcForBlock(void * context) {
     
 #pragma mark - Serial Queue
     
-    dispatch_queue_t serialQueue =
-    dispatch_queue_create("Serial_1", DISPATCH_QUEUE_SERIAL);
     
+#pragma mark 작업의 동기화 시점 & 경합 상태 예방
+//    self.human = [[Human alloc] initWithName:@"영희" age:13];
+//    dispatch_queue_t serialQueue =
+//    dispatch_queue_create("Serial_1", DISPATCH_QUEUE_SERIAL);
+//    NSLog(@"start = %@", self.human);
+//    dispatch_async(serialQueue, ^{
+//        [self.human changeName:@"철수"];
+//        NSLog(@"#1 human = %@", self.human);
+//    });
+//    dispatch_sync(serialQueue, ^{
+//        [self.human changeName:@"다시 영희"];
+//        NSLog(@"#2 human = %@", self.human);
+//    });
+//    dispatch_async(serialQueue, ^{
+//        [self.human changeName:@"또다시 철수"];
+//        NSLog(@"#3 human = %@", self.human);
+//    });
+//    NSLog(@"end");
+#pragma mark 동기 실행 주의사항2
+//    dispatch_queue_t serialQueue =
+//    dispatch_queue_create("Serial_1", DISPATCH_QUEUE_SERIAL);
+//    NSLog(@"start! %@", [NSThread currentThread]);
+//    dispatch_async(serialQueue, ^{ // or Sync
+//        NSLog(@"#1 async to Serial!!, %@", [NSThread currentThread]);
+//        dispatch_sync(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
+//            NSLog(@"###1_1 sync to GlobalQueue!!, %@", [NSThread currentThread]);
+//        });
+//        dispatch_sync(dispatch_get_main_queue(), ^{
+//            NSLog(@"###1_2 sync to MainQueue!!, %@", [NSThread currentThread]);
+//        });
+//        dispatch_sync(serialQueue, ^{
+//            NSLog(@"###1_3 sync to CurrentQueue!!");
+//        });
+//        NSLog(@"#3_1 async!!");
+//    });
+//    NSLog(@"end! %@", [NSThread currentThread]);
     
+//    dispatch_queue_t concurrentQueue =
+//    dispatch_queue_create("Concurrent_1", DISPATCH_QUEUE_CONCURRENT);
+//    dispatch_async(concurrentQueue, ^{
+//        NSLog(@"#2 async to concurrent!!, %@", [NSThread currentThread]);
+//        dispatch_sync(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
+//            NSLog(@"###2_1 sync to GlobalQueue!!, %@", [NSThread currentThread]);
+//        });
+//        for (int i = 0; i < 100000; i++) {
+//            dispatch_async(concurrentQueue, ^{
+//                NSNumber *n = [NSNumber numberWithFloat:@"5".floatValue];
+//            });
+//        }
+//        dispatch_sync(dispatch_get_main_queue(), ^{
+//            NSLog(@"###2_2 sync to MainQueue!!, %@", [NSThread currentThread]);
+//        });
+//        dispatch_sync(concurrentQueue, ^{
+//            NSLog(@"###2_3 sync to CurrentQueue!!, %@", [NSThread currentThread]);
+//        });
+//    });
+//    NSLog(@"end! %@", [NSThread currentThread]);
+    
+//    dispatch_queue_t concurrentQueue =
+//    dispatch_queue_create("Concurrent_1", DISPATCH_QUEUE_CONCURRENT);
+//
+//    dispatch_queue_t serialQueue =
+//    dispatch_queue_create("Serial_1", DISPATCH_QUEUE_SERIAL);
+//    
+//    dispatch_sync(concurrentQueue, ^{
+//        NSLog(@"#3 sync to concurrent!!, %@", [NSThread currentThread]);
+//        dispatch_sync(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
+//            NSLog(@"###3_1 sync to GlobalQueue!!, %@", [NSThread currentThread]);
+//        });
+//        dispatch_sync(concurrentQueue, ^{
+//            NSLog(@"###3_2 sync to CurrentQueue!!, %@", [NSThread currentThread]);
+//        });
+//        dispatch_sync(serialQueue, ^{
+//            NSLog(@"###3_3 sync to CurrentQueue!!, %@", [NSThread currentThread]);
+//        });
+//        dispatch_sync(dispatch_get_main_queue(), ^{
+//            NSLog(@"###3_3 sync to MainQueue!!, %@", [NSThread currentThread]);
+//        });
+//        
+//    });
+//    NSLog(@"end! %@", [NSThread currentThread]);
+    
+//    dispatch_queue_t concurrentQueue =
+//    dispatch_queue_create("Concurrent_1", DISPATCH_QUEUE_CONCURRENT);
+//    dispatch_async(concurrentQueue, ^{
+//        NSLog(@"#4 start async to concurrent!!, %@", [NSThread currentThread]);
+//        dispatch_sync(dispatch_get_main_queue(), ^{
+//            NSLog(@"###4_1 start sync to MainQueue!!, %@", [NSThread currentThread]);
+//            NSMutableArray *array = [NSMutableArray array];
+//            for (int i = 0; i < 100000; i++) {
+//                NSNumber *n = [NSNumber numberWithFloat:@"5".floatValue];
+//                [array addObject:n];
+//            }
+//            NSLog(@"###4_1 end sync to MainQueue!!, %@", [NSThread currentThread]);
+//        });
+//        
+//        dispatch_sync(concurrentQueue, ^{
+//            NSLog(@"###4_2 start sync to CurrentQueue!!, %@", [NSThread currentThread]);
+//            NSMutableArray *array = [NSMutableArray array];
+//            for (int i = 0; i < 100000; i++) {
+//                NSNumber *n = [NSNumber numberWithFloat:@"5".floatValue];
+//                [array addObject:n];
+//            }
+//            NSLog(@"###4_2 end sync to CurrentQueue!!, %@", [NSThread currentThread]);
+//        });
+//        NSLog(@"#4 end async to concurrent!!, %@", [NSThread currentThread]);
+//    });
+//    for (int i = 0; i < 100; i++) {
+//        dispatch_async(concurrentQueue, ^{
+//            NSLog(@"#4_3 [%zd] async to concurrent!!, %@",
+//                  i, [NSThread currentThread]);
+//        });
+//    }
+//    
+//    for (int i = 0; i < 100; i++) {
+//        NSLog(@"#main for [%zd]", i);
+//    }
+//    
+//    NSLog(@"end! %@", [NSThread currentThread]);
+#pragma mark 동기 실행 주의사항
+//    dispatch_queue_t serialQueue =
+//    dispatch_queue_create("Serial_1", DISPATCH_QUEUE_SERIAL);
+//    
+//    NSLog(@"start! %@", [NSThread currentThread]);
+//    dispatch_sync(serialQueue, ^{
+//        NSLog(@"#1 sync!!, %@", [NSThread currentThread]);
+//    });
+//    dispatch_async(serialQueue, ^{
+//        NSLog(@"#2 async!!, %@", [NSThread currentThread]);
+//    });
+//    dispatch_async(serialQueue, ^{
+//        NSLog(@"#3_1 async!!, %@", [NSThread currentThread]);
+//        dispatch_sync(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
+//            NSLog(@"###3_2 sync again!!, %@", [NSThread currentThread]);
+//            NSLog(@"###3_2 sync again!!");
+//        });
+//        dispatch_sync(dispatch_get_main_queue(), ^{
+//            NSLog(@"###3_3 sync again!!, %@", [NSThread currentThread]);
+//            NSLog(@"###3_3 sync again!!");
+//        });
+//        dispatch_sync(serialQueue, ^{
+//            NSLog(@"###3_4 sync again!!");
+//        });
+//        NSLog(@"#3_1 async!!");
+//        
+//        // deadlock // but, this function are deprecated
+////        dispatch_sync(dispatch_get_current_queue(), ^{
+////            NSLog(@"deadLock");
+////        });
+//    });
+    // deadlock
+//    dispatch_sync(dispatch_get_main_queue(), ^{
+//        NSLog(@"deadLock");
+//    });
+
     //// Serial Queue
 //    dispatch_queue_t serialQueue =
 //    dispatch_queue_create("Serial_1", DISPATCH_QUEUE_SERIAL);
@@ -380,6 +666,7 @@ void funcForBlock(void * context) {
 ////        dispatch_get_current_queue()
 //        NSLog(@"deadLock");
 //    });
+    
 }
 
 - (void)didReceiveMemoryWarning {
