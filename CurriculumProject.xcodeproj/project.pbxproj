@@ -16,6 +16,7 @@
 		76131FF01ECA973500CBA227 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 76131FEF1ECA973500CBA227 /* Assets.xcassets */; };
 		76131FF31ECA973500CBA227 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 76131FF11ECA973500CBA227 /* LaunchScreen.storyboard */; };
 		76131FFC1ECA9FEB00CBA227 /* SubViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 76131FFB1ECA9FEB00CBA227 /* SubViewController.m */; };
+		7614BCB11EDFDD33009189B6 /* kitten.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 7614BCB01EDFDD33009189B6 /* kitten.jpg */; };
 		765A7D771ECAF603008D5C43 /* Human+Mouth.m in Sources */ = {isa = PBXBuildFile; fileRef = 765A7D761ECAF603008D5C43 /* Human+Mouth.m */; };
 		7666F7391ED7F59A00201030 /* ForwardingObject.m in Sources */ = {isa = PBXBuildFile; fileRef = 7666F7381ED7F59A00201030 /* ForwardingObject.m */; };
 		767FA4361EDD1482006CF15D /* CPView2Controller.m in Sources */ = {isa = PBXBuildFile; fileRef = 767FA4351EDD1482006CF15D /* CPView2Controller.m */; };
@@ -26,7 +27,7 @@
 
 /* Begin PBXFileReference section */
 		0394FCBE7C74BA574A9EACDF /* Pods-CurriculumProject.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-CurriculumProject.release.xcconfig"; path = "Pods/Target Support Files/Pods-CurriculumProject/Pods-CurriculumProject.release.xcconfig"; sourceTree = "<group>"; };
-		354010DD1ED27CAE009FA2CA /* podfile */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = podfile; sourceTree = "<group>"; };
+		354010DD1ED27CAE009FA2CA /* podfile */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = podfile; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.ruby; };
 		425CE85A8EF68C6D7CAC45EC /* libPods-CurriculumProject.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-CurriculumProject.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		477B8A371FAB765CCC56B3C6 /* Pods-CurriculumProject.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-CurriculumProject.debug.xcconfig"; path = "Pods/Target Support Files/Pods-CurriculumProject/Pods-CurriculumProject.debug.xcconfig"; sourceTree = "<group>"; };
 		76131FDD1ECA973500CBA227 /* CurriculumProject.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = CurriculumProject.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -42,6 +43,7 @@
 		76131FF41ECA973500CBA227 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		76131FFA1ECA9FEB00CBA227 /* SubViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SubViewController.h; sourceTree = "<group>"; };
 		76131FFB1ECA9FEB00CBA227 /* SubViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SubViewController.m; sourceTree = "<group>"; };
+		7614BCB01EDFDD33009189B6 /* kitten.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = kitten.jpg; sourceTree = "<group>"; };
 		765A7D751ECAF603008D5C43 /* Human+Mouth.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "Human+Mouth.h"; sourceTree = "<group>"; };
 		765A7D761ECAF603008D5C43 /* Human+Mouth.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "Human+Mouth.m"; sourceTree = "<group>"; };
 		7666F7371ED7F59A00201030 /* ForwardingObject.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ForwardingObject.h; sourceTree = "<group>"; };
@@ -116,6 +118,7 @@
 				76131FF11ECA973500CBA227 /* LaunchScreen.storyboard */,
 				76131FF41ECA973500CBA227 /* Info.plist */,
 				76131FEC1ECA973500CBA227 /* CurriculumProject.xcdatamodeld */,
+				7614BCB01EDFDD33009189B6 /* kitten.jpg */,
 				76131FE01ECA973500CBA227 /* Supporting Files */,
 			);
 			path = CurriculumProject;
@@ -171,6 +174,7 @@
 				TargetAttributes = {
 					76131FDC1ECA973500CBA227 = {
 						CreatedOnToolsVersion = 8.3.2;
+						DevelopmentTeam = 56ZT9NLP39;
 						ProvisioningStyle = Automatic;
 					};
 				};
@@ -198,6 +202,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				7614BCB11EDFDD33009189B6 /* kitten.jpg in Resources */,
 				76131FF31ECA973500CBA227 /* LaunchScreen.storyboard in Resources */,
 				76131FF01ECA973500CBA227 /* Assets.xcassets in Resources */,
 				354010DE1ED27CAE009FA2CA /* podfile in Resources */,
@@ -389,6 +394,7 @@
 			baseConfigurationReference = 477B8A371FAB765CCC56B3C6 /* Pods-CurriculumProject.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				DEVELOPMENT_TEAM = 56ZT9NLP39;
 				INFOPLIST_FILE = CurriculumProject/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
@@ -402,6 +408,7 @@
 			baseConfigurationReference = 0394FCBE7C74BA574A9EACDF /* Pods-CurriculumProject.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				DEVELOPMENT_TEAM = 56ZT9NLP39;
 				INFOPLIST_FILE = CurriculumProject/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
