@@ -181,7 +181,7 @@ void funcForBlock(void * context) {
 //        dispatch_source_cancel(timer);
     });
     NSLog(@"resume timer");
-    dispatch_resume(timer);
+//    dispatch_resume(timer);
     
     
     /*
@@ -192,17 +192,33 @@ void funcForBlock(void * context) {
 //    dispatch_activate(timer);
     
     
-    
-    dispatch_source_t source6 = dispatch_source_create(DISPATCH_SOURCE_TYPE_DATA_ADD, 0, 0, dispatch_get_main_queue());
+    __block int total = 0;
+    dispatch_source_t source6 =
+    dispatch_source_create(DISPATCH_SOURCE_TYPE_DATA_ADD, 0, 0, dispatch_get_main_queue());
     dispatch_source_set_event_handler(source6, ^{
-        NSLog(@"DISPATCH_SOURCE_TYPE_DATA_ADD = %zd", dispatch_source_get_data(source));
+        unsigned long data = dispatch_source_get_data(source6);
+        total += (int)data;
+        NSLog(@"SOURCE_DATA_ADD = %lu, total = %zd", data, total);
     });
     dispatch_resume(source6);
     
+    __block int sum = 0;
+    
     for (int i = 0; i < 10; i++) {
-        NSLog(@"for = %zd", i);
-        dispatch_source_merge_data(source6, 1);
+        int data = arc4random()%10;
+        NSTimeInterval sleepTime = (data%10)/10.0;
+        NSLog(@"[%zd]data = %zd, sleepTime = %f", i, data, sleepTime);
+        sum += data;
+        
+        dispatch_async(myQueue, ^{
+            [NSThread sleepForTimeInterval:sleepTime];
+            NSLog(@"##[%zd]merge, data = %zd", i, data);
+            dispatch_source_merge_data(source6, data);
+        });
     }
+    NSLog(@" ");
+    NSLog(@"************* sum = %zd", sum);
+    NSLog(@" ");
     
 //    kill( getpid(), SIGABRT );
     
