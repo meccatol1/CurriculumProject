@@ -69,9 +69,10 @@ void funcForBlock(void * context) {
 #pragma mark - Dispatch Source
     
 #pragma mark examples
-    dispatch_queue_t myQueue = dispatch_get_global_queue(QOS_CLASS_USER_INITIATED, 0);
-    uintptr_t myDescriptor = 0;
+//    getppid()
     
+    dispatch_queue_t myQueue = dispatch_get_global_queue(QOS_CLASS_USER_INITIATED, 0);
+//    uintptr_t myDescriptor = 0;
 //    dispatch_async(myQueue, ^{
 //        [NSThread sleepForTimeInterval:3];
 //        dispatch_async(dispatch_get_main_queue(), ^{
@@ -106,20 +107,45 @@ void funcForBlock(void * context) {
 //    #define DISPATCH_MEMORYPRESSURE_WARN		0x02
 //    #define DISPATCH_MEMORYPRESSURE_CRITICAL	0x04
 //    typedef unsigned long dispatch_source_memorypressure_flags_t;
+#pragma mark timer
+    dispatch_source_t timer = dispatch_source_create(DISPATCH_SOURCE_TYPE_TIMER, 0, 0, myQueue);
+    self.sampleTimer = timer;
     
-    dispatch_source_t source2 = dispatch_source_create(DISPATCH_SOURCE_TYPE_MEMORYPRESSURE, 0, DISPATCH_MEMORYPRESSURE_WARN, myQueue);
+//    dispatch_source_set_timer(timer, dispatch_walltime(NULL, 0), 3ull*NSEC_PER_SEC, 1ull*NSEC_PER_MSEC);
+    dispatch_source_set_timer(timer, dispatch_time(DISPATCH_TIME_NOW, 1ull * NSEC_PER_SEC), 3ull * NSEC_PER_SEC, 1ull * NSEC_PER_MSEC);
+    dispatch_source_set_event_handler(timer, ^{
+        NSLog(@"wakeup!");
+        //        NSString *hello = @"hello";
+        //        NSLog(@"%@", hello);
+        /*
+         * Cancel the dispatch source */
+        //        dispatch_source_cancel(timer);
+    });
+    NSLog(@"resume timer");
+    dispatch_resume(timer);
+    
+    
+    /*
+     * Assign a task for the cancellation of the dispatch source */
+    dispatch_source_set_cancel_handler(timer, ^{
+        NSLog(@"canceled");
+    });
+    dispatch_activate(timer);
+    
+#pragma mark MemoryPressure
+    dispatch_source_t source2 = dispatch_source_create(DISPATCH_SOURCE_TYPE_MEMORYPRESSURE, 0, DISPATCH_MEMORYPRESSURE_NORMAL, myQueue);
     dispatch_source_set_event_handler(source2, ^{
-        NSLog(@"memory pressure!!");
-        
-        unsigned long mask = dispatch_source_get_mask(source2);
-        NSLog(@"mask = %lu", mask);
-        
-        unsigned long data = dispatch_source_get_handle(source2);
-        NSLog(@"data = %lu", data);
+        NSLog(@"memory MEMORYPRESSURE_NORMAL!!");
     });
     dispatch_activate(source2);
     
-    
+    dispatch_source_t source2_2 = dispatch_source_create(DISPATCH_SOURCE_TYPE_MEMORYPRESSURE, 0, DISPATCH_MEMORYPRESSURE_WARN, myQueue);
+    dispatch_source_set_event_handler(source2_2, ^{
+        NSLog(@"DISPATCH_MEMORYPRESSURE_WARN!!");
+    });
+    dispatch_activate(source2_2);
+
+#pragma mark machport
 //    NSMachPort *port = [[NSMachPort alloc] init];
 //    mach_port_t mach = 0;
 //    dispatch_source_t source3 = dispatch_source_create(DISPATCH_SOURCE_TYPE_MACH_SEND, mach, DISPATCH_MACH_SEND_DEAD, myQueue);
@@ -131,129 +157,153 @@ void funcForBlock(void * context) {
 //    });
 //    dispatch_activate(source3);
     
-//    __weak typeof(self) weakSelf = self;
-//    
-//    dispatch_source_t source4 = dispatch_source_create(DISPATCH_SOURCE_TYPE_SIGNAL, SIGSTOP, 0, myQueue);
-//    dispatch_source_set_event_handler(source4, ^{
-//        NSLog(@"DISPATCH_SOURCE_TYPE_SIGNAL_SIGSTOP!!");
-//        NSString *hello = @"hello~";
-//        NSNumber *pi = @(M_PI);
-//        NSLog(@"label's value = %@", weakSelf.label.text);
-//        unsigned long data = dispatch_source_get_handle(source4);
-//        NSLog(@"data = %zd", data);
-//        dispatch_sync(dispatch_get_main_queue(), ^{
-//            //Do Somethings
-//            NSLog(@"label's value = %@", weakSelf.label.text);
-//        });
-//    });
-//    dispatch_activate(source4);
-//    
-//    pid_t pid_t_handle = 0;
-//    dispatch_source_t source5 = dispatch_source_create(DISPATCH_SOURCE_TYPE_PROC, pid_t_handle, DISPATCH_PROC_EXIT, myQueue);
+#pragma mark process call2
+    
+//    pid_t parentPID = getppid();
+//    dispatch_source_t source5 = dispatch_source_create(DISPATCH_SOURCE_TYPE_PROC, parentPID, DISPATCH_PROC_SIGNAL, myQueue);
 //    dispatch_source_set_event_handler(source5, ^{
-//        NSLog(@"DISPATCH_SOURCE_TYPE_PROC_EXIT!!");
+//        NSLog(@"DISPATCH_SOURCE_TYPE_PROC_SIGNAL!!");
 //        
-//        unsigned long data = dispatch_source_get_handle(source4);
+//        unsigned long data = dispatch_source_get_handle(source5);
 //        NSLog(@"data = %zd", data);
 //        dispatch_sync(dispatch_get_main_queue(), ^{
 //            //Do Somethings
-//            NSLog(@"label's value = %@", weakSelf.label.text);
+////            NSLog(@"label's value = %@", weakSelf.label.text);
 //        });
 //    });
 //    dispatch_activate(source5);
     
+//    kill( getpid(), SIGABRT );
+
     
-    dispatch_source_t timer = dispatch_source_create( DISPATCH_SOURCE_TYPE_TIMER, 0, 0, myQueue);
-    self.sampleTimer = timer;
-    /*
-     * Set the timer to 15 seconds later,
-     * Without repeating,
-     * Allow one-second delay */
-    
-//    dispatch_source_set_timer(timer, dispatch_walltime(NULL, 0), 3ull*NSEC_PER_SEC, 1ull*NSEC_PER_MSEC);
-    dispatch_source_set_timer(timer, dispatch_time(DISPATCH_TIME_NOW, 1ull * NSEC_PER_SEC), 3ull * NSEC_PER_SEC, 1ull * NSEC_PER_MSEC);
-    dispatch_source_set_event_handler(timer, ^{
-        NSLog(@"wakeup!");
-//        NSString *hello = @"hello";
-//        NSLog(@"%@", hello);
-        /*
-         * Cancel the dispatch source */
-//        dispatch_source_cancel(timer);
-    });
-    NSLog(@"resume timer");
-//    dispatch_resume(timer);
-    
-    
-    /*
-     * Assign a task for the cancellation of the dispatch source */
-//    dispatch_source_set_cancel_handler(timer, ^{
-//        NSLog(@"canceled");
+#pragma mark data add
+//    __block int total = 0;
+//    dispatch_source_t source6 =
+//    dispatch_source_create(DISPATCH_SOURCE_TYPE_DATA_ADD, 0, 0, dispatch_get_main_queue());
+//    dispatch_source_set_event_handler(source6, ^{
+//        unsigned long data = dispatch_source_get_data(source6);
+//        total += (int)data;
+//        NSLog(@"SOURCE_DATA_ADD = %lu, total = %zd", data, total);
 //    });
-//    dispatch_activate(timer);
+//    dispatch_resume(source6);
+//    
+//    __block int sum = 0;
+//    
+//    for (int i = 0; i < 10; i++) {
+//        int data = arc4random()%10;
+//        NSTimeInterval sleepTime = (data%10)/10.0;
+//        NSLog(@"[%zd]data = %zd, sleepTime = %f", i, data, sleepTime);
+//        sum += data;
+//        
+//        dispatch_async(myQueue, ^{
+//            [NSThread sleepForTimeInterval:sleepTime];
+//            NSLog(@"##[%zd]merge, data = %zd", i, data);
+//            dispatch_source_merge_data(source6, data);
+//        });
+//    }
+//    NSLog(@" ");
+//    NSLog(@"************* sum = %zd", sum);
+//    NSLog(@" ");
     
-    
-    __block int total = 0;
-    dispatch_source_t source6 =
-    dispatch_source_create(DISPATCH_SOURCE_TYPE_DATA_ADD, 0, 0, dispatch_get_main_queue());
-    dispatch_source_set_event_handler(source6, ^{
-        unsigned long data = dispatch_source_get_data(source6);
-        total += (int)data;
-        NSLog(@"SOURCE_DATA_ADD = %lu, total = %zd", data, total);
-    });
-    dispatch_resume(source6);
-    
-    __block int sum = 0;
-    
-    for (int i = 0; i < 10; i++) {
-        int data = arc4random()%10;
-        NSTimeInterval sleepTime = (data%10)/10.0;
-        NSLog(@"[%zd]data = %zd, sleepTime = %f", i, data, sleepTime);
-        sum += data;
-        
-        dispatch_async(myQueue, ^{
-            [NSThread sleepForTimeInterval:sleepTime];
-            NSLog(@"##[%zd]merge, data = %zd", i, data);
-            dispatch_source_merge_data(source6, data);
-        });
-    }
-    NSLog(@" ");
-    NSLog(@"************* sum = %zd", sum);
-    NSLog(@" ");
     
 //    kill( getpid(), SIGABRT );
+
+#pragma mark process call1
+    //    __weak typeof(self) weakSelf = self;
+    //
+    //    dispatch_source_t source4 = dispatch_source_create(DISPATCH_SOURCE_TYPE_SIGNAL, SIGSTOP, 0, myQueue);
+    //    dispatch_source_set_event_handler(source4, ^{
+    //        NSLog(@"DISPATCH_SOURCE_TYPE_SIGNAL_SIGSTOP!!");
+    //        NSString *hello = @"hello~";
+    //        NSNumber *pi = @(M_PI);
+    //        NSLog(@"label's value = %@", weakSelf.label.text);
+    //        unsigned long data = dispatch_source_get_handle(source4);
+    //        NSLog(@"data = %zd", data);
+    //        dispatch_sync(dispatch_get_main_queue(), ^{
+    //            //Do Somethings
+    //            NSLog(@"label's value = %@", weakSelf.label.text);
+    //        });
+    //    });
+    //    dispatch_activate(source4);
     
-//    dispatch_queue_t serial = dispatch_queue_create("", DISPATCH_QUEUE_SERIAL);
-//    dispatch_queue_t serial2 = dispatch_queue_create("", DISPATCH_QUEUE_SERIAL);
+#pragma mark Descriptor _ file read case
+//    NSLog(@"##### file read descriptor source #####");
 //    
-//    dispatch_sync(serial2, ^{
-//        [NSThread sleepForTimeInterval:1];
-//        NSLog(@"aa 1");
-//        dispatch_sync(serial, ^{
-//            [NSThread sleepForTimeInterval:1];
-//            NSLog(@"aa 2");
-//            dispatch_sync(serial2, ^{ // deadlock, therefore crash occur
-//                [NSThread sleepForTimeInterval:1];
-//                NSLog(@"aa 3");
-//            });
-//        });
+//    NSString *filePathIn =
+//    [[[NSBundle mainBundle] resourcePath] stringByAppendingPathComponent:@"ReadMe.txt"];
+//    const char *filePath = filePathIn.cString;
+//    
+//    int infd = open(filePath, O_RDONLY);
+//    if (infd == -1) NSLog(@"error");
+//    if (fcntl(infd, F_SETFL, O_NONBLOCK) != 0) NSLog(@"error");
+//    
+//    dispatch_queue_t serialQ = dispatch_queue_create("com.fileRead.curriculum.com",NULL);
+//    dispatch_source_t fileSource =
+//    dispatch_source_create(DISPATCH_SOURCE_TYPE_READ, infd, 0, serialQ);
+//    
+//    dispatch_source_set_event_handler( fileSource, ^{
+//        char buffer[100];
+//        size_t estimated = dispatch_source_get_data(fileSource);
+//        printf("Estimated bytes available: %ld\n", estimated);
+//        ssize_t actual = read(infd, buffer, sizeof(buffer));
+//        if (actual == -1) {
+//            if (errno != EAGAIN) {
+//                perror("read"); exit(-1);
+//            }
+//        } else {
+//            if  (estimated>actual) {
+//                printf("  bytes read: %ld\n", actual);
+//            } else {
+//                // end of file has been reached.
+//                printf("  last bytes read: %ld\n", actual);
+//                dispatch_source_cancel(fileSource);
+//            }
+//            printf("%s\n", buffer);
+//        }
 //    });
-//    dispatch_sync(serial, ^{
-//        [NSThread sleepForTimeInterval:1];
-//        NSLog(@"bb");
-//        dispatch_sync(serial2, ^{
-//            [NSThread sleepForTimeInterval:1];
-//            NSLog(@"bb");
-//        });
+//    
+//    dispatch_source_set_cancel_handler( fileSource, ^{
+//        close(infd);
 //    });
+//    printf("dispatch_resume(fileSource)\n");
+//    dispatch_resume(fileSource);
+
     
     
     
     
     
     
+    
+    
+    
+
 #pragma mark - Concurrent Queue
     
-    
+#pragma mark deadlock Test2
+    //    dispatch_queue_t serial = dispatch_queue_create("", DISPATCH_QUEUE_SERIAL);
+    //    dispatch_queue_t serial2 = dispatch_queue_create("", DISPATCH_QUEUE_SERIAL);
+    //
+    //    dispatch_sync(serial2, ^{
+    //        [NSThread sleepForTimeInterval:1];
+    //        NSLog(@"aa 1");
+    //        dispatch_sync(serial, ^{
+    //            [NSThread sleepForTimeInterval:1];
+    //            NSLog(@"aa 2");
+    //            dispatch_sync(serial2, ^{ // deadlock, therefore crash occur
+    //                [NSThread sleepForTimeInterval:1];
+    //                NSLog(@"aa 3");
+    //            });
+    //        });
+    //    });
+    //    dispatch_sync(serial, ^{
+    //        [NSThread sleepForTimeInterval:1];
+    //        NSLog(@"bb");
+    //        dispatch_sync(serial2, ^{
+    //            [NSThread sleepForTimeInterval:1];
+    //            NSLog(@"bb");
+    //        });
+    //    });
 #pragma mark deadlock Test
     //// Concurrent Queue
 //    dispatch_queue_t global_c_queue = dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0);
@@ -891,6 +941,10 @@ void funcForBlock(void * context) {
 //    NSLog(@"human = %@", self.human);
     
 //    dispatch_resume(self.currentQueue);
+}
+
+- (void)log {
+    NSLog(@"I'm David..");
 }
 
 @end
