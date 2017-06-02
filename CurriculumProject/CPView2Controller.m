@@ -390,39 +390,39 @@ void funcForBlock(void * context) {
 #pragma mark Group3
 //    dispatch_time_t popTime = dispatch_time(DISPATCH_TIME_NOW, (int64_t)(1 * NSEC_PER_SEC));
     
-    dispatch_queue_t concurrentQueue =
-    dispatch_queue_create("Concurrent_1", DISPATCH_QUEUE_CONCURRENT);
-    
-    dispatch_group_t group = dispatch_group_create();
-    
-    self.human = [[Human alloc] initWithName:@"영희" age:13];
-    NSLog(@"######## start");
-    
-    dispatch_async(concurrentQueue, ^{
-        NSLog(@"--- start async");
-        dispatch_group_async(group, concurrentQueue, ^{
-            [NSThread sleepForTimeInterval:0.5];
-            [self.human eat]; // age++;
-            NSLog(@"#[1] human = %@", self.human);
-        });
-        dispatch_group_async(group, concurrentQueue, ^{
-            [NSThread sleepForTimeInterval:1.0];
-            [self.human eat]; [self.human setName:@"철수"];
-            NSLog(@"#[2] human = %@", self.human);
-        });
-        
-//        dispatch_group_enter(group);
-        dispatch_sync(concurrentQueue, ^{
-            [NSThread sleepForTimeInterval:3.0];
-            NSLog(@"#[3] human = %@", self.human);
-//            dispatch_group_leave(group);
-        });
-        NSLog(@"--- end async"); 
-    });
-    dispatch_group_notify(group, concurrentQueue, ^{
-        NSLog(@"#[end] dispatch_group_notify");
-    });
-    NSLog(@"######## end");
+//    dispatch_queue_t concurrentQueue =
+//    dispatch_queue_create("Concurrent_1", DISPATCH_QUEUE_CONCURRENT);
+//    
+//    dispatch_group_t group = dispatch_group_create();
+//    
+//    self.human = [[Human alloc] initWithName:@"영희" age:13];
+//    NSLog(@"######## start");
+//    
+//    dispatch_async(concurrentQueue, ^{
+//        NSLog(@"--- start async");
+//        dispatch_group_async(group, concurrentQueue, ^{
+//            [NSThread sleepForTimeInterval:0.5];
+//            [self.human eat]; // age++;
+//            NSLog(@"#[1] human = %@", self.human);
+//        });
+//        dispatch_group_async(group, concurrentQueue, ^{
+//            [NSThread sleepForTimeInterval:1.0];
+//            [self.human eat]; [self.human setName:@"철수"];
+//            NSLog(@"#[2] human = %@", self.human);
+//        });
+//        
+////        dispatch_group_enter(group);
+//        dispatch_sync(concurrentQueue, ^{
+//            [NSThread sleepForTimeInterval:3.0];
+//            NSLog(@"#[3] human = %@", self.human);
+////            dispatch_group_leave(group);
+//        });
+//        NSLog(@"--- end async"); 
+//    });
+//    dispatch_group_notify(group, concurrentQueue, ^{
+//        NSLog(@"#[end] dispatch_group_notify");
+//    });
+//    NSLog(@"######## end");
 
     
 #pragma mark Group2
@@ -437,31 +437,53 @@ void funcForBlock(void * context) {
 //    NSLog(@"######## start");
 //    dispatch_async(concurrentQueue, ^{
 //        NSLog(@"#### start async");
+////        dispatch_group_enter(group);
+////        dispatch_sync(concurrentQueue, ^{
+//////            [NSThread sleepForTimeInterval:0.5];
+////            [self.human eat];
+////            NSLog(@"#[1] human = %@", self.human);
+////            dispatch_group_leave(group);
+////        });
 //        dispatch_group_enter(group);
-//        dispatch_async(concurrentQueue, ^{
-//            [NSThread sleepForTimeInterval:0.5];
-//            [self.human eat];
-//            NSLog(@"#[1] human = %@", self.human);
-//            dispatch_group_leave(group);
+////        dispatch_sync(concurrentQueue, ^{
+//////            [NSThread sleepForTimeInterval:1.0];
+////            [self.human eat]; [self.human setName:@"철수"];
+////            NSLog(@"#[2] human = %@", self.human);
+////            dispatch_group_leave(group);
+////        });
+//        dispatch_group_notify(group, concurrentQueue, ^{
+//            NSLog(@"#### dispatch_group_notify");
 //        });
-//        dispatch_group_enter(group);
-//        dispatch_async(concurrentQueue, ^{
-//            [NSThread sleepForTimeInterval:1.0];
-//            [self.human eat]; [self.human setName:@"철수"];
-//            NSLog(@"#[2] human = %@", self.human);
+//        
+//        dispatch_group_async(group, concurrentQueue, ^{
+//            NSLog(@"#[2_2] human = %@", self.human);
 //            dispatch_group_leave(group);
+//            NSLog(@"#[2_3] human = %@", self.human);
 //        });
-//        dispatch_group_enter(group);
-//        dispatch_async(concurrentQueue, ^{
-//            [NSThread sleepForTimeInterval:1.5];
-//            [self.human eat];
-//            NSLog(@"#[3] human = %@", self.human);
-//            dispatch_group_leave(group);
-//        });
-//        dispatch_group_wait(group, popTime);
+//        
+////        dispatch_group_enter(group);
+////        dispatch_sync(concurrentQueue, ^{
+//////            [NSThread sleepForTimeInterval:1.5];
+////            [self.human eat];
+////            NSLog(@"#[3] human = %@", self.human);
+////            dispatch_group_leave(group);
+////            if (YES) {
+////                dispatch_group_leave(group);
+////            }else {
+////                dispatch_group_leave(group);
+////            }
+//////            dispatch_group_leave(group);
+////        });
+//        
+////        dispatch_group_wait(group, popTime);
 //        NSLog(@"#### end async");
-////        dispatch_group_notify(group, concurrentQueue, ^{
-////            NSLog(@"#### end async");
+////        dispatch_block_cancel(<#^(void)block#>)
+////
+////        dispatch_group_enter(group);
+////        dispatch_async(concurrentQueue, ^{
+////            //            [NSThread sleepForTimeInterval:1.5];
+////            NSLog(@"#[4] human = %@", self.human);
+////            dispatch_group_leave(group);
 ////        });
 //    });
 //    NSLog(@"######## end");
@@ -1019,7 +1041,7 @@ void funcForBlock(void * context) {
 
 - (IBAction)buttonHandler:(UIButton *)sender {
     NSLog(@"buttonHandler");
-    dispatch_source_cancel(self.sampleTimer);
+//    dispatch_source_cancel(self.sampleTimer);
     
 //    dispatch_activate(self.sampleTimer);
 //    dispatch_cancel(self.sampleTimer);
