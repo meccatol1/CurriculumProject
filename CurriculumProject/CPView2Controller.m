@@ -13,6 +13,10 @@
 @interface CPView2Controller ()
 @property (strong) dispatch_source_t sampleTimer;
 
+@property (strong) dispatch_source_t memorySource1;
+@property (strong) dispatch_source_t memorySource2;
+@property (strong) dispatch_source_t memorySource3;
+
 @property (weak, nonatomic) IBOutlet UIImageView *imageView;
 @property (weak, nonatomic) IBOutlet UILabel *label;
 
@@ -66,12 +70,23 @@ void funcForBlock(void * context) {
 //    
 ////    dispatch_release(group);
 
+    
+//    NSLog(@"newThread");
+//    NSThread *newThread = [[NSThread alloc] initWithBlock:^{
+//        for (int i = 0; i < 10; i++) {
+//            NSLog(@"[%zd] 진행", i);
+//            [NSThread sleepForTimeInterval:0.5];
+//        }
+//    }];
+//
+    
 #pragma mark - Dispatch Source
     
 #pragma mark examples
 //    getppid()
     
     dispatch_queue_t myQueue = dispatch_get_global_queue(QOS_CLASS_USER_INITIATED, 0);
+    
 //    uintptr_t myDescriptor = 0;
 //    dispatch_async(myQueue, ^{
 //        [NSThread sleepForTimeInterval:3];
@@ -108,43 +123,53 @@ void funcForBlock(void * context) {
 //    #define DISPATCH_MEMORYPRESSURE_CRITICAL	0x04
 //    typedef unsigned long dispatch_source_memorypressure_flags_t;
 #pragma mark timer
-    dispatch_source_t timer = dispatch_source_create(DISPATCH_SOURCE_TYPE_TIMER, 0, 0, myQueue);
-    self.sampleTimer = timer;
     
-//    dispatch_source_set_timer(timer, dispatch_walltime(NULL, 0), 3ull*NSEC_PER_SEC, 1ull*NSEC_PER_MSEC);
-    dispatch_source_set_timer(timer, dispatch_time(DISPATCH_TIME_NOW, 1ull * NSEC_PER_SEC), 3ull * NSEC_PER_SEC, 1ull * NSEC_PER_MSEC);
-    dispatch_source_set_event_handler(timer, ^{
-        NSLog(@"wakeup!");
-        //        NSString *hello = @"hello";
-        //        NSLog(@"%@", hello);
-        /*
-         * Cancel the dispatch source */
-        //        dispatch_source_cancel(timer);
-    });
-    NSLog(@"resume timer");
-    dispatch_resume(timer);
-    
-    
-    /*
-     * Assign a task for the cancellation of the dispatch source */
-    dispatch_source_set_cancel_handler(timer, ^{
-        NSLog(@"canceled");
-    });
-    dispatch_activate(timer);
+//    dispatch_source_t timer
+//    = dispatch_source_create(DISPATCH_SOURCE_TYPE_TIMER, 0, 0, myQueue);
+//    self.sampleTimer = timer;
+//    
+//    dispatch_time_t startTime =
+////    dispatch_walltime(NULL, 0);
+//    dispatch_time(DISPATCH_TIME_NOW, 1ull * NSEC_PER_SEC);
+//    
+//    dispatch_source_set_timer(timer, startTime, 3ull * NSEC_PER_SEC, 1ull * NSEC_PER_MSEC);
+//    
+//    dispatch_source_set_event_handler(timer, ^{
+//        NSLog(@"wakeup!");
+//    });
+//    dispatch_source_set_cancel_handler(timer, ^{
+//        NSLog(@"timer canceled");
+//    });
+//    NSLog(@"resume timer");
+//    dispatch_resume(timer);
     
 #pragma mark MemoryPressure
-    dispatch_source_t source2 = dispatch_source_create(DISPATCH_SOURCE_TYPE_MEMORYPRESSURE, 0, DISPATCH_MEMORYPRESSURE_NORMAL, myQueue);
-    dispatch_source_set_event_handler(source2, ^{
-        NSLog(@"memory MEMORYPRESSURE_NORMAL!!");
-    });
-    dispatch_activate(source2);
     
-    dispatch_source_t source2_2 = dispatch_source_create(DISPATCH_SOURCE_TYPE_MEMORYPRESSURE, 0, DISPATCH_MEMORYPRESSURE_WARN, myQueue);
-    dispatch_source_set_event_handler(source2_2, ^{
-        NSLog(@"DISPATCH_MEMORYPRESSURE_WARN!!");
-    });
-    dispatch_activate(source2_2);
-
+//    dispatch_source_t source2 =
+//    dispatch_source_create(DISPATCH_SOURCE_TYPE_MEMORYPRESSURE, 0, DISPATCH_MEMORYPRESSURE_NORMAL, myQueue);
+//    self.memorySource1 = source2;
+//    dispatch_source_set_event_handler(source2, ^{
+//        NSLog(@"source2 DISPATCH_MEMORYPRESSURE_NORMAL!!");
+//    });
+//    dispatch_resume(source2);
+//    
+//    dispatch_source_t source2_2 =
+//    dispatch_source_create(DISPATCH_SOURCE_TYPE_MEMORYPRESSURE, 0, DISPATCH_MEMORYPRESSURE_WARN, myQueue);
+//    self.memorySource2 = source2_2;
+//    dispatch_source_set_event_handler(source2_2, ^{
+//        NSLog(@"source2_2 DISPATCH_MEMORYPRESSURE_WARN!!");
+//    });
+//    dispatch_resume(source2_2);
+//
+//    dispatch_source_t source2_3 =
+//    dispatch_source_create(DISPATCH_SOURCE_TYPE_MEMORYPRESSURE, 0, DISPATCH_MEMORYPRESSURE_CRITICAL, myQueue);
+//    self.memorySource3 = source2_3;
+//    dispatch_source_set_event_handler(source2_3, ^{
+//        NSLog(@"source2_3 DISPATCH_MEMORYPRESSURE_CRITICAL!!");
+//    });
+//    dispatch_resume(source2_3);
+    
+    
 #pragma mark machport
 //    NSMachPort *port = [[NSMachPort alloc] init];
 //    mach_port_t mach = 0;
@@ -157,29 +182,30 @@ void funcForBlock(void * context) {
 //    });
 //    dispatch_activate(source3);
     
-#pragma mark process call2
-    
+#pragma mark process call
+//    
 //    pid_t parentPID = getppid();
-//    dispatch_source_t source5 = dispatch_source_create(DISPATCH_SOURCE_TYPE_PROC, parentPID, DISPATCH_PROC_SIGNAL, myQueue);
+//    dispatch_source_t source5 =
+//    dispatch_source_create(DISPATCH_SOURCE_TYPE_PROC, parentPID, DISPATCH_PROC_EXIT, myQueue);
+//    
 //    dispatch_source_set_event_handler(source5, ^{
 //        NSLog(@"DISPATCH_SOURCE_TYPE_PROC_SIGNAL!!");
-//        
 //        unsigned long data = dispatch_source_get_handle(source5);
 //        NSLog(@"data = %zd", data);
 //        dispatch_sync(dispatch_get_main_queue(), ^{
 //            //Do Somethings
-////            NSLog(@"label's value = %@", weakSelf.label.text);
 //        });
 //    });
 //    dispatch_activate(source5);
     
-//    kill( getpid(), SIGABRT );
-
+////    kill( getpid(), SIGABRT );
     
 #pragma mark data add
+    
 //    __block int total = 0;
 //    dispatch_source_t source6 =
 //    dispatch_source_create(DISPATCH_SOURCE_TYPE_DATA_ADD, 0, 0, dispatch_get_main_queue());
+////    dispatch_source_create(DISPATCH_SOURCE_TYPE_DATA_ADD, 0, 0, myQueue);
 //    dispatch_source_set_event_handler(source6, ^{
 //        unsigned long data = dispatch_source_get_data(source6);
 //        total += (int)data;
@@ -188,7 +214,6 @@ void funcForBlock(void * context) {
 //    dispatch_resume(source6);
 //    
 //    __block int sum = 0;
-//    
 //    for (int i = 0; i < 10; i++) {
 //        int data = arc4random()%10;
 //        NSTimeInterval sleepTime = (data%10)/10.0;
@@ -201,34 +226,34 @@ void funcForBlock(void * context) {
 //            dispatch_source_merge_data(source6, data);
 //        });
 //    }
-//    NSLog(@" ");
 //    NSLog(@"************* sum = %zd", sum);
 //    NSLog(@" ");
     
-    
 //    kill( getpid(), SIGABRT );
 
-#pragma mark process call1
-    //    __weak typeof(self) weakSelf = self;
-    //
-    //    dispatch_source_t source4 = dispatch_source_create(DISPATCH_SOURCE_TYPE_SIGNAL, SIGSTOP, 0, myQueue);
-    //    dispatch_source_set_event_handler(source4, ^{
-    //        NSLog(@"DISPATCH_SOURCE_TYPE_SIGNAL_SIGSTOP!!");
-    //        NSString *hello = @"hello~";
-    //        NSNumber *pi = @(M_PI);
-    //        NSLog(@"label's value = %@", weakSelf.label.text);
-    //        unsigned long data = dispatch_source_get_handle(source4);
-    //        NSLog(@"data = %zd", data);
-    //        dispatch_sync(dispatch_get_main_queue(), ^{
-    //            //Do Somethings
-    //            NSLog(@"label's value = %@", weakSelf.label.text);
-    //        });
-    //    });
-    //    dispatch_activate(source4);
+#pragma mark SIGNAL call1
+    
+//    __weak typeof(self) weakSelf = self;
+//    
+//    dispatch_source_t source4 =
+//    dispatch_source_create(DISPATCH_SOURCE_TYPE_SIGNAL, SIGSTOP, 0, myQueue);
+//    dispatch_source_set_event_handler(source4, ^{
+//        NSLog(@"DISPATCH_SOURCE_TYPE_SIGNAL_SIGSTOP!!");
+//        NSLog(@"label's value = %@", weakSelf.label.text);
+//        
+//        unsigned long data = dispatch_source_get_handle(source4);
+//        NSLog(@"data = %zd", data);
+//        dispatch_sync(dispatch_get_main_queue(), ^{
+//            //Do Somethings
+//            NSLog(@"label's value = %@", weakSelf.label.text);
+//        });
+//    });
+//    dispatch_activate(source4);
+    
     
 #pragma mark Descriptor _ file read case
-//    NSLog(@"##### file read descriptor source #####");
-//    
+    
+//    printf("##### file read descriptor source #####");
 //    NSString *filePathIn =
 //    [[[NSBundle mainBundle] resourcePath] stringByAppendingPathComponent:@"ReadMe.txt"];
 //    const char *filePath = filePathIn.cString;
@@ -361,7 +386,46 @@ void funcForBlock(void * context) {
 //        NSLog(@"5gogo, %@", [NSThread currentThread]);
 //    });
 
-#pragma mark Group2    
+    
+#pragma mark Group3
+//    dispatch_time_t popTime = dispatch_time(DISPATCH_TIME_NOW, (int64_t)(1 * NSEC_PER_SEC));
+    
+    dispatch_queue_t concurrentQueue =
+    dispatch_queue_create("Concurrent_1", DISPATCH_QUEUE_CONCURRENT);
+    
+    dispatch_group_t group = dispatch_group_create();
+    
+    self.human = [[Human alloc] initWithName:@"영희" age:13];
+    NSLog(@"######## start");
+    
+    dispatch_async(concurrentQueue, ^{
+        NSLog(@"--- start async");
+        dispatch_group_async(group, concurrentQueue, ^{
+            [NSThread sleepForTimeInterval:0.5];
+            [self.human eat]; // age++;
+            NSLog(@"#[1] human = %@", self.human);
+        });
+        dispatch_group_async(group, concurrentQueue, ^{
+            [NSThread sleepForTimeInterval:1.0];
+            [self.human eat]; [self.human setName:@"철수"];
+            NSLog(@"#[2] human = %@", self.human);
+        });
+        
+//        dispatch_group_enter(group);
+        dispatch_sync(concurrentQueue, ^{
+            [NSThread sleepForTimeInterval:3.0];
+            NSLog(@"#[3] human = %@", self.human);
+//            dispatch_group_leave(group);
+        });
+        NSLog(@"--- end async"); 
+    });
+    dispatch_group_notify(group, concurrentQueue, ^{
+        NSLog(@"#[end] dispatch_group_notify");
+    });
+    NSLog(@"######## end");
+
+    
+#pragma mark Group2
 //    dispatch_time_t popTime = dispatch_time(DISPATCH_TIME_NOW, (int64_t)(1 * NSEC_PER_SEC));
 //    
 //    dispatch_queue_t concurrentQueue =
@@ -490,12 +554,12 @@ void funcForBlock(void * context) {
 //            [m_array addObject:newObject];
 //        }
 //    });
-    
-#pragma mark apply
+
+#pragma mark apply 1
     
 //    dispatch_queue_t concurrentQueue =
 //    dispatch_queue_create("Concurrent_1", DISPATCH_QUEUE_CONCURRENT);
-////    self.currentQueue = concurrentQueue;
+//    //    self.currentQueue = concurrentQueue;
 //    
 //    NSLog(@"start~");
 //    int total = 5;
@@ -506,10 +570,29 @@ void funcForBlock(void * context) {
 //        });
 //    }
 //    NSLog(@"mid~");
-////    dispatch_apply(total, concurrentQueue, ^(size_t i) {
-////        // Do Something
-////        NSLog(@"#%zd apply", i);
-////    });
+//    //    dispatch_apply(total, concurrentQueue, ^(size_t i) {
+//    //        // Do Something
+//    //        NSLog(@"#%zd apply", i);
+//    //    });
+//    NSLog(@"end~");
+
+    
+#pragma mark apply 2
+
+//    dispatch_queue_t concurrentQueue =
+//    dispatch_queue_create("com.curriculum.concurrent", DISPATCH_QUEUE_CONCURRENT);
+//    
+//    NSLog(@"start~");
+//    int total = 10000;
+//    int stride = 100;
+//    dispatch_apply(total/stride, concurrentQueue, ^(size_t i) {
+//        // Do Something
+//        int idx = (int)(stride*i);
+//        NSLog(@"[%zd]", idx);
+//        for (int j = idx; j < (idx+stride); j++) {
+//            NSLog(@"\t%zd", j);
+//        }
+//    });
 //    NSLog(@"end~");
     
 #pragma mark set_context
@@ -936,12 +1019,20 @@ void funcForBlock(void * context) {
 
 - (IBAction)buttonHandler:(UIButton *)sender {
     NSLog(@"buttonHandler");
-//    dispatch_resume(self.currentQueue);
-//    NSLog(@"d = %@", self.d);
-//    NSLog(@"human = %@", self.human);
+    dispatch_source_cancel(self.sampleTimer);
     
-//    dispatch_resume(self.currentQueue);
+//    dispatch_activate(self.sampleTimer);
+//    dispatch_cancel(self.sampleTimer);
 }
+
+//- (IBAction)buttonHandler:(UIButton *)sender {
+//    NSLog(@"buttonHandler");
+////    dispatch_resume(self.currentQueue);
+////    NSLog(@"d = %@", self.d);
+////    NSLog(@"human = %@", self.human);
+//    
+////    dispatch_resume(self.currentQueue);
+//}
 
 - (void)log {
     NSLog(@"I'm David..");
