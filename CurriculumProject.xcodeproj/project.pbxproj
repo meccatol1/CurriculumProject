@@ -8,6 +8,8 @@
 
 /* Begin PBXBuildFile section */
 		354010DE1ED27CAE009FA2CA /* podfile in Resources */ = {isa = PBXBuildFile; fileRef = 354010DD1ED27CAE009FA2CA /* podfile */; };
+		354D79941EE43098003954C3 /* CPView3Controller.m in Sources */ = {isa = PBXBuildFile; fileRef = 354D79931EE43098003954C3 /* CPView3Controller.m */; };
+		354D79971EE43469003954C3 /* CPThread.m in Sources */ = {isa = PBXBuildFile; fileRef = 354D79961EE43469003954C3 /* CPThread.m */; };
 		35FF1C4D1EE06200004E3215 /* ReadMe.txt in Resources */ = {isa = PBXBuildFile; fileRef = 35FF1C4C1EE06200004E3215 /* ReadMe.txt */; };
 		76131FE21ECA973500CBA227 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 76131FE11ECA973500CBA227 /* main.m */; };
 		76131FE51ECA973500CBA227 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 76131FE41ECA973500CBA227 /* AppDelegate.m */; };
@@ -29,6 +31,10 @@
 /* Begin PBXFileReference section */
 		0394FCBE7C74BA574A9EACDF /* Pods-CurriculumProject.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-CurriculumProject.release.xcconfig"; path = "Pods/Target Support Files/Pods-CurriculumProject/Pods-CurriculumProject.release.xcconfig"; sourceTree = "<group>"; };
 		354010DD1ED27CAE009FA2CA /* podfile */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = podfile; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.ruby; };
+		354D79921EE43098003954C3 /* CPView3Controller.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CPView3Controller.h; sourceTree = "<group>"; };
+		354D79931EE43098003954C3 /* CPView3Controller.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CPView3Controller.m; sourceTree = "<group>"; };
+		354D79951EE43469003954C3 /* CPThread.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CPThread.h; sourceTree = "<group>"; };
+		354D79961EE43469003954C3 /* CPThread.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CPThread.m; sourceTree = "<group>"; };
 		35FF1C4C1EE06200004E3215 /* ReadMe.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = ReadMe.txt; sourceTree = "<group>"; };
 		425CE85A8EF68C6D7CAC45EC /* libPods-CurriculumProject.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-CurriculumProject.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		477B8A371FAB765CCC56B3C6 /* Pods-CurriculumProject.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-CurriculumProject.debug.xcconfig"; path = "Pods/Target Support Files/Pods-CurriculumProject/Pods-CurriculumProject.debug.xcconfig"; sourceTree = "<group>"; };
@@ -103,6 +109,10 @@
 			children = (
 				76131FE31ECA973500CBA227 /* AppDelegate.h */,
 				76131FE41ECA973500CBA227 /* AppDelegate.m */,
+				354D79921EE43098003954C3 /* CPView3Controller.h */,
+				354D79931EE43098003954C3 /* CPView3Controller.m */,
+				354D79951EE43469003954C3 /* CPThread.h */,
+				354D79961EE43469003954C3 /* CPThread.m */,
 				767FA4341EDD1482006CF15D /* CPView2Controller.h */,
 				767FA4351EDD1482006CF15D /* CPView2Controller.m */,
 				76131FE61ECA973500CBA227 /* ViewController.h */,
@@ -270,10 +280,12 @@
 			buildActionMask = 2147483647;
 			files = (
 				76C748761EDBBB6D00C84062 /* CustomOperation.m in Sources */,
+				354D79971EE43469003954C3 /* CPThread.m in Sources */,
 				7666F7391ED7F59A00201030 /* ForwardingObject.m in Sources */,
 				76131FFC1ECA9FEB00CBA227 /* SubViewController.m in Sources */,
 				76131FEE1ECA973500CBA227 /* CurriculumProject.xcdatamodeld in Sources */,
 				76131FE81ECA973500CBA227 /* ViewController.m in Sources */,
+				354D79941EE43098003954C3 /* CPView3Controller.m in Sources */,
 				76131FE51ECA973500CBA227 /* AppDelegate.m in Sources */,
 				76131FE21ECA973500CBA227 /* main.m in Sources */,
 				767FA4361EDD1482006CF15D /* CPView2Controller.m in Sources */,

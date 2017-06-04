@@ -85,7 +85,7 @@ void funcForBlock(void * context) {
 #pragma mark examples
 //    getppid()
     
-    dispatch_queue_t myQueue = dispatch_get_global_queue(QOS_CLASS_USER_INITIATED, 0);
+//    dispatch_queue_t myQueue = dispatch_get_global_queue(QOS_CLASS_USER_INITIATED, 0);
     
 //    uintptr_t myDescriptor = 0;
 //    dispatch_async(myQueue, ^{
