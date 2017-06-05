@@ -25,49 +25,91 @@
 #pragma mark - Thread
     
 #pragma mark Creating Threads
-    
-    NSLog(@"## Creating");
+//    [self cocoaThread];
     [NSThread detachNewThreadSelector:@selector(customMethod) toTarget:self withObject:nil];
-    [self performSelectorInBackground:@selector(customMethod) withObject:nil];
-    CPThread *thread = [[CPThread alloc] init];
-    [thread start];
-    NSLog(@"## end");
-    
-//    [NSThread detachNewThreadSelector:@selector(customMethod) toTarget:self withObject:nil];
+//    [self customMethod];
 //    CPThread *thread = [[CPThread alloc] init];
 //    [thread start];
 
 #pragma mark Creating POSIX Thread
+//    [self posixThread];
 }
 
+//    [NSThread detachNewThreadSelector:@selector(customMethod) toTarget:self withObject:nil];
+//    [self performSelectorInBackground:@selector(customMethod) withObject:nil];
+
 - (void)cocoaThread {
-    
+    NSLog(@"## Creating");
+    CPThread *thread = [[CPThread alloc] init];
+    [thread setThreadPriority:.8];
+    // defalut value 0.5
+    [thread start];
+    NSLog(@"## end");
 }
+
+- (void)customMethod {
+    NSLog(@"customMethod start, %@", [NSThread currentThread]);
+    
+    for (int i = 0; i < 5; i++) {
+        NSLog(@"[%zd] for", i);
+        for (int k = 0; k < 10000; k++) {
+            UIImage *image = [UIImage imageNamed:@"kitten.jpg"];
+        }
+        NSLog(@"[%zd] end", i);
+    }
+    NSLog(@"customMethod end, %@", [NSThread currentThread]);
+}
+
+//- (void)customMethod {
+//    NSLog(@"customMethod start, %@", [NSThread currentThread]);
+//    
+//    for (int i = 0; i < 10000; i++) {
+//        //        @autoreleasepool {
+//        NSLog(@"[%zd] for", i);
+//        
+//        int twentyMb           = 20971520;
+//        NSMutableData *theData1 = [NSMutableData dataWithCapacity:twentyMb];
+//        for( unsigned int j = 0 ; j < twentyMb/4 ; j++ )
+//        {
+//            u_int32_t randomBits = arc4random();
+//            [theData1 appendBytes:(void*)&randomBits length:4];
+//        }
+//        NSMutableData *theData2 = [NSMutableData dataWithCapacity:twentyMb];
+//        for( unsigned int j = 0 ; j < twentyMb/4 ; j++ )
+//        {
+//            u_int32_t randomBits = arc4random();
+//            [theData2 appendBytes:(void*)&randomBits length:4];
+//        }
+//        
+//        NSLog(@"[%zd] data1 size = %.2f MB", i, (double)(theData1.length/(1024.0f*1024.0f)));
+//        NSLog(@"[%zd] data2 size = %.2f MB", i, (double)(theData2.length/(1024.0f*1024.0f)));
+//        //        }
+//    }
+//    NSLog(@"customMethod end, %@", [NSThread currentThread]);
+//}
+//- (void)customMethod {
+//    NSLog(@"customMethod start, %@", [NSThread currentThread]);
+//    for (int i = 0; i < 3; i++) {
+//        NSLog(@"customMethod i = %zd, %@", i, [NSThread currentThread]);
+//    }
+//    NSLog(@"customMethod end, %@", [NSThread currentThread]);
+//}
+
 
 - (void)posixThread {
     NSLog(@"## Creating");
     LaunchThread();
     NSLog(@"## end");
 }
-
-- (void)customMethod {
-    NSLog(@"customMethod start, %@", [NSThread currentThread]);
-    for (int i = 0; i < 3; i++) {
-        NSLog(@"i = %zd, %@", i, [NSThread currentThread]);
-    }
-    NSLog(@"customMethod end, %@", [NSThread currentThread]);
-}
-
 void *PosixThreadMainRoutine(void* data)
 {
     NSLog(@"Posix start, %@", [NSThread currentThread]);
     for (int i = 0; i < 3; i++) {
-        NSLog(@"i = %zd, %@", i, [NSThread currentThread]);
+        NSLog(@"Posix i = %zd, %@", i, [NSThread currentThread]);
     }
     NSLog(@"Posix end, %@", [NSThread currentThread]);
     return NULL;
 }
-
 void LaunchThread()
 {
     NSLog(@"**** start LaunchThread");
@@ -78,9 +120,10 @@ void LaunchThread()
     
     returnVal = pthread_attr_init(&attr);
     assert(!returnVal);
-    returnVal = pthread_attr_setdetachstate(&attr, PTHREAD_CREATE_DETACHED);
+//    returnVal = pthread_attr_setdetachstate(&attr, PTHREAD_CREATE_DETACHED);
     assert(!returnVal);
     NSLog(@"**** before make posix thread");
+    
     int threadError =
     pthread_create(&posixThreadID, &attr, &PosixThreadMainRoutine, NULL);
     NSLog(@"**** after make posix thread");
@@ -91,8 +134,7 @@ void LaunchThread()
     {
         // Report an error.
     }
-//    pthread_join(posixThreadID, NULL);
-//    pthread_cond_wa
+    pthread_join(posixThreadID, NULL);
     NSLog(@"**** end LaunchThread");
 }
 
