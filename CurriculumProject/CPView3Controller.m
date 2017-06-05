@@ -26,18 +26,23 @@
     
 #pragma mark Creating Threads
     NSLog(@"## Creating");
-//    [NSThread detachNewThreadSelector:@selector(customMethod) toTarget:self withObject:nil];
-//    CPThread *thread = [[CPThread alloc] init];
-//    [thread start];
+    [NSThread detachNewThreadSelector:@selector(customMethod) toTarget:self withObject:nil];
     
-    LaunchThread();
+    CPThread *thread = [[CPThread alloc] init];
+    [thread start];
+    
+    [self performSelectorInBackground:@selector(customMethod) withObject:nil];
     NSLog(@"## end");
 }
 
+//- (void)viewDidLoad {
+//    [super viewDidLoad];
+//    NSLog(@"## Creating");
+//    LaunchThread();
+//    NSLog(@"## end");
+//}
+
 - (void)customMethod {
-    @autoreleasepool {
-        
-    }
     NSLog(@"customMethod start, %@", [NSThread currentThread]);
     for (int i = 0; i < 3; i++) {
         NSLog(@"i = %zd, %@", i, [NSThread currentThread]);
