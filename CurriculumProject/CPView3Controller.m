@@ -29,9 +29,13 @@
 //    [NSThread detachNewThreadSelector:@selector(customMethod) toTarget:self withObject:nil];
 //    CPThread *thread = [[CPThread alloc] init];
 //    [thread start];
-    
+
+#pragma mark Creating POSIX Thread
     LaunchThread();
     NSLog(@"## end");
+    
+//    [self performSelectorInBackground:<#(nonnull SEL)#> withObject:<#(nullable id)#>]
+    
 }
 
 - (void)customMethod {
@@ -79,6 +83,7 @@ void LaunchThread()
         // Report an error.
     }
 //    pthread_join(posixThreadID, NULL);
+//    pthread_cond_wa
     NSLog(@"**** end LaunchThread");
 }
 
