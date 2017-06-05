@@ -25,23 +25,32 @@
 #pragma mark - Thread
     
 #pragma mark Creating Threads
+    
     NSLog(@"## Creating");
+    [NSThread detachNewThreadSelector:@selector(customMethod) toTarget:self withObject:nil];
+    [self performSelectorInBackground:@selector(customMethod) withObject:nil];
+    CPThread *thread = [[CPThread alloc] init];
+    [thread start];
+    NSLog(@"## end");
+    
 //    [NSThread detachNewThreadSelector:@selector(customMethod) toTarget:self withObject:nil];
 //    CPThread *thread = [[CPThread alloc] init];
 //    [thread start];
 
 #pragma mark Creating POSIX Thread
-    LaunchThread();
-    NSLog(@"## end");
-    
-//    [self performSelectorInBackground:<#(nonnull SEL)#> withObject:<#(nullable id)#>]
+}
+
+- (void)cocoaThread {
     
 }
 
+- (void)posixThread {
+    NSLog(@"## Creating");
+    LaunchThread();
+    NSLog(@"## end");
+}
+
 - (void)customMethod {
-    @autoreleasepool {
-        
-    }
     NSLog(@"customMethod start, %@", [NSThread currentThread]);
     for (int i = 0; i < 3; i++) {
         NSLog(@"i = %zd, %@", i, [NSThread currentThread]);
