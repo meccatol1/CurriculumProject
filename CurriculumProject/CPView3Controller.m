@@ -9,6 +9,7 @@
 #import "CPView3Controller.h"
 
 #import "CPThread.h"
+#import "CPInputThread.h"
 
 #include <assert.h>
 #include <pthread.h>
@@ -21,12 +22,13 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view.
-    
+//    [self autoreleaseTest];
+//    [self performSelectorInBackground:@selector(autoreleaseTest) withObject:nil];
 #pragma mark - Thread
     
 #pragma mark Creating Threads
-//    [self cocoaThread];
-    [NSThread detachNewThreadSelector:@selector(customMethod) toTarget:self withObject:nil];
+    [self cocoaThread];
+//    [NSThread detachNewThreadSelector:@selector(customMethod) toTarget:self withObject:nil];
 //    [self customMethod];
 //    CPThread *thread = [[CPThread alloc] init];
 //    [thread start];
@@ -40,11 +42,16 @@
 
 - (void)cocoaThread {
     NSLog(@"## Creating");
-    CPThread *thread = [[CPThread alloc] init];
-    [thread setThreadPriority:.8];
-    // defalut value 0.5
-    [thread start];
+//    CPThread *thread = [[CPThread alloc] init];
+////    [thread setThreadPriority:.8];
+//    // defalut value 0.5
+//    [thread start];
+    
+    CPInputThread *thread2 = [[CPInputThread alloc] init];
+    [thread2 start];
     NSLog(@"## end");
+    
+//    [NSThread detachNewThreadSelector:@selector(threadMain) toTarget:self withObject:nil];
 }
 
 - (void)customMethod {
@@ -52,12 +59,64 @@
     
     for (int i = 0; i < 5; i++) {
         NSLog(@"[%zd] for", i);
-        for (int k = 0; k < 10000; k++) {
-            UIImage *image = [UIImage imageNamed:@"kitten.jpg"];
+        @autoreleasepool {
+            for (int k = 0; k < 20000; k++) {
+                UIImage *image = [UIImage imageNamed:@"kitten.jpg"];
+            }
         }
         NSLog(@"[%zd] end", i);
     }
     NSLog(@"customMethod end, %@", [NSThread currentThread]);
+}
+
+- (void)autoreleaseTest {
+    __strong NSString *st1;
+    __weak NSString *st2;
+    
+    for (int i = 0; i < 2; i++) {
+        NSLog(@"### start st1 = %@, st2 = %@", st1, st2);
+        @autoreleasepool {
+            NSString *tmSt1 =
+            [NSString stringWithFormat:@"[<%zd> st1]", i];
+            NSString *tmSt2 =
+            [[NSString alloc] initWithFormat:@"[<%zd> st2]", i];
+            NSLog(@"\ttmSt1 = %@, tmSt2 = %@", tmSt1, tmSt2);
+            
+            st1 = tmSt1;
+            st2 = tmSt2;
+            NSLog(@"### mid st1 = %@, st2 = %@", st1, st2);
+        }
+        NSLog(@"### end st1 = %@, st2 = %@", st1, st2);
+        NSLog(@" ");
+    }
+}
+
+- (void)autoreleaseTest2 {
+    NSLog(@"autoreleaseTest2 start, %@", [NSThread currentThread]);
+    
+    for (int i = 0; i < 5; i++) {
+        NSLog(@"[%zd] for", i);
+        @autoreleasepool {
+            for (int k = 0; k < 20000; k++) {
+                UIImage *image = [UIImage imageNamed:@"kitten.jpg"];
+            }
+        }
+        NSLog(@"[%zd] end", i);
+    }
+    NSLog(@"autoreleaseTest2 end, %@", [NSThread currentThread]);
+}
+
+- (void)autoreleaseTest3 {
+    NSLog(@"autoreleaseTest3 start, %@", [NSThread currentThread]);
+    
+    for (int i = 0; i < 5; i++) {
+        NSLog(@"[%zd] for", i);
+        for (int k = 0; k < 20000; k++) {
+            UIImage *image = [UIImage imageNamed:@"kitten.jpg"];
+        }
+        NSLog(@"[%zd] end", i);
+    }
+    NSLog(@"autoreleaseTest3 end, %@", [NSThread currentThread]);
 }
 
 //- (void)customMethod {
@@ -95,7 +154,49 @@
 //    NSLog(@"customMethod end, %@", [NSThread currentThread]);
 //}
 
+void observerCallBack(CFRunLoopObserverRef observer, CFRunLoopActivity activity, void *info) {
+    NSLog(@"observerCallBack, activity = %zd", activity);
+//    NSLog(@"info = %@", info);
+}
+- (void)doFireTimer:(NSTimer *)timer {
+    NSLog(@"doFireTimer = %@", timer);
+}
 
+- (void)threadMain
+{
+    NSLog(@"start threadMain");
+    // The application uses garbage collection, so no autorelease pool is needed.
+    NSRunLoop *myRunLoop = [NSRunLoop currentRunLoop];
+//    CFRunLoopObserverCallBack
+    // Create a run loop observer and attach it to the run loop.
+    CFRunLoopObserverContext context = {0, (__bridge void *)self, NULL, NULL, NULL};
+    CFRunLoopObserverRef observer =
+    CFRunLoopObserverCreate(kCFAllocatorDefault,
+                            kCFRunLoopAllActivities, YES, 0, &observerCallBack, &context);
+    
+    if (observer)
+    {
+        CFRunLoopRef    cfLoop = [myRunLoop getCFRunLoop];
+        CFRunLoopAddObserver(cfLoop, observer, kCFRunLoopDefaultMode);
+    }
+    
+    // Create and schedule the timer.
+    [NSTimer scheduledTimerWithTimeInterval:0.5 target:self
+                                   selector:@selector(doFireTimer:) userInfo:nil repeats:YES];
+    
+    NSInteger    loopCount = 3;
+    do
+    {
+        NSLog(@"in doWhile = %zd", loopCount);
+        // Run the run loop 10 times to let the timer fire.
+        [myRunLoop runUntilDate:[NSDate dateWithTimeIntervalSinceNow:1]];
+        loopCount--;
+    }
+    while (loopCount);
+    NSLog(@"end threadMain");
+}
+
+#pragma mark - POSIX methods
 - (void)posixThread {
     NSLog(@"## Creating");
     LaunchThread();

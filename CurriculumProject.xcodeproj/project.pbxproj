@@ -10,6 +10,8 @@
 		354010DE1ED27CAE009FA2CA /* podfile in Resources */ = {isa = PBXBuildFile; fileRef = 354010DD1ED27CAE009FA2CA /* podfile */; };
 		354D79941EE43098003954C3 /* CPView3Controller.m in Sources */ = {isa = PBXBuildFile; fileRef = 354D79931EE43098003954C3 /* CPView3Controller.m */; };
 		354D79971EE43469003954C3 /* CPThread.m in Sources */ = {isa = PBXBuildFile; fileRef = 354D79961EE43469003954C3 /* CPThread.m */; };
+		354F2C001EE71ABF006933C6 /* CPInputThread.m in Sources */ = {isa = PBXBuildFile; fileRef = 354F2BFF1EE71ABF006933C6 /* CPInputThread.m */; };
+		354F2C031EE721BE006933C6 /* CPPortThread.m in Sources */ = {isa = PBXBuildFile; fileRef = 354F2C021EE721BE006933C6 /* CPPortThread.m */; };
 		35FF1C4D1EE06200004E3215 /* ReadMe.txt in Resources */ = {isa = PBXBuildFile; fileRef = 35FF1C4C1EE06200004E3215 /* ReadMe.txt */; };
 		76131FE21ECA973500CBA227 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 76131FE11ECA973500CBA227 /* main.m */; };
 		76131FE51ECA973500CBA227 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 76131FE41ECA973500CBA227 /* AppDelegate.m */; };
@@ -35,6 +37,10 @@
 		354D79931EE43098003954C3 /* CPView3Controller.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CPView3Controller.m; sourceTree = "<group>"; };
 		354D79951EE43469003954C3 /* CPThread.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CPThread.h; sourceTree = "<group>"; };
 		354D79961EE43469003954C3 /* CPThread.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CPThread.m; sourceTree = "<group>"; };
+		354F2BFE1EE71ABF006933C6 /* CPInputThread.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CPInputThread.h; sourceTree = "<group>"; };
+		354F2BFF1EE71ABF006933C6 /* CPInputThread.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CPInputThread.m; sourceTree = "<group>"; };
+		354F2C011EE721BE006933C6 /* CPPortThread.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CPPortThread.h; sourceTree = "<group>"; };
+		354F2C021EE721BE006933C6 /* CPPortThread.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CPPortThread.m; sourceTree = "<group>"; };
 		35FF1C4C1EE06200004E3215 /* ReadMe.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = ReadMe.txt; sourceTree = "<group>"; };
 		425CE85A8EF68C6D7CAC45EC /* libPods-CurriculumProject.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-CurriculumProject.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		477B8A371FAB765CCC56B3C6 /* Pods-CurriculumProject.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-CurriculumProject.debug.xcconfig"; path = "Pods/Target Support Files/Pods-CurriculumProject/Pods-CurriculumProject.debug.xcconfig"; sourceTree = "<group>"; };
@@ -76,6 +82,19 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		354F2BFD1EE71AA4006933C6 /* Threads */ = {
+			isa = PBXGroup;
+			children = (
+				354D79951EE43469003954C3 /* CPThread.h */,
+				354D79961EE43469003954C3 /* CPThread.m */,
+				354F2BFE1EE71ABF006933C6 /* CPInputThread.h */,
+				354F2BFF1EE71ABF006933C6 /* CPInputThread.m */,
+				354F2C011EE721BE006933C6 /* CPPortThread.h */,
+				354F2C021EE721BE006933C6 /* CPPortThread.m */,
+			);
+			name = Threads;
+			sourceTree = "<group>";
+		};
 		61206CDDB5F101F5FF19B61F /* Pods */ = {
 			isa = PBXGroup;
 			children = (
@@ -111,8 +130,7 @@
 				76131FE41ECA973500CBA227 /* AppDelegate.m */,
 				354D79921EE43098003954C3 /* CPView3Controller.h */,
 				354D79931EE43098003954C3 /* CPView3Controller.m */,
-				354D79951EE43469003954C3 /* CPThread.h */,
-				354D79961EE43469003954C3 /* CPThread.m */,
+				354F2BFD1EE71AA4006933C6 /* Threads */,
 				767FA4341EDD1482006CF15D /* CPView2Controller.h */,
 				767FA4351EDD1482006CF15D /* CPView2Controller.m */,
 				76131FE61ECA973500CBA227 /* ViewController.h */,
@@ -280,6 +298,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				76C748761EDBBB6D00C84062 /* CustomOperation.m in Sources */,
+				354F2C031EE721BE006933C6 /* CPPortThread.m in Sources */,
 				354D79971EE43469003954C3 /* CPThread.m in Sources */,
 				7666F7391ED7F59A00201030 /* ForwardingObject.m in Sources */,
 				76131FFC1ECA9FEB00CBA227 /* SubViewController.m in Sources */,
@@ -288,6 +307,7 @@
 				354D79941EE43098003954C3 /* CPView3Controller.m in Sources */,
 				76131FE51ECA973500CBA227 /* AppDelegate.m in Sources */,
 				76131FE21ECA973500CBA227 /* main.m in Sources */,
+				354F2C001EE71ABF006933C6 /* CPInputThread.m in Sources */,
 				767FA4361EDD1482006CF15D /* CPView2Controller.m in Sources */,
 				765A7D771ECAF603008D5C43 /* Human+Mouth.m in Sources */,
 			);
