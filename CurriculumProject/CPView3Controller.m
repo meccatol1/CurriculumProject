@@ -23,7 +23,8 @@
     [super viewDidLoad];
     // Do any additional setup after loading the view.
 //    [self autoreleaseTest];
-//    [self performSelectorInBackground:@selector(autoreleaseTest) withObject:nil];
+//    [self performSelectorInBackground:@selector(autoreleaseTest4) withObject:nil];
+//    [self autoreleaseTest4];
 #pragma mark - Thread
     
 #pragma mark Creating Threads
@@ -41,13 +42,18 @@
 //    [self performSelectorInBackground:@selector(customMethod) withObject:nil];
 
 - (void)cocoaThread {
-    NSLog(@"## Creating");
+//    NSLog(@"## Creating");
 //    CPThread *thread = [[CPThread alloc] init];
 ////    [thread setThreadPriority:.8];
 //    // defalut value 0.5
 //    [thread start];
     
+    NSLog(@"## Creating");
     CPInputThread *thread2 = [[CPInputThread alloc] init];
+    NSDateComponents *currentComp = [[NSCalendar currentCalendar] components:NSCalendarUnitNanosecond
+                                                                    fromDate:[NSDate date]];
+    NSUInteger nanoToSec = 1000000000;
+    [NSThread sleepForTimeInterval:((nanoToSec-currentComp.nanosecond)/(double)nanoToSec)];
     [thread2 start];
     NSLog(@"## end");
     
@@ -62,6 +68,7 @@
         @autoreleasepool {
             for (int k = 0; k < 20000; k++) {
                 UIImage *image = [UIImage imageNamed:@"kitten.jpg"];
+                image = image;
             }
         }
         NSLog(@"[%zd] end", i);
@@ -99,6 +106,7 @@
         @autoreleasepool {
             for (int k = 0; k < 20000; k++) {
                 UIImage *image = [UIImage imageNamed:@"kitten.jpg"];
+                image = image;
             }
         }
         NSLog(@"[%zd] end", i);
@@ -113,10 +121,38 @@
         NSLog(@"[%zd] for", i);
         for (int k = 0; k < 20000; k++) {
             UIImage *image = [UIImage imageNamed:@"kitten.jpg"];
+            image = image;
         }
         NSLog(@"[%zd] end", i);
     }
     NSLog(@"autoreleaseTest3 end, %@", [NSThread currentThread]);
+}
+
+- (void)autoreleaseTest4 {
+    NSLog(@"autoreleaseTest4 start, %@", [NSThread currentThread]);
+    
+    for (int i = 0; i < 5; i++) {
+        NSLog(@"[%zd] for", i);
+        __weak NSMutableData *customData = nil;
+        for (int k = 0; k < 10000; k++) {
+//            NSLog(@"customData = %@", customData);
+            int twentyMb = 2000; // 20MB
+            NSMutableData *theData1 = [[NSMutableData alloc] initWithCapacity:twentyMb];
+            [NSMutableData dataWithCapacity:twentyMb];
+//            NSLog(@"1");
+            for( unsigned int j = 0 ; j < twentyMb/4 ; j++ )
+            {
+                u_int32_t randomBits = arc4random();
+                [theData1 appendBytes:(void*)&randomBits length:4];
+            }
+//            NSLog(@"2");
+//            NSLog(@"theData1 = %@", theData1);
+            customData = theData1;
+//            NSLog(@"customData = %@", customData);
+        }
+        NSLog(@"[%zd] end", i);
+    }
+    NSLog(@"autoreleaseTest4 end, %@", [NSThread currentThread]);
 }
 
 //- (void)customMethod {

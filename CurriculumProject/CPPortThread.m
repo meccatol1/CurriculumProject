@@ -25,23 +25,35 @@
 //        if (messageObj)
 //        {
 //            // Finish configuring the message and send it immediately.
-//            [messageObj setMsgId:setMsgid:kCheckinMessage];
+//            [messageObj setMsgId:100];
 //            [messageObj sendBeforeDate:[NSDate date]];
 //        }
 //        
-//        
+//        BOOL shouldExit = NO;
 //        do
 //        {
 //            [[NSRunLoop currentRunLoop] runMode:NSDefaultRunLoopMode
 //                                     beforeDate:[NSDate distantFuture]];
 //        }
-//        while (![workerObj shouldExit]);
-//        
-//        
-//        [self setRemotePort:outPort];
-//        // Create and configure the worker thread port.
+//        while (!shouldExit);
 //    }
 //}
-
-
 @end
+//
+//- (void)handlePortMessage:(NSPortMessage *)message {
+//    unsigned int message = [portMessage msgid];
+//    NSPort* distantPort = nil;
+//    
+//    if (message == 100)
+//    {
+//        // Get the worker thread’s communications port.
+//        distantPort = [portMessage sendPort];
+//        
+//        // Retain and save the worker port for later use.
+//        [self storeDistantPort:distantPort];
+//    }
+//    else
+//    {
+//        // Handle other messages.
+//    }
+//}

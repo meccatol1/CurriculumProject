@@ -104,7 +104,7 @@ void observerCallBack2(CFRunLoopObserverRef observer, CFRunLoopActivity activity
         NSMutableDictionary* threadDict = [[NSThread currentThread] threadDictionary];
         [threadDict setValue:[NSNumber numberWithBool:exitNow] forKey:@"ThreadShouldExitNow"];
         
-        [self myInstallCustomInputSource];
+//        [self myInstallCustomInputSource];
         
         while (moreWorkToDo && !exitNow)
         {
@@ -120,8 +120,52 @@ void observerCallBack2(CFRunLoopObserverRef observer, CFRunLoopActivity activity
     }
 }
 
-- (void)myInstallCustomInputSource {
-    
-}
+//void RunLoopSourceScheduleRoutine (void *info, CFRunLoopRef rl, CFStringRef mode);
+//void RunLoopSourcePerformRoutine (void *info);
+//void RunLoopSourceCancelRoutine (void *info, CFRunLoopRef rl, CFStringRef mode);
+//
+//- (void)myInstallCustomInputSource {
+//    CFRunLoopSourceContext context = {0, (__bridge void *)self,
+//        NULL, NULL, NULL, NULL, NULL,
+//        &RunLoopSourceScheduleRoutine,
+//        RunLoopSourceCancelRoutine,
+//        RunLoopSourcePerformRoutine};
+//    
+//    CFRunLoopSourceRef runLoopSource = CFRunLoopSourceCreate(NULL, 0, &context);
+//    CFRunLoopRef runLoop = [[NSRunLoop currentRunLoop] getCFRunLoop];
+//    CFRunLoopAddSource(runLoop, runLoopSource, kCFRunLoopDefaultMode);
+//    
+//    //
+//    CFRunLoopSourceSignal(runLoopSource);
+//    CFRunLoopWakeUp(runLoop);
+//}
+//
+//////    NSSocketPort
+////NSPort* myPort = [NSMachPort port];
+////[myPort setDelegate:self];
+////
+////[[NSRunLoop currentRunLoop] addPort:myPort forMode:NSDefaultRunLoopMode];
+//
+//- (void)timerSetting {
+//    NSRunLoop* myRunLoop = [NSRunLoop currentRunLoop];
+//    
+//    // Create and schedule the first timer.
+//    NSDate* futureDate = [NSDate dateWithTimeIntervalSinceNow:1.0];
+//    
+//    NSTimer* myTimer = [[NSTimer alloc] initWithFireDate:futureDate
+//                                                interval:0.1
+//                                                  target:self
+//                                                selector:@selector(myDoFireTimer1:)
+//                                                userInfo:nil
+//                                                 repeats:YES];
+//    [myRunLoop addTimer:myTimer forMode:NSDefaultRunLoopMode];
+//    
+//    // Create and schedule the second timer.
+//    [NSTimer scheduledTimerWithTimeInterval:0.2
+//                                     target:self
+//                                   selector:@selector(myDoFireTimer2:)
+//                                   userInfo:nil
+//                                    repeats:YES];
+//}
 
 @end

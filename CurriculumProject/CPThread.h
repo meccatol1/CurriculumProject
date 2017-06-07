@@ -8,7 +8,7 @@
 
 #import <Foundation/Foundation.h>
 
-@interface CPThread : NSThread
+@interface CPThread : NSThread <NSPortDelegate>
 
 @end
 

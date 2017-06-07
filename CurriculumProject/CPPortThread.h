@@ -10,5 +10,5 @@
 
 @interface CPPortThread : NSThread <NSPortDelegate>
 @property NSPort *remotePort;
-
 @end
+
