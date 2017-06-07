@@ -9,6 +9,7 @@
 #import "CPView3Controller.h"
 
 #import "CPThread.h"
+#import "CPThread2.h"
 #import "CPInputThread.h"
 
 #include <assert.h>
@@ -48,16 +49,21 @@
 //    // defalut value 0.5
 //    [thread start];
     
-    NSLog(@"## Creating");
-    CPInputThread *thread2 = [[CPInputThread alloc] init];
-    NSDateComponents *currentComp = [[NSCalendar currentCalendar] components:NSCalendarUnitNanosecond
-                                                                    fromDate:[NSDate date]];
-    NSUInteger nanoToSec = 1000000000;
-    [NSThread sleepForTimeInterval:((nanoToSec-currentComp.nanosecond)/(double)nanoToSec)];
-    [thread2 start];
-    NSLog(@"## end");
+//    NSLog(@"## Creating");
+//    CPInputThread *thread2 = [[CPInputThread alloc] init];
+//    NSDateComponents *currentComp = [[NSCalendar currentCalendar] components:NSCalendarUnitNanosecond
+//                                                                    fromDate:[NSDate date]];
+//    NSUInteger nanoToSec = 1000000000;
+//    [NSThread sleepForTimeInterval:((nanoToSec-currentComp.nanosecond)/(double)nanoToSec)];
+//    [thread2 start];
+//    NSLog(@"## end");
     
 //    [NSThread detachNewThreadSelector:@selector(threadMain) toTarget:self withObject:nil];
+    
+    NSLog(@"## Creating");
+    CPThread2 *thread2 = [[CPThread2 alloc] init];
+    [thread2 start];
+    NSLog(@"## end");
 }
 
 - (void)customMethod {

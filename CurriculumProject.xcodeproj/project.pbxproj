@@ -27,6 +27,7 @@
 		767FA4361EDD1482006CF15D /* CPView2Controller.m in Sources */ = {isa = PBXBuildFile; fileRef = 767FA4351EDD1482006CF15D /* CPView2Controller.m */; };
 		76BBE4D61ED6889300E67C05 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 76BBE4D51ED6889300E67C05 /* Foundation.framework */; };
 		76C748761EDBBB6D00C84062 /* CustomOperation.m in Sources */ = {isa = PBXBuildFile; fileRef = 76C748751EDBBB6D00C84062 /* CustomOperation.m */; };
+		76E4CF7C1EE7F42F009921EA /* CPThread2.m in Sources */ = {isa = PBXBuildFile; fileRef = 76E4CF7B1EE7F42F009921EA /* CPThread2.m */; };
 		C75271F429E69FD5C27E660C /* libPods-CurriculumProject.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 425CE85A8EF68C6D7CAC45EC /* libPods-CurriculumProject.a */; };
 /* End PBXBuildFile section */
 
@@ -67,6 +68,8 @@
 		76BBE4D51ED6889300E67C05 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		76C748741EDBBB6D00C84062 /* CustomOperation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CustomOperation.h; sourceTree = "<group>"; };
 		76C748751EDBBB6D00C84062 /* CustomOperation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CustomOperation.m; sourceTree = "<group>"; };
+		76E4CF7A1EE7F42F009921EA /* CPThread2.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CPThread2.h; sourceTree = "<group>"; };
+		76E4CF7B1EE7F42F009921EA /* CPThread2.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CPThread2.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -91,6 +94,8 @@
 				354F2BFF1EE71ABF006933C6 /* CPInputThread.m */,
 				354F2C011EE721BE006933C6 /* CPPortThread.h */,
 				354F2C021EE721BE006933C6 /* CPPortThread.m */,
+				76E4CF7A1EE7F42F009921EA /* CPThread2.h */,
+				76E4CF7B1EE7F42F009921EA /* CPThread2.m */,
 			);
 			name = Threads;
 			sourceTree = "<group>";
@@ -304,6 +309,7 @@
 				76131FFC1ECA9FEB00CBA227 /* SubViewController.m in Sources */,
 				76131FEE1ECA973500CBA227 /* CurriculumProject.xcdatamodeld in Sources */,
 				76131FE81ECA973500CBA227 /* ViewController.m in Sources */,
+				76E4CF7C1EE7F42F009921EA /* CPThread2.m in Sources */,
 				354D79941EE43098003954C3 /* CPView3Controller.m in Sources */,
 				76131FE51ECA973500CBA227 /* AppDelegate.m in Sources */,
 				76131FE21ECA973500CBA227 /* main.m in Sources */,
