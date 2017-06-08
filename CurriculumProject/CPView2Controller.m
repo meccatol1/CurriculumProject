@@ -36,7 +36,7 @@ void funcForBlock(void * context) {
     [super viewDidLoad];
     // Do any additional setup after loading the view.
     
-    
+#pragma mark - sample
 //    void (^empty)(void) = ^{
 //        @autoreleasepool {
 //            NSString *hello = @"hello";

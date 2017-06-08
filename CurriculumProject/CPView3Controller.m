@@ -6,6 +6,7 @@
 //  Copyright © 2017년 meccatol_iMac. All rights reserved.
 //
 
+#import <libkern/OSAtomic.h>
 #import "CPView3Controller.h"
 
 #import "CPThread.h"
@@ -17,19 +18,91 @@
 
 @interface CPView3Controller ()
 
+@property (atomic) NSInteger total;
+@property NSInteger testTotal;
+
+@property (strong) NSLock *lock;
+
 @end
 
 @implementation CPView3Controller
 - (void)viewDidLoad {
     [super viewDidLoad];
+    
+#pragma mark - Synchronization
+    
+#pragma mark NSLock
+    self.lock = [[NSLock alloc] init];
+    
+    [self testThreadSafety];
+#pragma mark Atomic operation;
+//    self.total = 1000;
+//    self.testTotal = self.total;
+//    int totalLoop = 5000;
+//    NSLog(@"**** start total = %zd, with Loop count = %zd", self.total, totalLoop);
+//    dispatch_queue_t global = dispatch_get_global_queue(QOS_CLASS_USER_INITIATED, 0);
+//    
+//    for (int i = 0; i < totalLoop; i++) {
+////        NSNumber *isLast = [NSNumber numberWithBool:(i==(totalLoop-1)?YES:NO)];
+//        int whether = arc4random()%2;
+//        if (whether == 0) {
+//            
+//            dispatch_async(global, ^{
+//                [self increaseTotal];
+//            });
+//            self.testTotal++;
+//        } else {
+//            dispatch_async(global, ^{
+//                [self decreaseTotal];
+//            });
+//            self.testTotal--;
+//        }
+//        
+////        if (whether == 0) {
+////            dispatch_async(global, ^{
+////                @synchronized (self) {
+////                    self.total++;
+////                }
+////            });
+////            self.testTotal++;
+////        } else {
+////            dispatch_async(global, ^{
+////                @synchronized (self) {
+////                    self.total--;
+////                }
+////            });
+////            self.testTotal--;
+////        }
+////        if (whether == 0) {
+////            dispatch_async(global, ^{
+////                self.total++;
+////            });
+////            self.testTotal++;
+////        } else {
+////            dispatch_async(global, ^{
+////                self.total--;
+////            });
+////            self.testTotal--;
+////        }
+//    }
+//    dispatch_barrier_async(global, ^{
+//        NSLog(@"**** End");
+//        NSLog(@"total = %zd", self.total);
+//        NSLog(@"testTotal = %zd", self.testTotal);
+//    });
+    
+//    [self performSelector:@selector(checkTotal) withObject:nil afterDelay:4];
+    
+    
     // Do any additional setup after loading the view.
 //    [self autoreleaseTest];
 //    [self performSelectorInBackground:@selector(autoreleaseTest4) withObject:nil];
 //    [self autoreleaseTest4];
 #pragma mark - Thread
     
+    
 #pragma mark Creating Threads
-    [self cocoaThread];
+//    [self cocoaThread];
 //    [NSThread detachNewThreadSelector:@selector(customMethod) toTarget:self withObject:nil];
 //    [self customMethod];
 //    CPThread *thread = [[CPThread alloc] init];
@@ -280,5 +353,155 @@ void LaunchThread()
     pthread_join(posixThreadID, NULL);
     NSLog(@"**** end LaunchThread");
 }
+
+#pragma mark - Synchoronization Methods
+- (void)testThreadSafety {
+    self.total = 1000;
+    self.testTotal = self.total;
+    
+    int totalLoop = 5000;
+    NSLog(@"**** start total = %zd, %@", self.total, [NSThread currentThread]);
+    
+    dispatch_queue_t global = dispatch_get_global_queue(QOS_CLASS_USER_INITIATED, 0);
+    
+    for (int i = 0; i < totalLoop; i++) {
+        int whether = arc4random()%2;
+        if (whether == 0) {
+            
+            dispatch_async(global, ^{
+                [self increaseTotal];
+            });
+            self.testTotal++;
+        } else {
+            dispatch_async(global, ^{
+                [self decreaseTotal];
+            });
+            self.testTotal--;
+        }
+    }
+    dispatch_barrier_async(global, ^{
+        dispatch_async(dispatch_get_main_queue(), ^{
+            NSLog(@"**** End");
+            NSLog(@"total = %zd", self.total);
+            NSLog(@"testTotal = %zd", self.testTotal);
+            
+            if (self.total != self.testTotal) {
+                NSLog(@"스레드 세이프 하지 않음~~");
+            }else {
+                [self performSelectorOnMainThread:@selector(testThreadSafety)
+                                       withObject:nil
+                                    waitUntilDone:NO];
+            }
+        });
+    });
+}
+
+//- (void)increaseTotal {
+//    self.total++;
+//}
+//- (void)decreaseTotal {
+//    self.total--;
+//}
+
+// 스레드 세이프
+//- (void)increaseTotal {
+//    [self.lock lock];
+//    self.total++;
+//    [self.lock unlock];
+//}
+//- (void)decreaseTotal {
+//    [self.lock lock];
+//    self.total--;
+//    [self.lock unlock];
+//}
+
+
+// Not Thread Safe
+//- (void)increaseTotal {
+//    NSLock *customLock = [NSLock new];
+//    [customLock lock];
+//    self.total++;
+//    [customLock unlock];
+//}
+//- (void)decreaseTotal {
+//    NSLock *customLock = [NSLock new];
+//    [customLock lock];
+//    self.total--;
+//    [customLock unlock];
+//}
+
+// 오... 스레드 세이프 하지 않은 순간이 나옴!!!!!!!!
+// 아니네.. 이것도 스레드 세이프 한듯!
+- (void)increaseTotal {
+    @synchronized (self.lock) {
+        self.total++;
+    }
+}
+- (void)decreaseTotal {
+    @synchronized (self.lock) {
+        self.total--;
+    }
+}
+
+- (void)checkTotal {
+    NSLog(@"**** End total = %zd, testTotal = %zd", self.total, self.testTotal);
+}
+#pragma mark Non
+- (void)methodInThread1:(NSNumber *)isLast {
+    NSLog(@"#1 start, %@", [NSThread currentThread]);
+    
+    _total = _total+1;
+    NSLog(@"#1 mid, %@", [NSThread currentThread]);
+    
+    NSLog(@"#1 end, %@", [NSThread currentThread]);
+}
+- (void)methodInThread2:(NSNumber *)isLast {
+    NSLog(@"#2 start, %@", [NSThread currentThread]);
+    _total = _total-1;
+    NSLog(@"#2 mid, %@", [NSThread currentThread]);
+    
+    NSLog(@"#2 end, %@", [NSThread currentThread]);
+}
+
+#pragma mark NSLock
+//- (void)methodInThread1:(NSNumber *)isLast {
+//    NSLog(@"#1 start, %@", [NSThread currentThread]);
+//    NSLock *lock = [NSLock new];
+//    if ([lock tryLock]) {
+//        self.total++;
+//        NSLog(@"#1 mid, %@", [NSThread currentThread]);
+//        [lock unlock];
+//    }
+//    NSLog(@"#1 end, %@", [NSThread currentThread]);
+//}
+//- (void)methodInThread2:(NSNumber *)isLast {
+//    NSLog(@"#2 start, %@", [NSThread currentThread]);
+//    NSLock *lock = [NSLock new];
+//    if ([lock tryLock]) {
+//        self.total--;
+//        NSLog(@"#2 mid, %@", [NSThread currentThread]);
+//        [lock unlock];
+//    }
+//    NSLog(@"#2 end, %@", [NSThread currentThread]);
+//}
+
+#pragma mark @synchronized
+//- (void)methodInThread1:(NSNumber *)isLast {
+//    NSLog(@"#1 start, %@", [NSThread currentThread]);
+//    @synchronized (self) {
+//        NSLog(@"#1 mid, %@", [NSThread currentThread]);
+//        self.total++;
+//    }
+//    NSLog(@"#1 end, %@", [NSThread currentThread]);
+//}
+//- (void)methodInThread2:(NSNumber *)isLast {
+//    NSLog(@"#2 start, %@", [NSThread currentThread]);
+//    @synchronized (self) {
+//        NSLog(@"#2 mid, %@", [NSThread currentThread]);
+//        self.total--;
+//    }
+//    NSLog(@"#2 end, %@", [NSThread currentThread]);
+//}
+
 
 @end
