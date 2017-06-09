@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		352F9D2A1EE9A3C500EB84CB /* CPView.m in Sources */ = {isa = PBXBuildFile; fileRef = 352F9D291EE9A3C500EB84CB /* CPView.m */; };
 		354010DE1ED27CAE009FA2CA /* podfile in Resources */ = {isa = PBXBuildFile; fileRef = 354010DD1ED27CAE009FA2CA /* podfile */; };
 		354D79941EE43098003954C3 /* CPView3Controller.m in Sources */ = {isa = PBXBuildFile; fileRef = 354D79931EE43098003954C3 /* CPView3Controller.m */; };
 		354D79971EE43469003954C3 /* CPThread.m in Sources */ = {isa = PBXBuildFile; fileRef = 354D79961EE43469003954C3 /* CPThread.m */; };
@@ -33,6 +34,8 @@
 
 /* Begin PBXFileReference section */
 		0394FCBE7C74BA574A9EACDF /* Pods-CurriculumProject.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-CurriculumProject.release.xcconfig"; path = "Pods/Target Support Files/Pods-CurriculumProject/Pods-CurriculumProject.release.xcconfig"; sourceTree = "<group>"; };
+		352F9D281EE9A3C500EB84CB /* CPView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CPView.h; sourceTree = "<group>"; };
+		352F9D291EE9A3C500EB84CB /* CPView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CPView.m; sourceTree = "<group>"; };
 		354010DD1ED27CAE009FA2CA /* podfile */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = podfile; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.ruby; };
 		354D79921EE43098003954C3 /* CPView3Controller.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CPView3Controller.h; sourceTree = "<group>"; };
 		354D79931EE43098003954C3 /* CPView3Controller.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CPView3Controller.m; sourceTree = "<group>"; };
@@ -96,6 +99,8 @@
 				354F2C021EE721BE006933C6 /* CPPortThread.m */,
 				76E4CF7A1EE7F42F009921EA /* CPThread2.h */,
 				76E4CF7B1EE7F42F009921EA /* CPThread2.m */,
+				352F9D281EE9A3C500EB84CB /* CPView.h */,
+				352F9D291EE9A3C500EB84CB /* CPView.m */,
 			);
 			name = Threads;
 			sourceTree = "<group>";
@@ -316,6 +321,7 @@
 				354F2C001EE71ABF006933C6 /* CPInputThread.m in Sources */,
 				767FA4361EDD1482006CF15D /* CPView2Controller.m in Sources */,
 				765A7D771ECAF603008D5C43 /* Human+Mouth.m in Sources */,
+				352F9D2A1EE9A3C500EB84CB /* CPView.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

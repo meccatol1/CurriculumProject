@@ -19,9 +19,14 @@
 @interface CPView3Controller ()
 
 @property (atomic) NSInteger total;
-@property NSInteger testTotal;
+@property (atomic) NSInteger testTotal;
 
 @property (strong) NSLock *lock;
+
+@property (strong) NSRecursiveLock *recursiveLock;
+
+@property (strong) NSConditionLock *conditionLock;
+@property (strong) NSMutableArray *dataArray;
 
 @end
 
@@ -35,6 +40,43 @@
     self.lock = [[NSLock alloc] init];
     
     [self testThreadSafety];
+    
+//    self.recursiveLock = [NSRecursiveLock new];
+//    dispatch_queue_t global =
+//    dispatch_get_global_queue(QOS_CLASS_USER_INITIATED, 0);
+//    dispatch_async(global, ^{
+//        NSLog(@"#### start 1");
+//        [self recursiveMethod1:5];
+//        NSLog(@"#### end 1");
+//    });
+//    dispatch_async(global, ^{
+//        NSLog(@"#### start 2");
+//        [self recursiveMethod2:5];
+//        NSLog(@"#### end 2");
+//    });
+    
+//    self.conditionLock =
+//    [[NSConditionLock alloc] initWithCondition:10];
+//    self.dataArray = [NSMutableArray array];
+//    dispatch_queue_t global =
+//    dispatch_get_global_queue(QOS_CLASS_USER_INITIATED, 0);
+//    dispatch_async(global, ^{
+//        NSLog(@"#### Consumer start 1");
+//        [self consumer1];
+//        NSLog(@"#### Consumer end 1");
+//    });
+//    dispatch_async(global, ^{
+//        NSLog(@"#### Consumer start 2");
+//        [self consumer2];
+//        NSLog(@"#### Consumer end 2");
+//    });
+//    dispatch_async(global, ^{
+//        NSLog(@"#### Producer start");
+//        [self producer];
+//        NSLog(@"#### Producer end");
+//    });
+    
+    
 #pragma mark Atomic operation;
 //    self.total = 1000;
 //    self.testTotal = self.total;
@@ -355,14 +397,17 @@ void LaunchThread()
 }
 
 #pragma mark - Synchoronization Methods
+
 - (void)testThreadSafety {
     self.total = 1000;
     self.testTotal = self.total;
     
     int totalLoop = 5000;
-    NSLog(@"**** start total = %zd, %@", self.total, [NSThread currentThread]);
+    NSLog(@"**** start total = %zd, %@",
+          self.total, [NSThread currentThread]);
     
-    dispatch_queue_t global = dispatch_get_global_queue(QOS_CLASS_USER_INITIATED, 0);
+    dispatch_queue_t global =
+    dispatch_get_global_queue(QOS_CLASS_USER_INITIATED, 0);
     
     for (int i = 0; i < totalLoop; i++) {
         int whether = arc4random()%2;
@@ -388,7 +433,8 @@ void LaunchThread()
             if (self.total != self.testTotal) {
                 NSLog(@"스레드 세이프 하지 않음~~");
             }else {
-                [self performSelectorOnMainThread:@selector(testThreadSafety)
+                SEL rec = @selector(testThreadSafety);
+                [self performSelectorOnMainThread:rec
                                        withObject:nil
                                     waitUntilDone:NO];
             }
@@ -396,14 +442,22 @@ void LaunchThread()
     });
 }
 
+- (void)increaseTotal {
+    self.total += 1;
+}
+- (void)decreaseTotal {
+    self.total -= 1;
+}
+
+///// 아토믹 오퍼레이션.. 스레드 세이프
 //- (void)increaseTotal {
-//    self.total++;
+//    OSAtomicIncrement64(&_total);
 //}
 //- (void)decreaseTotal {
-//    self.total--;
+//    OSAtomicDecrement64(&_total);
 //}
 
-// 스레드 세이프
+////// 스레드 세이프
 //- (void)increaseTotal {
 //    [self.lock lock];
 //    self.total++;
@@ -414,7 +468,6 @@ void LaunchThread()
 //    self.total--;
 //    [self.lock unlock];
 //}
-
 
 // Not Thread Safe
 //- (void)increaseTotal {
@@ -432,20 +485,100 @@ void LaunchThread()
 
 // 오... 스레드 세이프 하지 않은 순간이 나옴!!!!!!!!
 // 아니네.. 이것도 스레드 세이프 한듯!
-- (void)increaseTotal {
-    @synchronized (self.lock) {
-        self.total++;
+//- (void)increaseTotal {
+//    @synchronized (self.lock) {
+//        self.total++;
+//    }
+//}
+//- (void)decreaseTotal {
+//    @synchronized (self.lock) {
+//        self.total--;
+//    }
+//}
+
+#pragma mark Dead Lock
+
+#pragma mark Live Lock
+
+#pragma mark Recursive Lock
+
+- (void)recursiveMethod1:(NSInteger)value {
+    NSLog(@"##1 recursiveMethod1 = %zd, %@"
+          , value, [NSThread currentThread]);
+    [self.recursiveLock lock];
+    NSLog(@"##1 [%zd] do somethings", value);
+    if (value != 0) {
+        [self recursiveMethod1:value-1];
     }
+    NSLog(@"##1 [%zd] finish", value);
+    [self.recursiveLock unlock];
 }
-- (void)decreaseTotal {
-    @synchronized (self.lock) {
-        self.total--;
+- (void)recursiveMethod2:(NSInteger)value {
+    NSLog(@"##2 recursiveMethod2 = %zd, %@"
+          , value, [NSThread currentThread]);
+    [self.recursiveLock lock];
+    NSLog(@"##2 [%zd] do somethings", value);
+    if (value != 0) {
+        [self recursiveMethod2:value-1];
     }
+    NSLog(@"##2 [%zd] finish", value);
+    [self.recursiveLock unlock];
 }
 
 - (void)checkTotal {
     NSLog(@"**** End total = %zd, testTotal = %zd", self.total, self.testTotal);
 }
+
+#pragma mark NSConditionLock
+
+- (void)producer {
+    BOOL keepProduce = YES;
+    while (keepProduce) {
+        [self.conditionLock lockWhenCondition:10];
+        int whether = arc4random()%2;
+        NSLog(@"## producer time = %@", whether==0?@"String":@"Number");
+        if (whether == 0) { // String
+            [self.dataArray addObject:@"Hello!"];
+        } else { // Number
+            [self.dataArray addObject:@(111)];
+        }
+        if (self.dataArray.count == 5) keepProduce = NO;
+        [self.conditionLock unlockWithCondition:(whether==0?9:99)];
+    }
+}
+static BOOL keepConsume = YES;
+- (void)consumer1 {
+    while (keepConsume) {
+        NSDate *secondLater = [NSDate dateWithTimeIntervalSinceNow:1];
+        BOOL acquiring =
+        [self.conditionLock lockWhenCondition:9
+                                   beforeDate:secondLater];
+        if (acquiring) {
+            NSLog(@"# consumer1 time");
+            NSString *helloString = [self.dataArray lastObject];
+            NSLog(@"# consume1 String = %@", helloString);
+            if (self.dataArray.count == 5) keepConsume = NO;
+            [self.conditionLock unlockWithCondition:10];
+        }
+    }
+}
+- (void)consumer2 {
+    while (keepConsume) {
+        NSDate *secondLater = [NSDate dateWithTimeIntervalSinceNow:1];
+        BOOL acquiring =
+        [self.conditionLock lockWhenCondition:99
+                                   beforeDate:secondLater];
+        if (acquiring) {
+            NSLog(@"# consumer2 time");
+            NSNumber *number = [self.dataArray lastObject];
+            NSLog(@"# consume2 Number = %@", number);
+            if (self.dataArray.count == 5) keepConsume = NO;
+            [self.conditionLock unlockWithCondition:10];
+        }
+    }
+}
+
+
 #pragma mark Non
 - (void)methodInThread1:(NSNumber *)isLast {
     NSLog(@"#1 start, %@", [NSThread currentThread]);
@@ -462,6 +595,7 @@ void LaunchThread()
     
     NSLog(@"#2 end, %@", [NSThread currentThread]);
 }
+
 
 #pragma mark NSLock
 //- (void)methodInThread1:(NSNumber *)isLast {
