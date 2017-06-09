@@ -28,6 +28,12 @@
 @property (strong) NSConditionLock *conditionLock;
 @property (strong) NSMutableArray *dataArray;
 
+@property (nonatomic, strong) NSString *nString;
+@property (atomic, strong) NSMutableString *mString;
+
+@property (strong) NSLock *lock1;
+@property (strong) NSLock *lock2;
+
 @end
 
 @implementation CPView3Controller
@@ -41,6 +47,87 @@
     
     [self testThreadSafety];
     
+#pragma mark 번외, atomic!
+    
+    self.mString = [NSMutableString stringWithString:@"test"];
+    
+    dispatch_queue_t queue = dispatch_queue_create("adsf", DISPATCH_QUEUE_CONCURRENT);
+    self.total = 10000;
+    for (int i = 0; i < self.total; i++) {
+        dispatch_async(queue, ^{
+            int whether = arc4random()%2;
+            if (whether == 0) {
+                [self.mString appendString:@"+"];
+            } else {
+                [self.mString appendString:@"-"];
+            }
+        });
+    }
+    dispatch_barrier_async(queue, ^{
+        NSLog(@"stringValue = %@", self.mString);
+        NSLog(@"length = %zd", self.mString.length);
+    });
+    
+//    dispatch_queue_t queue = dispatch_queue_create("adsf", DISPATCH_QUEUE_CONCURRENT);
+//    self.total = 10000;
+//    for (int i = 0; i < self.total; i++) {
+//        dispatch_async(queue, ^{
+//            int whether = arc4random()%2;
+//            if (whether == 0) {
+//                NSMutableString *tmSt = [self.mString mutableCopy];
+//                [tmSt appendString:@"+"];
+//                self.mString = tmSt;
+//            } else {
+//                NSMutableString *tmSt = [self.mString mutableCopy];
+//                [tmSt appendString:@"-"];
+//                self.mString = tmSt;
+//            }
+//        });
+//    }
+//    dispatch_barrier_async(queue, ^{
+//        NSLog(@"stringValue = %@", self.mString);
+//        NSLog(@"length = %zd", self.mString.length);
+//    });
+    
+//    [self testThreadSafety];
+    
+    //// 움,,, 베리어 제대로 동작하네 또..
+
+#pragma mark Deadlock and livelock
+    
+//    self.lock1 = [[NSLock alloc] init];
+//    self.lock2 = [[NSLock alloc] init];
+//    [self performSelectorInBackground:@selector(liveTask1) withObject:nil];
+//    [self performSelectorInBackground:@selector(liveTask2) withObject:nil];
+    
+//    [self performSelectorInBackground:@selector(task1) withObject:nil];
+//    [self performSelectorInBackground:@selector(task2) withObject:nil];
+    
+//    dispatch_queue_t queue = dispatch_queue_create("adsf", DISPATCH_QUEUE_CONCURRENT);
+//    dispatch_async(queue, ^{
+//        NSLog(@"#1 lock!!, %@", [NSThread currentThread]);
+//        [self.lock1 lock];
+//        [NSThread sleepForTimeInterval:1];
+//        
+//        [self.lock2 lock];
+//        // do somethings
+//        [self.lock2 unlock];
+//        [self.lock1 unlock];
+//        NSLog(@"#1 end!!, %@", [NSThread currentThread]);
+//    });
+//    dispatch_async(queue, ^{
+//        NSLog(@"#2 lock!!, %@", [NSThread currentThread]);
+//        [self.lock2 lock];
+//        [NSThread sleepForTimeInterval:1];
+//        
+//        [self.lock1 lock];
+//        // do somethings
+//        [self.lock1 unlock];
+//        [self.lock2 unlock];
+//        NSLog(@"#2 end!!, %@", [NSThread currentThread]);
+//    });
+    
+#pragma mark NSRecursiveLock
 //    self.recursiveLock = [NSRecursiveLock new];
 //    dispatch_queue_t global =
 //    dispatch_get_global_queue(QOS_CLASS_USER_INITIATED, 0);
@@ -55,6 +142,7 @@
 //        NSLog(@"#### end 2");
 //    });
     
+#pragma mark NSConditionLock
 //    self.conditionLock =
 //    [[NSConditionLock alloc] initWithCondition:10];
 //    self.dataArray = [NSMutableArray array];
@@ -398,49 +486,99 @@ void LaunchThread()
 
 #pragma mark - Synchoronization Methods
 
+static int testMax = 100;
+
 - (void)testThreadSafety {
-    self.total = 1000;
-    self.testTotal = self.total;
-    
+    self.total = self.testTotal = 1000;
     int totalLoop = 5000;
+    
+    if (testMax == 100)
     NSLog(@"**** start total = %zd, %@",
           self.total, [NSThread currentThread]);
     
     dispatch_queue_t global =
     dispatch_get_global_queue(QOS_CLASS_USER_INITIATED, 0);
     
+    dispatch_group_t group = dispatch_group_create();
     for (int i = 0; i < totalLoop; i++) {
         int whether = arc4random()%2;
         if (whether == 0) {
-            
-            dispatch_async(global, ^{
+            dispatch_group_async(group, global, ^{
                 [self increaseTotal];
             });
             self.testTotal++;
         } else {
-            dispatch_async(global, ^{
+            dispatch_group_async(group, global, ^{
                 [self decreaseTotal];
             });
             self.testTotal--;
         }
     }
-    dispatch_barrier_async(global, ^{
+    dispatch_group_notify(group, global, ^{
         dispatch_async(dispatch_get_main_queue(), ^{
-            NSLog(@"**** End");
-            NSLog(@"total = %zd", self.total);
-            NSLog(@"testTotal = %zd", self.testTotal);
-            
             if (self.total != self.testTotal) {
-                NSLog(@"스레드 세이프 하지 않음~~");
+                NSLog(@"스레드 세이프 하지 않음 ㅜㅜ, %zd, %zd"
+                      , self.total, self.testTotal);
             }else {
-                SEL rec = @selector(testThreadSafety);
-                [self performSelectorOnMainThread:rec
-                                       withObject:nil
-                                    waitUntilDone:NO];
+                if (testMax == 0) {
+                    NSLog(@"스레드 세이프 테스트 끝!");
+                }else {
+                    testMax--;
+                    SEL rec = @selector(testThreadSafety);
+                    [self performSelectorOnMainThread:rec
+                                           withObject:nil
+                                        waitUntilDone:NO];
+                }
             }
         });
     });
 }
+
+///////// barrirer는 이전의 비동기 큐들이 모드 끝날때까지 기다리지 않는것같다...
+//    dispatch_barrier_async(global, ^{
+//        dispatch_async(dispatch_get_main_queue(), ^{
+//            NSLog(@"**** End, total = %zd, testTotal = %zd", self.total, self.testTotal);
+//            
+//            if (self.total != self.testTotal) {
+//                NSLog(@"스레드 세이프 하지 않음~~ㅜㅜ");
+//            }else {
+//                SEL rec = @selector(testThreadSafety);
+//                [self performSelectorOnMainThread:rec
+//                                       withObject:nil
+//                                    waitUntilDone:NO];
+//                
+////                if (testMax == 0) {
+////                    NSLog(@"스레드 세이프~~!");
+////                }else {
+////                    testMax--;
+////                    
+////                    SEL rec = @selector(testThreadSafety);
+////                    [self performSelectorOnMainThread:rec
+////                                           withObject:nil
+////                                        waitUntilDone:NO];
+////                }
+//            }
+//        });
+//    });
+
+//// immutable 객체를 멀티스레드 환경에서 락 없이 사용하려고 한다면, double free? 관련 크래시 발생한다.
+//- (void)increaseTotal {
+//    self.total += 1;
+////    [self.mString deleteCharactersInRange:NSMakeRange(0, self.mString.length-1)];
+////    [self.mString appendString:@" increase"];
+//}
+//- (void)decreaseTotal {
+//    self.total -= 1;
+////    [self.mString appendString:@" decrease"];
+//}
+
+
+//- (void)increaseTotal {
+//    self.total += 1;
+//}
+//- (void)decreaseTotal {
+//    self.total -= 1;
+//}
 
 - (void)increaseTotal {
     self.total += 1;
@@ -449,7 +587,8 @@ void LaunchThread()
     self.total -= 1;
 }
 
-///// 아토믹 오퍼레이션.. 스레드 세이프
+////// 아토믹 오퍼레이션.. 스레드 세이프
+
 //- (void)increaseTotal {
 //    OSAtomicIncrement64(&_total);
 //}
@@ -469,7 +608,7 @@ void LaunchThread()
 //    [self.lock unlock];
 //}
 
-// Not Thread Safe
+////// Not Thread Safe
 //- (void)increaseTotal {
 //    NSLock *customLock = [NSLock new];
 //    [customLock lock];
@@ -483,22 +622,97 @@ void LaunchThread()
 //    [customLock unlock];
 //}
 
-// 오... 스레드 세이프 하지 않은 순간이 나옴!!!!!!!!
-// 아니네.. 이것도 스레드 세이프 한듯!
+////// 스레드 세이프!
+
 //- (void)increaseTotal {
-//    @synchronized (self.lock) {
+//    @synchronized (self) {
 //        self.total++;
 //    }
 //}
 //- (void)decreaseTotal {
-//    @synchronized (self.lock) {
+//    @synchronized (self) {
 //        self.total--;
+//    }
+//}
+
+//- (void)increaseTotal:(id)token {
+//    @synchronized (token) {
+//        self.total++;
+//        [self.mString appendString:@"+"];
+//    }
+//}
+//- (void)decreaseTotal:(id)token {
+//    @synchronized (token) {
+//        self.total--;
+//        [self.mString appendString:@"-"];
 //    }
 //}
 
 #pragma mark Dead Lock
 
+- (void)task1 {
+    NSLog(@"#1 lock!!, %@", [NSThread currentThread]);
+    [self.lock1 lock];
+    [NSThread sleepForTimeInterval:1];
+    
+    [self.lock2 lock];
+    // do somethings
+    [self.lock2 unlock];
+    [self.lock1 unlock];
+    NSLog(@"#1 end!!, %@", [NSThread currentThread]);
+}
+- (void)task2 {
+    NSLog(@"#2 lock!!, %@", [NSThread currentThread]);
+    [self.lock2 lock];
+    [NSThread sleepForTimeInterval:1];
+    
+    [self.lock1 lock];
+    // do somethings
+    [self.lock1 unlock];
+    [self.lock2 unlock];
+    NSLog(@"#2 end!!, %@", [NSThread currentThread]);
+}
+
 #pragma mark Live Lock
+
+- (void)liveTask1 {
+    NSLog(@"#1 lock!!, %@", [NSThread currentThread]);
+    BOOL finished = NO;
+    
+    while (finished == NO) {
+        [self.lock1 lock];
+        [NSThread sleepForTimeInterval:1];
+        if ([self.lock2 tryLock]) {
+            // do sometings
+            finished = YES;
+            [self.lock2 unlock];
+            [self.lock1 unlock];
+        }else {
+            NSLog(@"#1 again!!, %@", [NSThread currentThread]);
+            [self.lock1 unlock];
+        }
+    }
+    NSLog(@"#1 end!!, %@", [NSThread currentThread]);
+}
+- (void)liveTask2 {
+    NSLog(@"#2 lock!!, %@", [NSThread currentThread]);
+    BOOL finished = NO;
+    
+    while (finished == NO) {
+        [self.lock2 lock];
+        [NSThread sleepForTimeInterval:1];
+        if ([self.lock1 tryLock]) {
+            // do sometings
+            finished = YES;
+            [self.lock1 unlock];
+            [self.lock2 unlock];
+        }else {
+            NSLog(@"#2 again!!, %@", [NSThread currentThread]);
+            [self.lock2 unlock];
+        }
+    }
+    NSLog(@"#2 end!!, %@", [NSThread currentThread]);
+}
 
 #pragma mark Recursive Lock
 
