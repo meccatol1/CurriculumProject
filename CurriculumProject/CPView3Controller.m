@@ -49,24 +49,24 @@
     
 #pragma mark 번외, atomic!
     
-    self.mString = [NSMutableString stringWithString:@"test"];
-    
-    dispatch_queue_t queue = dispatch_queue_create("adsf", DISPATCH_QUEUE_CONCURRENT);
-    self.total = 10000;
-    for (int i = 0; i < self.total; i++) {
-        dispatch_async(queue, ^{
-            int whether = arc4random()%2;
-            if (whether == 0) {
-                [self.mString appendString:@"+"];
-            } else {
-                [self.mString appendString:@"-"];
-            }
-        });
-    }
-    dispatch_barrier_async(queue, ^{
-        NSLog(@"stringValue = %@", self.mString);
-        NSLog(@"length = %zd", self.mString.length);
-    });
+//    self.mString = [NSMutableString stringWithString:@"test"];
+//    
+//    dispatch_queue_t queue = dispatch_queue_create("adsf", DISPATCH_QUEUE_CONCURRENT);
+//    self.total = 10000;
+//    for (int i = 0; i < self.total; i++) {
+//        dispatch_async(queue, ^{
+//            int whether = arc4random()%2;
+//            if (whether == 0) {
+//                [self.mString appendString:@"+"];
+//            } else {
+//                [self.mString appendString:@"-"];
+//            }
+//        });
+//    }
+//    dispatch_barrier_async(queue, ^{
+//        NSLog(@"stringValue = %@", self.mString);
+//        NSLog(@"length = %zd", self.mString.length);
+//    });
     
 //    dispatch_queue_t queue = dispatch_queue_create("adsf", DISPATCH_QUEUE_CONCURRENT);
 //    self.total = 10000;
