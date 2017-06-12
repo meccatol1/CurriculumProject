@@ -9,6 +9,13 @@
 #import "AppDelegate.h"
 
 #import "SubViewController.h"
+#import <UserNotifications/UserNotifications.h>
+
+#define SYSTEM_VERSION_EQUAL_TO(v)                  ([[[UIDevice currentDevice] systemVersion] compare:v options:NSNumericSearch] == NSOrderedSame)
+#define SYSTEM_VERSION_GREATER_THAN(v)              ([[[UIDevice currentDevice] systemVersion] compare:v options:NSNumericSearch] == NSOrderedDescending)
+#define SYSTEM_VERSION_GREATER_THAN_OR_EQUAL_TO(v)  ([[[UIDevice currentDevice] systemVersion] compare:v options:NSNumericSearch] != NSOrderedAscending)
+#define SYSTEM_VERSION_LESS_THAN(v)                 ([[[UIDevice currentDevice] systemVersion] compare:v options:NSNumericSearch] == NSOrderedAscending)
+#define SYSTEM_VERSION_LESS_THAN_OR_EQUAL_TO(v)     ([[[UIDevice currentDevice] systemVersion] compare:v options:NSNumericSearch] != NSOrderedDescending)
 
 @interface AppDelegate ()
 
@@ -28,6 +35,74 @@
     NSLog(@"didFinishLaunchingWithOptions");
     
     self.queue = [NSOperationQueue currentQueue];
+    
+//    UIApplication *app = [UIApplication sharedApplication];
+//    NSArray *oldNotifications = [app scheduledLocalNotifications];
+//    
+//    // Clear out the old notification before scheduling a new one.
+//    if ([oldNotifications count] > 0)
+//        [app cancelAllLocalNotifications];
+    
+    if (SYSTEM_VERSION_LESS_THAN(@"10.0")) {
+        UIApplication *app = [UIApplication sharedApplication];
+        
+        UILocalNotification* alarm = [[UILocalNotification alloc] init];
+        if (alarm)
+        {
+            alarm.fireDate = [NSDate dateWithTimeIntervalSinceNow:1];
+            alarm.timeZone = [NSTimeZone defaultTimeZone];
+            alarm.repeatInterval = 0;
+            alarm.soundName = @"alarmsound.caf";
+            alarm.alertTitle = @"TITLE!!!";
+            alarm.alertBody = @"Time to wake up!";
+            
+            [app scheduleLocalNotification:alarm];
+        }
+    }else {
+        UNNotificationAction *action1 =
+        [UNNotificationAction actionWithIdentifier:@"action1"
+                                             title:@"title_a1"
+                                           options:(UNNotificationActionOptionAuthenticationRequired)];
+        UNNotificationAction *action2 =
+        [UNNotificationAction actionWithIdentifier:@"action2"
+                                             title:@"title_a2"
+                                           options:(UNNotificationActionOptionDestructive)];
+        UNNotificationAction *action3 =
+        [UNNotificationAction actionWithIdentifier:@"action3"
+                                             title:@"title_a3"
+                                           options:(UNNotificationActionOptionForeground)];
+        UNNotificationCategory *category =
+        [UNNotificationCategory categoryWithIdentifier:@"ActionCategory"
+                                               actions:@[action1, action2, action3]
+                                     intentIdentifiers:@[]
+                                               options:UNNotificationCategoryOptionCustomDismissAction];
+        
+        UNUserNotificationCenter *center = [UNUserNotificationCenter currentNotificationCenter];
+        center.delegate = self;
+        [center setNotificationCategories:[NSSet setWithArray:@[category]]];
+        
+        UNMutableNotificationContent *content = [UNMutableNotificationContent new];
+        content.title = @"title";
+        content.body = @"body";
+        content.categoryIdentifier = @"ActionCategory";
+        
+        UNNotificationTrigger *trigger = [UNTimeIntervalNotificationTrigger triggerWithTimeInterval:1 repeats:NO];
+        
+        UNNotificationRequest *request =
+        [UNNotificationRequest requestWithIdentifier:@"localNoti"
+                                             content:content
+                                             trigger:trigger];
+        
+        [center addNotificationRequest:request withCompletionHandler:^(NSError * _Nullable error) {
+            
+        }];
+    }
+    
+    
+    
+    
+    
+    
     
     return YES;
 }
