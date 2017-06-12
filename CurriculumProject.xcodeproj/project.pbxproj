@@ -25,6 +25,8 @@
 		7614BCB11EDFDD33009189B6 /* kitten.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 7614BCB01EDFDD33009189B6 /* kitten.jpg */; };
 		765A7D771ECAF603008D5C43 /* Human+Mouth.m in Sources */ = {isa = PBXBuildFile; fileRef = 765A7D761ECAF603008D5C43 /* Human+Mouth.m */; };
 		7666F7391ED7F59A00201030 /* ForwardingObject.m in Sources */ = {isa = PBXBuildFile; fileRef = 7666F7381ED7F59A00201030 /* ForwardingObject.m */; };
+		767427911EEE919C00B48DAD /* CPView4ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 7674278F1EEE919C00B48DAD /* CPView4ViewController.m */; };
+		767427931EEE926E00B48DAD /* CPView4ViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 767427951EEE926E00B48DAD /* CPView4ViewController.xib */; };
 		767FA4361EDD1482006CF15D /* CPView2Controller.m in Sources */ = {isa = PBXBuildFile; fileRef = 767FA4351EDD1482006CF15D /* CPView2Controller.m */; };
 		76BBE4D61ED6889300E67C05 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 76BBE4D51ED6889300E67C05 /* Foundation.framework */; };
 		76C748761EDBBB6D00C84062 /* CustomOperation.m in Sources */ = {isa = PBXBuildFile; fileRef = 76C748751EDBBB6D00C84062 /* CustomOperation.m */; };
@@ -66,6 +68,14 @@
 		765A7D761ECAF603008D5C43 /* Human+Mouth.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "Human+Mouth.m"; sourceTree = "<group>"; };
 		7666F7371ED7F59A00201030 /* ForwardingObject.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ForwardingObject.h; sourceTree = "<group>"; };
 		7666F7381ED7F59A00201030 /* ForwardingObject.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ForwardingObject.m; sourceTree = "<group>"; };
+		7674278E1EEE919C00B48DAD /* CPView4ViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CPView4ViewController.h; sourceTree = "<group>"; };
+		7674278F1EEE919C00B48DAD /* CPView4ViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CPView4ViewController.m; sourceTree = "<group>"; };
+		767427941EEE926E00B48DAD /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/CPView4ViewController.xib; sourceTree = "<group>"; };
+		7674279A1EEE92C300B48DAD /* en */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = en; path = en.lproj/CPView4ViewController.xib; sourceTree = "<group>"; };
+		7674279F1EEE9E8300B48DAD /* ko */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ko; path = ko.lproj/Main.strings; sourceTree = "<group>"; };
+		767427A01EEE9E8300B48DAD /* ko */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ko; path = ko.lproj/LaunchScreen.strings; sourceTree = "<group>"; };
+		767427A11EEE9E8300B48DAD /* ko */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = ko; path = ko.lproj/CPView4ViewController.xib; sourceTree = "<group>"; };
+		767427A51EEE9F4A00B48DAD /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/Main.strings; sourceTree = "<group>"; };
 		767FA4341EDD1482006CF15D /* CPView2Controller.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CPView2Controller.h; sourceTree = "<group>"; };
 		767FA4351EDD1482006CF15D /* CPView2Controller.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CPView2Controller.m; sourceTree = "<group>"; };
 		76BBE4D51ED6889300E67C05 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
@@ -138,6 +148,9 @@
 			children = (
 				76131FE31ECA973500CBA227 /* AppDelegate.h */,
 				76131FE41ECA973500CBA227 /* AppDelegate.m */,
+				7674278E1EEE919C00B48DAD /* CPView4ViewController.h */,
+				7674278F1EEE919C00B48DAD /* CPView4ViewController.m */,
+				767427951EEE926E00B48DAD /* CPView4ViewController.xib */,
 				354D79921EE43098003954C3 /* CPView3Controller.h */,
 				354D79931EE43098003954C3 /* CPView3Controller.m */,
 				354F2BFD1EE71AA4006933C6 /* Threads */,
@@ -219,7 +232,7 @@
 						ProvisioningStyle = Automatic;
 						SystemCapabilities = {
 							com.apple.BackgroundModes = {
-								enabled = 1;
+								enabled = 0;
 							};
 						};
 					};
@@ -232,6 +245,7 @@
 			knownRegions = (
 				en,
 				Base,
+				ko,
 			);
 			mainGroup = 76131FD41ECA973500CBA227;
 			productRefGroup = 76131FDE1ECA973500CBA227 /* Products */;
@@ -250,6 +264,7 @@
 			files = (
 				7614BCB11EDFDD33009189B6 /* kitten.jpg in Resources */,
 				76131FF31ECA973500CBA227 /* LaunchScreen.storyboard in Resources */,
+				767427931EEE926E00B48DAD /* CPView4ViewController.xib in Resources */,
 				76131FF01ECA973500CBA227 /* Assets.xcassets in Resources */,
 				354010DE1ED27CAE009FA2CA /* podfile in Resources */,
 				35FF1C4D1EE06200004E3215 /* ReadMe.txt in Resources */,
@@ -315,6 +330,7 @@
 				76C748761EDBBB6D00C84062 /* CustomOperation.m in Sources */,
 				354F2C031EE721BE006933C6 /* CPPortThread.m in Sources */,
 				354D79971EE43469003954C3 /* CPThread.m in Sources */,
+				767427911EEE919C00B48DAD /* CPView4ViewController.m in Sources */,
 				7666F7391ED7F59A00201030 /* ForwardingObject.m in Sources */,
 				76131FFC1ECA9FEB00CBA227 /* SubViewController.m in Sources */,
 				76131FEE1ECA973500CBA227 /* CurriculumProject.xcdatamodeld in Sources */,
@@ -337,6 +353,8 @@
 			isa = PBXVariantGroup;
 			children = (
 				76131FEA1ECA973500CBA227 /* Base */,
+				7674279F1EEE9E8300B48DAD /* ko */,
+				767427A51EEE9F4A00B48DAD /* en */,
 			);
 			name = Main.storyboard;
 			sourceTree = "<group>";
@@ -345,8 +363,19 @@
 			isa = PBXVariantGroup;
 			children = (
 				76131FF21ECA973500CBA227 /* Base */,
+				767427A01EEE9E8300B48DAD /* ko */,
 			);
 			name = LaunchScreen.storyboard;
+			sourceTree = "<group>";
+		};
+		767427951EEE926E00B48DAD /* CPView4ViewController.xib */ = {
+			isa = PBXVariantGroup;
+			children = (
+				767427941EEE926E00B48DAD /* Base */,
+				7674279A1EEE92C300B48DAD /* en */,
+				767427A11EEE9E8300B48DAD /* ko */,
+			);
+			name = CPView4ViewController.xib;
 			sourceTree = "<group>";
 		};
 /* End PBXVariantGroup section */
@@ -356,6 +385,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_LOCALIZABILITY_NONLOCALIZED = YES;
 				CLANG_ANALYZER_NONNULL = YES;
 				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
@@ -404,6 +434,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_LOCALIZABILITY_NONLOCALIZED = YES;
 				CLANG_ANALYZER_NONNULL = YES;
 				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";

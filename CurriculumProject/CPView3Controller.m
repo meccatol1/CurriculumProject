@@ -18,6 +18,10 @@
 
 #include <AdSupport/AdSupport.h>
 
+#import <Photos/Photos.h>
+
+#import "CPView4ViewController.h"
+
 @interface CPView3Controller ()
 
 @property (atomic) NSInteger total;
@@ -39,6 +43,15 @@
 @end
 
 @implementation CPView3Controller
+- (IBAction)buttonHandler:(id)sender {
+    CPView4ViewController *controller =
+    [[CPView4ViewController alloc] initWithNibName:@"CPView4ViewController" bundle:nil];
+    
+    [self presentViewController:controller
+                       animated:YES
+                     completion:nil];
+}
+
 - (void)viewDidLoad {
     [super viewDidLoad];
     
@@ -52,7 +65,12 @@
 #pragma mark 번외, atomic!
     NSLog(@"%@", [[UIDevice currentDevice] identifierForVendor]);
     NSLog(@"%@", [[ASIdentifierManager sharedManager] advertisingIdentifier]);
-    
+
+    //// 설명없이 사용하면 크래시!!
+//    PHFetchResult *library = [PHAssetCollection fetchAssetCollectionsWithType:PHAssetCollectionTypeAlbum
+//                                                                          subtype:PHAssetCollectionSubtypeAlbumMyPhotoStream
+//                                                                          options:nil];
+//    NSLog(@"library count = %zd", library.count);
     
 //    self.mString = [NSMutableString stringWithString:@"test"];
 //    

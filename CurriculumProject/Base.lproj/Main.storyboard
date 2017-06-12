@@ -36,6 +36,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
+            <point key="canvasLocation" x="36" y="687"/>
         </scene>
         <!--View2 Controller-->
         <scene sceneID="Eb7-EQ-8DN">
@@ -86,7 +87,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="RnI-9h-kKk" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="140" y="137.18140929535232"/>
+            <point key="canvasLocation" x="676" y="37"/>
         </scene>
         <!--View3 Controller-->
         <scene sceneID="mYt-9T-0pU">
@@ -109,6 +110,16 @@
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="gql-xX-l7F">
+                                <rect key="frame" x="164" y="61" width="46" height="30"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <state key="normal" title="Button"/>
+                                <state key="selected" title="셀렉"/>
+                                <state key="highlighted" title="ㅁㄴㅇㄹㅁㄴㅇㄹ"/>
+                                <connections>
+                                    <action selector="buttonHandler:" destination="s6Q-jG-tJb" eventType="touchUpInside" id="hGk-ak-Ggp"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>

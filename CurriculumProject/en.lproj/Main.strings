@@ -1,0 +1,21 @@
+
+/* Class = "UILabel"; text = "6주차"; ObjectID = "K5X-6i-VbX"; */
+"K5X-6i-VbX.text" = "6th week!!";
+
+/* Class = "UIButton"; normalTitle = "Button"; ObjectID = "XW2-Aq-UeO"; */
+"XW2-Aq-UeO.normalTitle" = "Button";
+
+/* Class = "UIButton"; highlightedTitle = "ㅁㄴㅇㄹㅁㄴㅇㄹ"; ObjectID = "gql-xX-l7F"; */
+"gql-xX-l7F.highlightedTitle" = "ㅁㄴㅇㄹㅁㄴㅇㄹ";
+
+/* Class = "UIButton"; normalTitle = "Button"; ObjectID = "gql-xX-l7F"; */
+"gql-xX-l7F.normalTitle" = "Button";
+
+/* Class = "UIButton"; selectedTitle = "셀렉"; ObjectID = "gql-xX-l7F"; */
+"gql-xX-l7F.selectedTitle" = "셀렉";
+
+/* Class = "UILabel"; text = "hello!"; ObjectID = "gxc-L6-g2U"; */
+"gxc-L6-g2U.text" = "hello!";
+
+/* Class = "UIButton"; normalTitle = "Button"; ObjectID = "kh0-em-f8D"; */
+"kh0-em-f8D.normalTitle" = "Button";
