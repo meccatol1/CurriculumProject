@@ -16,6 +16,8 @@
 #include <assert.h>
 #include <pthread.h>
 
+#include <AdSupport/AdSupport.h>
+
 @interface CPView3Controller ()
 
 @property (atomic) NSInteger total;
@@ -48,6 +50,9 @@
     [self testThreadSafety];
     
 #pragma mark 번외, atomic!
+    NSLog(@"%@", [[UIDevice currentDevice] identifierForVendor]);
+    NSLog(@"%@", [[ASIdentifierManager sharedManager] advertisingIdentifier]);
+    
     
 //    self.mString = [NSMutableString stringWithString:@"test"];
 //    
