@@ -77,4 +77,22 @@
     [uploadTask resume];
 }
 
+- (void)task {
+    
+    NSURLSessionConfiguration *configuration =
+    [NSURLSessionConfiguration backgroundSessionConfigurationWithIdentifier:@"bg_task"];
+    
+    configuration.sessionSendsLaunchEvents = YES;
+    configuration.discretionary = YES; // 성능 최적화 위해
+    
+    NSURL *url = [NSURL URLWithString:@"http://httpbin.org/image"];
+    NSURLRequest *request = [NSURLRequest requestWithURL:url];
+    
+    NSURLSession *session = [NSURLSession sessionWithConfiguration:configuration];
+    [session dataTaskWithRequest:request
+               completionHandler:^(NSData * _Nullable data, NSURLResponse * _Nullable response, NSError * _Nullable error) {
+                    // complete
+               }];
+    
+}
 @end

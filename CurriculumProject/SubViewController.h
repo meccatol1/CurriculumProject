@@ -9,6 +9,8 @@
 #import <UIKit/UIKit.h>
 
 
-@interface SubViewController : UIViewController
+@interface SubViewController : UIViewController <NSURLSessionDelegate>
+
++ (SubViewController *)sharedInstance;
 
 @end

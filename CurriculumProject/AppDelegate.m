@@ -8,7 +8,11 @@
 
 #import "AppDelegate.h"
 
+#import "SubViewController.h"
+
 @interface AppDelegate ()
+
+@property NSOperationQueue *queue;
 
 @end
 
@@ -22,7 +26,27 @@
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
     // Override point for customization after application launch.
     NSLog(@"didFinishLaunchingWithOptions");
+    
+    self.queue = [NSOperationQueue currentQueue];
+    
     return YES;
+}
+
+- (void)application:(UIApplication *)application
+handleEventsForBackgroundURLSession:(NSString *)identifier
+  completionHandler:(void (^)(void))completionHandler {
+    NSURLSessionConfiguration *configuration =
+    [NSURLSessionConfiguration backgroundSessionConfigurationWithIdentifier:@"bg_task"];
+    
+    NSURLSession *session =
+    [NSURLSession sessionWithConfiguration:configuration
+                                  delegate:[SubViewController sharedInstance]
+                             delegateQueue:[NSOperationQueue mainQueue]];
+    
+    [session getTasksWithCompletionHandler:^(NSArray<NSURLSessionDataTask *> * _Nonnull dataTasks, NSArray<NSURLSessionUploadTask *> * _Nonnull uploadTasks, NSArray<NSURLSessionDownloadTask *> * _Nonnull downloadTasks) {
+        
+    }];
+    completionHandler();
 }
 
 
@@ -31,10 +55,21 @@
     // Use this method to pause ongoing tasks, disable timers, and invalidate graphics rendering callbacks. Games should use this method to pause the game.
 }
 
+static UIBackgroundTaskIdentifier bgTask;
 
 - (void)applicationDidEnterBackground:(UIApplication *)application {
-    // Use this method to release shared resources, save user data, invalidate timers, and store enough application state information to restore your application to its current state in case it is terminated later.
-    // If your application supports background execution, this method is called instead of applicationWillTerminate: when the user quits.
+    bgTask = [application beginBackgroundTaskWithName:@"MyTask" expirationHandler:^{
+        [application endBackgroundTask:bgTask];
+        bgTask = UIBackgroundTaskInvalid;
+    }];
+    
+    dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
+        // do somethings
+        NSTimeInterval remaining = [application backgroundTimeRemaining];
+        
+        [application endBackgroundTask:bgTask];
+        bgTask = UIBackgroundTaskInvalid;
+    });
 }
 
 
