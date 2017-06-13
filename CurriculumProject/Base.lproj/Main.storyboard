@@ -92,7 +92,7 @@
         <!--View3 Controller-->
         <scene sceneID="mYt-9T-0pU">
             <objects>
-                <viewController id="s6Q-jG-tJb" customClass="CPView3Controller" sceneMemberID="viewController">
+                <viewController id="s6Q-jG-tJb" customClass="CPView3Controller" propertyAccessControl="all" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="BbK-f8-hbr"/>
                         <viewControllerLayoutGuide type="bottom" id="eFA-QD-g6f"/>

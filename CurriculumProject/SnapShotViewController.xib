@@ -9,7 +9,7 @@
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <objects>
-        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="CPView4ViewController">
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="SnapShotViewController">
             <connections>
                 <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
             </connections>
@@ -19,22 +19,22 @@
             <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
-                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="This is Base" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="IB8-9L-xoG">
-                    <rect key="frame" x="67" y="30" width="241" height="21"/>
-                    <constraints>
-                        <constraint firstAttribute="width" constant="241" id="Sku-yg-NYq"/>
-                    </constraints>
-                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                    <nil key="textColor"/>
-                    <nil key="highlightedColor"/>
-                </label>
+                <imageView userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="kitten.jpg" translatesAutoresizingMaskIntoConstraints="NO" id="Gv0-uB-AgZ">
+                    <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                </imageView>
             </subviews>
             <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
             <constraints>
-                <constraint firstItem="IB8-9L-xoG" firstAttribute="top" secondItem="i5M-Pr-FkT" secondAttribute="top" constant="30" id="YuM-zp-vKh"/>
-                <constraint firstItem="IB8-9L-xoG" firstAttribute="centerX" secondItem="i5M-Pr-FkT" secondAttribute="centerX" id="hMv-9E-t1q"/>
+                <constraint firstAttribute="bottom" secondItem="Gv0-uB-AgZ" secondAttribute="bottom" id="BXR-Tr-r6u"/>
+                <constraint firstAttribute="trailing" secondItem="Gv0-uB-AgZ" secondAttribute="trailing" id="jEL-BE-zQH"/>
+                <constraint firstItem="Gv0-uB-AgZ" firstAttribute="top" secondItem="i5M-Pr-FkT" secondAttribute="top" id="rQw-HV-mOE"/>
+                <constraint firstItem="Gv0-uB-AgZ" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" id="z4i-oP-Pqq"/>
             </constraints>
+            <nil key="simulatedStatusBarMetrics"/>
             <point key="canvasLocation" x="33.5" y="53.5"/>
         </view>
     </objects>
+    <resources>
+        <image name="kitten.jpg" width="1000" height="1500"/>
+    </resources>
 </document>

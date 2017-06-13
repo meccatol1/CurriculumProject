@@ -60,11 +60,11 @@
 #pragma mark NSLock
     self.lock = [[NSLock alloc] init];
     
-    [self testThreadSafety];
+//    [self testThreadSafety];
     
 #pragma mark 번외, atomic!
-    NSLog(@"%@", [[UIDevice currentDevice] identifierForVendor]);
-    NSLog(@"%@", [[ASIdentifierManager sharedManager] advertisingIdentifier]);
+//    NSLog(@"%@", [[UIDevice currentDevice] identifierForVendor]);
+//    NSLog(@"%@", [[ASIdentifierManager sharedManager] advertisingIdentifier]);
 
     //// 설명없이 사용하면 크래시!!
 //    PHFetchResult *library = [PHAssetCollection fetchAssetCollectionsWithType:PHAssetCollectionTypeAlbum

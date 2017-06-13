@@ -9,7 +9,8 @@
 #import "AppDelegate.h"
 
 #import "SubViewController.h"
-#import <UserNotifications/UserNotifications.h>
+
+#import "SnapShotViewController.h"
 
 #define SYSTEM_VERSION_EQUAL_TO(v)                  ([[[UIDevice currentDevice] systemVersion] compare:v options:NSNumericSearch] == NSOrderedSame)
 #define SYSTEM_VERSION_GREATER_THAN(v)              ([[[UIDevice currentDevice] systemVersion] compare:v options:NSNumericSearch] == NSOrderedDescending)
@@ -20,6 +21,7 @@
 @interface AppDelegate ()
 
 @property NSOperationQueue *queue;
+@property SnapShotViewController *snapshotController;
 
 @end
 
@@ -81,35 +83,37 @@
         center.delegate = self;
         [center setNotificationCategories:[NSSet setWithArray:@[category]]];
         
-        UNMutableNotificationContent *content = [UNMutableNotificationContent new];
-        content.title = @"title";
-        content.body = @"body";
-        content.categoryIdentifier = @"ActionCategory";
-        
-        UNNotificationTrigger *trigger = [UNTimeIntervalNotificationTrigger triggerWithTimeInterval:1 repeats:NO];
-        
-        UNNotificationRequest *request =
-        [UNNotificationRequest requestWithIdentifier:@"localNoti"
-                                             content:content
-                                             trigger:trigger];
-        
-        [center addNotificationRequest:request withCompletionHandler:^(NSError * _Nullable error) {
-            
-        }];
+        [center requestAuthorizationWithOptions:UNAuthorizationOptionAlert|UNAuthorizationOptionSound
+                              completionHandler:^(BOOL granted, NSError * _Nullable error) {
+                                  
+                              }];
+//        UNMutableNotificationContent *content = [UNMutableNotificationContent new];
+//        content.title = @"title";
+//        content.body = @"body";
+//        content.categoryIdentifier = @"ActionCategory";
+//        
+//        UNNotificationTrigger *trigger = [UNTimeIntervalNotificationTrigger triggerWithTimeInterval:1 repeats:NO];
+//        
+//        UNNotificationRequest *request =
+//        [UNNotificationRequest requestWithIdentifier:@"localNoti"
+//                                             content:content
+//                                             trigger:trigger];
+//        
+//        [center addNotificationRequest:request withCompletionHandler:^(NSError * _Nullable error) {
+//            
+//        }];
     }
     
+    [application setMinimumBackgroundFetchInterval:60*20];
     
-    
-    
-    
-    
+//    application.applicationState
     
     return YES;
 }
 
 - (void)application:(UIApplication *)application
 handleEventsForBackgroundURLSession:(NSString *)identifier
-  completionHandler:(void (^)(void))completionHandler {
+  completionHandler:(void (^)())completionHandler {
     NSURLSessionConfiguration *configuration =
     [NSURLSessionConfiguration backgroundSessionConfigurationWithIdentifier:@"bg_task"];
     
@@ -126,39 +130,128 @@ handleEventsForBackgroundURLSession:(NSString *)identifier
 
 
 - (void)applicationWillResignActive:(UIApplication *)application {
+    NSLog(@"applicationWillResignActive");
     // Sent when the application is about to move from active to inactive state. This can occur for certain types of temporary interruptions (such as an incoming phone call or SMS message) or when the user quits the application and it begins the transition to the background state.
     // Use this method to pause ongoing tasks, disable timers, and invalidate graphics rendering callbacks. Games should use this method to pause the game.
 }
-
 static UIBackgroundTaskIdentifier bgTask;
 
 - (void)applicationDidEnterBackground:(UIApplication *)application {
-    bgTask = [application beginBackgroundTaskWithName:@"MyTask" expirationHandler:^{
-        [application endBackgroundTask:bgTask];
-        bgTask = UIBackgroundTaskInvalid;
+    NSLog(@"applicationDidEnterBackground");
+    
+    if (self.snapshotController == nil) {
+        self.snapshotController = [[SnapShotViewController alloc] initWithNibName:@"SnapShotViewController" bundle:nil];
+    }
+    if (self.snapshotController) {
+        [[[[UIApplication sharedApplication] keyWindow] rootViewController] presentViewController:self.snapshotController
+                                                                                         animated:NO
+                                                                                       completion:^{
+                                                                                           NSLog(@"snapshot 보여줌");
+                                                                                       }];
+    }
+    
+    
+    UNUserNotificationCenter *center = [UNUserNotificationCenter currentNotificationCenter];
+    
+    UNMutableNotificationContent *content = [UNMutableNotificationContent new];
+    content.title = @"title";
+    content.body = @"Background!!";
+    content.categoryIdentifier = @"ActionCategory";
+    
+    UNNotificationTrigger *trigger = [UNTimeIntervalNotificationTrigger triggerWithTimeInterval:1 repeats:NO];
+    
+    UNNotificationRequest *request =
+    [UNNotificationRequest requestWithIdentifier:@"localNoti"
+                                         content:content
+                                         trigger:trigger];
+    
+    [center addNotificationRequest:request withCompletionHandler:^(NSError * _Nullable error) {
+        NSLog(@"addNotificationRequest withCompletionHandler");
+    }];
+
+    // 30분까지 가는건 테스트 함
+//    NSTimeInterval remaining = [application backgroundTimeRemaining];
+//    for (int i = 0; i < 3600*2; i++) {
+//        NSLog(@"background task = %zd, %f", i, remaining);
+//        [NSThread sleepForTimeInterval:1];
+//    }
+    
+//    bgTask = [application beginBackgroundTaskWithName:@"MyTask" expirationHandler:^{
+//        NSLog(@"applicationDidEnterBackground expireHandler");
+//        [application endBackgroundTask:bgTask];
+//        bgTask = UIBackgroundTaskInvalid;
+//    }];
+//    
+//    dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
+//        NSTimeInterval remaining = [application backgroundTimeRemaining];
+//        // do somethings
+//        for (int i = 0; i < 3; i++) {
+//            NSLog(@"background task = %zd, %f", i, remaining);
+//            [NSThread sleepForTimeInterval:1];
+//        }
+//        
+//        [application endBackgroundTask:bgTask];
+//        NSLog(@"applicationDidEnterBackground endBacgroundTask");
+//        bgTask = UIBackgroundTaskInvalid;
+//    });
+}
+/*
+ NSTimeInterval remaining = [application backgroundTimeRemaining];
+ 일반적? 으로는 모르겠지만 지금은 180초가 반환된다.
+ 반환되서 작업 진행중에 메모리 많이 먹는 작업 (유투브, 페이스북) 열심히 했더니 161초만에 작업 끝나고, expireHandler불렸다
+ 
+ expireHandler 불린다고 하더라도 비동기 작업이 끝나지는 않는다. 비동기 작업이(백그라운드 작업이 끝날수있게 컨트롤 해놔야 할 것
+*/
+
+- (void)application:(UIApplication *)application performFetchWithCompletionHandler:(void (^)(UIBackgroundFetchResult))completionHandler {
+    NSLog(@"performFetchWithCompletionHandler");
+    
+    UNUserNotificationCenter *center = [UNUserNotificationCenter currentNotificationCenter];
+    
+    UNMutableNotificationContent *content = [UNMutableNotificationContent new];
+    content.title = @"title";
+    content.body = @"BackgroundFetch!!";
+    content.categoryIdentifier = @"ActionCategory";
+    
+    UNNotificationTrigger *trigger = [UNTimeIntervalNotificationTrigger triggerWithTimeInterval:1 repeats:NO];
+    
+    UNNotificationRequest *request =
+    [UNNotificationRequest requestWithIdentifier:@"localNoti"
+                                         content:content
+                                         trigger:trigger];
+    [center addNotificationRequest:request withCompletionHandler:^(NSError * _Nullable error) {
+        NSLog(@"addNotificationRequest withCompletionHandler");
     }];
     
-    dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
-        // do somethings
-        NSTimeInterval remaining = [application backgroundTimeRemaining];
-        
-        [application endBackgroundTask:bgTask];
-        bgTask = UIBackgroundTaskInvalid;
-    });
+    for (int i = 0; i < 5; i++) {
+        NSLog(@"fetch task = %zd", i);
+        [NSThread sleepForTimeInterval:1];
+    }
+    completionHandler(UIBackgroundFetchResultNewData);
 }
-
 
 - (void)applicationWillEnterForeground:(UIApplication *)application {
     // Called as part of the transition from the background to the active state; here you can undo many of the changes made on entering the background.
+    NSLog(@"applicationWillEnterForeground");
 }
 
 
 - (void)applicationDidBecomeActive:(UIApplication *)application {
+    NSLog(@"applicationDidBecomeActive");
+    
+    if (self.snapshotController) {
+        [self.snapshotController dismissViewControllerAnimated:NO
+                                                    completion:^{
+                                                        NSLog(@"snapshot dismiss");
+                                                    }];
+        self.snapshotController = nil;
+    }
     // Restart any tasks that were paused (or not yet started) while the application was inactive. If the application was previously in the background, optionally refresh the user interface.
 }
 
 
 - (void)applicationWillTerminate:(UIApplication *)application {
+    NSLog(@"applicationWillTerminate");
     // Called when the application is about to terminate. Save data if appropriate. See also applicationDidEnterBackground:.
     // Saves changes in the application's managed object context before the application terminates.
     [self saveContext];
@@ -209,5 +302,20 @@ static UIBackgroundTaskIdentifier bgTask;
         abort();
     }
 }
+
+#pragma mark - UNNotificationCenter delegate methods
+
+- (void)userNotificationCenter:(UNUserNotificationCenter *)center willPresentNotification:(UNNotification *)notification withCompletionHandler:(void (^)(UNNotificationPresentationOptions options))completionHandler {
+    NSLog(@"userNotificationCenter willPresentNotification");
+    
+    completionHandler(UNNotificationPresentationOptionAlert|UNNotificationPresentationOptionSound);
+}
+
+- (void)userNotificationCenter:(UNUserNotificationCenter *)center didReceiveNotificationResponse:(UNNotificationResponse *)response withCompletionHandler:(void (^)())completionHandler {
+    NSLog(@"userNotificationCenter didReceiveNotificationResponse");
+    
+    completionHandler();
+}
+
 
 @end
