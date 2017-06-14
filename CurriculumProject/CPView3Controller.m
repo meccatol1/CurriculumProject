@@ -55,6 +55,7 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     
+//    NSLog(@"id for vender = %@", [[UIDevice currentDevice] identifierForVendor]);
 #pragma mark - Synchronization
     
 #pragma mark NSLock
@@ -63,8 +64,8 @@
 //    [self testThreadSafety];
     
 #pragma mark 번외, atomic!
-//    NSLog(@"%@", [[UIDevice currentDevice] identifierForVendor]);
-//    NSLog(@"%@", [[ASIdentifierManager sharedManager] advertisingIdentifier]);
+    NSLog(@"id for vender = %@", [[UIDevice currentDevice] identifierForVendor]);
+    NSLog(@"id advertisingIdentifier %@", [[ASIdentifierManager sharedManager] advertisingIdentifier]);
 
     //// 설명없이 사용하면 크래시!!
 //    PHFetchResult *library = [PHAssetCollection fetchAssetCollectionsWithType:PHAssetCollectionTypeAlbum
