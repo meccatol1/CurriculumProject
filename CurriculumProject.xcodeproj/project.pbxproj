@@ -8,6 +8,9 @@
 
 /* Begin PBXBuildFile section */
 		352F9D2A1EE9A3C500EB84CB /* CPView.m in Sources */ = {isa = PBXBuildFile; fileRef = 352F9D291EE9A3C500EB84CB /* CPView.m */; };
+		35398C4B1EF17BBA00BBAA56 /* kitten2.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 35398C4A1EF17BBA00BBAA56 /* kitten2.jpg */; };
+		35398C4F1EF1839100BBAA56 /* CPView2_2Controller.m in Sources */ = {isa = PBXBuildFile; fileRef = 35398C4E1EF1839100BBAA56 /* CPView2_2Controller.m */; };
+		35398C521EF1928500BBAA56 /* View2Controller.m in Sources */ = {isa = PBXBuildFile; fileRef = 35398C511EF1928500BBAA56 /* View2Controller.m */; };
 		354010DE1ED27CAE009FA2CA /* podfile in Resources */ = {isa = PBXBuildFile; fileRef = 354010DD1ED27CAE009FA2CA /* podfile */; };
 		354D79941EE43098003954C3 /* CPView3Controller.m in Sources */ = {isa = PBXBuildFile; fileRef = 354D79931EE43098003954C3 /* CPView3Controller.m */; };
 		354D79971EE43469003954C3 /* CPThread.m in Sources */ = {isa = PBXBuildFile; fileRef = 354D79961EE43469003954C3 /* CPThread.m */; };
@@ -41,6 +44,12 @@
 		0394FCBE7C74BA574A9EACDF /* Pods-CurriculumProject.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-CurriculumProject.release.xcconfig"; path = "Pods/Target Support Files/Pods-CurriculumProject/Pods-CurriculumProject.release.xcconfig"; sourceTree = "<group>"; };
 		352F9D281EE9A3C500EB84CB /* CPView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CPView.h; sourceTree = "<group>"; };
 		352F9D291EE9A3C500EB84CB /* CPView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CPView.m; sourceTree = "<group>"; };
+		35398C4A1EF17BBA00BBAA56 /* kitten2.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = kitten2.jpg; sourceTree = "<group>"; };
+		35398C4C1EF17E9500BBAA56 /* PrefixHeader.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = PrefixHeader.pch; sourceTree = "<group>"; };
+		35398C4D1EF1839100BBAA56 /* CPView2_2Controller.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CPView2_2Controller.h; sourceTree = "<group>"; };
+		35398C4E1EF1839100BBAA56 /* CPView2_2Controller.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CPView2_2Controller.m; sourceTree = "<group>"; };
+		35398C501EF1928500BBAA56 /* View2Controller.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = View2Controller.h; sourceTree = "<group>"; };
+		35398C511EF1928500BBAA56 /* View2Controller.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = View2Controller.m; sourceTree = "<group>"; };
 		354010DD1ED27CAE009FA2CA /* podfile */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = podfile; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.ruby; };
 		354D79921EE43098003954C3 /* CPView3Controller.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CPView3Controller.h; sourceTree = "<group>"; };
 		354D79931EE43098003954C3 /* CPView3Controller.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CPView3Controller.m; sourceTree = "<group>"; };
@@ -75,8 +84,6 @@
 		7674278F1EEE919C00B48DAD /* CPView4ViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CPView4ViewController.m; sourceTree = "<group>"; };
 		767427941EEE926E00B48DAD /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/CPView4ViewController.xib; sourceTree = "<group>"; };
 		7674279A1EEE92C300B48DAD /* en */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = en; path = en.lproj/CPView4ViewController.xib; sourceTree = "<group>"; };
-		7674279F1EEE9E8300B48DAD /* ko */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ko; path = ko.lproj/Main.strings; sourceTree = "<group>"; };
-		767427A51EEE9F4A00B48DAD /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/Main.strings; sourceTree = "<group>"; };
 		767FA4341EDD1482006CF15D /* CPView2Controller.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CPView2Controller.h; sourceTree = "<group>"; };
 		767FA4351EDD1482006CF15D /* CPView2Controller.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CPView2Controller.m; sourceTree = "<group>"; };
 		76BBE4D51ED6889300E67C05 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
@@ -167,8 +174,12 @@
 				354F2BFD1EE71AA4006933C6 /* Threads */,
 				767FA4341EDD1482006CF15D /* CPView2Controller.h */,
 				767FA4351EDD1482006CF15D /* CPView2Controller.m */,
+				35398C4D1EF1839100BBAA56 /* CPView2_2Controller.h */,
+				35398C4E1EF1839100BBAA56 /* CPView2_2Controller.m */,
 				76131FE61ECA973500CBA227 /* ViewController.h */,
 				76131FE71ECA973500CBA227 /* ViewController.m */,
+				35398C501EF1928500BBAA56 /* View2Controller.h */,
+				35398C511EF1928500BBAA56 /* View2Controller.m */,
 				76131FFA1ECA9FEB00CBA227 /* SubViewController.h */,
 				76131FFB1ECA9FEB00CBA227 /* SubViewController.m */,
 				765A7D751ECAF603008D5C43 /* Human+Mouth.h */,
@@ -184,7 +195,9 @@
 				76131FF41ECA973500CBA227 /* Info.plist */,
 				76131FEC1ECA973500CBA227 /* CurriculumProject.xcdatamodeld */,
 				7614BCB01EDFDD33009189B6 /* kitten.jpg */,
+				35398C4A1EF17BBA00BBAA56 /* kitten2.jpg */,
 				35FF1C4C1EE06200004E3215 /* ReadMe.txt */,
+				35398C4C1EF17E9500BBAA56 /* PrefixHeader.pch */,
 				76131FE01ECA973500CBA227 /* Supporting Files */,
 			);
 			path = CurriculumProject;
@@ -244,7 +257,7 @@
 						ProvisioningStyle = Automatic;
 						SystemCapabilities = {
 							com.apple.BackgroundModes = {
-								enabled = 1;
+								enabled = 0;
 							};
 						};
 					};
@@ -275,6 +288,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				76DDC8E21EEFEE7C006962C5 /* SnapShotViewController.xib in Resources */,
+				35398C4B1EF17BBA00BBAA56 /* kitten2.jpg in Resources */,
 				7614BCB11EDFDD33009189B6 /* kitten.jpg in Resources */,
 				76131FF31ECA973500CBA227 /* LaunchScreen.storyboard in Resources */,
 				767427931EEE926E00B48DAD /* CPView4ViewController.xib in Resources */,
@@ -351,11 +365,13 @@
 				76131FE81ECA973500CBA227 /* ViewController.m in Sources */,
 				76E4CF7C1EE7F42F009921EA /* CPThread2.m in Sources */,
 				354D79941EE43098003954C3 /* CPView3Controller.m in Sources */,
+				35398C521EF1928500BBAA56 /* View2Controller.m in Sources */,
 				76131FE51ECA973500CBA227 /* AppDelegate.m in Sources */,
 				76131FE21ECA973500CBA227 /* main.m in Sources */,
 				354F2C001EE71ABF006933C6 /* CPInputThread.m in Sources */,
 				76DDC8E11EEFEE7C006962C5 /* SnapShotViewController.m in Sources */,
 				767FA4361EDD1482006CF15D /* CPView2Controller.m in Sources */,
+				35398C4F1EF1839100BBAA56 /* CPView2_2Controller.m in Sources */,
 				765A7D771ECAF603008D5C43 /* Human+Mouth.m in Sources */,
 				352F9D2A1EE9A3C500EB84CB /* CPView.m in Sources */,
 			);
@@ -368,8 +384,6 @@
 			isa = PBXVariantGroup;
 			children = (
 				76131FEA1ECA973500CBA227 /* Base */,
-				7674279F1EEE9E8300B48DAD /* ko */,
-				767427A51EEE9F4A00B48DAD /* en */,
 			);
 			name = Main.storyboard;
 			sourceTree = "<group>";
@@ -437,6 +451,8 @@
 				GCC_DYNAMIC_NO_PIC = NO;
 				GCC_NO_COMMON_BLOCKS = YES;
 				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = CurriculumProject/PrefixHeader.pch;
 				GCC_PREPROCESSOR_DEFINITIONS = (
 					"DEBUG=1",
 					"$(inherited)",
@@ -484,6 +500,8 @@
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
 				GCC_C_LANGUAGE_STANDARD = gnu99;
 				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = CurriculumProject/PrefixHeader.pch;
 				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
 				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
 				GCC_WARN_UNDECLARED_SELECTOR = YES;

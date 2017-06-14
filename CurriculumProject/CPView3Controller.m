@@ -22,7 +22,8 @@
 
 #import "CPView4ViewController.h"
 
-@interface CPView3Controller ()
+@interface CPView3Controller () <UITextViewDelegate>
+@property (strong, nonatomic) IBOutlet UITextView *textView;
 
 @property (atomic) NSInteger total;
 @property (atomic) NSInteger testTotal;
@@ -43,29 +44,37 @@
 @end
 
 @implementation CPView3Controller
+
 - (IBAction)buttonHandler:(id)sender {
-    CPView4ViewController *controller =
-    [[CPView4ViewController alloc] initWithNibName:@"CPView4ViewController" bundle:nil];
+    if (self.textView.isFirstResponder) {
+        [self.textView resignFirstResponder];
+    }
     
-    [self presentViewController:controller
-                       animated:YES
-                     completion:nil];
+//    CPView4ViewController *controller =
+//    [[CPView4ViewController alloc] initWithNibName:@"CPView4ViewController" bundle:nil];
+//    
+//    [self presentViewController:controller
+//                       animated:YES
+//                     completion:nil];
 }
 
 - (void)viewDidLoad {
     [super viewDidLoad];
     
+    self.textView.layer.borderWidth = 1.f;
+    self.textView.layer.borderColor = [UIColor colorWithWhite:0.05 alpha:1.f].CGColor;
+    
 //    NSLog(@"id for vender = %@", [[UIDevice currentDevice] identifierForVendor]);
 #pragma mark - Synchronization
     
 #pragma mark NSLock
-    self.lock = [[NSLock alloc] init];
+//    self.lock = [[NSLock alloc] init];
     
 //    [self testThreadSafety];
     
 #pragma mark 번외, atomic!
-    NSLog(@"id for vender = %@", [[UIDevice currentDevice] identifierForVendor]);
-    NSLog(@"id advertisingIdentifier %@", [[ASIdentifierManager sharedManager] advertisingIdentifier]);
+//    NSLog(@"id for vender = %@", [[UIDevice currentDevice] identifierForVendor]);
+//    NSLog(@"id advertisingIdentifier %@", [[ASIdentifierManager sharedManager] advertisingIdentifier]);
 
     //// 설명없이 사용하면 크래시!!
 //    PHFetchResult *library = [PHAssetCollection fetchAssetCollectionsWithType:PHAssetCollectionTypeAlbum
@@ -874,6 +883,21 @@ static BOOL keepConsume = YES;
 //    }
 //    NSLog(@"#2 end, %@", [NSThread currentThread]);
 //}
+- (BOOL)textViewShouldEndEditing:(UITextView *)textView {
+    [textView resignFirstResponder];
+    
+    return YES;
+}
 
+- (void)encodeRestorableStateWithCoder:(NSCoder *)coder {
+    [super encodeRestorableStateWithCoder:coder];
+    NSLog(@"encodeRestorableStateWithCoder");
+    [coder encodeObject:self.textView.text forKey:@"textView_text"];
+}
+- (void)decodeRestorableStateWithCoder:(NSCoder *)coder {
+    [super decodeRestorableStateWithCoder:coder];
+    NSLog(@"decodeRestorableStateWithCoder");
+    self.textView.text = (NSString *)[coder decodeObjectForKey:@"textView_text"];
+}
 
 @end

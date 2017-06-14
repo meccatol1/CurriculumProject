@@ -14,6 +14,8 @@
 
 #import "CustomOperation.h"
 
+#import "View2Controller.h"
+
 //#import "Human+Mouth.h"
 
 @implementation XYZBlockKeeper
@@ -116,9 +118,9 @@ typedef struct {
 }
 
 void function1(id self, SEL _cmd) {
-    ViewController *realSelf = self;
+//    ViewController *realSelf = self;
     
-    NSString *realRewards = realSelf->rewards;
+//    NSString *realRewards = realSelf->rewards;
 }
 void function(id self, SEL _cmd) {
     NSLog(@"function is dynamically called");
@@ -130,13 +132,13 @@ void function(id self, SEL _cmd) {
     NSLog(@"temperature = %@", realSelf.temperature);
 }
 //
-+ (BOOL)resolveInstanceMethod:(SEL)sel {
-    NSLog(@"resolveInstanceMethod = %@", NSStringFromSelector(sel));
-    if (sel == @selector(resolveThisMethodDynamically)) {
-        return class_addMethod([self class], sel, (IMP)function, "v@:");
-    }
-    return [super resolveInstanceMethod:sel];
-}
+//+ (BOOL)resolveInstanceMethod:(SEL)sel {
+////    NSLog(@"resolveInstanceMethod = %@", NSStringFromSelector(sel));
+//    if (sel == @selector(resolveThisMethodDynamically)) {
+//        return class_addMethod([self class], sel, (IMP)function, "v@:");
+//    }
+//    return [super resolveInstanceMethod:sel];
+//}
 
 typedef struct example {
     char *aString;
@@ -146,7 +148,7 @@ typedef struct example {
 - (void)viewDidLoad {
     [super viewDidLoad];
     
-    NSLog(@"%@", [NSThread currentThread]);
+//    NSLog(@"%@", [NSThread currentThread]);
     
     
     
@@ -868,13 +870,17 @@ typedef struct example {
 //    self.delegate.helloString = @"hello?";
 //    [self printHelloString];
     
-    if ([self.delegate respondsToSelector:@selector(printHelloString)]) {
-        
-    }
+//    if ([self.delegate respondsToSelector:@selector(printHelloString)]) {
+//        
+//    }
 //    NSLog(@"self.propertyBlock = %@ <%p>",
 //          self.propertyBlock, self.propertyBlock);
 //    NSLog(@"self.propertyBlock2 = %@ <%p>",
 //          self.propertyBlock2, self.propertyBlock2);
+    
+    View2Controller *controller = [self.storyboard instantiateViewControllerWithIdentifier:@"View2Controller"];
+    
+    [self presentViewController:controller animated:YES completion:nil];
 }
 
 - (void)printHelloString {
@@ -983,8 +989,8 @@ typedef struct example {
 
 - (void)message {
     // implementation
-    self;
-    _cmd;
+//    self;
+//    _cmd;
 }
 
 @end

@@ -28,9 +28,22 @@
                     <nil key="textColor"/>
                     <nil key="highlightedColor"/>
                 </label>
+                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="cBI-Hy-ktL">
+                    <rect key="frame" x="10" y="10" width="46" height="30"/>
+                    <constraints>
+                        <constraint firstAttribute="width" constant="46" id="HRS-Np-8Km"/>
+                        <constraint firstAttribute="height" constant="30" id="xdo-Ak-3Kf"/>
+                    </constraints>
+                    <state key="normal" title="Back"/>
+                    <connections>
+                        <action selector="backbuttonHandler:" destination="-1" eventType="touchUpInside" id="50i-uV-9xC"/>
+                    </connections>
+                </button>
             </subviews>
             <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
             <constraints>
+                <constraint firstItem="cBI-Hy-ktL" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" constant="10" id="6bE-Th-CMY"/>
+                <constraint firstItem="cBI-Hy-ktL" firstAttribute="top" secondItem="i5M-Pr-FkT" secondAttribute="top" constant="10" id="Sfv-43-BQD"/>
                 <constraint firstItem="IB8-9L-xoG" firstAttribute="top" secondItem="i5M-Pr-FkT" secondAttribute="top" constant="30" id="YuM-zp-vKh"/>
                 <constraint firstItem="IB8-9L-xoG" firstAttribute="centerX" secondItem="i5M-Pr-FkT" secondAttribute="centerX" id="hMv-9E-t1q"/>
             </constraints>

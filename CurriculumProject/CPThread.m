@@ -11,7 +11,7 @@
 @implementation CPThread
 
 void observerCallBack2(CFRunLoopObserverRef observer, CFRunLoopActivity activity, void *info) {
-    NSLog(@"observerCallBack, activity = %zd", activity);
+//    NSLog(@"observerCallBack, activity = %zd", activity);
 }
 
 - (void)main {

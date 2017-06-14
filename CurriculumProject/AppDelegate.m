@@ -104,7 +104,7 @@
 //        }];
     }
     
-    [application setMinimumBackgroundFetchInterval:60*20];
+//    [application setMinimumBackgroundFetchInterval:60*20];
     
 //    application.applicationState
     
@@ -114,18 +114,19 @@
 - (void)application:(UIApplication *)application
 handleEventsForBackgroundURLSession:(NSString *)identifier
   completionHandler:(void (^)())completionHandler {
-    NSURLSessionConfiguration *configuration =
-    [NSURLSessionConfiguration backgroundSessionConfigurationWithIdentifier:@"bg_task"];
     
-    NSURLSession *session =
-    [NSURLSession sessionWithConfiguration:configuration
-                                  delegate:[SubViewController sharedInstance]
-                             delegateQueue:[NSOperationQueue mainQueue]];
-    
-    [session getTasksWithCompletionHandler:^(NSArray<NSURLSessionDataTask *> * _Nonnull dataTasks, NSArray<NSURLSessionUploadTask *> * _Nonnull uploadTasks, NSArray<NSURLSessionDownloadTask *> * _Nonnull downloadTasks) {
-        
-    }];
-    completionHandler();
+//    NSURLSessionConfiguration *configuration =
+//    [NSURLSessionConfiguration backgroundSessionConfigurationWithIdentifier:@"bg_task"];
+//    
+//    NSURLSession *session =
+//    [NSURLSession sessionWithConfiguration:configuration
+//                                  delegate:[SubViewController sharedInstance]
+//                             delegateQueue:[NSOperationQueue mainQueue]];
+//    
+//    [session getTasksWithCompletionHandler:^(NSArray<NSURLSessionDataTask *> * _Nonnull dataTasks, NSArray<NSURLSessionUploadTask *> * _Nonnull uploadTasks, NSArray<NSURLSessionDownloadTask *> * _Nonnull downloadTasks) {
+//        
+//    }];
+//    completionHandler();
 }
 
 
@@ -134,40 +135,41 @@ handleEventsForBackgroundURLSession:(NSString *)identifier
     // Sent when the application is about to move from active to inactive state. This can occur for certain types of temporary interruptions (such as an incoming phone call or SMS message) or when the user quits the application and it begins the transition to the background state.
     // Use this method to pause ongoing tasks, disable timers, and invalidate graphics rendering callbacks. Games should use this method to pause the game.
 }
-static UIBackgroundTaskIdentifier bgTask;
+
+//static UIBackgroundTaskIdentifier bgTask;
 
 - (void)applicationDidEnterBackground:(UIApplication *)application {
     NSLog(@"applicationDidEnterBackground");
     
-    if (self.snapshotController == nil) {
-        self.snapshotController = [[SnapShotViewController alloc] initWithNibName:@"SnapShotViewController" bundle:nil];
-    }
-    if (self.snapshotController) {
-        [[[[UIApplication sharedApplication] keyWindow] rootViewController] presentViewController:self.snapshotController
-                                                                                         animated:NO
-                                                                                       completion:^{
-                                                                                           NSLog(@"snapshot 보여줌");
-                                                                                       }];
-    }
-    
-    
-    UNUserNotificationCenter *center = [UNUserNotificationCenter currentNotificationCenter];
-    
-    UNMutableNotificationContent *content = [UNMutableNotificationContent new];
-    content.title = @"title";
-    content.body = @"Background!!";
-    content.categoryIdentifier = @"ActionCategory";
-    
-    UNNotificationTrigger *trigger = [UNTimeIntervalNotificationTrigger triggerWithTimeInterval:1 repeats:NO];
-    
-    UNNotificationRequest *request =
-    [UNNotificationRequest requestWithIdentifier:@"localNoti"
-                                         content:content
-                                         trigger:trigger];
-    
-    [center addNotificationRequest:request withCompletionHandler:^(NSError * _Nullable error) {
-        NSLog(@"addNotificationRequest withCompletionHandler");
-    }];
+//    if (self.snapshotController == nil) {
+//        self.snapshotController = [[SnapShotViewController alloc] initWithNibName:@"SnapShotViewController" bundle:nil];
+//    }
+//    if (self.snapshotController) {
+//        [[[[UIApplication sharedApplication] keyWindow] rootViewController] presentViewController:self.snapshotController
+//                                                                                         animated:NO
+//                                                                                       completion:^{
+//                                                                                           NSLog(@"snapshot 보여줌");
+//                                                                                       }];
+//    }
+//    
+//    
+//    UNUserNotificationCenter *center = [UNUserNotificationCenter currentNotificationCenter];
+//    
+//    UNMutableNotificationContent *content = [UNMutableNotificationContent new];
+//    content.title = @"title";
+//    content.body = @"Background!!";
+//    content.categoryIdentifier = @"ActionCategory";
+//    
+//    UNNotificationTrigger *trigger = [UNTimeIntervalNotificationTrigger triggerWithTimeInterval:1 repeats:NO];
+//    
+//    UNNotificationRequest *request =
+//    [UNNotificationRequest requestWithIdentifier:@"localNoti"
+//                                         content:content
+//                                         trigger:trigger];
+//    
+//    [center addNotificationRequest:request withCompletionHandler:^(NSError * _Nullable error) {
+//        NSLog(@"addNotificationRequest withCompletionHandler");
+//    }];
 
     // 30분까지 가는건 테스트 함
 //    NSTimeInterval remaining = [application backgroundTimeRemaining];
@@ -203,32 +205,32 @@ static UIBackgroundTaskIdentifier bgTask;
  expireHandler 불린다고 하더라도 비동기 작업이 끝나지는 않는다. 비동기 작업이(백그라운드 작업이 끝날수있게 컨트롤 해놔야 할 것
 */
 
-- (void)application:(UIApplication *)application performFetchWithCompletionHandler:(void (^)(UIBackgroundFetchResult))completionHandler {
-    NSLog(@"performFetchWithCompletionHandler");
-    
-    UNUserNotificationCenter *center = [UNUserNotificationCenter currentNotificationCenter];
-    
-    UNMutableNotificationContent *content = [UNMutableNotificationContent new];
-    content.title = @"title";
-    content.body = @"BackgroundFetch!!";
-    content.categoryIdentifier = @"ActionCategory";
-    
-    UNNotificationTrigger *trigger = [UNTimeIntervalNotificationTrigger triggerWithTimeInterval:1 repeats:NO];
-    
-    UNNotificationRequest *request =
-    [UNNotificationRequest requestWithIdentifier:@"localNoti"
-                                         content:content
-                                         trigger:trigger];
-    [center addNotificationRequest:request withCompletionHandler:^(NSError * _Nullable error) {
-        NSLog(@"addNotificationRequest withCompletionHandler");
-    }];
-    
-    for (int i = 0; i < 5; i++) {
-        NSLog(@"fetch task = %zd", i);
-        [NSThread sleepForTimeInterval:1];
-    }
-    completionHandler(UIBackgroundFetchResultNewData);
-}
+//- (void)application:(UIApplication *)application performFetchWithCompletionHandler:(void (^)(UIBackgroundFetchResult))completionHandler {
+//    NSLog(@"performFetchWithCompletionHandler");
+//    
+//    UNUserNotificationCenter *center = [UNUserNotificationCenter currentNotificationCenter];
+//    
+//    UNMutableNotificationContent *content = [UNMutableNotificationContent new];
+//    content.title = @"title";
+//    content.body = @"BackgroundFetch!!";
+//    content.categoryIdentifier = @"ActionCategory";
+//    
+//    UNNotificationTrigger *trigger = [UNTimeIntervalNotificationTrigger triggerWithTimeInterval:1 repeats:NO];
+//    
+//    UNNotificationRequest *request =
+//    [UNNotificationRequest requestWithIdentifier:@"localNoti"
+//                                         content:content
+//                                         trigger:trigger];
+//    [center addNotificationRequest:request withCompletionHandler:^(NSError * _Nullable error) {
+//        NSLog(@"addNotificationRequest withCompletionHandler");
+//    }];
+//    
+//    for (int i = 0; i < 5; i++) {
+//        NSLog(@"fetch task = %zd", i);
+//        [NSThread sleepForTimeInterval:1];
+//    }
+//    completionHandler(UIBackgroundFetchResultNewData);
+//}
 
 - (void)applicationWillEnterForeground:(UIApplication *)application {
     // Called as part of the transition from the background to the active state; here you can undo many of the changes made on entering the background.
@@ -256,8 +258,18 @@ static UIBackgroundTaskIdentifier bgTask;
     // Saves changes in the application's managed object context before the application terminates.
     [self saveContext];
 }
-
-
+#pragma mark - Preserve & Restore
+- (BOOL)application:(UIApplication *)application shouldSaveApplicationState:(NSCoder *)coder {
+    NSLog(@"shouldSaveApplicationState");
+    return YES;
+}
+- (BOOL)application:(UIApplication *)application shouldRestoreApplicationState:(NSCoder *)coder {
+    NSLog(@"shouldRestoreApplicationState");
+    return YES;
+}
+- (void)application:(UIApplication *)application didDecodeRestorableStateWithCoder:(NSCoder *)coder {
+    NSLog(@"didDecodeRestorableStateWithCoder");
+}
 #pragma mark - Core Data stack
 
 @synthesize persistentContainer = _persistentContainer;

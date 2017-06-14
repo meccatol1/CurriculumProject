@@ -55,8 +55,8 @@
 
 // 예제 케이스 1,2
 void observerCallBack3(CFRunLoopObserverRef observer, CFRunLoopActivity activity, void *info) {
-    NSLog(@"******* observerCallBack, activity = %zd, %@", activity, [NSThread currentThread]);
-    NSLog(@"currentRunLoop = %@", [NSRunLoop currentRunLoop]);
+//    NSLog(@"******* observerCallBack, activity = %zd, %@", activity, [NSThread currentThread]);
+//    NSLog(@"currentRunLoop = %@", [NSRunLoop currentRunLoop]);
 }
 
 - (void)main {

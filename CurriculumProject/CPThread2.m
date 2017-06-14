@@ -39,8 +39,8 @@
         }
         NSLog(@"CPThread2 end, %@", [NSThread currentThread]);
     
-    char *buffer = malloc(1024*1024*20);
-    NSLog(@"buffer = %", buffer);
+//    char *buffer = malloc(1024*1024*20);
+//    NSLog(@"buffer = %", buffer);
 //    }
 }
 @end
