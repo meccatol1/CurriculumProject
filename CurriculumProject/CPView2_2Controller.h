@@ -8,6 +8,6 @@
 
 #import <UIKit/UIKit.h>
 
-@interface CPView2_2Controller : UIViewController <UIViewControllerRestoration>
+@interface CPView2_2Controller : UIViewController
 
 @end

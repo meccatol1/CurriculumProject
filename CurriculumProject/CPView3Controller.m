@@ -49,13 +49,16 @@
     if (self.textView.isFirstResponder) {
         [self.textView resignFirstResponder];
     }
+}
+- (IBAction)button2Handler:(UIButton *)sender {
+    CPView4ViewController *controller =
+    [[CPView4ViewController alloc] initWithNibName:@"CPView4ViewController" bundle:nil];
     
-//    CPView4ViewController *controller =
-//    [[CPView4ViewController alloc] initWithNibName:@"CPView4ViewController" bundle:nil];
-//    
-//    [self presentViewController:controller
-//                       animated:YES
-//                     completion:nil];
+    [self presentViewController:controller
+                       animated:YES
+                     completion:^{
+                         
+                     }];
 }
 
 - (void)viewDidLoad {

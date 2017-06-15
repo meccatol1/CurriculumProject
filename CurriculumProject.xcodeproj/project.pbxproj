@@ -83,13 +83,11 @@
 		7674278E1EEE919C00B48DAD /* CPView4ViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CPView4ViewController.h; sourceTree = "<group>"; };
 		7674278F1EEE919C00B48DAD /* CPView4ViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CPView4ViewController.m; sourceTree = "<group>"; };
 		767427941EEE926E00B48DAD /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/CPView4ViewController.xib; sourceTree = "<group>"; };
-		7674279A1EEE92C300B48DAD /* en */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = en; path = en.lproj/CPView4ViewController.xib; sourceTree = "<group>"; };
 		767FA4341EDD1482006CF15D /* CPView2Controller.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CPView2Controller.h; sourceTree = "<group>"; };
 		767FA4351EDD1482006CF15D /* CPView2Controller.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CPView2Controller.m; sourceTree = "<group>"; };
 		76BBE4D51ED6889300E67C05 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		76C748741EDBBB6D00C84062 /* CustomOperation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CustomOperation.h; sourceTree = "<group>"; };
 		76C748751EDBBB6D00C84062 /* CustomOperation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CustomOperation.m; sourceTree = "<group>"; };
-		76DDC8B51EEF89A4006962C5 /* ko */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = ko; path = ko.lproj/CPView4ViewController.xib; sourceTree = "<group>"; };
 		76DDC8B91EEF8FE0006962C5 /* Base */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = Base; path = Base.lproj/Localizable.strings; sourceTree = "<group>"; };
 		76DDC8BB1EEF8FE3006962C5 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/Localizable.strings; sourceTree = "<group>"; };
 		76DDC8BC1EEF8FE4006962C5 /* ko */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ko; path = ko.lproj/Localizable.strings; sourceTree = "<group>"; };
@@ -400,8 +398,6 @@
 			isa = PBXVariantGroup;
 			children = (
 				767427941EEE926E00B48DAD /* Base */,
-				7674279A1EEE92C300B48DAD /* en */,
-				76DDC8B51EEF89A4006962C5 /* ko */,
 			);
 			name = CPView4ViewController.xib;
 			sourceTree = "<group>";

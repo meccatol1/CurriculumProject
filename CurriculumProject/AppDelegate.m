@@ -260,16 +260,34 @@ handleEventsForBackgroundURLSession:(NSString *)identifier
 }
 #pragma mark - Preserve & Restore
 - (BOOL)application:(UIApplication *)application shouldSaveApplicationState:(NSCoder *)coder {
+//    [coder decodeObjectForKey:UIApplicationStateRestoration]
     NSLog(@"shouldSaveApplicationState");
     return YES;
 }
+- (void)application:(UIApplication *)application willEncodeRestorableStateWithCoder:(NSCoder *)coder {
+    NSLog(@"willEncodeRestorableStateWithCoder");
+}
+
 - (BOOL)application:(UIApplication *)application shouldRestoreApplicationState:(NSCoder *)coder {
+    NSString *osVersion = [coder decodeObjectForKey:UIApplicationStateRestorationSystemVersionKey];
+    NSDate *date = [coder decodeObjectForKey:UIApplicationStateRestorationTimestampKey];
+    NSString *appVersion = [coder decodeObjectForKey:UIApplicationStateRestorationBundleVersionKey];
+    NSNumber *idiom = [coder decodeObjectForKey:UIApplicationStateRestorationUserInterfaceIdiomKey];
+    NSLog(@"%@, %@, %@, %@", osVersion, date, appVersion, idiom);
+    
     NSLog(@"shouldRestoreApplicationState");
     return YES;
 }
 - (void)application:(UIApplication *)application didDecodeRestorableStateWithCoder:(NSCoder *)coder {
     NSLog(@"didDecodeRestorableStateWithCoder");
 }
+- (UIViewController *)application:(UIApplication *)application viewControllerWithRestorationIdentifierPath:(NSArray *)identifierComponents coder:(NSCoder *)coder {
+    NSLog(@"viewControllerWithRestorationIdentifierPath %@", identifierComponents);
+    UIViewController *controller = nil;
+    
+    return controller;
+}
+
 #pragma mark - Core Data stack
 
 @synthesize persistentContainer = _persistentContainer;

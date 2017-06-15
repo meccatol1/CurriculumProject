@@ -18,6 +18,8 @@
     [super viewDidLoad];
     
     self.restorationClass = View2Controller.class;
+    
+//    self.restorationIdentifier // 중복방지라고는 없다
     // Do any additional setup after loading the view.
 }
 
@@ -40,7 +42,7 @@
 }
 
 + (UIViewController *)viewControllerWithRestorationIdentifierPath:(NSArray *)identifierComponents coder:(NSCoder *)coder {
-    NSLog(@"viewControllerWithRestorationIdentifierPath");
+    NSLog(@"viewControllerWithRestorationIdentifierPath, %@", identifierComponents);
     View2Controller *controller = nil;
     //    [[[[[UIApplication sharedApplication] keyWindow] rootViewController] storyboard] instantiateViewControllerWithIdentifier:@"CPView2_2Controller"];
     //
