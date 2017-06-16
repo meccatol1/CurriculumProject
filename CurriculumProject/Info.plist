@@ -6,7 +6,19 @@
 	<string>ko_KR</string>
 	<key>CFBundleDocumentTypes</key>
 	<array>
-		<dict/>
+		<dict>
+			<key>CFBundleTypeIconFiles</key>
+			<array/>
+			<key>CFBundleTypeName</key>
+			<string>photo</string>
+			<key>LSItemContentTypes</key>
+			<array>
+				<string>public.image</string>
+				<string>public.jpeg</string>
+				<string>public.png</string>
+				<string>public.jpeg-2000</string>
+			</array>
+		</dict>
 	</array>
 	<key>CFBundleExecutable</key>
 	<string>$(EXECUTABLE_NAME)</string>
@@ -31,10 +43,10 @@
 			<key>CFBundleTypeRole</key>
 			<string>Editor</string>
 			<key>CFBundleURLName</key>
-			<string>schemeName</string>
+			<string>com.curriculum.project</string>
 			<key>CFBundleURLSchemes</key>
 			<array>
-				<string>curriculumJPG</string>
+				<string>curriculum</string>
 			</array>
 		</dict>
 	</array>
@@ -45,7 +57,7 @@
 	<key>LSRequiresIPhoneOS</key>
 	<true/>
 	<key>NSCalendarsUsageDescription</key>
-	<string>캘린더 정보가 필요합니다. 굽신굽신.</string>
+	<string>캘린더 정보가 필요합니다. 굽신굽신. adsfa df</string>
 	<key>UIApplicationExitsOnSuspend</key>
 	<false/>
 	<key>UILaunchStoryboardName</key>

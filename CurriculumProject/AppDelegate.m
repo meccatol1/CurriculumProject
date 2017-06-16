@@ -28,13 +28,13 @@
 @implementation AppDelegate
 
 - (BOOL)application:(UIApplication *)application willFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
-    NSLog(@"willFinishLaunchingWithOptions");
+    NSLog(@"willFinishLaunchingWithOptions = %@", launchOptions);
     return YES;
 }
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
     // Override point for customization after application launch.
-    NSLog(@"didFinishLaunchingWithOptions");
+    NSLog(@"didFinishLaunchingWithOptions = %@", launchOptions);
     
     self.queue = [NSOperationQueue currentQueue];
     
@@ -286,6 +286,13 @@ handleEventsForBackgroundURLSession:(NSString *)identifier
     UIViewController *controller = nil;
     
     return controller;
+}
+
+#pragma mark - openURL
+- (BOOL)application:(UIApplication *)app openURL:(NSURL *)url options:(NSDictionary<UIApplicationOpenURLOptionsKey,id> *)options {
+    NSLog(@"openURL = %@, options = %@", url, options);
+    
+    return YES;
 }
 
 #pragma mark - Core Data stack
