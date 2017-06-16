@@ -19,9 +19,28 @@
     // Do any additional setup after loading the view from its nib.
     
 //    NSData *data;
+//
+//    [data writeToURL:<#(nonnull NSURL *)#> options:NSDataWritingF error:nil];
     
-//    [data writeToURL:<#(nonnull NSURL *)#> options:<#(NSDataWritingOptions)#> error:<#(NSError * _Nullable __autoreleasing * _Nullable)#>]
+//    NSFileManager *manager = [NSFileManager defaultManager];
+//    [manager setAttributes:@{NSFileProtectionKey:NSFileProtection} ofItemAtPath:@"path" error:nil];
+    
+    
+    
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];

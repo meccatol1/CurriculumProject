@@ -19,8 +19,10 @@
     NSLog(@"viewDidLoad");
     // Do any additional setup after loading the view from its nib.
     
-    self.restorationIdentifier = @"CPView4ViewController"; // nib에서 할당한 restorationID가 먹히지 않고, 여기서 할당해줘야 인식하네
-    self.restorationClass = CPView4ViewController.class; // 또한 이 클래스를 할당해주지 않으면, appDelegate에 물어본다~
+    self.restorationIdentifier = @"CPView4ViewController";
+    // nib에서 할당한 restorationID가 먹히지 않고, 여기서 할당해줘야 인식함 // 왜?
+    self.restorationClass = CPView4ViewController.class;
+    // 또한 이 클래스를 할당해주지 않으면, appDelegate에 물어본다~
 }
 
 - (void)viewDidAppear:(BOOL)animated {
@@ -49,7 +51,8 @@
     }];
 }
 
-+ (UIViewController *)viewControllerWithRestorationIdentifierPath:(NSArray *)identifierComponents coder:(NSCoder *)coder {
++ (UIViewController *)viewControllerWithRestorationIdentifierPath:(NSArray *)identifierComponents
+                                                            coder:(NSCoder *)coder {
     NSLog(@"viewControllerWithRestorationIdentifierPath, %@", identifierComponents);
     
     CPView4ViewController *controller =
@@ -57,6 +60,7 @@
     
     return controller;
 }
+
 
 - (void)encodeRestorableStateWithCoder:(NSCoder *)coder {
     [super encodeRestorableStateWithCoder:coder];

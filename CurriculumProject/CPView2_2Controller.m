@@ -34,17 +34,18 @@
     // Pass the selected object to the new view controller.
 }
 */
-//+ (UIViewController *)viewControllerWithRestorationIdentifierPath:(NSArray *)identifierComponents coder:(NSCoder *)coder {
-//    NSLog(@"viewControllerWithRestorationIdentifierPath");
-//    CPView2_2Controller *controller = nil;
-////    [[[[[UIApplication sharedApplication] keyWindow] rootViewController] storyboard] instantiateViewControllerWithIdentifier:@"CPView2_2Controller"];
-////
-//    UIStoryboard *sb = [coder decodeObjectForKey:UIStateRestorationViewControllerStoryboardKey];
-//    if (sb) {
-//        controller = [sb instantiateViewControllerWithIdentifier:@"CPView2_2Controller"];
-//    }
-//    
-//    return controller;
-//}
+
++ (UIViewController *)viewControllerWithRestorationIdentifierPath:(NSArray *)identifierComponents
+                                                            coder:(NSCoder *)coder {
+    NSLog(@"viewControllerWithRestorationIdentifierPath");
+    
+    UIStoryboard *sb =
+    [coder decodeObjectForKey:UIStateRestorationViewControllerStoryboardKey];
+    CPView2_2Controller *controller =
+    [sb instantiateViewControllerWithIdentifier:@"CPView2_2Controller"];
+    
+    return controller;
+}
+
 
 @end

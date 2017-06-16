@@ -18,6 +18,7 @@
 		354F2C031EE721BE006933C6 /* CPPortThread.m in Sources */ = {isa = PBXBuildFile; fileRef = 354F2C021EE721BE006933C6 /* CPPortThread.m */; };
 		35D1DFD21EF2DB8C00C3C472 /* Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 76131FF41ECA973500CBA227 /* Info.plist */; };
 		35FF1C4D1EE06200004E3215 /* ReadMe.txt in Resources */ = {isa = PBXBuildFile; fileRef = 35FF1C4C1EE06200004E3215 /* ReadMe.txt */; };
+		760DF3B91EF36F2C000C3F32 /* kitten3.PNG in Resources */ = {isa = PBXBuildFile; fileRef = 760DF3B81EF36F2C000C3F32 /* kitten3.PNG */; };
 		76131FE21ECA973500CBA227 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 76131FE11ECA973500CBA227 /* main.m */; };
 		76131FE51ECA973500CBA227 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 76131FE41ECA973500CBA227 /* AppDelegate.m */; };
 		76131FE81ECA973500CBA227 /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 76131FE71ECA973500CBA227 /* ViewController.m */; };
@@ -63,6 +64,7 @@
 		35FF1C4C1EE06200004E3215 /* ReadMe.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = ReadMe.txt; sourceTree = "<group>"; };
 		425CE85A8EF68C6D7CAC45EC /* libPods-CurriculumProject.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-CurriculumProject.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		477B8A371FAB765CCC56B3C6 /* Pods-CurriculumProject.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-CurriculumProject.debug.xcconfig"; path = "Pods/Target Support Files/Pods-CurriculumProject/Pods-CurriculumProject.debug.xcconfig"; sourceTree = "<group>"; };
+		760DF3B81EF36F2C000C3F32 /* kitten3.PNG */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = kitten3.PNG; sourceTree = "<group>"; };
 		76131FDD1ECA973500CBA227 /* CurriculumProject.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = CurriculumProject.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		76131FE11ECA973500CBA227 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		76131FE31ECA973500CBA227 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
@@ -195,6 +197,7 @@
 				76131FEC1ECA973500CBA227 /* CurriculumProject.xcdatamodeld */,
 				7614BCB01EDFDD33009189B6 /* kitten.jpg */,
 				35398C4A1EF17BBA00BBAA56 /* kitten2.jpg */,
+				760DF3B81EF36F2C000C3F32 /* kitten3.PNG */,
 				35FF1C4C1EE06200004E3215 /* ReadMe.txt */,
 				35398C4C1EF17E9500BBAA56 /* PrefixHeader.pch */,
 				76131FE01ECA973500CBA227 /* Supporting Files */,
@@ -294,6 +297,7 @@
 				76131FF01ECA973500CBA227 /* Assets.xcassets in Resources */,
 				354010DE1ED27CAE009FA2CA /* podfile in Resources */,
 				76DDC8B81EEF8FE0006962C5 /* Localizable.strings in Resources */,
+				760DF3B91EF36F2C000C3F32 /* kitten3.PNG in Resources */,
 				35D1DFD21EF2DB8C00C3C472 /* Info.plist in Resources */,
 				35FF1C4D1EE06200004E3215 /* ReadMe.txt in Resources */,
 				76131FEB1ECA973500CBA227 /* Main.storyboard in Resources */,

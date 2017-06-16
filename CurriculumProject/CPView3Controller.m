@@ -76,9 +76,22 @@
 //    [self testThreadSafety];
     
 #pragma mark 번외, atomic!
-//    NSLog(@"id for vender = %@", [[UIDevice currentDevice] identifierForVendor]);
-//    NSLog(@"id advertisingIdentifier %@", [[ASIdentifierManager sharedManager] advertisingIdentifier]);
-
+    
+    [[UIDevice currentDevice] identifierForVendor];
+    
+    [[ASIdentifierManager sharedManager] advertisingIdentifier];
+    
+    
+    NSLog(@"id for vender = %@", [[UIDevice currentDevice] identifierForVendor]);
+    NSLog(@"id adIdentifier %@", [[ASIdentifierManager sharedManager] advertisingIdentifier]);
+    
+    NSUserDefaults *userDefautls = [NSUserDefaults standardUserDefaults];
+    id bookIsAllowed = [userDefautls objectForKey:@"com.apple.content-rating.ExplicitBooksAllowed"];
+    
+    NSLog(@"%@", bookIsAllowed);
+    
+    [CPView3Controller instancesRespondToSelector:@selector(aa)];
+    
     //// 설명없이 사용하면 크래시!!
 //    PHFetchResult *library = [PHAssetCollection fetchAssetCollectionsWithType:PHAssetCollectionTypeAlbum
 //                                                                          subtype:PHAssetCollectionSubtypeAlbumMyPhotoStream
