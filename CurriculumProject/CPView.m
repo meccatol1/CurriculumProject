@@ -22,4 +22,8 @@
 //    SEL asdf = @selector(something);
 }
 
+- (void)dealloc {
+    
+}
+
 @end
