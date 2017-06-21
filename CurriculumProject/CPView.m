@@ -20,10 +20,20 @@
 
 - (void)something {
 //    SEL asdf = @selector(something);
+    
+//    [self setValue:nil forKey:@"key"];
 }
 
 - (void)dealloc {
     
+}
+
+- (BOOL)isEqual:(id)object {
+    return NO;
+}
+
+- (NSUInteger)hash {
+    return 249812;
 }
 
 @end

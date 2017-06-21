@@ -93,6 +93,11 @@
 //    [CPView3Controller instancesRespondToSelector:@selector(aa)];
     if ([self conformsToProtocol:@protocol(TestProtocol)]) {
         NSLog(@"따름");
+        
+        NSString *h1 = [NSString stringWithFormat:@"hello world %zd", 10];
+        NSString *h2 = [NSString stringWithFormat:@"hello world %zd", 10];
+        NSLog(@"h1 = %p, h2 = %p", h1, h2);
+        NSLog(@"h1's hash = %lu, h2's hash = %lu", h1.hash, h2.hash);
     }else {
         NSLog(@"안따름");
     }
