@@ -16,7 +16,6 @@
 		354D79971EE43469003954C3 /* CPThread.m in Sources */ = {isa = PBXBuildFile; fileRef = 354D79961EE43469003954C3 /* CPThread.m */; };
 		354F2C001EE71ABF006933C6 /* CPInputThread.m in Sources */ = {isa = PBXBuildFile; fileRef = 354F2BFF1EE71ABF006933C6 /* CPInputThread.m */; };
 		354F2C031EE721BE006933C6 /* CPPortThread.m in Sources */ = {isa = PBXBuildFile; fileRef = 354F2C021EE721BE006933C6 /* CPPortThread.m */; };
-		35D1DFD21EF2DB8C00C3C472 /* Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 76131FF41ECA973500CBA227 /* Info.plist */; };
 		35FF1C4D1EE06200004E3215 /* ReadMe.txt in Resources */ = {isa = PBXBuildFile; fileRef = 35FF1C4C1EE06200004E3215 /* ReadMe.txt */; };
 		760DF3B91EF36F2C000C3F32 /* kitten3.PNG in Resources */ = {isa = PBXBuildFile; fileRef = 760DF3B81EF36F2C000C3F32 /* kitten3.PNG */; };
 		76131FE21ECA973500CBA227 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 76131FE11ECA973500CBA227 /* main.m */; };
@@ -298,7 +297,6 @@
 				354010DE1ED27CAE009FA2CA /* podfile in Resources */,
 				76DDC8B81EEF8FE0006962C5 /* Localizable.strings in Resources */,
 				760DF3B91EF36F2C000C3F32 /* kitten3.PNG in Resources */,
-				35D1DFD21EF2DB8C00C3C472 /* Info.plist in Resources */,
 				35FF1C4D1EE06200004E3215 /* ReadMe.txt in Resources */,
 				76131FEB1ECA973500CBA227 /* Main.storyboard in Resources */,
 			);

@@ -19,7 +19,7 @@
 */
 
 - (void)something {
-    
+//    SEL asdf = @selector(something);
 }
 
 @end

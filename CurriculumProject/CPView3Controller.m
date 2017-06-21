@@ -90,7 +90,12 @@
     
     NSLog(@"%@", bookIsAllowed);
     
-    [CPView3Controller instancesRespondToSelector:@selector(aa)];
+//    [CPView3Controller instancesRespondToSelector:@selector(aa)];
+    if ([self conformsToProtocol:@protocol(TestProtocol)]) {
+        NSLog(@"따름");
+    }else {
+        NSLog(@"안따름");
+    }
     
     //// 설명없이 사용하면 크래시!!
 //    PHFetchResult *library = [PHAssetCollection fetchAssetCollectionsWithType:PHAssetCollectionTypeAlbum

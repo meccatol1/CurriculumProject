@@ -8,6 +8,14 @@
 
 #import <UIKit/UIKit.h>
 
-@interface CPView3Controller : UIViewController
+
+@protocol TestProtocol <NSObject>
+- (void)a;
+- (void)b;
+@optional
+- (void)c;
+@end
+
+@interface CPView3Controller : UIViewController<TestProtocol>
 
 @end
