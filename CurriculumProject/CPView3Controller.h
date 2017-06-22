@@ -16,6 +16,7 @@
 - (void)c;
 @end
 
-@interface CPView3Controller : UIViewController<TestProtocol>
+@interface CPView3Controller : UIViewController
+///<TestProtocol>
 
 @end

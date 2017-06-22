@@ -25,6 +25,16 @@
     // Dispose of any resources that can be recreated.
 }
 
+- (void)viewDidAppear:(BOOL)animated {
+    [super viewDidAppear:animated];
+    
+    NSLog(@"check Responder Chain");
+    id nextChain = self.view;
+    while (nextChain != nil) {
+        NSLog(@"chain = %@", nextChain);
+        nextChain = [nextChain nextResponder];
+    }
+}
 /*
 #pragma mark - Navigation
 

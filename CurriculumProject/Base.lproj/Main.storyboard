@@ -146,10 +146,10 @@
             </objects>
             <point key="canvasLocation" x="1554" y="403"/>
         </scene>
-        <!--View Controller-->
+        <!--View22 Controller-->
         <scene sceneID="Y0v-dD-ZIT">
             <objects>
-                <viewController id="2YD-vH-qdE" sceneMemberID="viewController">
+                <viewController id="2YD-vH-qdE" customClass="CPView2_2Controller" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="eeD-UW-X2U"/>
                         <viewControllerLayoutGuide type="bottom" id="V3U-Wh-BEE"/>

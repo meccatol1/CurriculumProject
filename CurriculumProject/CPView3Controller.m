@@ -61,6 +61,19 @@
                      }];
 }
 
+- (void)viewDidAppear:(BOOL)animated {
+    [super viewDidAppear:animated];
+    
+    NSLog(@"check Responder Chain");
+    id nextChain = self.view;
+    while (nextChain != nil) {
+        NSLog(@"chain = %@", nextChain);
+        nextChain = [nextChain nextResponder];
+    }
+    
+//    UIImage
+}
+
 - (void)viewDidLoad {
     [super viewDidLoad];
     
@@ -101,6 +114,9 @@
     }else {
         NSLog(@"안따름");
     }
+    
+//    NSUndoManager
+//    NSInvocation
     
     //// 설명없이 사용하면 크래시!!
 //    PHFetchResult *library = [PHAssetCollection fetchAssetCollectionsWithType:PHAssetCollectionTypeAlbum
