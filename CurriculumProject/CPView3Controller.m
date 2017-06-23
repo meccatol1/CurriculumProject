@@ -51,14 +51,23 @@
     }
 }
 - (IBAction)button2Handler:(UIButton *)sender {
-    CPView4ViewController *controller =
-    [[CPView4ViewController alloc] initWithNibName:@"CPView4ViewController" bundle:nil];
+//    CPView4ViewController *controller =
+//    [[CPView4ViewController alloc] initWithNibName:@"CPView4ViewController" bundle:nil];
+//    
+//    [self presentViewController:controller
+//                       animated:YES
+//                     completion:^{
+//                         
+//                     }];
     
-    [self presentViewController:controller
-                       animated:YES
-                     completion:^{
-                         
-                     }];
+    for (int i = 0; i < 5; i++) {
+        [[NSNotificationQueue defaultQueue] enqueueNotification:[NSNotification notificationWithName:@"String" object:nil]
+                                                   postingStyle:NSPostASAP
+                                                   coalesceMask:NSNotificationCoalescingOnName
+                                                       forModes:nil];
+    }
+    
+//    [[NSNotificationCenter defaultCenter] postNotificationName:@"String" object:nil];
 }
 
 - (void)viewDidAppear:(BOOL)animated {
@@ -70,8 +79,12 @@
         NSLog(@"chain = %@", nextChain);
         nextChain = [nextChain nextResponder];
     }
-    NSPropertyListSerialization
+//    NSPropertyListSerialization
 //    UIImage
+}
+
+- (void)testtest:(id)notification {
+    NSLog(@"testtest = %@", notification);
 }
 
 - (void)viewDidLoad {
@@ -115,6 +128,11 @@
         NSLog(@"안따름");
     }
     
+    [[NSNotificationCenter defaultCenter] addObserver:self
+                                             selector:@selector(testtest:)
+                                                 name:@"String"
+                                               object:nil];
+//    NSNotificationQueue
 //    NSUndoManager
 //    NSInvocation
     
