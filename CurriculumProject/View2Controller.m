@@ -22,7 +22,14 @@
 //    self.restorationIdentifier // 중복방지라고는 없다
     // Do any additional setup after loading the view.
 }
-
+- (void)viewDidAppear:(BOOL)animated {
+    [super viewDidAppear:animated];
+    
+    NSLog(@"viewDidAppear");
+    
+    NSLog(@"presenting VC = %@", self.presentingViewController);
+    NSLog(@"presented VC = %@", self.presentedViewController);
+}
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
@@ -37,6 +44,17 @@
     // Pass the selected object to the new view controller.
 }
 */
+- (IBAction)presentButtonHandler:(UIButton *)sender {
+    UIViewController *conroller = [self.storyboard instantiateViewControllerWithIdentifier:@"SubViewController"];
+    [self presentViewController:conroller
+                       animated:YES
+                     completion:^{
+                         NSLog(@"after present");
+                         
+                         NSLog(@"presenting VC = %@", self.presentingViewController);
+                         NSLog(@"presented VC = %@", self.presentedViewController);
+                     }];
+}
 - (IBAction)buttonHandler:(UIButton *)sender {
     [self dismissViewControllerAnimated:YES completion:nil];
 }

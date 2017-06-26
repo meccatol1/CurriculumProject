@@ -29,6 +29,11 @@
     [super viewDidAppear:animated];
     
     NSLog(@"viewDidAppear");
+    
+    NSLog(@"presenting VC = %@", self.presentingViewController);
+    NSLog(@"presented VC = %@", self.presentedViewController);
+    
+    NSLog(@"self.storyboard = %@", self.storyboard);
 }
 
 - (void)didReceiveMemoryWarning {
@@ -36,6 +41,9 @@
     // Dispose of any resources that can be recreated.
 }
 
+- (CGSize)preferredContentSize {
+    return CGSizeMake(400, 500);
+}
 /*
 #pragma mark - Navigation
 

@@ -27,7 +27,14 @@ static SubViewController *singleTon = nil;
     [super viewDidLoad];
     // Do any additional setup after loading the view.
 }
-
+- (void)viewDidAppear:(BOOL)animated {
+    [super viewDidAppear:animated];
+    
+    NSLog(@"viewDidAppear");
+    
+    NSLog(@"presenting VC = %@", self.presentingViewController);
+    NSLog(@"presented VC = %@", self.presentedViewController);
+}
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
@@ -81,6 +88,9 @@ static SubViewController *singleTon = nil;
 //                                                          NSLog(@"response : %@\n\n responseObject : %@\n\n error : %@", response, responseObject, error);
 //                                                      }];
 //    [uploadTask resume];
+}
+- (IBAction)backButtonHandler:(UIButton *)sender {
+    [self dismissViewControllerAnimated:YES completion:nil];
 }
 
 - (void)task {

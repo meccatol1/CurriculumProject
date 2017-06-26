@@ -51,23 +51,67 @@
     }
 }
 - (IBAction)button2Handler:(UIButton *)sender {
-//    CPView4ViewController *controller =
-//    [[CPView4ViewController alloc] initWithNibName:@"CPView4ViewController" bundle:nil];
-//    
+    CPView4ViewController *controller =
+    [[CPView4ViewController alloc] initWithNibName:@"CPView4ViewController" bundle:nil];
+    
+//    controller.modalPresentationStyle = UIModalPresentationFullScreen;
+//    controller.modalPresentationStyle = UIModalPresentationOverFullScreen;
+//    controller.modalPresentationStyle = UIModalPresentationPageSheet;
+//    controller.modalPresentationStyle = UIModalPresentationFormSheet;
+    
+    controller.modalPresentationStyle = UIModalPresentationPopover;
+    
+//    controller.modalPresentationStyle = UIModalPresentationCurrentContext;
+//    controller.modalPresentationStyle = UIModalPresentationOverCurrentContext;
+    
+//    controller.modalPresentationStyle = UIModalPresentationCustom;
+    
+//    controller.modalTransitionStyle = UIModalTransitionStyleFlipHorizontal;
+    
+//    UIModalTransitionStyleCoverVertical,
+//    UIModalTransitionStyleFlipHorizontal,
+//    UIModalTransitionStyleCrossDissolve,
+//    UIModalTransitionStylePartialCurl
+    
+    controller.popoverPresentationController.sourceView = sender;
+    controller.popoverPresentationController.sourceRect = CGRectMake(20, 20, 0, 0);
+    controller.popoverPresentationController.delegate = nil;
+    
+    [self showViewController:controller sender:self];
+//    [self showDetailViewController:controller sender:self];
+    
 //    [self presentViewController:controller
 //                       animated:YES
 //                     completion:^{
+//                         NSLog(@"presenting VC = %@", self.presentingViewController);
+//                         NSLog(@"presented VC = %@", self.presentedViewController);
 //                         
+//                         //// Same!
+////                         NSLog(@"presenting VC = %@", self.tabBarController.presentingViewController);
+////                         NSLog(@"presented VC = %@", self.tabBarController.presentedViewController);
 //                     }];
     
-    for (int i = 0; i < 5; i++) {
-        [[NSNotificationQueue defaultQueue] enqueueNotification:[NSNotification notificationWithName:@"String" object:nil]
-                                                   postingStyle:NSPostASAP
-                                                   coalesceMask:NSNotificationCoalescingOnName
-                                                       forModes:nil];
-    }
+    
+//    for (int i = 0; i < 5; i++) {
+//        [[NSNotificationQueue defaultQueue] enqueueNotification:[NSNotification notificationWithName:@"String" object:nil]
+//                                                   postingStyle:NSPostASAP
+//                                                   coalesceMask:NSNotificationCoalescingOnName
+//                                                       forModes:nil];
+//    }
     
 //    [[NSNotificationCenter defaultCenter] postNotificationName:@"String" object:nil];
+    
+//    self.traitCollection
+}
+
+
+- (void)showViewController:(UIViewController *)vc sender:(id)sender {
+    NSLog(@"showViewController = %@", vc);
+    [super showViewController:vc sender:sender];
+}
+- (UIViewController *)targetViewControllerForAction:(SEL)action sender:(id)sender {
+    NSLog(@"targetViewControllerForAction, action = %@", NSStringFromSelector(action));
+    return nil;
 }
 
 - (void)viewDidAppear:(BOOL)animated {
@@ -81,6 +125,8 @@
     }
 //    NSPropertyListSerialization
 //    UIImage
+    
+//    self.modalPresentationStyle = UIModalPresentationFormSheet;
 }
 
 - (void)testtest:(id)notification {
@@ -89,6 +135,9 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+    
+    self.definesPresentationContext = YES;
+    self.providesPresentationContextTransitionStyle = YES;
     
     self.textView.layer.borderWidth = 1.f;
     self.textView.layer.borderColor = [UIColor colorWithWhite:0.05 alpha:1.f].CGColor;
