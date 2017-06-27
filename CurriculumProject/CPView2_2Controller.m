@@ -84,6 +84,13 @@
     controller.modalTransitionStyle = UIModalTransitionStyleCrossDissolve;
     [self showViewController:controller sender:sender];
 }
+- (IBAction)backButtonHandler:(UIButton *)sender {
+    NSLog(@"backButtonHandler");
+    [self dismissViewControllerAnimated:YES
+                             completion:^{
+                                 NSLog(@"completion");
+                             }];
+}
 
 /*
 #pragma mark - Navigation

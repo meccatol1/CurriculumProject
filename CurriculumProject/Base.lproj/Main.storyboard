@@ -171,11 +171,24 @@
                                     <action selector="view2_3ButtonHandler:" destination="2YD-vH-qdE" eventType="touchUpInside" id="QIh-x9-1lV"/>
                                 </connections>
                             </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="EMz-Kj-W9T">
+                                <rect key="frame" x="164" y="154" width="46" height="30"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="46" id="km7-BB-j4f"/>
+                                    <constraint firstAttribute="height" constant="30" id="lQW-qO-2iV"/>
+                                </constraints>
+                                <state key="normal" title="Back"/>
+                                <connections>
+                                    <action selector="backButtonHandler:" destination="2YD-vH-qdE" eventType="touchUpInside" id="eJ3-dj-MXe"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
                             <constraint firstItem="J4U-Sj-unk" firstAttribute="centerX" secondItem="2ue-kl-xkx" secondAttribute="centerXWithinMargins" id="LZG-AG-ezC"/>
                             <constraint firstItem="01c-vq-Hij" firstAttribute="centerX" secondItem="2ue-kl-xkx" secondAttribute="centerXWithinMargins" id="QIU-no-fr4"/>
+                            <constraint firstItem="EMz-Kj-W9T" firstAttribute="centerX" secondItem="2ue-kl-xkx" secondAttribute="centerX" id="RoS-Fc-nEw"/>
+                            <constraint firstItem="EMz-Kj-W9T" firstAttribute="top" secondItem="J4U-Sj-unk" secondAttribute="bottom" constant="15" id="Uih-jc-t3r"/>
                             <constraint firstItem="J4U-Sj-unk" firstAttribute="top" secondItem="2ue-kl-xkx" secondAttribute="topMargin" constant="109" id="jYt-XU-4JI"/>
                             <constraint firstItem="01c-vq-Hij" firstAttribute="top" secondItem="2ue-kl-xkx" secondAttribute="topMargin" constant="80" id="yip-dO-vuA"/>
                         </constraints>

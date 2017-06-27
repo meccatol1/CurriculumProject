@@ -56,29 +56,32 @@
     
 //    controller.modalPresentationStyle = UIModalPresentationFullScreen;
 //    controller.modalPresentationStyle = UIModalPresentationOverFullScreen;
-//    controller.modalPresentationStyle = UIModalPresentationPageSheet;
+    controller.modalPresentationStyle = UIModalPresentationPageSheet;
 //    controller.modalPresentationStyle = UIModalPresentationFormSheet;
     
-    controller.modalPresentationStyle = UIModalPresentationPopover;
+//    controller.modalPresentationStyle = UIModalPresentationPopover;
     
-//    controller.modalPresentationStyle = UIModalPresentationCurrentContext;
-//    controller.modalPresentationStyle = UIModalPresentationOverCurrentContext;
+    controller.modalPresentationStyle = UIModalPresentationCurrentContext;
+    controller.modalPresentationStyle = UIModalPresentationOverCurrentContext;
     
 //    controller.modalPresentationStyle = UIModalPresentationCustom;
     
 //    controller.modalTransitionStyle = UIModalTransitionStyleFlipHorizontal;
     
-//    UIModalTransitionStyleCoverVertical,
-//    UIModalTransitionStyleFlipHorizontal,
-//    UIModalTransitionStyleCrossDissolve,
-//    UIModalTransitionStylePartialCurl
+//    controller.modalTransitionStyle = UIModalTransitionStyleCoverVertical;
+//    controller.modalTransitionStyle = UIModalTransitionStyleFlipHorizontal;
+//    controller.modalTransitionStyle = UIModalTransitionStyleCrossDissolve;
+//    controller.modalTransitionStyle = UIModalTransitionStylePartialCurl;
     
     controller.popoverPresentationController.sourceView = sender;
     controller.popoverPresentationController.sourceRect = CGRectMake(20, 20, 0, 0);
+    
+    
     controller.popoverPresentationController.delegate = nil;
     
     [self showViewController:controller sender:self];
-//    [self showDetailViewController:controller sender:self];
+    
+    [self showDetailViewController:controller sender:self];
     
 //    [self presentViewController:controller
 //                       animated:YES
@@ -135,12 +138,16 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+//    [self beginAppearanceTransition:<#(BOOL)#> animated:<#(BOOL)#>]
     
     self.definesPresentationContext = YES;
+    
     self.providesPresentationContextTransitionStyle = YES;
     
     self.textView.layer.borderWidth = 1.f;
     self.textView.layer.borderColor = [UIColor colorWithWhite:0.05 alpha:1.f].CGColor;
+    
+    
     
 //    NSLog(@"id for vender = %@", [[UIDevice currentDevice] identifierForVendor]);
 #pragma mark - Synchronization

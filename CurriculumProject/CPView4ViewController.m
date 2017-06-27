@@ -42,8 +42,9 @@
 }
 
 - (CGSize)preferredContentSize {
-    return CGSizeMake(400, 500);
+    return CGSizeMake(260, 150);
 }
+
 /*
 #pragma mark - Navigation
 
