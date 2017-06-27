@@ -80,8 +80,7 @@
     controller.popoverPresentationController.delegate = nil;
     
     [self showViewController:controller sender:self];
-    
-    [self showDetailViewController:controller sender:self];
+//    [self showDetailViewController:controller sender:self];
     
 //    [self presentViewController:controller
 //                       animated:YES
