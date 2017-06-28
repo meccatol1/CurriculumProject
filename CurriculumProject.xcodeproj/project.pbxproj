@@ -16,6 +16,11 @@
 		354D79971EE43469003954C3 /* CPThread.m in Sources */ = {isa = PBXBuildFile; fileRef = 354D79961EE43469003954C3 /* CPThread.m */; };
 		354F2C001EE71ABF006933C6 /* CPInputThread.m in Sources */ = {isa = PBXBuildFile; fileRef = 354F2BFF1EE71ABF006933C6 /* CPInputThread.m */; };
 		354F2C031EE721BE006933C6 /* CPPortThread.m in Sources */ = {isa = PBXBuildFile; fileRef = 354F2C021EE721BE006933C6 /* CPPortThread.m */; };
+		35A1FACE1F03E3F000C14873 /* CPSplitViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 35A1FACD1F03E3F000C14873 /* CPSplitViewController.m */; };
+		35A1FAD11F03E41900C14873 /* CPMainTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 35A1FAD01F03E41900C14873 /* CPMainTableViewController.m */; };
+		35A1FAD41F03E42F00C14873 /* CPDetail_1_ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 35A1FAD31F03E42F00C14873 /* CPDetail_1_ViewController.m */; };
+		35A1FAD71F03FA3900C14873 /* CPCustomAnimationViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 35A1FAD61F03FA3900C14873 /* CPCustomAnimationViewController.m */; };
+		35A1FADA1F04001500C14873 /* CPDetail_2_ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 35A1FAD91F04001500C14873 /* CPDetail_2_ViewController.m */; };
 		35FF1C4D1EE06200004E3215 /* ReadMe.txt in Resources */ = {isa = PBXBuildFile; fileRef = 35FF1C4C1EE06200004E3215 /* ReadMe.txt */; };
 		760DF3B91EF36F2C000C3F32 /* kitten3.PNG in Resources */ = {isa = PBXBuildFile; fileRef = 760DF3B81EF36F2C000C3F32 /* kitten3.PNG */; };
 		76131FE21ECA973500CBA227 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 76131FE11ECA973500CBA227 /* main.m */; };
@@ -60,6 +65,16 @@
 		354F2BFF1EE71ABF006933C6 /* CPInputThread.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CPInputThread.m; sourceTree = "<group>"; };
 		354F2C011EE721BE006933C6 /* CPPortThread.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CPPortThread.h; sourceTree = "<group>"; };
 		354F2C021EE721BE006933C6 /* CPPortThread.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CPPortThread.m; sourceTree = "<group>"; };
+		35A1FACC1F03E3F000C14873 /* CPSplitViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CPSplitViewController.h; sourceTree = "<group>"; };
+		35A1FACD1F03E3F000C14873 /* CPSplitViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CPSplitViewController.m; sourceTree = "<group>"; };
+		35A1FACF1F03E41900C14873 /* CPMainTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CPMainTableViewController.h; sourceTree = "<group>"; };
+		35A1FAD01F03E41900C14873 /* CPMainTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CPMainTableViewController.m; sourceTree = "<group>"; };
+		35A1FAD21F03E42F00C14873 /* CPDetail_1_ViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CPDetail_1_ViewController.h; sourceTree = "<group>"; };
+		35A1FAD31F03E42F00C14873 /* CPDetail_1_ViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CPDetail_1_ViewController.m; sourceTree = "<group>"; };
+		35A1FAD51F03FA3900C14873 /* CPCustomAnimationViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CPCustomAnimationViewController.h; sourceTree = "<group>"; };
+		35A1FAD61F03FA3900C14873 /* CPCustomAnimationViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CPCustomAnimationViewController.m; sourceTree = "<group>"; };
+		35A1FAD81F04001400C14873 /* CPDetail_2_ViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CPDetail_2_ViewController.h; sourceTree = "<group>"; };
+		35A1FAD91F04001500C14873 /* CPDetail_2_ViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CPDetail_2_ViewController.m; sourceTree = "<group>"; };
 		35FF1C4C1EE06200004E3215 /* ReadMe.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = ReadMe.txt; sourceTree = "<group>"; };
 		425CE85A8EF68C6D7CAC45EC /* libPods-CurriculumProject.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-CurriculumProject.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		477B8A371FAB765CCC56B3C6 /* Pods-CurriculumProject.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-CurriculumProject.debug.xcconfig"; path = "Pods/Target Support Files/Pods-CurriculumProject/Pods-CurriculumProject.debug.xcconfig"; sourceTree = "<group>"; };
@@ -130,6 +145,23 @@
 			name = Threads;
 			sourceTree = "<group>";
 		};
+		35A1FACB1F03E3BA00C14873 /* Transition&Presentation */ = {
+			isa = PBXGroup;
+			children = (
+				35A1FACC1F03E3F000C14873 /* CPSplitViewController.h */,
+				35A1FACD1F03E3F000C14873 /* CPSplitViewController.m */,
+				35A1FACF1F03E41900C14873 /* CPMainTableViewController.h */,
+				35A1FAD01F03E41900C14873 /* CPMainTableViewController.m */,
+				35A1FAD21F03E42F00C14873 /* CPDetail_1_ViewController.h */,
+				35A1FAD31F03E42F00C14873 /* CPDetail_1_ViewController.m */,
+				35A1FAD81F04001400C14873 /* CPDetail_2_ViewController.h */,
+				35A1FAD91F04001500C14873 /* CPDetail_2_ViewController.m */,
+				35A1FAD51F03FA3900C14873 /* CPCustomAnimationViewController.h */,
+				35A1FAD61F03FA3900C14873 /* CPCustomAnimationViewController.m */,
+			);
+			name = "Transition&Presentation";
+			sourceTree = "<group>";
+		};
 		61206CDDB5F101F5FF19B61F /* Pods */ = {
 			isa = PBXGroup;
 			children = (
@@ -163,6 +195,7 @@
 			children = (
 				76131FE31ECA973500CBA227 /* AppDelegate.h */,
 				76131FE41ECA973500CBA227 /* AppDelegate.m */,
+				35A1FACB1F03E3BA00C14873 /* Transition&Presentation */,
 				76DDC8DE1EEFEE7C006962C5 /* SnapShotViewController.h */,
 				76DDC8DF1EEFEE7C006962C5 /* SnapShotViewController.m */,
 				76DDC8E01EEFEE7C006962C5 /* SnapShotViewController.xib */,
@@ -365,14 +398,19 @@
 				76131FFC1ECA9FEB00CBA227 /* SubViewController.m in Sources */,
 				76131FEE1ECA973500CBA227 /* CurriculumProject.xcdatamodeld in Sources */,
 				76131FE81ECA973500CBA227 /* ViewController.m in Sources */,
+				35A1FAD11F03E41900C14873 /* CPMainTableViewController.m in Sources */,
 				76E4CF7C1EE7F42F009921EA /* CPThread2.m in Sources */,
 				354D79941EE43098003954C3 /* CPView3Controller.m in Sources */,
+				35A1FADA1F04001500C14873 /* CPDetail_2_ViewController.m in Sources */,
 				35398C521EF1928500BBAA56 /* View2Controller.m in Sources */,
+				35A1FAD41F03E42F00C14873 /* CPDetail_1_ViewController.m in Sources */,
 				76131FE51ECA973500CBA227 /* AppDelegate.m in Sources */,
+				35A1FAD71F03FA3900C14873 /* CPCustomAnimationViewController.m in Sources */,
 				76131FE21ECA973500CBA227 /* main.m in Sources */,
 				354F2C001EE71ABF006933C6 /* CPInputThread.m in Sources */,
 				76DDC8E11EEFEE7C006962C5 /* SnapShotViewController.m in Sources */,
 				767FA4361EDD1482006CF15D /* CPView2Controller.m in Sources */,
+				35A1FACE1F03E3F000C14873 /* CPSplitViewController.m in Sources */,
 				35398C4F1EF1839100BBAA56 /* CPView2_2Controller.m in Sources */,
 				765A7D771ECAF603008D5C43 /* Human+Mouth.m in Sources */,
 				352F9D2A1EE9A3C500EB84CB /* CPView.m in Sources */,
