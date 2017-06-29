@@ -10,4 +10,6 @@
 
 @interface View2Controller : UIViewController<UIViewControllerRestoration>
 
+- (IBAction)myUnwindAction:(UIStoryboardSegue*)unwindSegue;
+
 @end

@@ -32,6 +32,8 @@
 		767427911EEE919C00B48DAD /* CPView4ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 7674278F1EEE919C00B48DAD /* CPView4ViewController.m */; };
 		767427931EEE926E00B48DAD /* CPView4ViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 767427951EEE926E00B48DAD /* CPView4ViewController.xib */; };
 		767FA4361EDD1482006CF15D /* CPView2Controller.m in Sources */ = {isa = PBXBuildFile; fileRef = 767FA4351EDD1482006CF15D /* CPView2Controller.m */; };
+		76B2310F1F0355E400959DAA /* TestViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 76B2310E1F0355E400959DAA /* TestViewController.m */; };
+		76B231131F038AF500959DAA /* TestViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 76B231121F038AF500959DAA /* TestViewController.xib */; };
 		76BBE4D61ED6889300E67C05 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 76BBE4D51ED6889300E67C05 /* Foundation.framework */; };
 		76C748761EDBBB6D00C84062 /* CustomOperation.m in Sources */ = {isa = PBXBuildFile; fileRef = 76C748751EDBBB6D00C84062 /* CustomOperation.m */; };
 		76DDC8B81EEF8FE0006962C5 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 76DDC8BA1EEF8FE0006962C5 /* Localizable.strings */; };
@@ -87,6 +89,9 @@
 		767427941EEE926E00B48DAD /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/CPView4ViewController.xib; sourceTree = "<group>"; };
 		767FA4341EDD1482006CF15D /* CPView2Controller.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CPView2Controller.h; sourceTree = "<group>"; };
 		767FA4351EDD1482006CF15D /* CPView2Controller.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CPView2Controller.m; sourceTree = "<group>"; };
+		76B2310D1F0355E400959DAA /* TestViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TestViewController.h; sourceTree = "<group>"; };
+		76B2310E1F0355E400959DAA /* TestViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TestViewController.m; sourceTree = "<group>"; };
+		76B231121F038AF500959DAA /* TestViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = TestViewController.xib; sourceTree = "<group>"; };
 		76BBE4D51ED6889300E67C05 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		76C748741EDBBB6D00C84062 /* CustomOperation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CustomOperation.h; sourceTree = "<group>"; };
 		76C748751EDBBB6D00C84062 /* CustomOperation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CustomOperation.m; sourceTree = "<group>"; };
@@ -171,6 +176,9 @@
 				767427951EEE926E00B48DAD /* CPView4ViewController.xib */,
 				354D79921EE43098003954C3 /* CPView3Controller.h */,
 				354D79931EE43098003954C3 /* CPView3Controller.m */,
+				76B2310D1F0355E400959DAA /* TestViewController.h */,
+				76B2310E1F0355E400959DAA /* TestViewController.m */,
+				76B231121F038AF500959DAA /* TestViewController.xib */,
 				354F2BFD1EE71AA4006933C6 /* Threads */,
 				767FA4341EDD1482006CF15D /* CPView2Controller.h */,
 				767FA4351EDD1482006CF15D /* CPView2Controller.m */,
@@ -289,6 +297,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				76DDC8E21EEFEE7C006962C5 /* SnapShotViewController.xib in Resources */,
+				76B231131F038AF500959DAA /* TestViewController.xib in Resources */,
 				35398C4B1EF17BBA00BBAA56 /* kitten2.jpg in Resources */,
 				7614BCB11EDFDD33009189B6 /* kitten.jpg in Resources */,
 				76131FF31ECA973500CBA227 /* LaunchScreen.storyboard in Resources */,
@@ -371,6 +380,7 @@
 				76131FE51ECA973500CBA227 /* AppDelegate.m in Sources */,
 				76131FE21ECA973500CBA227 /* main.m in Sources */,
 				354F2C001EE71ABF006933C6 /* CPInputThread.m in Sources */,
+				76B2310F1F0355E400959DAA /* TestViewController.m in Sources */,
 				76DDC8E11EEFEE7C006962C5 /* SnapShotViewController.m in Sources */,
 				767FA4361EDD1482006CF15D /* CPView2Controller.m in Sources */,
 				35398C4F1EF1839100BBAA56 /* CPView2_2Controller.m in Sources */,

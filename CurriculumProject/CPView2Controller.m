@@ -32,6 +32,10 @@ void funcForBlock(void * context) {
     NSLog(@"funcForBlock, %@", _human);
 };
 
+- (IBAction)buttonHandler:(UIButton *)sender {
+    NSLog(@"buttonHandler, %@", sender);
+}
+
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view.
@@ -1039,13 +1043,18 @@ void funcForBlock(void * context) {
 }
 */
 
-- (IBAction)buttonHandler:(UIButton *)sender {
-    NSLog(@"buttonHandler");
-//    dispatch_source_cancel(self.sampleTimer);
-    
-//    dispatch_activate(self.sampleTimer);
-//    dispatch_cancel(self.sampleTimer);
+- (BOOL)shouldPerformSegueWithIdentifier:(NSString *)identifier sender:(id)sender {
+    NSLog(@"shouldPerformSegueWithIdentifier %@, %@", identifier, sender);
+    return YES;
 }
+
+//- (IBAction)buttonHandler:(UIButton *)sender {
+//    NSLog(@"buttonHandler");
+////    dispatch_source_cancel(self.sampleTimer);
+//    
+////    dispatch_activate(self.sampleTimer);
+////    dispatch_cancel(self.sampleTimer);
+//}
 
 //- (IBAction)buttonHandler:(UIButton *)sender {
 //    NSLog(@"buttonHandler");
@@ -1060,4 +1069,7 @@ void funcForBlock(void * context) {
     NSLog(@"I'm David..");
 }
 
+- (IBAction)unwindToCPView2:(UIStoryboardSegue*)unwindSegue {
+    
+}
 @end

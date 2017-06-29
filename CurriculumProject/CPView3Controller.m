@@ -22,6 +22,8 @@
 
 #import "CPView4ViewController.h"
 
+#import "TestViewController.h"
+
 @interface CPView3Controller () <UITextViewDelegate>
 @property (strong, nonatomic) IBOutlet UITextView *textView;
 
@@ -45,11 +47,23 @@
 
 @implementation CPView3Controller
 
+- (void)didReceiveMemoryWarning {
+    [super didReceiveMemoryWarning];
+    NSLog(@"didReceiveMemoryWarning");
+    self.view = nil;
+}
+
+- (void)setView:(UIView *)view {
+    [super setView:view];
+    NSLog(@"setView = %@", view);
+}
+
 - (IBAction)buttonHandler:(id)sender {
     if (self.textView.isFirstResponder) {
         [self.textView resignFirstResponder];
     }
 }
+
 - (IBAction)button2Handler:(UIButton *)sender {
     CPView4ViewController *controller =
     [[CPView4ViewController alloc] initWithNibName:@"CPView4ViewController" bundle:nil];
@@ -81,7 +95,7 @@
     
     [self showViewController:controller sender:self];
     
-    [self showDetailViewController:controller sender:self];
+//    [self showDetailViewController:controller sender:self];
     
 //    [self presentViewController:controller
 //                       animated:YES
@@ -105,6 +119,27 @@
 //    [[NSNotificationCenter defaultCenter] postNotificationName:@"String" object:nil];
     
 //    self.traitCollection
+    
+//    NSMapTable
+}
+
+- (IBAction)testViewButtonHandler:(UIButton *)sender {
+//    TestViewController *testController = [[TestViewController alloc] init];
+    
+    TestViewController *testController = [[TestViewController alloc] initWithNibName:@"TestViewController"
+                                                                              bundle:nil];
+    
+//    NSLog(@"array = %@", [[NSBundle mainBundle] loadNibNamed:@"TestViewController"
+//                                                       owner:[TestViewController class]
+//                                                     options:nil]);
+//    TestViewController *testController = 
+//    [[[NSBundle mainBundle] loadNibNamed:@"TestViewController"
+//                                   owner:[TestViewController class]
+//                                 options:nil] objectAtIndex:0];
+    NSLog(@"testController = %@", testController);
+    NSLog(@"testController.view = %@", testController.view);
+    
+    [self showViewController:testController sender:self];
 }
 
 
@@ -120,16 +155,18 @@
 - (void)viewDidAppear:(BOOL)animated {
     [super viewDidAppear:animated];
     
-    NSLog(@"check Responder Chain");
-    id nextChain = self.view;
-    while (nextChain != nil) {
-        NSLog(@"chain = %@", nextChain);
-        nextChain = [nextChain nextResponder];
-    }
+//    NSLog(@"check Responder Chain");
+//    id nextChain = self.view;
+//    while (nextChain != nil) {
+//        NSLog(@"chain = %@", nextChain);
+//        nextChain = [nextChain nextResponder];
+//    }
+    
 //    NSPropertyListSerialization
 //    UIImage
     
 //    self.modalPresentationStyle = UIModalPresentationFormSheet;
+
 }
 
 - (void)testtest:(id)notification {
@@ -148,7 +185,6 @@
     self.textView.layer.borderColor = [UIColor colorWithWhite:0.05 alpha:1.f].CGColor;
     
     
-    
 //    NSLog(@"id for vender = %@", [[UIDevice currentDevice] identifierForVendor]);
 #pragma mark - Synchronization
     
@@ -159,35 +195,33 @@
     
 #pragma mark 번외, atomic!
     
-    [[UIDevice currentDevice] identifierForVendor];
+//    [[UIDevice currentDevice] identifierForVendor];
+//    [[ASIdentifierManager sharedManager] advertisingIdentifier];
     
-    [[ASIdentifierManager sharedManager] advertisingIdentifier];
+//    NSLog(@"id for vender = %@", [[UIDevice currentDevice] identifierForVendor]);
+//    NSLog(@"id adIdentifier %@", [[ASIdentifierManager sharedManager] advertisingIdentifier]);
     
-    
-    NSLog(@"id for vender = %@", [[UIDevice currentDevice] identifierForVendor]);
-    NSLog(@"id adIdentifier %@", [[ASIdentifierManager sharedManager] advertisingIdentifier]);
-    
-    NSUserDefaults *userDefautls = [NSUserDefaults standardUserDefaults];
-    id bookIsAllowed = [userDefautls objectForKey:@"com.apple.content-rating.ExplicitBooksAllowed"];
-    
-    NSLog(@"%@", bookIsAllowed);
+//    NSUserDefaults *userDefautls = [NSUserDefaults standardUserDefaults];
+//    id bookIsAllowed = [userDefautls objectForKey:@"com.apple.content-rating.ExplicitBooksAllowed"];
+//    NSLog(@"%@", bookIsAllowed);
     
 //    [CPView3Controller instancesRespondToSelector:@selector(aa)];
-    if ([self conformsToProtocol:@protocol(TestProtocol)]) {
-        NSLog(@"따름");
-        
-        NSString *h1 = [NSString stringWithFormat:@"hello world %zd", 10];
-        NSString *h2 = [NSString stringWithFormat:@"hello world %zd", 10];
-        NSLog(@"h1 = %p, h2 = %p", h1, h2);
-        NSLog(@"h1's hash = %lu, h2's hash = %lu", h1.hash, h2.hash);
-    }else {
-        NSLog(@"안따름");
-    }
+//    if ([self conformsToProtocol:@protocol(TestProtocol)]) {
+//        NSLog(@"따름");
+//        
+//        NSString *h1 = [NSString stringWithFormat:@"hello world %zd", 10];
+//        NSString *h2 = [NSString stringWithFormat:@"hello world %zd", 10];
+//        NSLog(@"h1 = %p, h2 = %p", h1, h2);
+//        NSLog(@"h1's hash = %lu, h2's hash = %lu", h1.hash, h2.hash);
+//    }else {
+//        NSLog(@"안따름");
+//    }
     
-    [[NSNotificationCenter defaultCenter] addObserver:self
-                                             selector:@selector(testtest:)
-                                                 name:@"String"
-                                               object:nil];
+//    [[NSNotificationCenter defaultCenter] addObserver:self
+//                                             selector:@selector(testtest:)
+//                                                 name:@"String"
+//                                               object:nil];
+    
 //    NSNotificationQueue
 //    NSUndoManager
 //    NSInvocation

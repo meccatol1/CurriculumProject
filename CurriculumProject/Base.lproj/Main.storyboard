@@ -32,6 +32,7 @@
                                 <state key="normal" title="View1"/>
                                 <connections>
                                     <action selector="action:" destination="BYZ-38-t0r" eventType="touchUpInside" id="npv-31-eBt"/>
+                                    <segue destination="uNJ-Di-OLB" kind="presentation" id="Uac-5d-75r"/>
                                 </connections>
                             </button>
                         </subviews>
@@ -67,13 +68,14 @@
                                 <nil key="highlightedColor"/>
                             </label>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="kh0-em-f8D">
-                                <rect key="frame" x="164.5" y="82" width="46" height="30"/>
+                                <rect key="frame" x="165" y="82" width="46" height="30"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="30" id="kgk-Qf-UW4"/>
                                     <constraint firstAttribute="width" constant="46" id="zX7-5A-Tyn"/>
                                 </constraints>
                                 <state key="normal" title="View2"/>
                                 <connections>
+                                    <action selector="buttonHandler:" destination="BUV-YF-jul" eventType="touchUpInside" id="a4T-Zb-eTC"/>
                                     <segue destination="eMp-Uh-LMu" kind="show" id="iGH-Ju-aLa"/>
                                 </connections>
                             </button>
@@ -165,7 +167,7 @@
                                 <nil key="highlightedColor"/>
                             </label>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="J4U-Sj-unk">
-                                <rect key="frame" x="158.5" y="109" width="57" height="30"/>
+                                <rect key="frame" x="159" y="109" width="57" height="30"/>
                                 <state key="normal" title="View2_3"/>
                                 <connections>
                                     <action selector="view2_3ButtonHandler:" destination="2YD-vH-qdE" eventType="touchUpInside" id="QIh-x9-1lV"/>
@@ -180,10 +182,12 @@
                                 <state key="normal" title="Back"/>
                                 <connections>
                                     <action selector="backButtonHandler:" destination="2YD-vH-qdE" eventType="touchUpInside" id="eJ3-dj-MXe"/>
+                                    <segue destination="Knr-PR-a1L" kind="unwind" unwindAction="unwindToCPView2:" id="unQ-i5-BQ7"/>
                                 </connections>
                             </button>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <gestureRecognizers/>
                         <constraints>
                             <constraint firstItem="J4U-Sj-unk" firstAttribute="centerX" secondItem="2ue-kl-xkx" secondAttribute="centerXWithinMargins" id="LZG-AG-ezC"/>
                             <constraint firstItem="01c-vq-Hij" firstAttribute="centerX" secondItem="2ue-kl-xkx" secondAttribute="centerXWithinMargins" id="QIU-no-fr4"/>
@@ -192,11 +196,16 @@
                             <constraint firstItem="J4U-Sj-unk" firstAttribute="top" secondItem="2ue-kl-xkx" secondAttribute="topMargin" constant="109" id="jYt-XU-4JI"/>
                             <constraint firstItem="01c-vq-Hij" firstAttribute="top" secondItem="2ue-kl-xkx" secondAttribute="topMargin" constant="80" id="yip-dO-vuA"/>
                         </constraints>
+                        <connections>
+                            <outletCollection property="gestureRecognizers" destination="dMR-tP-7kn" appends="YES" id="dHU-xE-9Du"/>
+                        </connections>
                     </view>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="lEm-Cw-OzV" userLabel="First Responder" sceneMemberID="firstResponder"/>
+                <exit id="Knr-PR-a1L" userLabel="Exit" sceneMemberID="exit"/>
+                <swipeGestureRecognizer direction="down" id="dMR-tP-7kn"/>
             </objects>
-            <point key="canvasLocation" x="2257" y="403"/>
+            <point key="canvasLocation" x="2271" y="403"/>
         </scene>
         <!--View Controller-->
         <scene sceneID="syV-mo-H2g">
@@ -211,7 +220,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="LastView" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="vhx-ew-yYk">
-                                <rect key="frame" x="153" y="94" width="69.5" height="21"/>
+                                <rect key="frame" x="153" y="94" width="70" height="21"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="69.5" id="1cx-PZ-EDM"/>
                                     <constraint firstAttribute="height" constant="21" id="JfE-gj-JLI"/>
@@ -330,6 +339,17 @@
                                     <action selector="button2Handler:" destination="s6Q-jG-tJb" eventType="touchUpInside" id="h1r-5d-YTB"/>
                                 </connections>
                             </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="T8w-ht-8uJ">
+                                <rect key="frame" x="134" y="296" width="107" height="30"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="30" id="X37-du-sWp"/>
+                                    <constraint firstAttribute="width" constant="107" id="wMr-qy-uud"/>
+                                </constraints>
+                                <state key="normal" title="show Test View"/>
+                                <connections>
+                                    <action selector="testViewButtonHandler:" destination="s6Q-jG-tJb" eventType="touchUpInside" id="mkC-Us-2zp"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <color key="backgroundColor" red="0.73940864930928107" green="0.86152760506911596" blue="0.72404864522184342" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                         <constraints>
@@ -338,7 +358,9 @@
                             <constraint firstItem="miH-xN-qdr" firstAttribute="top" secondItem="1A5-yS-Tel" secondAttribute="topMargin" constant="108" id="J5U-5b-jSV"/>
                             <constraint firstItem="K5X-6i-VbX" firstAttribute="top" secondItem="1A5-yS-Tel" secondAttribute="topMargin" constant="35" id="JJF-Mb-Yhu"/>
                             <constraint firstItem="gql-xX-l7F" firstAttribute="centerX" secondItem="1A5-yS-Tel" secondAttribute="centerXWithinMargins" id="V2X-m1-V6E"/>
+                            <constraint firstItem="T8w-ht-8uJ" firstAttribute="top" secondItem="p2i-Xb-amr" secondAttribute="bottom" constant="22" id="Z4K-62-4Lj"/>
                             <constraint firstItem="p2i-Xb-amr" firstAttribute="top" secondItem="miH-xN-qdr" secondAttribute="bottom" constant="8" id="aJP-Cz-dtl"/>
+                            <constraint firstItem="T8w-ht-8uJ" firstAttribute="centerX" secondItem="1A5-yS-Tel" secondAttribute="centerX" id="cfc-TL-exc"/>
                             <constraint firstItem="miH-xN-qdr" firstAttribute="centerX" secondItem="1A5-yS-Tel" secondAttribute="centerXWithinMargins" id="dKw-oQ-NVY"/>
                             <constraint firstItem="K5X-6i-VbX" firstAttribute="centerX" secondItem="1A5-yS-Tel" secondAttribute="centerX" id="xx1-Ke-hlh"/>
                         </constraints>
@@ -350,7 +372,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Qlk-6p-alp" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="82" y="1145"/>
+            <point key="canvasLocation" x="80.799999999999997" y="1144.6776611694154"/>
         </scene>
         <!--View2 Controller-->
         <scene sceneID="mFO-lm-1dz">
@@ -395,6 +417,7 @@
                             <constraint firstItem="5fU-zQ-cJr" firstAttribute="top" secondItem="Gah-kT-oKC" secondAttribute="topMargin" constant="61" id="gHQ-Se-8eM"/>
                         </constraints>
                     </view>
+                    <navigationItem key="navigationItem" id="y9y-sq-RxY"/>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="LfY-Fe-Ud6" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
@@ -420,8 +443,7 @@
                                 </constraints>
                                 <state key="normal" title="Back"/>
                                 <connections>
-                                    <action selector="backButtonHandler:" destination="GCm-j5-NKy" eventType="touchUpInside" id="RY1-2p-6x1"/>
-                                    <action selector="buttonHandler:" destination="GCm-j5-NKy" eventType="touchUpInside" id="JMh-ac-RW0"/>
+                                    <segue destination="6Tf-2z-U8s" kind="unwind" unwindAction="unwindToRoot:" id="gnc-hc-H7N"/>
                                 </connections>
                             </button>
                         </subviews>
@@ -433,6 +455,7 @@
                     </view>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Coq-XL-AJu" userLabel="First Responder" sceneMemberID="firstResponder"/>
+                <exit id="6Tf-2z-U8s" userLabel="Exit" sceneMemberID="exit"/>
             </objects>
             <point key="canvasLocation" x="1519" y="-246"/>
         </scene>

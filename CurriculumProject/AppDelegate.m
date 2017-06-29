@@ -269,13 +269,12 @@ handleEventsForBackgroundURLSession:(NSString *)identifier
 }
 
 - (BOOL)application:(UIApplication *)application shouldRestoreApplicationState:(NSCoder *)coder {
+    NSLog(@"shouldRestoreApplicationState");
     NSString *osVersion = [coder decodeObjectForKey:UIApplicationStateRestorationSystemVersionKey];
     NSDate *date = [coder decodeObjectForKey:UIApplicationStateRestorationTimestampKey];
     NSString *appVersion = [coder decodeObjectForKey:UIApplicationStateRestorationBundleVersionKey];
     NSNumber *idiom = [coder decodeObjectForKey:UIApplicationStateRestorationUserInterfaceIdiomKey];
     NSLog(@"%@, %@, %@, %@", osVersion, date, appVersion, idiom);
-    
-    NSLog(@"shouldRestoreApplicationState");
     return YES;
 }
 - (void)application:(UIApplication *)application didDecodeRestorableStateWithCoder:(NSCoder *)coder {
@@ -284,7 +283,6 @@ handleEventsForBackgroundURLSession:(NSString *)identifier
 - (UIViewController *)application:(UIApplication *)application viewControllerWithRestorationIdentifierPath:(NSArray *)identifierComponents coder:(NSCoder *)coder {
     NSLog(@"viewControllerWithRestorationIdentifierPath %@", identifierComponents);
     UIViewController *controller = nil;
-    
     return controller;
 }
 

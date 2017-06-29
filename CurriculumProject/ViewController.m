@@ -133,10 +133,10 @@ void function(id self, SEL _cmd) {
 }
 //
 //+ (BOOL)resolveInstanceMethod:(SEL)sel {
-////    NSLog(@"resolveInstanceMethod = %@", NSStringFromSelector(sel));
-//    if (sel == @selector(resolveThisMethodDynamically)) {
-//        return class_addMethod([self class], sel, (IMP)function, "v@:");
-//    }
+//    NSLog(@"resolveInstanceMethod = %@", NSStringFromSelector(sel));
+////    if (sel == @selector(resolveThisMethodDynamically)) {
+////        return class_addMethod([self class], sel, (IMP)function, "v@:");
+////    }
 //    return [super resolveInstanceMethod:sel];
 //}
 
@@ -878,9 +878,9 @@ typedef struct example {
 //    NSLog(@"self.propertyBlock2 = %@ <%p>",
 //          self.propertyBlock2, self.propertyBlock2);
     
-    View2Controller *controller = [self.storyboard instantiateViewControllerWithIdentifier:@"View2Controller"];
-    
-    [self presentViewController:controller animated:YES completion:nil];
+//    View2Controller *controller = [self.storyboard instantiateViewControllerWithIdentifier:@"View2Controller"];
+//    
+//    [self presentViewController:controller animated:YES completion:nil];
 }
 
 - (void)printHelloString {
@@ -991,6 +991,11 @@ typedef struct example {
     // implementation
 //    self;
 //    _cmd;
+}
+
+- (IBAction)unwindToRoot:(UIStoryboardSegue*)unwindSegue {
+    NSLog(@"myUnwindAction = %@, %@",
+          unwindSegue.sourceViewController, unwindSegue.destinationViewController);
 }
 
 @end

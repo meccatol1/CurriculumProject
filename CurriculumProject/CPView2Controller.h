@@ -10,4 +10,6 @@
 
 @interface CPView2Controller : UIViewController
 
+- (IBAction)unwindToCPView2:(UIStoryboardSegue*)unwindSegue;
+
 @end
