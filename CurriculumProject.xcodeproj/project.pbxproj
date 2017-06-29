@@ -23,6 +23,7 @@
 		35A1FADA1F04001500C14873 /* CPDetail_2_ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 35A1FAD91F04001500C14873 /* CPDetail_2_ViewController.m */; };
 		35FF1C4D1EE06200004E3215 /* ReadMe.txt in Resources */ = {isa = PBXBuildFile; fileRef = 35FF1C4C1EE06200004E3215 /* ReadMe.txt */; };
 		760DF3B91EF36F2C000C3F32 /* kitten3.PNG in Resources */ = {isa = PBXBuildFile; fileRef = 760DF3B81EF36F2C000C3F32 /* kitten3.PNG */; };
+		761015B91F04EE5B005663A9 /* CPPopoverEnableDelegateObject.m in Sources */ = {isa = PBXBuildFile; fileRef = 761015B81F04EE5B005663A9 /* CPPopoverEnableDelegateObject.m */; };
 		76131FE21ECA973500CBA227 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 76131FE11ECA973500CBA227 /* main.m */; };
 		76131FE51ECA973500CBA227 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 76131FE41ECA973500CBA227 /* AppDelegate.m */; };
 		76131FE81ECA973500CBA227 /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 76131FE71ECA973500CBA227 /* ViewController.m */; };
@@ -81,6 +82,8 @@
 		425CE85A8EF68C6D7CAC45EC /* libPods-CurriculumProject.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-CurriculumProject.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		477B8A371FAB765CCC56B3C6 /* Pods-CurriculumProject.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-CurriculumProject.debug.xcconfig"; path = "Pods/Target Support Files/Pods-CurriculumProject/Pods-CurriculumProject.debug.xcconfig"; sourceTree = "<group>"; };
 		760DF3B81EF36F2C000C3F32 /* kitten3.PNG */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = kitten3.PNG; sourceTree = "<group>"; };
+		761015B71F04EE5B005663A9 /* CPPopoverEnableDelegateObject.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CPPopoverEnableDelegateObject.h; sourceTree = "<group>"; };
+		761015B81F04EE5B005663A9 /* CPPopoverEnableDelegateObject.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CPPopoverEnableDelegateObject.m; sourceTree = "<group>"; };
 		76131FDD1ECA973500CBA227 /* CurriculumProject.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = CurriculumProject.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		76131FE11ECA973500CBA227 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		76131FE31ECA973500CBA227 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
@@ -163,6 +166,8 @@
 				35A1FAD91F04001500C14873 /* CPDetail_2_ViewController.m */,
 				35A1FAD51F03FA3900C14873 /* CPCustomAnimationViewController.h */,
 				35A1FAD61F03FA3900C14873 /* CPCustomAnimationViewController.m */,
+				761015B71F04EE5B005663A9 /* CPPopoverEnableDelegateObject.h */,
+				761015B81F04EE5B005663A9 /* CPPopoverEnableDelegateObject.m */,
 			);
 			name = "Transition&Presentation";
 			sourceTree = "<group>";
@@ -414,6 +419,7 @@
 				35398C521EF1928500BBAA56 /* View2Controller.m in Sources */,
 				35A1FAD41F03E42F00C14873 /* CPDetail_1_ViewController.m in Sources */,
 				76131FE51ECA973500CBA227 /* AppDelegate.m in Sources */,
+				761015B91F04EE5B005663A9 /* CPPopoverEnableDelegateObject.m in Sources */,
 				35A1FAD71F03FA3900C14873 /* CPCustomAnimationViewController.m in Sources */,
 				76131FE21ECA973500CBA227 /* main.m in Sources */,
 				354F2C001EE71ABF006933C6 /* CPInputThread.m in Sources */,

@@ -8,6 +8,8 @@
 
 #import <UIKit/UIKit.h>
 
-@interface CPView4ViewController : UIViewController<UIViewControllerRestoration>
+#import "CPCustomAnimationViewController.h"
+
+@interface CPView4ViewController : CPCustomAnimationViewController<UIViewControllerRestoration>
 
 @end

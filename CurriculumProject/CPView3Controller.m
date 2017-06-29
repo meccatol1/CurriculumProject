@@ -24,6 +24,8 @@
 
 #import "TestViewController.h"
 
+#import "CPPopoverEnableDelegateObject.h"
+
 @interface CPView3Controller () <UITextViewDelegate>
 @property (strong, nonatomic) IBOutlet UITextView *textView;
 
@@ -43,6 +45,7 @@
 @property (strong) NSLock *lock1;
 @property (strong) NSLock *lock2;
 
+@property (strong) CPPopoverEnableDelegateObject *popOverEnableObject;
 @end
 
 @implementation CPView3Controller
@@ -70,13 +73,11 @@
     
 //    controller.modalPresentationStyle = UIModalPresentationFullScreen;
 //    controller.modalPresentationStyle = UIModalPresentationOverFullScreen;
-    controller.modalPresentationStyle = UIModalPresentationPageSheet;
+//    controller.modalPresentationStyle = UIModalPresentationPageSheet;
 //    controller.modalPresentationStyle = UIModalPresentationFormSheet;
     
-//    controller.modalPresentationStyle = UIModalPresentationPopover;
-    
-    controller.modalPresentationStyle = UIModalPresentationCurrentContext;
-    controller.modalPresentationStyle = UIModalPresentationOverCurrentContext;
+//    controller.modalPresentationStyle = UIModalPresentationCurrentContext;
+//    controller.modalPresentationStyle = UIModalPresentationOverCurrentContext;
     
 //    controller.modalPresentationStyle = UIModalPresentationCustom;
     
@@ -86,27 +87,31 @@
 //    controller.modalTransitionStyle = UIModalTransitionStyleFlipHorizontal;
 //    controller.modalTransitionStyle = UIModalTransitionStyleCrossDissolve;
 //    controller.modalTransitionStyle = UIModalTransitionStylePartialCurl;
+
     
+    ///// PopOver 성공적
+    controller.modalPresentationStyle = UIModalPresentationPopover;
     controller.popoverPresentationController.sourceView = sender;
     controller.popoverPresentationController.sourceRect = CGRectMake(20, 20, 0, 0);
+
+//    self.popOverEnableObject = [[CPPopoverEnableDelegateObject alloc] init];
+//    controller.popoverPresentationController.delegate = self.popOverEnableObject;
+    controller.popoverPresentationController.permittedArrowDirections = UIPopoverArrowDirectionUp;
     
-    
-    controller.popoverPresentationController.delegate = nil;
-    
-    [self showViewController:controller sender:self];
+//    [self showViewController:controller sender:self];
     
 //    [self showDetailViewController:controller sender:self];
     
-//    [self presentViewController:controller
-//                       animated:YES
-//                     completion:^{
-//                         NSLog(@"presenting VC = %@", self.presentingViewController);
-//                         NSLog(@"presented VC = %@", self.presentedViewController);
-//                         
-//                         //// Same!
-////                         NSLog(@"presenting VC = %@", self.tabBarController.presentingViewController);
-////                         NSLog(@"presented VC = %@", self.tabBarController.presentedViewController);
-//                     }];
+    [self presentViewController:controller
+                       animated:YES
+                     completion:^{
+                         NSLog(@"presenting VC = %@", self.presentingViewController);
+                         NSLog(@"presented VC = %@", self.presentedViewController);
+                         
+                         //// Same!
+//                         NSLog(@"presenting VC = %@", self.tabBarController.presentingViewController);
+//                         NSLog(@"presented VC = %@", self.tabBarController.presentedViewController);
+                     }];
     
     
 //    for (int i = 0; i < 5; i++) {

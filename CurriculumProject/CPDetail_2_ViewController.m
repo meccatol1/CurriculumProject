@@ -34,4 +34,13 @@
 }
 */
 
+- (IBAction)closeButtonHandler:(UIButton *)sender {
+    self.interactive = NO;
+}
+
+
+- (IBAction)show_detail1_Handler:(UIButton *)sender {
+    
+}
+
 @end

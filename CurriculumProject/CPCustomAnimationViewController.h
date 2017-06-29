@@ -10,4 +10,6 @@
 
 @interface CPCustomAnimationViewController : UIViewController <UIViewControllerTransitioningDelegate>
 
+@property BOOL interactive;
+
 @end

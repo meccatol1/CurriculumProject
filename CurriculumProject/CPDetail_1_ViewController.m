@@ -19,7 +19,9 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view.
-    self.modalTransitionStyle = UIModalPresentationCustom;
+//    self.modalTransitionStyle = UIModalPresentationCustom;
+    
+    self.definesPresentationContext = YES;
 }
 
 - (void)didReceiveMemoryWarning {
@@ -27,18 +29,17 @@
     // Dispose of any resources that can be recreated.
 }
 - (IBAction)backToPresentingVC:(UIStoryboardSegue*)unwindSegue {
-    
+    NSLog(@"backToPresentingVC");
 }
 
 - (IBAction)buttonHandler:(UIButton *)sender {
     CPDetail_2_ViewController *controller = (CPDetail_2_ViewController *)
     [self.storyboard instantiateViewControllerWithIdentifier:@"CPDetail_2_ViewController"];
     
-    controller.modalTransitionStyle = UIModalPresentationCustom;
-    
+//    controller.modalTransitionStyle = UIModalPresentationCurrentContext;
+//    controller.definesPresentationContext = YES;
     
     NSLog(@"startPresenting");
-    
     
 //    [self showViewController:controller sender:self];
 //    [self showDetailViewController:controller sender:self];

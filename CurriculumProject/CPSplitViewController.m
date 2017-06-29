@@ -24,6 +24,28 @@
     // Dispose of any resources that can be recreated.
 }
 
+- (void)willTransitionToTraitCollection:(UITraitCollection *)newCollection withTransitionCoordinator:(id<UIViewControllerTransitionCoordinator>)coordinator {
+    [super willTransitionToTraitCollection:newCollection withTransitionCoordinator:coordinator];
+    
+    NSLog(@"willTransitionToTraitCollection = %@", newCollection);
+}
+
+- (void)viewWillTransitionToSize:(CGSize)size withTransitionCoordinator:(id<UIViewControllerTransitionCoordinator>)coordinator {
+    [super viewWillTransitionToSize:size withTransitionCoordinator:coordinator];
+    
+    NSLog(@"viewWillTransitionToSize = %@", NSStringFromCGSize(size));
+    NSLog(@"self.traitCollection = %@", self.traitCollection);
+    UITraitCollection *collection = self.traitCollection;
+//    collection.horizontalSizeClass == UIUserInterfaceSize
+    
+}
+
+- (void)traitCollectionDidChange:(UITraitCollection *)previousTraitCollection {
+    NSLog(@"traitCollectionDidChange");
+    NSLog(@"before = %@", previousTraitCollection);
+    NSLog(@"after = %@", self.traitCollection);
+}
+
 /*
 #pragma mark - Navigation
 
