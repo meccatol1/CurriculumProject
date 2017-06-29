@@ -132,30 +132,36 @@
     
     NSLog(@"VC from = %@, to = %@",
           fromVC, toVC);
-    NSLog(@"Frame from = %@, to = %@",
-          NSStringFromCGRect([transitionContext finalFrameForViewController:fromVC]),
-          NSStringFromCGRect([transitionContext finalFrameForViewController:toVC]));
+    CGRect toVC_I_Frame = [transitionContext initialFrameForViewController:toVC];
+    CGRect fromVC_I_Frame = [transitionContext initialFrameForViewController:fromVC];
+    
+    CGRect toVC_F_Frame = [transitionContext finalFrameForViewController:toVC];
+    CGRect fromVC_F_Frame = [transitionContext finalFrameForViewController:fromVC];
+    
+    NSLog(@"Frame \nInitial from = %@, to = %@\nFinal from %@, to %@",
+          NSStringFromCGRect(fromVC_I_Frame), NSStringFromCGRect(toVC_I_Frame),
+          NSStringFromCGRect(fromVC_F_Frame), NSStringFromCGRect(toVC_F_Frame));
     
     CGRect boundsOfContainer = containerView.bounds;
+    NSLog(@"boundsOfContainer = %@", NSStringFromCGRect(boundsOfContainer));
     
     [containerView insertSubview:toVC.view belowSubview:fromVC.view];
     if (!self.isDismissing) {
         NSLog(@"containerView = %@", containerView);
         [self setDismissInteractive:transitionContext];
         
-        [toVC.view setFrame:boundsOfContainer];
-        toVC.view.alpha = 0.f;
+        [toVC.view setFrame:toVC_F_Frame];
+        toVC.view.alpha = 0.01f;
         toVC.view.transform = CGAffineTransformMakeScale(0.01, 0.01);
         
         [UIView animateWithDuration:interval/2.0
                               delay:0
                             options:UIViewAnimationOptionCurveEaseOut
                          animations:^{
-                             [fromVC.view setAlpha:0.0];
-                             [fromVC.view setTransform:CGAffineTransformMakeScale(0.01, 0.01)];
+//                             [fromVC.view setTransform:CGAffineTransformMakeScale(0.01, 0.01)];
+                             [fromVC.view setTransform:CGAffineTransformScale(CGAffineTransformIdentity, 0.01f, 0.01f)];
+                             [fromVC.view setAlpha:0.01f];
                          } completion:^(BOOL finished) {
-                             fromVC.view.transform = CGAffineTransformIdentity;
-                             
                              [UIView animateWithDuration:interval/2.0
                                                    delay:0
                                                  options:UIViewAnimationOptionCurveEaseIn
@@ -164,21 +170,26 @@
                                                   toVC.view.transform = CGAffineTransformIdentity;
                                               } completion:^(BOOL finished) {
                                                   // [transitionContext transitionWasCancelled] 실패에 대비해야 한다고. 흠.
+                                                  [fromVC.view setAlpha:1.0];
+                                                  fromVC.view.transform = CGAffineTransformIdentity;
+                                                  
                                                   [transitionContext completeTransition:![transitionContext transitionWasCancelled]];
                                               }];
                          }];
     } else {
-        [toVC.view setFrame:CGRectMake(0, CGRectGetMaxY(boundsOfContainer),
-                                       CGRectGetWidth(boundsOfContainer),
-                                       CGRectGetHeight(boundsOfContainer))];
+        [toVC.view setFrame:CGRectMake(toVC_F_Frame.origin.x,
+                                       CGRectGetMaxY(boundsOfContainer),
+                                       CGRectGetWidth(toVC_F_Frame),
+                                       CGRectGetHeight(toVC_F_Frame))];
         toVC.view.alpha = 1.0f;
         
-        [UIView animateWithDuration:[self transitionDuration:transitionContext] animations:^{
-            [toVC.view setFrame:boundsOfContainer];
+        [UIView animateWithDuration:interval animations:^{
+            [toVC.view setFrame:toVC_F_Frame];
             
-            [fromVC.view setFrame:CGRectMake(0, -CGRectGetMaxY(boundsOfContainer),
-                                             CGRectGetWidth(boundsOfContainer),
-                                             CGRectGetHeight(boundsOfContainer))];
+            [fromVC.view setFrame:CGRectMake(fromVC_F_Frame.origin.x,
+                                             -CGRectGetMaxY(boundsOfContainer),
+                                             CGRectGetWidth(fromVC_F_Frame),
+                                             CGRectGetHeight(fromVC_F_Frame))];
         } completion:^(BOOL finished) {
             BOOL success = ![transitionContext transitionWasCancelled];
             NSLog(@"success = %@", success?@"YES":@"NO");
@@ -269,7 +280,6 @@
     self.animator.isDismissing = YES;
     return self.animator;
 }
-
 
 - (id <UIViewControllerInteractiveTransitioning>)interactionControllerForDismissal:(id<UIViewControllerAnimatedTransitioning>)animator {
     NSLog(@"interactionControllerForDismissal = %@", animator);

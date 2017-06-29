@@ -10,7 +10,7 @@
 
 #include "CPCustomAnimationViewController.h"
 
-@interface CPDetail_1_ViewController : CPCustomAnimationViewController
+@interface CPDetail_1_ViewController : UIViewController
 
 - (IBAction)backToPresentingVC:(UIStoryboardSegue*)unwindSegue;
 

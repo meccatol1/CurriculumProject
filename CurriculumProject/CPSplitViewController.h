@@ -10,4 +10,6 @@
 
 @interface CPSplitViewController : UISplitViewController
 
+- (void)selectIndex:(NSInteger)index;
+
 @end

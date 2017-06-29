@@ -1,27 +1,40 @@
 //
-//  CPDetail_2_ViewController.m
+//  CPCustomContent_1_ViewController.m
 //  CurriculumProject
 //
 //  Created by Hyungsung Kim on 2017. 6. 29..
 //  Copyright © 2017년 meccatol_iMac. All rights reserved.
 //
 
-#import "CPDetail_2_ViewController.h"
+#import "CPCustomContent_1_ViewController.h"
 
-@interface CPDetail_2_ViewController ()
+#import "CPCustomContent_3_ViewController.h"
+
+@interface CPCustomContent_1_ViewController ()
 
 @end
 
-@implementation CPDetail_2_ViewController
+@implementation CPCustomContent_1_ViewController
 
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view.
+    self.definesPresentationContext = YES;
 }
 
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
+}
+
+- (IBAction)button_Handler:(UIButton *)sender {
+    CPCustomContent_3_ViewController *controller =
+    [self.storyboard instantiateViewControllerWithIdentifier:@"CPCustomContent_3_ViewController"];
+    controller.modalPresentationStyle = UIModalPresentationCurrentContext;
+    
+    [self presentViewController:controller
+                       animated:YES
+                     completion:nil];
 }
 
 /*
@@ -33,13 +46,5 @@
     // Pass the selected object to the new view controller.
 }
 */
-
-- (IBAction)closeButtonHandler:(UIButton *)sender {
-    self.interactive = NO;
-}
-
-- (IBAction)show_detail1_Handler:(UIButton *)sender {
-    
-}
 
 @end

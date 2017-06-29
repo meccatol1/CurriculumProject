@@ -94,13 +94,14 @@
     controller.popoverPresentationController.sourceView = sender;
     controller.popoverPresentationController.sourceRect = CGRectMake(20, 20, 0, 0);
 
-//    self.popOverEnableObject = [[CPPopoverEnableDelegateObject alloc] init];
-//    controller.popoverPresentationController.delegate = self.popOverEnableObject;
+    self.popOverEnableObject = [[CPPopoverEnableDelegateObject alloc] init];
+    controller.popoverPresentationController.delegate = self.popOverEnableObject;
     controller.popoverPresentationController.permittedArrowDirections = UIPopoverArrowDirectionUp;
+//    controller.popoverPresentationController.passthroughViews = @[self.view];
     
 //    [self showViewController:controller sender:self];
     
-//    [self showDetailViewController:controller sender:self];
+    [self showDetailViewController:controller sender:self];
     
     [self presentViewController:controller
                        animated:YES
@@ -145,15 +146,15 @@
     NSLog(@"testController.view = %@", testController.view);
     
     [self showViewController:testController sender:self];
+    [self showDetailViewController:testController sender:self];
 }
-
 
 - (void)showViewController:(UIViewController *)vc sender:(id)sender {
     NSLog(@"showViewController = %@", vc);
     [super showViewController:vc sender:sender];
 }
 - (UIViewController *)targetViewControllerForAction:(SEL)action sender:(id)sender {
-    NSLog(@"targetViewControllerForAction, action = %@", NSStringFromSelector(action));
+    NSLog(@"targetViewControllerForAction, action = %@, sender = %@", NSStringFromSelector(action), sender);
     return nil;
 }
 

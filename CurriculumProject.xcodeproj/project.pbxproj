@@ -16,11 +16,16 @@
 		354D79971EE43469003954C3 /* CPThread.m in Sources */ = {isa = PBXBuildFile; fileRef = 354D79961EE43469003954C3 /* CPThread.m */; };
 		354F2C001EE71ABF006933C6 /* CPInputThread.m in Sources */ = {isa = PBXBuildFile; fileRef = 354F2BFF1EE71ABF006933C6 /* CPInputThread.m */; };
 		354F2C031EE721BE006933C6 /* CPPortThread.m in Sources */ = {isa = PBXBuildFile; fileRef = 354F2C021EE721BE006933C6 /* CPPortThread.m */; };
+		357D01EB1F05515C00270D2F /* CPCustomContent_4_ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 357D01EA1F05515C00270D2F /* CPCustomContent_4_ViewController.m */; };
 		35A1FACE1F03E3F000C14873 /* CPSplitViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 35A1FACD1F03E3F000C14873 /* CPSplitViewController.m */; };
 		35A1FAD11F03E41900C14873 /* CPMainTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 35A1FAD01F03E41900C14873 /* CPMainTableViewController.m */; };
 		35A1FAD41F03E42F00C14873 /* CPDetail_1_ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 35A1FAD31F03E42F00C14873 /* CPDetail_1_ViewController.m */; };
 		35A1FAD71F03FA3900C14873 /* CPCustomAnimationViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 35A1FAD61F03FA3900C14873 /* CPCustomAnimationViewController.m */; };
 		35A1FADA1F04001500C14873 /* CPDetail_2_ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 35A1FAD91F04001500C14873 /* CPDetail_2_ViewController.m */; };
+		35ADC91F1F053B7E005D835B /* CPCustomContainerViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 35ADC91E1F053B7E005D835B /* CPCustomContainerViewController.m */; };
+		35ADC9221F053B90005D835B /* CPCustomContent_1_ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 35ADC9211F053B90005D835B /* CPCustomContent_1_ViewController.m */; };
+		35ADC9251F053B9A005D835B /* CPCustomContent_2_ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 35ADC9241F053B9A005D835B /* CPCustomContent_2_ViewController.m */; };
+		35ADC9281F053BA4005D835B /* CPCustomContent_3_ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 35ADC9271F053BA4005D835B /* CPCustomContent_3_ViewController.m */; };
 		35FF1C4D1EE06200004E3215 /* ReadMe.txt in Resources */ = {isa = PBXBuildFile; fileRef = 35FF1C4C1EE06200004E3215 /* ReadMe.txt */; };
 		760DF3B91EF36F2C000C3F32 /* kitten3.PNG in Resources */ = {isa = PBXBuildFile; fileRef = 760DF3B81EF36F2C000C3F32 /* kitten3.PNG */; };
 		761015B91F04EE5B005663A9 /* CPPopoverEnableDelegateObject.m in Sources */ = {isa = PBXBuildFile; fileRef = 761015B81F04EE5B005663A9 /* CPPopoverEnableDelegateObject.m */; };
@@ -68,6 +73,8 @@
 		354F2BFF1EE71ABF006933C6 /* CPInputThread.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CPInputThread.m; sourceTree = "<group>"; };
 		354F2C011EE721BE006933C6 /* CPPortThread.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CPPortThread.h; sourceTree = "<group>"; };
 		354F2C021EE721BE006933C6 /* CPPortThread.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CPPortThread.m; sourceTree = "<group>"; };
+		357D01E91F05515C00270D2F /* CPCustomContent_4_ViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CPCustomContent_4_ViewController.h; sourceTree = "<group>"; };
+		357D01EA1F05515C00270D2F /* CPCustomContent_4_ViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CPCustomContent_4_ViewController.m; sourceTree = "<group>"; };
 		35A1FACC1F03E3F000C14873 /* CPSplitViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CPSplitViewController.h; sourceTree = "<group>"; };
 		35A1FACD1F03E3F000C14873 /* CPSplitViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CPSplitViewController.m; sourceTree = "<group>"; };
 		35A1FACF1F03E41900C14873 /* CPMainTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CPMainTableViewController.h; sourceTree = "<group>"; };
@@ -78,6 +85,14 @@
 		35A1FAD61F03FA3900C14873 /* CPCustomAnimationViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CPCustomAnimationViewController.m; sourceTree = "<group>"; };
 		35A1FAD81F04001400C14873 /* CPDetail_2_ViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CPDetail_2_ViewController.h; sourceTree = "<group>"; };
 		35A1FAD91F04001500C14873 /* CPDetail_2_ViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CPDetail_2_ViewController.m; sourceTree = "<group>"; };
+		35ADC91D1F053B7E005D835B /* CPCustomContainerViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CPCustomContainerViewController.h; sourceTree = "<group>"; };
+		35ADC91E1F053B7E005D835B /* CPCustomContainerViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CPCustomContainerViewController.m; sourceTree = "<group>"; };
+		35ADC9201F053B90005D835B /* CPCustomContent_1_ViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CPCustomContent_1_ViewController.h; sourceTree = "<group>"; };
+		35ADC9211F053B90005D835B /* CPCustomContent_1_ViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CPCustomContent_1_ViewController.m; sourceTree = "<group>"; };
+		35ADC9231F053B9A005D835B /* CPCustomContent_2_ViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CPCustomContent_2_ViewController.h; sourceTree = "<group>"; };
+		35ADC9241F053B9A005D835B /* CPCustomContent_2_ViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CPCustomContent_2_ViewController.m; sourceTree = "<group>"; };
+		35ADC9261F053BA4005D835B /* CPCustomContent_3_ViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CPCustomContent_3_ViewController.h; sourceTree = "<group>"; };
+		35ADC9271F053BA4005D835B /* CPCustomContent_3_ViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CPCustomContent_3_ViewController.m; sourceTree = "<group>"; };
 		35FF1C4C1EE06200004E3215 /* ReadMe.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = ReadMe.txt; sourceTree = "<group>"; };
 		425CE85A8EF68C6D7CAC45EC /* libPods-CurriculumProject.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-CurriculumProject.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		477B8A371FAB765CCC56B3C6 /* Pods-CurriculumProject.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-CurriculumProject.debug.xcconfig"; path = "Pods/Target Support Files/Pods-CurriculumProject/Pods-CurriculumProject.debug.xcconfig"; sourceTree = "<group>"; };
@@ -172,6 +187,23 @@
 			name = "Transition&Presentation";
 			sourceTree = "<group>";
 		};
+		35ADC91C1F053B3E005D835B /* CustomContainer&Context&Presentation */ = {
+			isa = PBXGroup;
+			children = (
+				35ADC91D1F053B7E005D835B /* CPCustomContainerViewController.h */,
+				35ADC91E1F053B7E005D835B /* CPCustomContainerViewController.m */,
+				35ADC9201F053B90005D835B /* CPCustomContent_1_ViewController.h */,
+				35ADC9211F053B90005D835B /* CPCustomContent_1_ViewController.m */,
+				35ADC9231F053B9A005D835B /* CPCustomContent_2_ViewController.h */,
+				35ADC9241F053B9A005D835B /* CPCustomContent_2_ViewController.m */,
+				35ADC9261F053BA4005D835B /* CPCustomContent_3_ViewController.h */,
+				35ADC9271F053BA4005D835B /* CPCustomContent_3_ViewController.m */,
+				357D01E91F05515C00270D2F /* CPCustomContent_4_ViewController.h */,
+				357D01EA1F05515C00270D2F /* CPCustomContent_4_ViewController.m */,
+			);
+			name = "CustomContainer&Context&Presentation";
+			sourceTree = "<group>";
+		};
 		61206CDDB5F101F5FF19B61F /* Pods */ = {
 			isa = PBXGroup;
 			children = (
@@ -203,8 +235,10 @@
 		76131FDF1ECA973500CBA227 /* CurriculumProject */ = {
 			isa = PBXGroup;
 			children = (
+				76131FE91ECA973500CBA227 /* Main.storyboard */,
 				76131FE31ECA973500CBA227 /* AppDelegate.h */,
 				76131FE41ECA973500CBA227 /* AppDelegate.m */,
+				35ADC91C1F053B3E005D835B /* CustomContainer&Context&Presentation */,
 				35A1FACB1F03E3BA00C14873 /* Transition&Presentation */,
 				76DDC8DE1EEFEE7C006962C5 /* SnapShotViewController.h */,
 				76DDC8DF1EEFEE7C006962C5 /* SnapShotViewController.m */,
@@ -234,7 +268,6 @@
 				7666F7381ED7F59A00201030 /* ForwardingObject.m */,
 				76C748741EDBBB6D00C84062 /* CustomOperation.h */,
 				76C748751EDBBB6D00C84062 /* CustomOperation.m */,
-				76131FE91ECA973500CBA227 /* Main.storyboard */,
 				76131FEF1ECA973500CBA227 /* Assets.xcassets */,
 				76DDC8BA1EEF8FE0006962C5 /* Localizable.strings */,
 				76131FF11ECA973500CBA227 /* LaunchScreen.storyboard */,
@@ -404,7 +437,9 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				35ADC9251F053B9A005D835B /* CPCustomContent_2_ViewController.m in Sources */,
 				76C748761EDBBB6D00C84062 /* CustomOperation.m in Sources */,
+				357D01EB1F05515C00270D2F /* CPCustomContent_4_ViewController.m in Sources */,
 				354F2C031EE721BE006933C6 /* CPPortThread.m in Sources */,
 				354D79971EE43469003954C3 /* CPThread.m in Sources */,
 				767427911EEE919C00B48DAD /* CPView4ViewController.m in Sources */,
@@ -416,13 +451,16 @@
 				76E4CF7C1EE7F42F009921EA /* CPThread2.m in Sources */,
 				354D79941EE43098003954C3 /* CPView3Controller.m in Sources */,
 				35A1FADA1F04001500C14873 /* CPDetail_2_ViewController.m in Sources */,
+				35ADC9221F053B90005D835B /* CPCustomContent_1_ViewController.m in Sources */,
 				35398C521EF1928500BBAA56 /* View2Controller.m in Sources */,
 				35A1FAD41F03E42F00C14873 /* CPDetail_1_ViewController.m in Sources */,
 				76131FE51ECA973500CBA227 /* AppDelegate.m in Sources */,
 				761015B91F04EE5B005663A9 /* CPPopoverEnableDelegateObject.m in Sources */,
 				35A1FAD71F03FA3900C14873 /* CPCustomAnimationViewController.m in Sources */,
 				76131FE21ECA973500CBA227 /* main.m in Sources */,
+				35ADC9281F053BA4005D835B /* CPCustomContent_3_ViewController.m in Sources */,
 				354F2C001EE71ABF006933C6 /* CPInputThread.m in Sources */,
+				35ADC91F1F053B7E005D835B /* CPCustomContainerViewController.m in Sources */,
 				76B2310F1F0355E400959DAA /* TestViewController.m in Sources */,
 				76DDC8E11EEFEE7C006962C5 /* SnapShotViewController.m in Sources */,
 				767FA4361EDD1482006CF15D /* CPView2Controller.m in Sources */,

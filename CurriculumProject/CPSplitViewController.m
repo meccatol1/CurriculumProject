@@ -8,6 +8,8 @@
 
 #import "CPSplitViewController.h"
 
+#import "CPDetail_2_ViewController.h";
+
 @interface CPSplitViewController ()
 
 @end
@@ -17,6 +19,7 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view.
+    self.preferredDisplayMode = UISplitViewControllerDisplayModeAllVisible;
 }
 
 - (void)didReceiveMemoryWarning {
@@ -35,7 +38,7 @@
     
     NSLog(@"viewWillTransitionToSize = %@", NSStringFromCGSize(size));
     NSLog(@"self.traitCollection = %@", self.traitCollection);
-    UITraitCollection *collection = self.traitCollection;
+//    UITraitCollection *collection = self.traitCollection;
 //    collection.horizontalSizeClass == UIUserInterfaceSize
     
 }
@@ -46,14 +49,17 @@
     NSLog(@"after = %@", self.traitCollection);
 }
 
-/*
-#pragma mark - Navigation
-
-// In a storyboard-based application, you will often want to do a little preparation before navigation
-- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
-    // Get the new view controller using [segue destinationViewController].
-    // Pass the selected object to the new view controller.
+- (void)selectIndex:(NSInteger)index {
+    CPDetail_2_ViewController *controller = (CPDetail_2_ViewController *)
+    [self.storyboard instantiateViewControllerWithIdentifier:@"CPDetail_2_ViewController"];
+    
+    [self presentViewController:controller
+                       animated:YES
+                     completion:nil];
+//    if (index == 0) {
+//        [self showViewController:controller sender:self];
+//    }else if (index == 1) {
+//        [self showDetailViewController:controller sender:self];
+//    }
 }
-*/
-
 @end

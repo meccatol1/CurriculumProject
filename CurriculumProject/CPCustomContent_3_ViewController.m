@@ -1,27 +1,33 @@
 //
-//  CPDetail_2_ViewController.m
+//  CPCustomContent_3_ViewController.m
 //  CurriculumProject
 //
 //  Created by Hyungsung Kim on 2017. 6. 29..
 //  Copyright © 2017년 meccatol_iMac. All rights reserved.
 //
 
-#import "CPDetail_2_ViewController.h"
+#import "CPCustomContent_3_ViewController.h"
 
-@interface CPDetail_2_ViewController ()
+@interface CPCustomContent_3_ViewController ()
 
 @end
 
-@implementation CPDetail_2_ViewController
+@implementation CPCustomContent_3_ViewController
 
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view.
+    
+    self.view.layer.borderColor = [UIColor redColor].CGColor;
+    self.view.layer.borderWidth = 1.f;
 }
 
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
+}
+- (IBAction)dismissButtonHandler:(UIButton *)sender {
+    [self dismissViewControllerAnimated:YES completion:nil];
 }
 
 /*
@@ -33,13 +39,5 @@
     // Pass the selected object to the new view controller.
 }
 */
-
-- (IBAction)closeButtonHandler:(UIButton *)sender {
-    self.interactive = NO;
-}
-
-- (IBAction)show_detail1_Handler:(UIButton *)sender {
-    
-}
 
 @end

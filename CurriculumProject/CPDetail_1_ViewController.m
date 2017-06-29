@@ -36,10 +36,11 @@
     CPDetail_2_ViewController *controller = (CPDetail_2_ViewController *)
     [self.storyboard instantiateViewControllerWithIdentifier:@"CPDetail_2_ViewController"];
     
-//    controller.modalTransitionStyle = UIModalPresentationCurrentContext;
-//    controller.definesPresentationContext = YES;
+//    controller.modalPresentationStyle = UIModalPresentationOverCurrentContext;
+    controller.modalPresentationStyle = UIModalPresentationCurrentContext;
+//    controller.modalTransitionStyle = UIModalPresentationNone;
     
-    NSLog(@"startPresenting");
+    NSLog(@"startPresenting, %@", controller.view);
     
 //    [self showViewController:controller sender:self];
 //    [self showDetailViewController:controller sender:self];

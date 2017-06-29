@@ -1,18 +1,18 @@
 //
-//  CPDetail_2_ViewController.m
+//  CPCustomContent_4_ViewController.m
 //  CurriculumProject
 //
-//  Created by Hyungsung Kim on 2017. 6. 29..
+//  Created by Hyungsung Kim on 2017. 6. 30..
 //  Copyright © 2017년 meccatol_iMac. All rights reserved.
 //
 
-#import "CPDetail_2_ViewController.h"
+#import "CPCustomContent_4_ViewController.h"
 
-@interface CPDetail_2_ViewController ()
+@interface CPCustomContent_4_ViewController ()
 
 @end
 
-@implementation CPDetail_2_ViewController
+@implementation CPCustomContent_4_ViewController
 
 - (void)viewDidLoad {
     [super viewDidLoad];
@@ -23,7 +23,13 @@
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
 }
+- (IBAction)closeButtonHandler:(UIButton *)sender {
+    [self dismissViewControllerAnimated:YES completion:nil];
+}
 
+- (void)dealloc {
+    NSLog(@"dealloc");
+}
 /*
 #pragma mark - Navigation
 
@@ -33,13 +39,5 @@
     // Pass the selected object to the new view controller.
 }
 */
-
-- (IBAction)closeButtonHandler:(UIButton *)sender {
-    self.interactive = NO;
-}
-
-- (IBAction)show_detail1_Handler:(UIButton *)sender {
-    
-}
 
 @end
