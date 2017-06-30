@@ -100,8 +100,7 @@
 //    controller.popoverPresentationController.passthroughViews = @[self.view];
     
 //    [self showViewController:controller sender:self];
-    
-    [self showDetailViewController:controller sender:self];
+//    [self showDetailViewController:controller sender:self];
     
     [self presentViewController:controller
                        animated:YES
@@ -113,6 +112,10 @@
 //                         NSLog(@"presenting VC = %@", self.tabBarController.presentingViewController);
 //                         NSLog(@"presented VC = %@", self.tabBarController.presentedViewController);
                      }];
+    
+//    [controller beginAppearanceTransition:YES animated:YES];
+//    [controller endAppearanceTransition];
+    
     
     
 //    for (int i = 0; i < 5; i++) {

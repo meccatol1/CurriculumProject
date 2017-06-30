@@ -39,6 +39,9 @@
 - (void)setDismissInteractive:(id<UIViewControllerContextTransitioning>)transitionContext {
     self.contextData = transitionContext;
     
+#if TARGET_IPHONE_SIMULATOR
+    self.completionSpeed = 0.999;
+#endif
     // Create a pan gesture recognizer to monitor events.
     self.panGesture = [[UIPanGestureRecognizer alloc]
                        initWithTarget:self action:@selector(handleSwipeUpdate:)];
@@ -152,14 +155,13 @@
         
         [toVC.view setFrame:toVC_F_Frame];
         toVC.view.alpha = 0.01f;
-        toVC.view.transform = CGAffineTransformMakeScale(0.01, 0.01);
+        toVC.view.layer.transform = CATransform3DMakeScale(.1, .1, .1);
         
         [UIView animateWithDuration:interval/2.0
                               delay:0
                             options:UIViewAnimationOptionCurveEaseOut
                          animations:^{
-//                             [fromVC.view setTransform:CGAffineTransformMakeScale(0.01, 0.01)];
-                             [fromVC.view setTransform:CGAffineTransformScale(CGAffineTransformIdentity, 0.01f, 0.01f)];
+                             fromVC.view.layer.transform = CATransform3DMakeScale(.1, .1, .1);
                              [fromVC.view setAlpha:0.01f];
                          } completion:^(BOOL finished) {
                              [UIView animateWithDuration:interval/2.0
@@ -167,11 +169,11 @@
                                                  options:UIViewAnimationOptionCurveEaseIn
                                               animations:^{
                                                   toVC.view.alpha = 1.f;
-                                                  toVC.view.transform = CGAffineTransformIdentity;
+                                                  toVC.view.layer.transform = CATransform3DIdentity;
                                               } completion:^(BOOL finished) {
                                                   // [transitionContext transitionWasCancelled] 실패에 대비해야 한다고. 흠.
                                                   [fromVC.view setAlpha:1.0];
-                                                  fromVC.view.transform = CGAffineTransformIdentity;
+                                                  fromVC.view.layer.transform = CATransform3DIdentity;
                                                   
                                                   [transitionContext completeTransition:![transitionContext transitionWasCancelled]];
                                               }];
@@ -183,58 +185,47 @@
                                        CGRectGetHeight(toVC_F_Frame))];
         toVC.view.alpha = 1.0f;
         
-        [UIView animateWithDuration:interval animations:^{
-            [toVC.view setFrame:toVC_F_Frame];
-            
-            [fromVC.view setFrame:CGRectMake(fromVC_F_Frame.origin.x,
-                                             -CGRectGetMaxY(boundsOfContainer),
-                                             CGRectGetWidth(fromVC_F_Frame),
-                                             CGRectGetHeight(fromVC_F_Frame))];
-        } completion:^(BOOL finished) {
-            BOOL success = ![transitionContext transitionWasCancelled];
-            NSLog(@"success = %@", success?@"YES":@"NO");
-            if (success) {
-                [fromVC.view removeFromSuperview];
-            }else {
-//                [fromVC.view setFrame:boundsOfContainer];
-                
-            }
-            
-            [transitionContext completeTransition:success];
-        }];
-    }
-    
-//    if (!self.isDismissing) {
-//        NSLog(@"containerView = %@", containerView);
-//        [containerView insertSubview:toVC.view belowSubview:fromVC.view];
-//        
-//        [toVC.view setFrame:CGRectMake(0, -CGRectGetMaxY(boundsOfContainer),
-//                                       CGRectGetWidth(boundsOfContainer),
-//                                       CGRectGetHeight(boundsOfContainer))];
-//        
-//        [UIView animateWithDuration:[self transitionDuration:transitionContext] animations:^{
-//            [fromVC.view setAlpha:0.0f];
-//            [toVC.view setFrame:boundsOfContainer];
-//        } completion:^(BOOL finished) {
-//            [fromVC.view removeFromSuperview];
-//            [transitionContext completeTransition:![transitionContext transitionWasCancelled]];
-//        }];
-//    } else {
-//        [containerView insertSubview:toVC.view belowSubview:fromVC.view];
-//        [toVC.view setFrame:boundsOfContainer];
-//        toVC.view.alpha = 0.0f;
-//        
-//        [UIView animateWithDuration:[self transitionDuration:transitionContext] animations:^{
-//            toVC.view.alpha = 1.0f;
+        [UIView animateWithDuration:interval
+                              delay:0
+                            options:UIViewAnimationOptionCurveEaseInOut
+                         animations:^{
+                             [toVC.view setFrame:toVC_F_Frame];
+                             
+                             [fromVC.view setFrame:CGRectMake(fromVC_F_Frame.origin.x,
+                                                              -CGRectGetMaxY(boundsOfContainer),
+                                                              CGRectGetWidth(fromVC_F_Frame),
+                                                              CGRectGetHeight(fromVC_F_Frame))];
+                         } completion:^(BOOL finished) {
+                             BOOL success = ![transitionContext transitionWasCancelled];
+                             NSLog(@"success = %@", success?@"YES":@"NO");
+                             if (success) {
+                                 [fromVC.view removeFromSuperview];
+                             }else {
+                                 
+                             }
+                             
+                             [transitionContext completeTransition:success];
+                         }];
+        
+//        [UIView animateWithDuration:interval animations:^{
+//            [toVC.view setFrame:toVC_F_Frame];
 //            
-//            [fromVC.view setFrame:CGRectMake(0, -CGRectGetMaxY(boundsOfContainer),
-//                                             CGRectGetWidth(boundsOfContainer),
-//                                             CGRectGetHeight(boundsOfContainer))];
+//            [fromVC.view setFrame:CGRectMake(fromVC_F_Frame.origin.x,
+//                                             -CGRectGetMaxY(boundsOfContainer),
+//                                             CGRectGetWidth(fromVC_F_Frame),
+//                                             CGRectGetHeight(fromVC_F_Frame))];
 //        } completion:^(BOOL finished) {
-//            [fromVC.view removeFromSuperview];
-//            [transitionContext completeTransition:![transitionContext transitionWasCancelled]];
+//            BOOL success = ![transitionContext transitionWasCancelled];
+//            NSLog(@"success = %@", success?@"YES":@"NO");
+//            if (success) {
+//                [fromVC.view removeFromSuperview];
+//            }else {
+//                
+//            }
+//            
+//            [transitionContext completeTransition:success];
 //        }];
-//    }
+    }
 }
 
 - (void)animationEnded:(BOOL)transitionCompleted {
@@ -259,6 +250,7 @@
     NSLog(@"viewDidLoad");
     // Do any additional setup after loading the view.
     self.animator = [[CPAnimationClass alloc] init];
+    
     self.transitioningDelegate = self;
 }
 
@@ -292,6 +284,10 @@
                                                                                                 presentingViewController:presenting];
     
     return presentationController;
+}
+
+- (void)dealloc {
+    NSLog(@"dealloc");
 }
 
 

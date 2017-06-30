@@ -42,4 +42,16 @@
     
 }
 
+//- (BOOL)shouldPerformSegueWithIdentifier:(NSString *)identifier sender:(id)sender {
+//    if ([identifier isEqualToString:@"segue_id_비교"]) {
+//        return NO;
+//    }
+//    return YES;
+//}
+//
+//- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
+//    segue.sourceViewController;
+//    segue.destinationViewController;
+//}
+
 @end

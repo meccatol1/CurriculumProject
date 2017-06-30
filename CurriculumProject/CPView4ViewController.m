@@ -14,6 +14,14 @@
 
 @implementation CPView4ViewController
 
+- (id)initWithCoder:(NSCoder *)aDecoder {
+    self = [super initWithCoder:aDecoder];
+    if (self) {
+        NSLog(@"initWithCoder");
+    }
+    return self;
+}
+
 - (void)viewDidLoad {
     [super viewDidLoad];
     NSLog(@"viewDidLoad");
@@ -25,9 +33,13 @@
     // 또한 이 클래스를 할당해주지 않으면, appDelegate에 물어본다~
 }
 
+- (void)viewWillAppear:(BOOL)animated {
+    [super viewWillAppear:animated];
+    NSLog(@"viewWillAppear");
+}
+
 - (void)viewDidAppear:(BOOL)animated {
     [super viewDidAppear:animated];
-    
     NSLog(@"viewDidAppear");
     
     NSLog(@"presenting VC = %@", self.presentingViewController);

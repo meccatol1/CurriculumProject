@@ -8,7 +8,7 @@
 
 #import "CPSplitViewController.h"
 
-#import "CPDetail_2_ViewController.h";
+#import "CPDetail_2_ViewController.h"
 
 @interface CPSplitViewController ()
 
@@ -40,7 +40,6 @@
     NSLog(@"self.traitCollection = %@", self.traitCollection);
 //    UITraitCollection *collection = self.traitCollection;
 //    collection.horizontalSizeClass == UIUserInterfaceSize
-    
 }
 
 - (void)traitCollectionDidChange:(UITraitCollection *)previousTraitCollection {
@@ -52,7 +51,7 @@
 - (void)selectIndex:(NSInteger)index {
     CPDetail_2_ViewController *controller = (CPDetail_2_ViewController *)
     [self.storyboard instantiateViewControllerWithIdentifier:@"CPDetail_2_ViewController"];
-    
+//    UIUserInterfaceIdiomPhone
     [self presentViewController:controller
                        animated:YES
                      completion:nil];

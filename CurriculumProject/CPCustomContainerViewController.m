@@ -11,6 +11,7 @@
 #import "CPCustomContent_3_ViewController.h"
 #import "CPCustomContent_4_ViewController.h"
 
+#pragma mark - CPCustomPresentationController : UIPresentationController
 @interface CPCustomPresentationController : UIPresentationController
 @property UIView *dimmingView;
 @end
@@ -46,6 +47,8 @@
     NSLog(@"presentationTransitionWillBegin");
     // Get critical information about the presentation.
     UIView* containerView = [self containerView];
+    NSLog(@"containerView = %@", containerView);
+    NSLog(@"containerView's superView = %@", containerView.superview);
     UIViewController* presentedViewController = [self presentedViewController];
     
     // Set the dimming view to the size of the container's
@@ -100,10 +103,20 @@
         [self.dimmingView removeFromSuperview];
 }
 
+//- (void)viewWillTransitionToSize:(CGSize)size withTransitionCoordinator:(id<UIViewControllerTransitionCoordinator>)coordinator {
+//    [super viewWillTransitionToSize:size withTransitionCoordinator:coordinator];
+//    
+//    [coordinator animateAlongsideTransition:^(id<UIViewControllerTransitionCoordinatorContext>  _Nonnull context) {
+//        
+//        [self.dimmingView setFrame:CGRectMake(0, 0, size.width, size.height)];
+//    } completion:^(id<UIViewControllerTransitionCoordinatorContext>  _Nonnull context) {
+//        
+//    }];
+//}
 
 @end
 
-
+#pragma mark - CPCustomPresentationObject<UIViewControllerTransitioningDelegate, UIViewControllerAnimatedTransitioning>
 @interface CPCustomPresentationObject : NSObject <UIViewControllerTransitioningDelegate, UIViewControllerAnimatedTransitioning>
 @property BOOL isDismissing;
 @end
@@ -145,8 +158,11 @@
                                        CGRectGetWidth(toVC_F_Frame),
                                        CGRectGetHeight(toVC_F_Frame))];
         
+        toVC.view.layer.transform = CATransform3DMakeScale(.8, .8, .8);
+        
         [UIView animateWithDuration:interval animations:^{
             [toVC.view setFrame:toVC_F_Frame];
+            toVC.view.layer.transform = CATransform3DIdentity;
         } completion:^(BOOL finished) {
             BOOL success = ![transitionContext transitionWasCancelled];
             NSLog(@"success = %@", success?@"YES":@"NO");
@@ -164,10 +180,13 @@
                                              CGRectGetMaxY(boundsOfContainer),
                                              CGRectGetWidth(fromVC_F_Frame),
                                              CGRectGetHeight(fromVC_F_Frame))];
+            
+            fromVC.view.layer.transform = CATransform3DMakeScale(.8, .8, .8);
         } completion:^(BOOL finished) {
             BOOL success = ![transitionContext transitionWasCancelled];
             NSLog(@"success = %@", success?@"YES":@"NO");
             if (success) {
+                fromVC.view.layer.transform = CATransform3DIdentity;
                 [fromVC.view removeFromSuperview];
             }else {
                 
@@ -208,7 +227,7 @@
 }
 @end
 
-
+#pragma mark - CPCustomContainerViewController
 @interface CPCustomContainerViewController ()
 
 @property CPCustomPresentationObject *presentationObject;
@@ -245,6 +264,7 @@
     CPCustomContent_4_ViewController *controller =
     [self.storyboard instantiateViewControllerWithIdentifier:@"CPCustomContent_4_ViewController"];
     controller.transitioningDelegate = self.presentationObject;
+    
     controller.modalPresentationStyle = UIModalPresentationCustom;
     
     [self presentViewController:controller

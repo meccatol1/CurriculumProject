@@ -275,7 +275,7 @@ handleEventsForBackgroundURLSession:(NSString *)identifier
     NSString *appVersion = [coder decodeObjectForKey:UIApplicationStateRestorationBundleVersionKey];
     NSNumber *idiom = [coder decodeObjectForKey:UIApplicationStateRestorationUserInterfaceIdiomKey];
     NSLog(@"%@, %@, %@, %@", osVersion, date, appVersion, idiom);
-    return YES;
+    return NO;
 }
 - (void)application:(UIApplication *)application didDecodeRestorableStateWithCoder:(NSCoder *)coder {
     NSLog(@"didDecodeRestorableStateWithCoder");
