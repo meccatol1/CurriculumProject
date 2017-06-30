@@ -161,7 +161,7 @@
                               delay:0
                             options:UIViewAnimationOptionCurveEaseOut
                          animations:^{
-                             fromVC.view.layer.transform = CATransform3DMakeScale(.1, .1, .1);
+                             fromVC.view.layer.transform = CATransform3DMakeScale(0.1, 0.1, 0.1);
                              [fromVC.view setAlpha:0.01f];
                          } completion:^(BOOL finished) {
                              [UIView animateWithDuration:interval/2.0

@@ -12,6 +12,8 @@
 #import "CPDetail_1_ViewController.h"
 #import "CPDetail_2_ViewController.h"
 
+#import "CPCustomContainerViewController.h"
+
 @interface CPMainTableViewCell : UITableViewCell
 
 @end
@@ -65,7 +67,7 @@
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
 //#warning Incomplete implementation, return the number of rows
-    return 5;
+    return 6;
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
@@ -84,7 +86,7 @@
     if (indexPath.row < 1) {
         CPSplitViewController *controller = (CPSplitViewController *)self.splitViewController;
         [controller selectIndex:indexPath.row];
-    }else {
+    }else if (indexPath.row < 5) {
         if (indexPath.row < 4) {
             CPDetail_2_ViewController *controller = (CPDetail_2_ViewController *)
             [self.storyboard instantiateViewControllerWithIdentifier:@"CPDetail_2_ViewController"];
@@ -107,6 +109,11 @@
             
             [self showDetailViewController:controller sender:self];
         }
+    }else {
+        CPCustomContainerViewController *customController =
+        [self.storyboard instantiateViewControllerWithIdentifier:@"CPCustomContainerViewController"];
+        
+        [UIApplication.sharedApplication.keyWindow setRootViewController:customController];
     }
 }
 

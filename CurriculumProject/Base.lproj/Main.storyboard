@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="12120" systemVersion="16F73" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="gXE-Fz-EMn">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="12120" systemVersion="16F73" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="nW2-kR-XKA">
     <device id="retina5_5" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
@@ -176,7 +176,7 @@
         <!--Custom Container View Controller-->
         <scene sceneID="g8e-6F-Dgo">
             <objects>
-                <viewController id="gXE-Fz-EMn" customClass="CPCustomContainerViewController" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="CPCustomContainerViewController" id="gXE-Fz-EMn" customClass="CPCustomContainerViewController" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="Hyz-GR-yqL"/>
                         <viewControllerLayoutGuide type="bottom" id="h4O-Fg-FE8"/>
