@@ -19,5 +19,6 @@
 #define NSLog( s, ... )
 #endif
 
+#define BLog(formatString, ...) NSLog((@"%s " formatString), __PRETTY_FUNCTION__, ##__VA_ARGS__);
 
 #endif /* PrefixHeader_pch */

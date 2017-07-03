@@ -96,6 +96,12 @@
 - (IBAction)buttonHandler:(UIButton *)sender {
     [self dismissViewControllerAnimated:YES completion:nil];
 }
+- (IBAction)storyboardButton1Handler:(UIButton *)sender {
+    [self dismissViewControllerAnimated:YES completion:nil];
+}
+- (IBAction)storyboardButton2Handler:(UIButton *)sender {
+    [self dismissViewControllerAnimated:YES completion:nil];
+}
 
 /*
 #pragma mark - Navigation
