@@ -111,25 +111,6 @@
     return YES;
 }
 
-- (void)application:(UIApplication *)application
-handleEventsForBackgroundURLSession:(NSString *)identifier
-  completionHandler:(void (^)())completionHandler {
-    
-//    NSURLSessionConfiguration *configuration =
-//    [NSURLSessionConfiguration backgroundSessionConfigurationWithIdentifier:@"bg_task"];
-//    
-//    NSURLSession *session =
-//    [NSURLSession sessionWithConfiguration:configuration
-//                                  delegate:[SubViewController sharedInstance]
-//                             delegateQueue:[NSOperationQueue mainQueue]];
-//    
-//    [session getTasksWithCompletionHandler:^(NSArray<NSURLSessionDataTask *> * _Nonnull dataTasks, NSArray<NSURLSessionUploadTask *> * _Nonnull uploadTasks, NSArray<NSURLSessionDownloadTask *> * _Nonnull downloadTasks) {
-//        
-//    }];
-//    completionHandler();
-}
-
-
 - (void)applicationWillResignActive:(UIApplication *)application {
     NSLog(@"applicationWillResignActive");
     // Sent when the application is about to move from active to inactive state. This can occur for certain types of temporary interruptions (such as an incoming phone call or SMS message) or when the user quits the application and it begins the transition to the background state.
@@ -258,6 +239,28 @@ handleEventsForBackgroundURLSession:(NSString *)identifier
     // Saves changes in the application's managed object context before the application terminates.
     [self saveContext];
 }
+#pragma mark - NSURLSession Background Task
+- (void)application:(UIApplication *)application
+handleEventsForBackgroundURLSession:(NSString *)identifier
+  completionHandler:(void (^)())completionHandler {
+    
+    NSURLSessionConfiguration *configuration =
+    [NSURLSessionConfiguration backgroundSessionConfigurationWithIdentifier:@"bg_task"];
+    
+    NSURLSession *session =
+    [NSURLSession sessionWithConfiguration:configuration
+                                  delegate:[SubViewController sharedInstance]
+                             delegateQueue:[NSOperationQueue mainQueue]];
+    
+    // CompletionHandler를 할당하지 않고 delegate 할당해서 사용해야 한다~
+    // 또한 지금 이 코드가 먹히는것도 아님
+    [session getTasksWithCompletionHandler:^(NSArray<NSURLSessionDataTask *> * _Nonnull dataTasks, NSArray<NSURLSessionUploadTask *> * _Nonnull uploadTasks, NSArray<NSURLSessionDownloadTask *> * _Nonnull downloadTasks) {
+        
+    }];
+    
+    completionHandler();
+}
+
 #pragma mark - Preserve & Restore
 - (BOOL)application:(UIApplication *)application shouldSaveApplicationState:(NSCoder *)coder {
 //    [coder decodeObjectForKey:UIApplicationStateRestoration]

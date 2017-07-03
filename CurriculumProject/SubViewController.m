@@ -20,6 +20,10 @@
 static SubViewController *singleTon = nil;
 
 + (SubViewController *)sharedInstance {
+    static dispatch_once_t onceToken;
+    dispatch_once(&onceToken, ^{
+        singleTon = [[SubViewController alloc] init];
+    });
     return singleTon;
 }
 
@@ -34,6 +38,8 @@ static SubViewController *singleTon = nil;
     
     NSLog(@"presenting VC = %@", self.presentingViewController);
     NSLog(@"presented VC = %@", self.presentedViewController);
+    
+    
 }
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
@@ -94,7 +100,6 @@ static SubViewController *singleTon = nil;
 }
 
 - (void)task {
-    
     NSURLSessionConfiguration *configuration =
     [NSURLSessionConfiguration backgroundSessionConfigurationWithIdentifier:@"bg_task"];
     
@@ -109,6 +114,15 @@ static SubViewController *singleTon = nil;
                completionHandler:^(NSData * _Nullable data, NSURLResponse * _Nullable response, NSError * _Nullable error) {
                     // complete
                }];
+}
+
+#pragma mark - NSURLSessionDelegate Methods
+- (void)URLSessionDidFinishEventsForBackgroundURLSession:(NSURLSession *)session {
     
 }
+
+- (void)URLSession:(NSURLSession *)session downloadTask:(NSURLSessionDownloadTask *)downloadTask didFinishDownloadingToURL:(NSURL *)location {
+    
+}
+
 @end

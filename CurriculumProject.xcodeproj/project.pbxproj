@@ -17,6 +17,7 @@
 		354F2C001EE71ABF006933C6 /* CPInputThread.m in Sources */ = {isa = PBXBuildFile; fileRef = 354F2BFF1EE71ABF006933C6 /* CPInputThread.m */; };
 		354F2C031EE721BE006933C6 /* CPPortThread.m in Sources */ = {isa = PBXBuildFile; fileRef = 354F2C021EE721BE006933C6 /* CPPortThread.m */; };
 		357D01EB1F05515C00270D2F /* CPCustomContent_4_ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 357D01EA1F05515C00270D2F /* CPCustomContent_4_ViewController.m */; };
+		3590F8081F094F7300D66952 /* CPMainSessionViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3590F8071F094F7300D66952 /* CPMainSessionViewController.m */; };
 		35A1FACE1F03E3F000C14873 /* CPSplitViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 35A1FACD1F03E3F000C14873 /* CPSplitViewController.m */; };
 		35A1FAD11F03E41900C14873 /* CPMainTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 35A1FAD01F03E41900C14873 /* CPMainTableViewController.m */; };
 		35A1FAD41F03E42F00C14873 /* CPDetail_1_ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 35A1FAD31F03E42F00C14873 /* CPDetail_1_ViewController.m */; };
@@ -75,6 +76,8 @@
 		354F2C021EE721BE006933C6 /* CPPortThread.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CPPortThread.m; sourceTree = "<group>"; };
 		357D01E91F05515C00270D2F /* CPCustomContent_4_ViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CPCustomContent_4_ViewController.h; sourceTree = "<group>"; };
 		357D01EA1F05515C00270D2F /* CPCustomContent_4_ViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CPCustomContent_4_ViewController.m; sourceTree = "<group>"; };
+		3590F8061F094F7300D66952 /* CPMainSessionViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CPMainSessionViewController.h; sourceTree = "<group>"; };
+		3590F8071F094F7300D66952 /* CPMainSessionViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CPMainSessionViewController.m; sourceTree = "<group>"; };
 		35A1FACC1F03E3F000C14873 /* CPSplitViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CPSplitViewController.h; sourceTree = "<group>"; };
 		35A1FACD1F03E3F000C14873 /* CPSplitViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CPSplitViewController.m; sourceTree = "<group>"; };
 		35A1FACF1F03E41900C14873 /* CPMainTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CPMainTableViewController.h; sourceTree = "<group>"; };
@@ -168,6 +171,15 @@
 			name = Threads;
 			sourceTree = "<group>";
 		};
+		3590F8051F094F4400D66952 /* URLSession */ = {
+			isa = PBXGroup;
+			children = (
+				3590F8061F094F7300D66952 /* CPMainSessionViewController.h */,
+				3590F8071F094F7300D66952 /* CPMainSessionViewController.m */,
+			);
+			name = URLSession;
+			sourceTree = "<group>";
+		};
 		35A1FACB1F03E3BA00C14873 /* Transition&Presentation */ = {
 			isa = PBXGroup;
 			children = (
@@ -238,6 +250,7 @@
 				76131FE91ECA973500CBA227 /* Main.storyboard */,
 				76131FE31ECA973500CBA227 /* AppDelegate.h */,
 				76131FE41ECA973500CBA227 /* AppDelegate.m */,
+				3590F8051F094F4400D66952 /* URLSession */,
 				35ADC91C1F053B3E005D835B /* CustomContainer&Context&Presentation */,
 				35A1FACB1F03E3BA00C14873 /* Transition&Presentation */,
 				76DDC8DE1EEFEE7C006962C5 /* SnapShotViewController.h */,
@@ -456,6 +469,7 @@
 				35A1FAD41F03E42F00C14873 /* CPDetail_1_ViewController.m in Sources */,
 				76131FE51ECA973500CBA227 /* AppDelegate.m in Sources */,
 				761015B91F04EE5B005663A9 /* CPPopoverEnableDelegateObject.m in Sources */,
+				3590F8081F094F7300D66952 /* CPMainSessionViewController.m in Sources */,
 				35A1FAD71F03FA3900C14873 /* CPCustomAnimationViewController.m in Sources */,
 				76131FE21ECA973500CBA227 /* main.m in Sources */,
 				35ADC9281F053BA4005D835B /* CPCustomContent_3_ViewController.m in Sources */,

@@ -148,6 +148,11 @@ typedef struct example {
 - (void)viewDidLoad {
     [super viewDidLoad];
     
+    NSString *cachesDirectory = NSSearchPathForDirectoriesInDomains(NSCachesDirectory, NSUserDomainMask, YES).firstObject;
+    NSString *cachePath = [cachesDirectory stringByAppendingPathComponent:@"MyCache"];
+    NSLog(@"cachesDirectory = %@", cachesDirectory);
+    NSLog(@"cachePath = %@", cachePath);
+    
 //    NSLog(@"%@", [NSThread currentThread]);
     
     
