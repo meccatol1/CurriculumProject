@@ -18,6 +18,160 @@ typedef void (^CompletionHandler)();
 
 @implementation MySessionDelegate
 
+- (void)URLSession:(NSURLSession *)session 
+          dataTask:(NSURLSessionDataTask *)dataTask 
+    didReceiveData:(NSData *)data {
+    BLog();
+}
+
+- (void)URLSession:(NSURLSession *)session task:(NSURLSessionTask *)task didCompleteWithError:(NSError *)error
+{
+    BLog();
+    
+    if (error == nil)
+    {
+        NSLog(@"Task: %@ completed successfully", task);
+    }
+    else
+    {
+        NSLog(@"Task: %@ completed with error: %@", task, [error localizedDescription]);
+        
+    }
+    
+//    double progress = (double)task.countOfBytesReceived / (double)task.countOfBytesExpectedToReceive;
+//    dispatch_async(dispatch_get_main_queue(), ^{
+//        self.progressView.progress = progress;
+//    });
+    
+//    self.downloadTask = nil;
+}
+
+#pragma mark Download Task
+- (void)URLSession:(NSURLSession *)session downloadTask:(NSURLSessionDownloadTask *)downloadTask didWriteData:(int64_t)bytesWritten totalBytesWritten:(int64_t)totalBytesWritten totalBytesExpectedToWrite:(int64_t)totalBytesExpectedToWrite
+{
+    BLog();
+    
+    /*
+     Report progress on the task.
+     If you created more than one task, you might keep references to them and report on them individually.
+     */
+    
+    if (YES) // || downloadTask == self.downloadTask)
+    {
+        double progress = (double)totalBytesWritten / (double)totalBytesExpectedToWrite;
+        BLog(@"DownloadTask: %@ progress: %lf", downloadTask, progress);
+//        dispatch_async(dispatch_get_main_queue(), ^{
+//            self.progressView.progress = progress;
+//        });
+    }
+}
+
+
+- (void)URLSession:(NSURLSession *)session downloadTask:(NSURLSessionDownloadTask *)downloadTask didFinishDownloadingToURL:(NSURL *)downloadURL
+{
+    BLog();
+    
+    /*
+     The download completed, you need to copy the file at targetPath before the end of this block.
+     As an example, copy the file to the Documents directory of your app.
+     */
+    NSFileManager *fileManager = [NSFileManager defaultManager];
+    
+    NSArray *URLs = [fileManager URLsForDirectory:NSDocumentDirectory inDomains:NSUserDomainMask];
+    NSURL *documentsDirectory = [URLs objectAtIndex:0];
+    
+    NSURL *originalURL = [[downloadTask originalRequest] URL];
+    NSURL *destinationURL = [documentsDirectory URLByAppendingPathComponent:[originalURL lastPathComponent]];
+    NSError *errorCopy;
+    
+    // For the purposes of testing, remove any esisting file at the destination.
+    [fileManager removeItemAtURL:destinationURL error:NULL];
+    BOOL success = [fileManager copyItemAtURL:downloadURL toURL:destinationURL error:&errorCopy];
+    
+    if (success)
+    {
+//        dispatch_async(dispatch_get_main_queue(), ^{
+//            UIImage *image = [UIImage imageWithContentsOfFile:[destinationURL path]];
+//            self.imageView.image = image;
+//            self.imageView.hidden = NO;
+//            self.progressView.hidden = YES;
+//        });
+    }
+    else
+    {
+        /*
+         In the general case, what you might do in the event of failure depends on the error and the specifics of your application.
+         */
+        BLog(@"Error during the copy: %@", [errorCopy localizedDescription]);
+    }
+}
+
+
+- (void)URLSession:(NSURLSession *)session
+      downloadTask:(NSURLSessionDownloadTask *)downloadTask
+ didResumeAtOffset:(int64_t)fileOffset
+expectedTotalBytes:(int64_t)expectedTotalBytes
+{
+    NSLog(@"Session %@ download task %@ resumed at offset %lld bytes out of an expected %lld bytes.\n", session, downloadTask, fileOffset, expectedTotalBytes);
+}
+
+//- (void)URLSession:(NSURLSession *)session
+//      downloadTask:(NSURLSessionDownloadTask *)downloadTask
+//didFinishDownloadingToURL:(NSURL *)location
+//{
+//    NSLog(@"Session %@ download task %@ finished downloading to URL %@\n", session, downloadTask, location);
+//
+//    // Perform the completion handler for the current session
+//    self.completionHandlers[session.configuration.identifier]();
+//
+//    // Open the downloaded file for reading
+//    NSError *readError = nil;
+//    NSFileHandle *fileHandle = [NSFileHandle fileHandleForReadingFromURL:location error:readError];
+//    // ...
+//
+//    // Move the file to a new URL
+//    NSFileManager *fileManager = [NSFileManager defaultManager];
+//    NSURL *cacheDirectory = [[fileManager URLsForDirectory:NSCachesDirectory inDomains:NSUserDomainMask] firstObject];
+//    NSError *moveError = nil;
+//    if ([fileManager moveItemAtURL:location toURL:cacheDirectory error:moveError]) {
+//        // ...
+//    }
+//}
+
+
+#pragma mark Upload Task
+- (void)URLSession:(NSURLSession *)session
+              task:(NSURLSessionTask *)task
+   didSendBodyData:(int64_t)bytesSent
+    totalBytesSent:(int64_t)totalBytesSent totalBytesExpectedToSend:(int64_t)totalBytesExpectedToSend {
+    // 얼마나 보냈는지 진행상태~ 업로드 3 종류에 상관없이 Progress 정보 얻을 수 있음
+    
+}
+
+- (void)URLSession:(NSURLSession *)session
+              task:(NSURLSessionTask *)task
+ needNewBodyStream:(void (^)(NSInputStream *bodyStream))completionHandler {
+    
+}
+
+
+#pragma mark Authentication
+- (void)URLSession:(NSURLSession *)session 
+              task:(NSURLSessionTask *)task 
+didReceiveChallenge:(NSURLAuthenticationChallenge *)challenge 
+ completionHandler:(void (^)(NSURLSessionAuthChallengeDisposition disposition, NSURLCredential *credential))completionHandler; {
+    
+}
+
+#pragma mark Redirection
+- (void)URLSession:(NSURLSession *)session
+              task:(NSURLSessionTask *)task
+willPerformHTTPRedirection:(NSHTTPURLResponse *)response // status code
+        newRequest:(NSURLRequest *)request
+ completionHandler:(void (^)(NSURLRequest *))completionHandler {
+//    [task cancel];
+}
+
 @end
 
 @interface CPMainSessionViewController ()
@@ -30,7 +184,13 @@ typedef void (^CompletionHandler)();
     [super viewDidLoad];
     // Do any additional setup after loading the view.
     
-    [self urlSessionTest];
+    NSURL *URL = [NSURL URLWithString:@"https://example.com/#color-%23708090/fnffnfkffk"];
+    NSURLComponents *components = [NSURLComponents componentsWithURL:URL resolvingAgainstBaseURL:NO];
+    
+    NSString *fragment = components.fragment;
+    NSLog(@"%@", fragment); // prints "color-#708090"
+    
+//    [self urlSessionTest];
 }
 
 - (void)didReceiveMemoryWarning {
@@ -77,6 +237,73 @@ typedef void (^CompletionHandler)();
     
     ephemeralConfiguration.allowsCellularAccess = NO;
     NSURLSession *ephemeralSessionWiFiOnly = [NSURLSession sessionWithConfiguration:ephemeralConfiguration delegate:delegate delegateQueue:operationQueue];
+    
+    //// download
+    NSURL *url = [NSURL URLWithString: @"https://www.example.com/"];
+    NSURLSessionDataTask *dataTask = [defaultSession dataTaskWithURL:url];
+    [dataTask resume];
+    
+    [defaultSession downloadTaskWithResumeData:nil];
+    
+    NSURL *url2 = [NSURL URLWithString:@"https://developer.apple.com/library/ios/documentation/Cocoa/Reference/Foundation/ObjC_classic/FoundationObjC.pdf"];
+    NSURLSessionDownloadTask *downloadTask = [backgroundSession downloadTaskWithURL:url2];
+    [downloadTask resume];
+    
+    //// upload Body Content
+    {
+        NSURL *textFileURL = [NSURL fileURLWithPath:@"/path/to/file.txt"];
+        NSData *data = [NSData dataWithContentsOfURL:textFileURL];
+        
+        NSURL *url = [NSURL URLWithString:@"https://www.example.com/"];
+        NSMutableURLRequest *mutableRequest = [NSMutableURLRequest requestWithURL:url];
+        mutableRequest.HTTPMethod = @"POST";
+        [mutableRequest setValue:[NSString stringWithFormat:@"%lld", data.length] forHTTPHeaderField:@"Content-Length"];
+        [mutableRequest setValue:@"text/plain" forHTTPHeaderField:@"Content-Type"];
+        
+        NSURLSessionUploadTask *uploadTask = [defaultSession uploadTaskWithRequest:mutableRequest fromData:data];
+        [uploadTask resume];
+    }
+    //// upload file
+    {
+        NSURL *textFileURL = [NSURL fileURLWithPath:@"/path/to/file.txt"];
+        
+        NSURL *url = [NSURL URLWithString:@"https://www.example.com/"];
+        NSMutableURLRequest *mutableRequest = [NSMutableURLRequest requestWithURL:url];
+        mutableRequest.HTTPMethod = @"POST";
+        
+        NSURLSessionUploadTask *uploadTask = [defaultSession uploadTaskWithRequest:mutableRequest fromFile:textFileURL];
+        [uploadTask resume];
+    }
+    
+    //// uploadWithStream
+    {
+        NSURL *textFileURL = [NSURL fileURLWithPath:@"/path/to/file.txt"];
+        NSData *dataWithFile = [NSData dataWithContentsOfFile:textFileURL.absoluteString];
+        
+        NSURL *uploadUrl = [NSURL URLWithString:@"https://www.example.com/"];
+        NSMutableURLRequest *mutableRequest = [NSMutableURLRequest requestWithURL:uploadUrl];
+        mutableRequest.HTTPMethod = @"POST";
+        mutableRequest.HTTPBodyStream = [NSInputStream inputStreamWithFileAtPath:textFileURL.path];
+        [mutableRequest setValue:@"text/plain" forHTTPHeaderField:@"Content-Type"];
+        [mutableRequest setValue:[NSString stringWithFormat:@"%lu", dataWithFile.length] forHTTPHeaderField:@"Content-Length"];
+        
+        NSURLSessionUploadTask *uploadTask = [defaultSession uploadTaskWithStreamedRequest:mutableRequest];
+        [uploadTask resume];
+    }
+    
+    {
+//        NSString *url = [@"asdf/asdf" stringByAddingPercentEscapesUsingEncoding:<#(NSStringEncoding)#>]
+        
+        NSURL *URL = [NSURL URLWithString:@"https://example.com/#color-%23708090"];
+        NSURLComponents *components = [NSURLComponents componentsWithURL:URL resolvingAgainstBaseURL:NO];
+        
+        NSString *fragment = components.fragment;
+        NSLog(@"%@", fragment); // prints "color-#708090"
+    }
+}
+
+- (void)uploadWithStream {
+    
 }
 
 /*

@@ -135,8 +135,7 @@
 - (IBAction)testViewButtonHandler:(UIButton *)sender {
 //    TestViewController *testController = [[TestViewController alloc] init];
     
-    TestViewController *testController = [[TestViewController alloc] initWithNibName:@"TestViewController"
-                                                                              bundle:nil];
+    
     
 //    NSLog(@"array = %@", [[NSBundle mainBundle] loadNibNamed:@"TestViewController"
 //                                                       owner:[TestViewController class]
@@ -145,11 +144,14 @@
 //    [[[NSBundle mainBundle] loadNibNamed:@"TestViewController"
 //                                   owner:[TestViewController class]
 //                                 options:nil] objectAtIndex:0];
+//    TestViewController *testController = [[TestViewController alloc] initWithNibName:@"TestViewController"
+//                                                                              bundle:nil];
+    TestViewController *testController = [[TestViewController alloc] init];
     NSLog(@"testController = %@", testController);
     NSLog(@"testController.view = %@", testController.view);
     
     [self showViewController:testController sender:self];
-    [self showDetailViewController:testController sender:self];
+//    [self showDetailViewController:testController sender:self];
 }
 
 - (void)showViewController:(UIViewController *)vc sender:(id)sender {
