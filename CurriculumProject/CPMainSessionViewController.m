@@ -26,55 +26,80 @@ typedef void (^CompletionHandler)();
 
 - (void)URLSession:(NSURLSession *)session task:(NSURLSessionTask *)task didCompleteWithError:(NSError *)error
 {
-    BLog();
-    
-    if (error == nil)
-    {
+    if (error == nil) {
         NSLog(@"Task: %@ completed successfully", task);
-    }
-    else
-    {
+    } else {
         NSLog(@"Task: %@ completed with error: %@", task, [error localizedDescription]);
-        
     }
-    
 //    double progress = (double)task.countOfBytesReceived / (double)task.countOfBytesExpectedToReceive;
 //    dispatch_async(dispatch_get_main_queue(), ^{
 //        self.progressView.progress = progress;
 //    });
-    
 //    self.downloadTask = nil;
 }
 
+//- (void)URLSession:(NSURLSession *)session task:(NSURLSessionTask *)task didCompleteWithError:(NSError *)error
+//{
+//    BLog();
+//    
+//    if (error == nil)
+//    {
+//        NSLog(@"Task: %@ completed successfully", task);
+//    }
+//    else
+//    {
+//        NSLog(@"Task: %@ completed with error: %@", task, [error localizedDescription]);
+//        
+//    }
+//    
+////    double progress = (double)task.countOfBytesReceived / (double)task.countOfBytesExpectedToReceive;
+////    dispatch_async(dispatch_get_main_queue(), ^{
+////        self.progressView.progress = progress;
+////    });
+//    
+////    self.downloadTask = nil;
+//}
+
 #pragma mark Download Task
-- (void)URLSession:(NSURLSession *)session downloadTask:(NSURLSessionDownloadTask *)downloadTask didWriteData:(int64_t)bytesWritten totalBytesWritten:(int64_t)totalBytesWritten totalBytesExpectedToWrite:(int64_t)totalBytesExpectedToWrite
+
+- (void)URLSession:(NSURLSession *)session
+      downloadTask:(NSURLSessionDownloadTask *)downloadTask
+      didWriteData:(int64_t)bytesWritten
+ totalBytesWritten:(int64_t)totalBytesWritten totalBytesExpectedToWrite:(int64_t)totalBytesExpectedToWrite
 {
-    BLog();
-    
-    /*
-     Report progress on the task.
-     If you created more than one task, you might keep references to them and report on them individually.
-     */
-    
-    if (YES) // || downloadTask == self.downloadTask)
-    {
-        double progress = (double)totalBytesWritten / (double)totalBytesExpectedToWrite;
-        BLog(@"DownloadTask: %@ progress: %lf", downloadTask, progress);
+//    if (downloadTask == self.downloadTask)
+//    {
+//        double progress = (double)totalBytesWritten / (double)totalBytesExpectedToWrite;
+//        NSLog(@"DownloadTask: %@ progress: %lf", downloadTask, progress);
 //        dispatch_async(dispatch_get_main_queue(), ^{
 //            self.progressView.progress = progress;
 //        });
-    }
+//    }
 }
 
+//- (void)URLSession:(NSURLSession *)session downloadTask:(NSURLSessionDownloadTask *)downloadTask didWriteData:(int64_t)bytesWritten totalBytesWritten:(int64_t)totalBytesWritten totalBytesExpectedToWrite:(int64_t)totalBytesExpectedToWrite
+//{
+//    BLog();
+//    
+//    /*
+//     Report progress on the task.
+//     If you created more than one task, you might keep references to them and report on them individually.
+//     */
+//    
+//    if (YES) // || downloadTask == self.downloadTask)
+//    {
+//        double progress = (double)totalBytesWritten / (double)totalBytesExpectedToWrite;
+//        BLog(@"DownloadTask: %@ progress: %lf", downloadTask, progress);
+//        dispatch_async(dispatch_get_main_queue(), ^{
+//            self.progressView.progress = progress;
+//        });
+//    }
+//}
 
-- (void)URLSession:(NSURLSession *)session downloadTask:(NSURLSessionDownloadTask *)downloadTask didFinishDownloadingToURL:(NSURL *)downloadURL
+
+- (void)URLSession:(NSURLSession *)session
+      downloadTask:(NSURLSessionDownloadTask *)downloadTask didFinishDownloadingToURL:(NSURL *)downloadURL
 {
-    BLog();
-    
-    /*
-     The download completed, you need to copy the file at targetPath before the end of this block.
-     As an example, copy the file to the Documents directory of your app.
-     */
     NSFileManager *fileManager = [NSFileManager defaultManager];
     
     NSArray *URLs = [fileManager URLsForDirectory:NSDocumentDirectory inDomains:NSUserDomainMask];
@@ -82,29 +107,61 @@ typedef void (^CompletionHandler)();
     
     NSURL *originalURL = [[downloadTask originalRequest] URL];
     NSURL *destinationURL = [documentsDirectory URLByAppendingPathComponent:[originalURL lastPathComponent]];
-    NSError *errorCopy;
     
-    // For the purposes of testing, remove any esisting file at the destination.
-    [fileManager removeItemAtURL:destinationURL error:NULL];
+    NSError *errorCopy;
     BOOL success = [fileManager copyItemAtURL:downloadURL toURL:destinationURL error:&errorCopy];
     
-    if (success)
-    {
+    if (success) {
 //        dispatch_async(dispatch_get_main_queue(), ^{
 //            UIImage *image = [UIImage imageWithContentsOfFile:[destinationURL path]];
 //            self.imageView.image = image;
 //            self.imageView.hidden = NO;
 //            self.progressView.hidden = YES;
 //        });
-    }
-    else
-    {
-        /*
-         In the general case, what you might do in the event of failure depends on the error and the specifics of your application.
-         */
-        BLog(@"Error during the copy: %@", [errorCopy localizedDescription]);
+    } else {
+        NSLog(@"Error during the copy: %@", [errorCopy localizedDescription]);
     }
 }
+
+//- (void)URLSession:(NSURLSession *)session
+//      downloadTask:(NSURLSessionDownloadTask *)downloadTask didFinishDownloadingToURL:(NSURL *)downloadURL
+//{
+//    BLog();
+//    
+//    /*
+//     The download completed, you need to copy the file at targetPath before the end of this block.
+//     As an example, copy the file to the Documents directory of your app.
+//     */
+//    NSFileManager *fileManager = [NSFileManager defaultManager];
+//    
+//    NSArray *URLs = [fileManager URLsForDirectory:NSDocumentDirectory inDomains:NSUserDomainMask];
+//    NSURL *documentsDirectory = [URLs objectAtIndex:0];
+//    
+//    NSURL *originalURL = [[downloadTask originalRequest] URL];
+//    NSURL *destinationURL = [documentsDirectory URLByAppendingPathComponent:[originalURL lastPathComponent]];
+//    NSError *errorCopy;
+//    
+//    // For the purposes of testing, remove any esisting file at the destination.
+//    [fileManager removeItemAtURL:destinationURL error:NULL];
+//    BOOL success = [fileManager copyItemAtURL:downloadURL toURL:destinationURL error:&errorCopy];
+//    
+//    if (success)
+//    {
+////        dispatch_async(dispatch_get_main_queue(), ^{
+////            UIImage *image = [UIImage imageWithContentsOfFile:[destinationURL path]];
+////            self.imageView.image = image;
+////            self.imageView.hidden = NO;
+////            self.progressView.hidden = YES;
+////        });
+//    }
+//    else
+//    {
+//        /*
+//         In the general case, what you might do in the event of failure depends on the error and the specifics of your application.
+//         */
+//        BLog(@"Error during the copy: %@", [errorCopy localizedDescription]);
+//    }
+//}
 
 
 - (void)URLSession:(NSURLSession *)session
@@ -190,7 +247,7 @@ willPerformHTTPRedirection:(NSHTTPURLResponse *)response // status code
     NSString *fragment = components.fragment;
     NSLog(@"%@", fragment); // prints "color-#708090"
     
-//    [self urlSessionTest];
+    [self urlSessionTest];
 }
 
 - (void)didReceiveMemoryWarning {
@@ -202,6 +259,10 @@ willPerformHTTPRedirection:(NSHTTPURLResponse *)response // status code
     NSURLSessionConfiguration *defaultConfiguration = [NSURLSessionConfiguration defaultSessionConfiguration];
     NSURLSessionConfiguration *ephemeralConfiguration = [NSURLSessionConfiguration ephemeralSessionConfiguration];
     NSURLSessionConfiguration *backgroundConfiguration = [NSURLSessionConfiguration backgroundSessionConfigurationWithIdentifier: @"com.myapp.networking.background"];
+    
+    NSLog(@"defaultConfiguration %@, %@", defaultConfiguration, defaultConfiguration.identifier);
+    NSLog(@"ephemeralConfiguration %@, %@", ephemeralConfiguration, ephemeralConfiguration.identifier);
+    NSLog(@"backgroundConfiguration %@, %@", backgroundConfiguration, backgroundConfiguration.identifier);
     
     NSString *cachesDirectory = NSSearchPathForDirectoriesInDomains(NSCachesDirectory, NSUserDomainMask, YES).firstObject;
     NSString *cachePath = [cachesDirectory stringByAppendingPathComponent:@"MyCache"];
@@ -219,15 +280,14 @@ willPerformHTTPRedirection:(NSHTTPURLResponse *)response // status code
     defaultConfiguration.URLCache = cache;
     defaultConfiguration.requestCachePolicy = NSURLRequestUseProtocolCachePolicy;
     
+    return;
+    
     id <NSURLSessionDelegate> delegate = [[MySessionDelegate alloc] init];
     NSOperationQueue *operationQueue = [NSOperationQueue mainQueue];
 
     NSURLSession *defaultSession = [NSURLSession sessionWithConfiguration:defaultConfiguration
                                                                  delegate:delegate
                                                             delegateQueue:operationQueue];
-//    NSURLSession *defaultSession = [NSURLSession sessionWithConfiguration:defaultConfiguration
-//                                                                 delegate:delegate
-//                                                           operationQueue:operationQueue];
     NSURLSession *ephemeralSession = [NSURLSession sessionWithConfiguration:ephemeralConfiguration
                                                                    delegate:delegate
                                                               delegateQueue:operationQueue];
@@ -248,6 +308,13 @@ willPerformHTTPRedirection:(NSHTTPURLResponse *)response // status code
     NSURL *url2 = [NSURL URLWithString:@"https://developer.apple.com/library/ios/documentation/Cocoa/Reference/Foundation/ObjC_classic/FoundationObjC.pdf"];
     NSURLSessionDownloadTask *downloadTask = [backgroundSession downloadTaskWithURL:url2];
     [downloadTask resume];
+    
+//    __block NSData *dataToResume = nil;
+//    [downloadTask cancelByProducingResumeData:^(NSData * _Nullable resumeData) {
+//        dataToResume = resumeData;
+//    }];
+//    
+//    NSURLSessionDownloadTask *downloadTask2 = [defaultSession downloadTaskWithResumeData:dataToResume];
     
     //// upload Body Content
     {
