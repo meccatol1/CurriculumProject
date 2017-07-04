@@ -103,16 +103,16 @@
         [self.dimmingView removeFromSuperview];
 }
 
-- (void)viewWillTransitionToSize:(CGSize)size withTransitionCoordinator:(id<UIViewControllerTransitionCoordinator>)coordinator {
-    [super viewWillTransitionToSize:size withTransitionCoordinator:coordinator];
-    
-    [coordinator animateAlongsideTransition:^(id<UIViewControllerTransitionCoordinatorContext>  _Nonnull context) {
-        
-        [self.dimmingView setFrame:CGRectMake(0, 0, size.width, size.height)];
-    } completion:^(id<UIViewControllerTransitionCoordinatorContext>  _Nonnull context) {
-        
-    }];
-}
+//- (void)viewWillTransitionToSize:(CGSize)size withTransitionCoordinator:(id<UIViewControllerTransitionCoordinator>)coordinator {
+//    [super viewWillTransitionToSize:size withTransitionCoordinator:coordinator];
+//    
+//    [coordinator animateAlongsideTransition:^(id<UIViewControllerTransitionCoordinatorContext>  _Nonnull context) {
+//        
+//        [self.dimmingView setFrame:CGRectMake(0, 0, size.width, size.height)];
+//    } completion:^(id<UIViewControllerTransitionCoordinatorContext>  _Nonnull context) {
+//        
+//    }];
+//}
 
 @end
 
@@ -264,7 +264,6 @@
     CPCustomContent_4_ViewController *controller =
     [self.storyboard instantiateViewControllerWithIdentifier:@"CPCustomContent_4_ViewController"];
     controller.transitioningDelegate = self.presentationObject;
-    
     controller.modalPresentationStyle = UIModalPresentationCustom;
     
     [self presentViewController:controller

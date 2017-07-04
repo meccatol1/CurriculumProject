@@ -45,16 +45,16 @@
     NSLog(@"willTransitionToTraitCollection = %@", newCollection);
 }
 
-- (void)viewWillTransitionToSize:(CGSize)size
-       withTransitionCoordinator:(id<UIViewControllerTransitionCoordinator>)coordinator {
-    NSLog(@"viewWillTransitionToSize = %@", NSStringFromCGSize(size));
-    
-    [coordinator animateAlongsideTransition:^(id<UIViewControllerTransitionCoordinatorContext> context) {
-        [self.view setFrame:CGRectMake(0, size.height/2.0, size.width, size.height/2.0)];
-    } completion:^(id<UIViewControllerTransitionCoordinatorContext>  _Nonnull context) {
-        
-    }];
-}
+//- (void)viewWillTransitionToSize:(CGSize)size
+//       withTransitionCoordinator:(id<UIViewControllerTransitionCoordinator>)coordinator {
+//    NSLog(@"viewWillTransitionToSize = %@", NSStringFromCGSize(size));
+//    
+//    [coordinator animateAlongsideTransition:^(id<UIViewControllerTransitionCoordinatorContext> context) {
+//        [self.view setFrame:CGRectMake(0, size.height/2.0, size.width, size.height/2.0)];
+//    } completion:^(id<UIViewControllerTransitionCoordinatorContext>  _Nonnull context) {
+//        
+//    }];
+//}
 
 - (void)traitCollectionDidChange:(UITraitCollection *)previousTraitCollection {
     NSLog(@"traitCollectionDidChange, previous = %@", previousTraitCollection);

@@ -255,6 +255,7 @@ willPerformHTTPRedirection:(NSHTTPURLResponse *)response // status code
     NSString *fragment = components.fragment;
     NSLog(@"%@", fragment); // prints "color-#708090"
 //    [self urlSessionTest];
+}
 
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
