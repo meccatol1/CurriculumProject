@@ -184,12 +184,19 @@ willPerformHTTPRedirection:(NSHTTPURLResponse *)response // status code
     [super viewDidLoad];
     // Do any additional setup after loading the view.
     
-    NSURL *URL = [NSURL URLWithString:@"https://example.com/#color-%23708090/fnffnfkffk"];
+    NSString *originalString = @"color-#708090";
+    NSCharacterSet *allowedCharacters = [NSCharacterSet URLFragmentAllowedCharacterSet];
+    NSString *percentEncodedString = [originalString stringByAddingPercentEncodingWithAllowedCharacters:allowedCharacters];
+    NSLog(@"%@", percentEncodedString);  // prints "color-%23708090"
+    NSString *decodedFragment = [percentEncodedString stringByRemovingPercentEncoding];
+    NSLog(@"%@", decodedFragment);
+    
+    NSURL *URL = [NSURL URLWithString:@"https://example.com/#color-%23708090"];
+    NSLog(@"url string = %@", URL.absoluteString);
     NSURLComponents *components = [NSURLComponents componentsWithURL:URL resolvingAgainstBaseURL:NO];
     
     NSString *fragment = components.fragment;
     NSLog(@"%@", fragment); // prints "color-#708090"
-    
 //    [self urlSessionTest];
 }
 
