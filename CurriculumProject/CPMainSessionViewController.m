@@ -8,6 +8,7 @@
 
 #import "CPMainSessionViewController.h"
 
+// 이 클래스는 단순히 프로토콜 메서드 확인용
 typedef void (^CompletionHandler)();
 
 @interface MySessionDelegate : NSObject <NSURLSessionDelegate, NSURLSessionTaskDelegate, NSURLSessionDataDelegate, NSURLSessionDownloadDelegate, NSURLSessionStreamDelegate>
@@ -231,7 +232,19 @@ willPerformHTTPRedirection:(NSHTTPURLResponse *)response // status code
 
 @end
 
-@interface CPMainSessionViewController ()
+@interface CPMainSessionViewController () <NSURLSessionDownloadDelegate, NSURLSessionDataDelegate>
+@property (strong) NSURLSessionConfiguration *defaultConfiguration;
+@property (strong) NSURLSession *defaultSession;
+@property (strong) NSURLRequest *request;
+
+@property BOOL isDownloading;
+@property (strong) NSURLSessionDataTask *dataTask;
+@property (strong) NSURLSessionDownloadTask *downloadTask;
+@property (strong) NSData *resumeData;
+
+@property (weak, nonatomic) IBOutlet UIButton *startButton;
+@property (weak, nonatomic) IBOutlet UIProgressView *progressView;
+@property (weak, nonatomic) IBOutlet UIImageView *imageView;
 
 @end
 
@@ -241,19 +254,56 @@ willPerformHTTPRedirection:(NSHTTPURLResponse *)response // status code
     [super viewDidLoad];
     // Do any additional setup after loading the view.
     
-    NSString *originalString = @"color-#708090";
-    NSCharacterSet *allowedCharacters = [NSCharacterSet URLFragmentAllowedCharacterSet];
-    NSString *percentEncodedString = [originalString stringByAddingPercentEncodingWithAllowedCharacters:allowedCharacters];
-    NSLog(@"%@", percentEncodedString);  // prints "color-%23708090"
-    NSString *decodedFragment = [percentEncodedString stringByRemovingPercentEncoding];
-    NSLog(@"%@", decodedFragment);
+    self.defaultConfiguration = [NSURLSessionConfiguration defaultSessionConfiguration];
     
-    NSURL *URL = [NSURL URLWithString:@"https://example.com/#color-%23708090"];
-    NSLog(@"url string = %@", URL.absoluteString);
-    NSURLComponents *components = [NSURLComponents componentsWithURL:URL resolvingAgainstBaseURL:NO];
+    NSString *cachesDirectory = NSSearchPathForDirectoriesInDomains(NSCachesDirectory, NSUserDomainMask, YES).firstObject;
+    NSString *cachePath = [cachesDirectory stringByAppendingPathComponent:@"MyCache"];
+    NSLog(@"cachesDirectory = %@", cachesDirectory);
+    NSLog(@"cachePath = %@", cachePath);
     
-    NSString *fragment = components.fragment;
-    NSLog(@"%@", fragment); // prints "color-#708090"
+//    NSURLCache *cache = [[NSURLCache alloc] initWithMemoryCapacity:16384 diskCapacity:268435456 diskPath:cachePath];
+    NSURLCache *cache = [[NSURLCache alloc] initWithMemoryCapacity:10485760 diskCapacity:268435456 diskPath:cachePath];
+    self.defaultConfiguration.URLCache = cache;
+    self.defaultConfiguration.requestCachePolicy =
+//    NSURLRequestUseProtocolCachePolicy;
+    NSURLRequestReturnCacheDataElseLoad;
+    
+    NSOperationQueue *operationQueue = [NSOperationQueue mainQueue];
+    
+    self.defaultSession = [NSURLSession sessionWithConfiguration:self.defaultConfiguration
+                                                        delegate:self
+                                                   delegateQueue:operationQueue];
+    
+    NSURL *url = [NSURL URLWithString: @"https://edmullen.net/test/rc.jpg"];
+//    self.request = [NSURLRequest requestWithURL:url
+//                                    cachePolicy:NSURLRequestReturnCacheDataElseLoad
+//                                timeoutInterval:30];
+    
+//    self.request = [NSURLRequest requestWithURL:url
+//                                    cachePolicy:NSURLRequestUseProtocolCachePolicy
+//                                timeoutInterval:30];
+    
+//    self.request = [NSURLRequest requestWithURL:url
+//                                    cachePolicy:NSURLRequestReloadIgnoringCacheData
+//                                timeoutInterval:30];
+    
+    self.request = [NSURLRequest requestWithURL:url];
+//    self.request.cachePolicy
+    
+//    NSString *originalString = @"color-#708090";
+//    NSCharacterSet *allowedCharacters = [NSCharacterSet URLFragmentAllowedCharacterSet];
+//    NSString *percentEncodedString = [originalString stringByAddingPercentEncodingWithAllowedCharacters:allowedCharacters];
+//    NSLog(@"%@", percentEncodedString);  // prints "color-%23708090"
+//    NSString *decodedFragment = [percentEncodedString stringByRemovingPercentEncoding];
+//    NSLog(@"%@", decodedFragment);
+//    
+//    NSURL *URL = [NSURL URLWithString:@"https://example.com/#color-%23708090"];
+//    NSLog(@"url string = %@", URL.absoluteString);
+//    NSURLComponents *components = [NSURLComponents componentsWithURL:URL resolvingAgainstBaseURL:NO];
+//    
+//    NSString *fragment = components.fragment;
+//    NSLog(@"%@", fragment); // prints "color-#708090"
+    
 //    [self urlSessionTest];
 }
 
@@ -380,6 +430,43 @@ willPerformHTTPRedirection:(NSHTTPURLResponse *)response // status code
     
 }
 
+- (IBAction)startButtonHandler:(UIButton *)sender {
+    if (self.isDownloading == NO) {
+        self.isDownloading = YES;
+        
+        NSLog(@"current cache currentMemoryUsage = %lu", self.defaultConfiguration.URLCache.currentMemoryUsage);
+        NSLog(@"current cache currentDiskUsage = %lu", self.defaultConfiguration.URLCache.currentDiskUsage);
+        
+        [sender setTitle:@"Stop" forState:UIControlStateNormal];
+        
+//        id <NSURLSessionDelegate> delegate = [[MySessionDelegate alloc] init];
+        
+        if (self.resumeData) {
+            NSLog(@"start with resumeData = %@", _resumeData);
+            self.downloadTask = [self.defaultSession downloadTaskWithResumeData:self.resumeData];
+            [self.downloadTask resume];
+        }else {
+//            NSURL *url = [NSURL URLWithString: @"http://127.0.0.1:8080/kitten3.PNG"];
+            
+            self.dataTask = [self.defaultSession dataTaskWithRequest:self.request];
+            [self.dataTask resume];
+            
+//            self.downloadTask = [self.defaultSession downloadTaskWithRequest:self.request];
+//            [self.downloadTask resume];
+        }
+    }else {
+//        [self.downloadTask cancelByProducingResumeData:^(NSData * _Nullable resumeData) {
+//            NSLog(@"cancel!! = %@", resumeData);
+//            self.resumeData = resumeData;
+//        }];
+//        
+//        [sender setTitle:@"Start" forState:UIControlStateNormal];
+//        self.isDownloading = NO;
+    }
+}
+
+
+
 /*
 #pragma mark - Navigation
 
@@ -389,5 +476,103 @@ willPerformHTTPRedirection:(NSHTTPURLResponse *)response // status code
     // Pass the selected object to the new view controller.
 }
 */
+
+#pragma mark - URLSessionDelegate Methods
+
+- (void)URLSession:(NSURLSession *)session task:(NSURLSessionTask *)task didCompleteWithError:(NSError *)error
+{
+    if (error == nil) {
+        NSLog(@"Task: %@ completed successfully", task);
+        dispatch_async(dispatch_get_main_queue(), ^{
+            self.progressView.progress = 0;
+            
+            self.resumeData = nil;
+            self.isDownloading = NO;
+            [self.startButton setTitle:@"Start" forState:UIControlStateNormal];
+        });
+    } else {
+        NSLog(@"Task: %@ completed with error: %@", task, [error localizedDescription]);
+    }
+}
+
+- (void)URLSession:(NSURLSession *)session
+      downloadTask:(NSURLSessionDownloadTask *)downloadTask
+      didWriteData:(int64_t)bytesWritten
+ totalBytesWritten:(int64_t)totalBytesWritten totalBytesExpectedToWrite:(int64_t)totalBytesExpectedToWrite
+{
+    double progress = (double)totalBytesWritten / (double)totalBytesExpectedToWrite;
+    NSLog(@"DownloadTask: %@ progress: %lf", downloadTask, progress);
+//    dispatch_async(dispatch_get_main_queue(), ^{
+//        self.progressView.progress = progress;
+//    });
+    self.progressView.progress = progress;
+}
+
+- (void)URLSession:(NSURLSession *)session
+      downloadTask:(NSURLSessionDownloadTask *)downloadTask didFinishDownloadingToURL:(NSURL *)downloadURL
+{
+    NSLog(@"didFinishDownloadingToURL downloadTask = %@", downloadTask);
+    NSLog(@"downloadURL = %@", downloadURL);
+    
+    NSFileManager *fileManager = [NSFileManager defaultManager];
+    
+    NSArray *URLs = [fileManager URLsForDirectory:NSDocumentDirectory inDomains:NSUserDomainMask];
+    NSURL *documentsDirectory = [URLs objectAtIndex:0];
+    
+    NSString *cachesDirectory = NSSearchPathForDirectoriesInDomains(NSCachesDirectory, NSUserDomainMask, YES).firstObject;
+    NSString *cachePath = [cachesDirectory stringByAppendingPathComponent:@"MyCache"];
+    
+    NSURL *originalURL = downloadURL;
+    NSLog(@"originalURL = %@", originalURL);
+    NSURL *destinationURL = [documentsDirectory URLByAppendingPathComponent:[originalURL lastPathComponent]];
+//    NSURL *destinationURL = [NSURL fileURLWithPath:[cachePath stringByAppendingPathComponent:[originalURL lastPathComponent]]];
+    NSLog(@"destinationURL = %@", destinationURL);
+    
+//    [fileManager removeItemAtURL:destinationURL error:NULL];
+    
+    NSError *errorCopy;
+    BOOL success = [fileManager copyItemAtURL:downloadURL toURL:destinationURL error:&errorCopy];
+    
+    if (success) {
+        dispatch_async(dispatch_get_main_queue(), ^{
+            UIImage *image = [UIImage imageWithContentsOfFile:[destinationURL path]];
+            self.imageView.image = image;
+            self.imageView.hidden = NO;
+        });
+    } else {
+        NSLog(@"Error during the copy: %@", [errorCopy localizedDescription]);
+    }
+}
+
+- (void)URLSession:(NSURLSession *)session
+      downloadTask:(NSURLSessionDownloadTask *)downloadTask
+ didResumeAtOffset:(int64_t)fileOffset
+expectedTotalBytes:(int64_t)expectedTotalBytes
+{
+    NSLog(@"Session %@ download task %@ resumed at offset %lld bytes out of an expected %lld bytes.\n", session, downloadTask, fileOffset, expectedTotalBytes);
+    double progress = (double)fileOffset / (double)expectedTotalBytes;
+    NSLog(@"DownloadTask: %@ progress: %lf", downloadTask, progress);
+    dispatch_async(dispatch_get_main_queue(), ^{
+        self.progressView.progress = progress;
+    });
+}
+
+- (void)URLSession:(NSURLSession *)session dataTask:(NSURLSessionDataTask *)dataTask didBecomeDownloadTask:(NSURLSessionDownloadTask *)downloadTask {
+    NSLog(@"didBecomeDownloadTask data length = %@", dataTask);
+}
+
+- (void)URLSession:(NSURLSession *)session dataTask:(NSURLSessionDataTask *)dataTask didReceiveData:(NSData *)data {
+    NSLog(@"dataTask didReceiveData = %lu", data.length);
+}
+
+//- (void)URLSession:(NSURLSession *)session dataTask:(NSURLSessionDataTask *)dataTask
+// willCacheResponse:(NSCachedURLResponse *)proposedResponse
+// completionHandler:(void (^)(NSCachedURLResponse * __nullable cachedResponse))completionHandler {
+//    NSLog(@"willCacheResponse = %@", proposedResponse);
+//    NSLog(@"cache data length = %lu", proposedResponse.data.length);
+//    NSLog(@"storagePolicy = %zd", proposedResponse.storagePolicy);
+//    
+//    completionHandler(proposedResponse);
+//}
 
 @end
