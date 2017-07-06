@@ -254,12 +254,16 @@ willPerformHTTPRedirection:(NSHTTPURLResponse *)response // status code
     [super viewDidLoad];
     // Do any additional setup after loading the view.
     
+    
     self.defaultConfiguration = [NSURLSessionConfiguration defaultSessionConfiguration];
     
     NSString *cachesDirectory = NSSearchPathForDirectoriesInDomains(NSCachesDirectory, NSUserDomainMask, YES).firstObject;
     NSString *cachePath = [cachesDirectory stringByAppendingPathComponent:@"MyCache"];
     NSLog(@"cachesDirectory = %@", cachesDirectory);
     NSLog(@"cachePath = %@", cachePath);
+    
+    NSHTTPCookieStorage *cookieStorage = [[NSHTTPCookieStorage alloc] init];
+    self.defaultConfiguration.HTTPCookieStorage = cookieStorage;
     
 //    NSURLCache *cache = [[NSURLCache alloc] initWithMemoryCapacity:16384 diskCapacity:268435456 diskPath:cachePath];
     NSURLCache *cache = [[NSURLCache alloc] initWithMemoryCapacity:10485760 diskCapacity:268435456 diskPath:cachePath];
@@ -274,7 +278,8 @@ willPerformHTTPRedirection:(NSHTTPURLResponse *)response // status code
                                                         delegate:self
                                                    delegateQueue:operationQueue];
     
-    NSURL *url = [NSURL URLWithString: @"https://edmullen.net/test/rc.jpg"];
+    NSURL *url = [NSURL URLWithString: @"https://httpbin.org/cookies"];
+//    NSURL *url = [NSURL URLWithString: @"https://edmullen.net/test/rc.jpg"];
 //    self.request = [NSURLRequest requestWithURL:url
 //                                    cachePolicy:NSURLRequestReturnCacheDataElseLoad
 //                                timeoutInterval:30];
@@ -436,6 +441,7 @@ willPerformHTTPRedirection:(NSHTTPURLResponse *)response // status code
         
         NSLog(@"current cache currentMemoryUsage = %lu", self.defaultConfiguration.URLCache.currentMemoryUsage);
         NSLog(@"current cache currentDiskUsage = %lu", self.defaultConfiguration.URLCache.currentDiskUsage);
+        NSLog(@"cookieStorage's cookies = %@", self.defaultConfiguration.HTTPCookieStorage.cookies);
         
         [sender setTitle:@"Stop" forState:UIControlStateNormal];
         
