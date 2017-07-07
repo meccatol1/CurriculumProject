@@ -8,6 +8,8 @@
 
 #import <UIKit/UIKit.h>
 
+
+// URLSession API들을 테스트 해보는 뷰 컨트롤러 입니다.
 @interface CPMainSessionViewController : UIViewController
 
 @end
