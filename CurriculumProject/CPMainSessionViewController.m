@@ -262,11 +262,8 @@ willPerformHTTPRedirection:(NSHTTPURLResponse *)response // status code
     NSLog(@"cachesDirectory = %@", cachesDirectory);
     NSLog(@"cachePath = %@", cachePath);
     
-    NSHTTPCookieStorage *cookieStorage = [[NSHTTPCookieStorage alloc] init];
-    self.defaultConfiguration.HTTPCookieStorage = cookieStorage;
-    
-//    NSURLCache *cache = [[NSURLCache alloc] initWithMemoryCapacity:16384 diskCapacity:268435456 diskPath:cachePath];
-    NSURLCache *cache = [[NSURLCache alloc] initWithMemoryCapacity:10485760 diskCapacity:268435456 diskPath:cachePath];
+    NSURLCache *cache = [[NSURLCache alloc] initWithMemoryCapacity:16384 diskCapacity:268435456 diskPath:cachePath];
+//    NSURLCache *cache = [[NSURLCache alloc] initWithMemoryCapacity:10485760 diskCapacity:268435456 diskPath:cachesDirectory];
     self.defaultConfiguration.URLCache = cache;
     self.defaultConfiguration.requestCachePolicy =
 //    NSURLRequestUseProtocolCachePolicy;
@@ -278,7 +275,8 @@ willPerformHTTPRedirection:(NSHTTPURLResponse *)response // status code
                                                         delegate:self
                                                    delegateQueue:operationQueue];
     
-    NSURL *url = [NSURL URLWithString: @"https://httpbin.org/cookies"];
+    NSURL *url = [NSURL URLWithString: @"http://127.0.0.1:8080/kitten3.PNG"];
+//    NSURL *url = [NSURL URLWithString: @"https://httpbin.org/cookies"];
 //    NSURL *url = [NSURL URLWithString: @"https://edmullen.net/test/rc.jpg"];
 //    self.request = [NSURLRequest requestWithURL:url
 //                                    cachePolicy:NSURLRequestReturnCacheDataElseLoad
@@ -293,6 +291,10 @@ willPerformHTTPRedirection:(NSHTTPURLResponse *)response // status code
 //                                timeoutInterval:30];
     
     self.request = [NSURLRequest requestWithURL:url];
+    
+    
+//    [self.defaultSession upload]
+    
 //    self.request.cachePolicy
     
 //    NSString *originalString = @"color-#708090";
@@ -454,20 +456,20 @@ willPerformHTTPRedirection:(NSHTTPURLResponse *)response // status code
         }else {
 //            NSURL *url = [NSURL URLWithString: @"http://127.0.0.1:8080/kitten3.PNG"];
             
-            self.dataTask = [self.defaultSession dataTaskWithRequest:self.request];
-            [self.dataTask resume];
+//            self.dataTask = [self.defaultSession dataTaskWithRequest:self.request];
+//            [self.dataTask resume];
             
-//            self.downloadTask = [self.defaultSession downloadTaskWithRequest:self.request];
-//            [self.downloadTask resume];
+            self.downloadTask = [self.defaultSession downloadTaskWithRequest:self.request];
+            [self.downloadTask resume];
         }
     }else {
-//        [self.downloadTask cancelByProducingResumeData:^(NSData * _Nullable resumeData) {
-//            NSLog(@"cancel!! = %@", resumeData);
-//            self.resumeData = resumeData;
-//        }];
-//        
-//        [sender setTitle:@"Start" forState:UIControlStateNormal];
-//        self.isDownloading = NO;
+        [self.downloadTask cancelByProducingResumeData:^(NSData * _Nullable resumeData) {
+            NSLog(@"cancel!! = %@", resumeData);
+            self.resumeData = resumeData;
+        }];
+        
+        [sender setTitle:@"Start" forState:UIControlStateNormal];
+        self.isDownloading = NO;
     }
 }
 
@@ -522,7 +524,8 @@ willPerformHTTPRedirection:(NSHTTPURLResponse *)response // status code
     
     NSFileManager *fileManager = [NSFileManager defaultManager];
     
-    NSArray *URLs = [fileManager URLsForDirectory:NSDocumentDirectory inDomains:NSUserDomainMask];
+//    NSArray *URLs = [fileManager URLsForDirectory:NSDocumentDirectory inDomains:NSUserDomainMask];
+    NSArray *URLs = [fileManager URLsForDirectory:NSCachesDirectory inDomains:NSUserDomainMask];
     NSURL *documentsDirectory = [URLs objectAtIndex:0];
     
     NSString *cachesDirectory = NSSearchPathForDirectoriesInDomains(NSCachesDirectory, NSUserDomainMask, YES).firstObject;
@@ -530,9 +533,12 @@ willPerformHTTPRedirection:(NSHTTPURLResponse *)response // status code
     
     NSURL *originalURL = downloadURL;
     NSLog(@"originalURL = %@", originalURL);
-    NSURL *destinationURL = [documentsDirectory URLByAppendingPathComponent:[originalURL lastPathComponent]];
-//    NSURL *destinationURL = [NSURL fileURLWithPath:[cachePath stringByAppendingPathComponent:[originalURL lastPathComponent]]];
-    NSLog(@"destinationURL = %@", destinationURL);
+    NSURL *destinationURL1 = [documentsDirectory URLByAppendingPathComponent:[originalURL lastPathComponent]];
+    NSLog(@"destinationURL1 = %@", destinationURL1);
+    NSURL *destinationURL2 = [NSURL fileURLWithPath:[cachePath stringByAppendingPathComponent:[originalURL lastPathComponent]]];
+    NSLog(@"destinationURL2 = %@", destinationURL2);
+    
+    NSURL *destinationURL = destinationURL1;
     
 //    [fileManager removeItemAtURL:destinationURL error:NULL];
     
@@ -563,6 +569,19 @@ expectedTotalBytes:(int64_t)expectedTotalBytes
     });
 }
 
+- (void)URLSession:(NSURLSession *)session
+          dataTask:(NSURLSessionDataTask *)dataTask
+didReceiveResponse:(NSURLResponse *)response
+ completionHandler:(void (^)(NSURLSessionResponseDisposition disposition))completionHandler {
+    NSLog(@"didReceiveResponse");
+    
+    completionHandler(NSURLSessionResponseAllow);
+}
+
+- (void)URLSession:(NSURLSession *)session didBecomeInvalidWithError:(NSError *)error {
+    NSLog(@"didBecomeInvalidWithError = %@", error);
+}
+
 - (void)URLSession:(NSURLSession *)session dataTask:(NSURLSessionDataTask *)dataTask didBecomeDownloadTask:(NSURLSessionDownloadTask *)downloadTask {
     NSLog(@"didBecomeDownloadTask data length = %@", dataTask);
 }
@@ -580,5 +599,29 @@ expectedTotalBytes:(int64_t)expectedTotalBytes
 //    
 //    completionHandler(proposedResponse);
 //}
+
+static BOOL ALLOW_IN_MEMORY_CACHING = YES;
+
+- (void)URLSession:(NSURLSession *)session dataTask:(NSURLSessionDataTask *)dataTask
+ willCacheResponse:(NSCachedURLResponse *)proposedResponse
+ completionHandler:(void (^)(NSCachedURLResponse * __nullable cachedResponse))completionHandler {
+    
+    NSCachedURLResponse *newCachedResponse = proposedResponse;
+    NSDictionary *newUserInfo;
+    newUserInfo = [NSDictionary dictionaryWithObject:[NSDate date]
+                                              forKey:@"Cached Date"];
+    
+    if (ALLOW_IN_MEMORY_CACHING) {
+        newCachedResponse = [[NSCachedURLResponse alloc]
+                             initWithResponse:proposedResponse.response
+                             data:proposedResponse.data
+                             userInfo:newUserInfo
+                             storagePolicy:NSURLCacheStorageAllowedInMemoryOnly];
+    }else {
+        newCachedResponse = proposedResponse;
+    }
+    completionHandler(newCachedResponse);
+//    NSHTTPCookieAcceptPolicyAlways
+}
 
 @end
