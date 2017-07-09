@@ -8,6 +8,14 @@
 
 #import <UIKit/UIKit.h>
 
+// 앱이 background상태로 가기전에 스냅샷을 찍기 위해 보여주는 View Controller
+// 1
+// 2
+// 3
+// 4
+// 5
+
 @interface SnapShotViewController : UIViewController
+
 
 @end
