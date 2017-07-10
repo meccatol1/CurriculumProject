@@ -254,6 +254,16 @@ willPerformHTTPRedirection:(NSHTTPURLResponse *)response // status code
     [super viewDidLoad];
     // Do any additional setup after loading the view.
     
+    NSInteger value0 = -1;
+    NSUInteger value1 = 0;
+    
+    if (value0 > value1) {
+        NSLog(@"true가 나온다! %zd, %lu", value0, value0);
+        NSLog(@"unsigned와 signed의 비교는, 하위호환의 비교로 형변환이 일어나는듯");
+    } else {
+        NSLog(@"false인데..?");
+    }
+    
     
     self.defaultConfiguration = [NSURLSessionConfiguration defaultSessionConfiguration];
     
