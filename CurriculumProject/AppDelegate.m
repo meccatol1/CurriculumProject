@@ -27,6 +27,8 @@
 
 @implementation AppDelegate
 
+// Window와 RootViewController는 Storyboard에서 생성하고 넣어줌~
+
 - (BOOL)application:(UIApplication *)application willFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
     NSLog(@"willFinishLaunchingWithOptions = %@", launchOptions);
     return YES;
