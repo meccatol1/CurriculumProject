@@ -171,6 +171,73 @@
 			name = Threads;
 			sourceTree = "<group>";
 		};
+		35568CE51F1344AC006AF92A /* Main */ = {
+			isa = PBXGroup;
+			children = (
+				35568CE71F1348D3006AF92A /* Tab1 */,
+				35568CE81F1348F3006AF92A /* Tab2 */,
+				35568CE91F134937006AF92A /* Tab3 */,
+				35568CE61F134553006AF92A /* Category&override examples */,
+				76DDC8DE1EEFEE7C006962C5 /* SnapShotViewController.h */,
+				76DDC8DF1EEFEE7C006962C5 /* SnapShotViewController.m */,
+				76DDC8E01EEFEE7C006962C5 /* SnapShotViewController.xib */,
+				354F2BFD1EE71AA4006933C6 /* Threads */,
+			);
+			name = Main;
+			sourceTree = "<group>";
+		};
+		35568CE61F134553006AF92A /* Category&override examples */ = {
+			isa = PBXGroup;
+			children = (
+				765A7D751ECAF603008D5C43 /* Human+Mouth.h */,
+				765A7D761ECAF603008D5C43 /* Human+Mouth.m */,
+				7666F7371ED7F59A00201030 /* ForwardingObject.h */,
+				7666F7381ED7F59A00201030 /* ForwardingObject.m */,
+				76C748741EDBBB6D00C84062 /* CustomOperation.h */,
+				76C748751EDBBB6D00C84062 /* CustomOperation.m */,
+			);
+			name = "Category&override examples";
+			sourceTree = "<group>";
+		};
+		35568CE71F1348D3006AF92A /* Tab1 */ = {
+			isa = PBXGroup;
+			children = (
+				76131FE61ECA973500CBA227 /* ViewController.h */,
+				76131FE71ECA973500CBA227 /* ViewController.m */,
+				35398C501EF1928500BBAA56 /* View2Controller.h */,
+				35398C511EF1928500BBAA56 /* View2Controller.m */,
+				76131FFA1ECA9FEB00CBA227 /* SubViewController.h */,
+				76131FFB1ECA9FEB00CBA227 /* SubViewController.m */,
+			);
+			name = Tab1;
+			sourceTree = "<group>";
+		};
+		35568CE81F1348F3006AF92A /* Tab2 */ = {
+			isa = PBXGroup;
+			children = (
+				767FA4341EDD1482006CF15D /* CPView2Controller.h */,
+				767FA4351EDD1482006CF15D /* CPView2Controller.m */,
+				35398C4D1EF1839100BBAA56 /* CPView2_2Controller.h */,
+				35398C4E1EF1839100BBAA56 /* CPView2_2Controller.m */,
+			);
+			name = Tab2;
+			sourceTree = "<group>";
+		};
+		35568CE91F134937006AF92A /* Tab3 */ = {
+			isa = PBXGroup;
+			children = (
+				354D79921EE43098003954C3 /* CPView3Controller.h */,
+				354D79931EE43098003954C3 /* CPView3Controller.m */,
+				7674278E1EEE919C00B48DAD /* CPView4ViewController.h */,
+				7674278F1EEE919C00B48DAD /* CPView4ViewController.m */,
+				767427951EEE926E00B48DAD /* CPView4ViewController.xib */,
+				76B2310D1F0355E400959DAA /* TestViewController.h */,
+				76B2310E1F0355E400959DAA /* TestViewController.m */,
+				764CE00D1F09F017007D9FD4 /* TestViewController.xib */,
+			);
+			name = Tab3;
+			sourceTree = "<group>";
+		};
 		3590F8051F094F4400D66952 /* URLSession */ = {
 			isa = PBXGroup;
 			children = (
@@ -253,34 +320,7 @@
 				3590F8051F094F4400D66952 /* URLSession */,
 				35ADC91C1F053B3E005D835B /* CustomContainer&Context&Presentation */,
 				35A1FACB1F03E3BA00C14873 /* Transition&Presentation */,
-				76DDC8DE1EEFEE7C006962C5 /* SnapShotViewController.h */,
-				76DDC8DF1EEFEE7C006962C5 /* SnapShotViewController.m */,
-				76DDC8E01EEFEE7C006962C5 /* SnapShotViewController.xib */,
-				7674278E1EEE919C00B48DAD /* CPView4ViewController.h */,
-				7674278F1EEE919C00B48DAD /* CPView4ViewController.m */,
-				767427951EEE926E00B48DAD /* CPView4ViewController.xib */,
-				354D79921EE43098003954C3 /* CPView3Controller.h */,
-				354D79931EE43098003954C3 /* CPView3Controller.m */,
-				76B2310D1F0355E400959DAA /* TestViewController.h */,
-				76B2310E1F0355E400959DAA /* TestViewController.m */,
-				764CE00D1F09F017007D9FD4 /* TestViewController.xib */,
-				354F2BFD1EE71AA4006933C6 /* Threads */,
-				767FA4341EDD1482006CF15D /* CPView2Controller.h */,
-				767FA4351EDD1482006CF15D /* CPView2Controller.m */,
-				35398C4D1EF1839100BBAA56 /* CPView2_2Controller.h */,
-				35398C4E1EF1839100BBAA56 /* CPView2_2Controller.m */,
-				76131FE61ECA973500CBA227 /* ViewController.h */,
-				76131FE71ECA973500CBA227 /* ViewController.m */,
-				35398C501EF1928500BBAA56 /* View2Controller.h */,
-				35398C511EF1928500BBAA56 /* View2Controller.m */,
-				76131FFA1ECA9FEB00CBA227 /* SubViewController.h */,
-				76131FFB1ECA9FEB00CBA227 /* SubViewController.m */,
-				765A7D751ECAF603008D5C43 /* Human+Mouth.h */,
-				765A7D761ECAF603008D5C43 /* Human+Mouth.m */,
-				7666F7371ED7F59A00201030 /* ForwardingObject.h */,
-				7666F7381ED7F59A00201030 /* ForwardingObject.m */,
-				76C748741EDBBB6D00C84062 /* CustomOperation.h */,
-				76C748751EDBBB6D00C84062 /* CustomOperation.m */,
+				35568CE51F1344AC006AF92A /* Main */,
 				76131FEF1ECA973500CBA227 /* Assets.xcassets */,
 				76DDC8BA1EEF8FE0006962C5 /* Localizable.strings */,
 				76131FF11ECA973500CBA227 /* LaunchScreen.storyboard */,
