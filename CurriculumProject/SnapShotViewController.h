@@ -15,6 +15,8 @@
 // 4
 // 5
 // 6
+// 7
+// 8
 
 @interface SnapShotViewController : UIViewController
 
