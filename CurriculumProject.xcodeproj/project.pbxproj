@@ -39,6 +39,9 @@
 		76131FF31ECA973500CBA227 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 76131FF11ECA973500CBA227 /* LaunchScreen.storyboard */; };
 		76131FFC1ECA9FEB00CBA227 /* SubViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 76131FFB1ECA9FEB00CBA227 /* SubViewController.m */; };
 		7614BCB11EDFDD33009189B6 /* kitten.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 7614BCB01EDFDD33009189B6 /* kitten.jpg */; };
+		7616E6771F149B2400C8FC69 /* AHTagsLabel.m in Sources */ = {isa = PBXBuildFile; fileRef = 7616E6741F149B2400C8FC69 /* AHTagsLabel.m */; };
+		7616E6781F149B2400C8FC69 /* AHTagView.m in Sources */ = {isa = PBXBuildFile; fileRef = 7616E6761F149B2400C8FC69 /* AHTagView.m */; };
+		7616E67B1F149B3B00C8FC69 /* AHTag.m in Sources */ = {isa = PBXBuildFile; fileRef = 7616E67A1F149B3B00C8FC69 /* AHTag.m */; };
 		764CE00E1F09F017007D9FD4 /* TestViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 764CE00D1F09F017007D9FD4 /* TestViewController.xib */; };
 		765A7D771ECAF603008D5C43 /* Human+Mouth.m in Sources */ = {isa = PBXBuildFile; fileRef = 765A7D761ECAF603008D5C43 /* Human+Mouth.m */; };
 		7666F7391ED7F59A00201030 /* ForwardingObject.m in Sources */ = {isa = PBXBuildFile; fileRef = 7666F7381ED7F59A00201030 /* ForwardingObject.m */; };
@@ -46,6 +49,7 @@
 		767427931EEE926E00B48DAD /* CPView4ViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 767427951EEE926E00B48DAD /* CPView4ViewController.xib */; };
 		767FA4361EDD1482006CF15D /* CPView2Controller.m in Sources */ = {isa = PBXBuildFile; fileRef = 767FA4351EDD1482006CF15D /* CPView2Controller.m */; };
 		76B2310F1F0355E400959DAA /* TestViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 76B2310E1F0355E400959DAA /* TestViewController.m */; };
+		76B89CAD1F14B5FF00B2802A /* CPLabelTestViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 76B89CAC1F14B5FF00B2802A /* CPLabelTestViewController.m */; };
 		76BBE4D61ED6889300E67C05 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 76BBE4D51ED6889300E67C05 /* Foundation.framework */; };
 		76C748761EDBBB6D00C84062 /* CustomOperation.m in Sources */ = {isa = PBXBuildFile; fileRef = 76C748751EDBBB6D00C84062 /* CustomOperation.m */; };
 		76DDC8B81EEF8FE0006962C5 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 76DDC8BA1EEF8FE0006962C5 /* Localizable.strings */; };
@@ -116,6 +120,12 @@
 		76131FFA1ECA9FEB00CBA227 /* SubViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SubViewController.h; sourceTree = "<group>"; };
 		76131FFB1ECA9FEB00CBA227 /* SubViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SubViewController.m; sourceTree = "<group>"; };
 		7614BCB01EDFDD33009189B6 /* kitten.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = kitten.jpg; sourceTree = "<group>"; };
+		7616E6731F149B2400C8FC69 /* AHTagsLabel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AHTagsLabel.h; sourceTree = "<group>"; };
+		7616E6741F149B2400C8FC69 /* AHTagsLabel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AHTagsLabel.m; sourceTree = "<group>"; };
+		7616E6751F149B2400C8FC69 /* AHTagView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AHTagView.h; sourceTree = "<group>"; };
+		7616E6761F149B2400C8FC69 /* AHTagView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AHTagView.m; sourceTree = "<group>"; };
+		7616E6791F149B3B00C8FC69 /* AHTag.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AHTag.h; sourceTree = "<group>"; };
+		7616E67A1F149B3B00C8FC69 /* AHTag.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AHTag.m; sourceTree = "<group>"; };
 		764CE00D1F09F017007D9FD4 /* TestViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = TestViewController.xib; sourceTree = "<group>"; };
 		765A7D751ECAF603008D5C43 /* Human+Mouth.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "Human+Mouth.h"; sourceTree = "<group>"; };
 		765A7D761ECAF603008D5C43 /* Human+Mouth.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "Human+Mouth.m"; sourceTree = "<group>"; };
@@ -128,6 +138,8 @@
 		767FA4351EDD1482006CF15D /* CPView2Controller.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CPView2Controller.m; sourceTree = "<group>"; };
 		76B2310D1F0355E400959DAA /* TestViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TestViewController.h; sourceTree = "<group>"; };
 		76B2310E1F0355E400959DAA /* TestViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TestViewController.m; sourceTree = "<group>"; };
+		76B89CAB1F14B5FF00B2802A /* CPLabelTestViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CPLabelTestViewController.h; sourceTree = "<group>"; };
+		76B89CAC1F14B5FF00B2802A /* CPLabelTestViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CPLabelTestViewController.m; sourceTree = "<group>"; };
 		76BBE4D51ED6889300E67C05 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		76C748741EDBBB6D00C84062 /* CustomOperation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CustomOperation.h; sourceTree = "<group>"; };
 		76C748751EDBBB6D00C84062 /* CustomOperation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CustomOperation.m; sourceTree = "<group>"; };
@@ -243,6 +255,9 @@
 			children = (
 				3590F8061F094F7300D66952 /* CPMainSessionViewController.h */,
 				3590F8071F094F7300D66952 /* CPMainSessionViewController.m */,
+				76B89CAB1F14B5FF00B2802A /* CPLabelTestViewController.h */,
+				76B89CAC1F14B5FF00B2802A /* CPLabelTestViewController.m */,
+				7616E6721F149AF800C8FC69 /* Custom Labels */,
 			);
 			name = URLSession;
 			sourceTree = "<group>";
@@ -342,6 +357,19 @@
 				76131FE11ECA973500CBA227 /* main.m */,
 			);
 			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		7616E6721F149AF800C8FC69 /* Custom Labels */ = {
+			isa = PBXGroup;
+			children = (
+				7616E6731F149B2400C8FC69 /* AHTagsLabel.h */,
+				7616E6741F149B2400C8FC69 /* AHTagsLabel.m */,
+				7616E6751F149B2400C8FC69 /* AHTagView.h */,
+				7616E6761F149B2400C8FC69 /* AHTagView.m */,
+				7616E6791F149B3B00C8FC69 /* AHTag.h */,
+				7616E67A1F149B3B00C8FC69 /* AHTag.m */,
+			);
+			name = "Custom Labels";
 			sourceTree = "<group>";
 		};
 		F0E4F882B99BD25AA7167FFC /* Frameworks */ = {
@@ -513,14 +541,18 @@
 				35A1FAD71F03FA3900C14873 /* CPCustomAnimationViewController.m in Sources */,
 				76131FE21ECA973500CBA227 /* main.m in Sources */,
 				35ADC9281F053BA4005D835B /* CPCustomContent_3_ViewController.m in Sources */,
+				7616E6771F149B2400C8FC69 /* AHTagsLabel.m in Sources */,
+				76B89CAD1F14B5FF00B2802A /* CPLabelTestViewController.m in Sources */,
 				354F2C001EE71ABF006933C6 /* CPInputThread.m in Sources */,
 				35ADC91F1F053B7E005D835B /* CPCustomContainerViewController.m in Sources */,
+				7616E6781F149B2400C8FC69 /* AHTagView.m in Sources */,
 				76B2310F1F0355E400959DAA /* TestViewController.m in Sources */,
 				76DDC8E11EEFEE7C006962C5 /* SnapShotViewController.m in Sources */,
 				767FA4361EDD1482006CF15D /* CPView2Controller.m in Sources */,
 				35A1FACE1F03E3F000C14873 /* CPSplitViewController.m in Sources */,
 				35398C4F1EF1839100BBAA56 /* CPView2_2Controller.m in Sources */,
 				765A7D771ECAF603008D5C43 /* Human+Mouth.m in Sources */,
+				7616E67B1F149B3B00C8FC69 /* AHTag.m in Sources */,
 				352F9D2A1EE9A3C500EB84CB /* CPView.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
