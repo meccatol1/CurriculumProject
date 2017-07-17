@@ -16,6 +16,11 @@
 - (void)c;
 @end
 
+/**
+ *  modalPresentationStyle and modalTransitionStyle 테스트가 있습니다.
+ *  
+ */
+
 @interface CPView3Controller : UIViewController
 ///<TestProtocol>
 
