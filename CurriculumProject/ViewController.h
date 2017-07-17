@@ -38,6 +38,10 @@
 - (void)printHelloString;
 @end
 
+/**
+ *  Block 테스트!
+ */
+
 @interface ViewController : UIViewController {
     NSString *rewards;
 }

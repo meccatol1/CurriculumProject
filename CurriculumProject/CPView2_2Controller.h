@@ -8,6 +8,10 @@
 
 #import <UIKit/UIKit.h>
 
+/**
+ *  Storyboard 참조
+ */
+
 @interface CPView2_2Controller : UIViewController
 
 @end
