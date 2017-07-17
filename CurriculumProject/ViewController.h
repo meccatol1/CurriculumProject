@@ -40,6 +40,7 @@
 
 /**
  *  Block 테스트!
+ *  NSObperation 테스트도 몇개 있습니다..
  */
 
 @interface ViewController : UIViewController {
