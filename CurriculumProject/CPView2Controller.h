@@ -8,6 +8,10 @@
 
 #import <UIKit/UIKit.h>
 
+/**
+ *  주로 GCD 예제가 있습니다.
+ *  주석으로 활성화/비활성화로 테스트 해서 보기가 힘드실 겁니다.. 죄송합니다. :(
+ */
 @interface CPView2Controller : UIViewController
 
 - (IBAction)unwindToCPView2:(UIStoryboardSegue*)unwindSegue;
