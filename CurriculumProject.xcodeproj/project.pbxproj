@@ -57,6 +57,7 @@
 		76DDC8E21EEFEE7C006962C5 /* SnapShotViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 76DDC8E01EEFEE7C006962C5 /* SnapShotViewController.xib */; };
 		76E4CF7C1EE7F42F009921EA /* CPThread2.m in Sources */ = {isa = PBXBuildFile; fileRef = 76E4CF7B1EE7F42F009921EA /* CPThread2.m */; };
 		C75271F429E69FD5C27E660C /* libPods-CurriculumProject.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 425CE85A8EF68C6D7CAC45EC /* libPods-CurriculumProject.a */; };
+		F2F405461F219BFB00C8B17C /* CPScrollContainerViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = F2F405451F219BFB00C8B17C /* CPScrollContainerViewController.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -151,6 +152,8 @@
 		76DDC8E01EEFEE7C006962C5 /* SnapShotViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = SnapShotViewController.xib; sourceTree = "<group>"; };
 		76E4CF7A1EE7F42F009921EA /* CPThread2.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CPThread2.h; sourceTree = "<group>"; };
 		76E4CF7B1EE7F42F009921EA /* CPThread2.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CPThread2.m; sourceTree = "<group>"; };
+		F2F405441F219BFB00C8B17C /* CPScrollContainerViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CPScrollContainerViewController.h; sourceTree = "<group>"; };
+		F2F405451F219BFB00C8B17C /* CPScrollContainerViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CPScrollContainerViewController.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -332,6 +335,7 @@
 				76131FE91ECA973500CBA227 /* Main.storyboard */,
 				76131FE31ECA973500CBA227 /* AppDelegate.h */,
 				76131FE41ECA973500CBA227 /* AppDelegate.m */,
+				F2F405431F219BD700C8B17C /* ScrollViewTesting */,
 				3590F8051F094F4400D66952 /* URLSession */,
 				35ADC91C1F053B3E005D835B /* CustomContainer&Context&Presentation */,
 				35A1FACB1F03E3BA00C14873 /* Transition&Presentation */,
@@ -378,6 +382,15 @@
 				425CE85A8EF68C6D7CAC45EC /* libPods-CurriculumProject.a */,
 			);
 			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		F2F405431F219BD700C8B17C /* ScrollViewTesting */ = {
+			isa = PBXGroup;
+			children = (
+				F2F405441F219BFB00C8B17C /* CPScrollContainerViewController.h */,
+				F2F405451F219BFB00C8B17C /* CPScrollContainerViewController.m */,
+			);
+			name = ScrollViewTesting;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -527,6 +540,7 @@
 				7666F7391ED7F59A00201030 /* ForwardingObject.m in Sources */,
 				76131FFC1ECA9FEB00CBA227 /* SubViewController.m in Sources */,
 				76131FEE1ECA973500CBA227 /* CurriculumProject.xcdatamodeld in Sources */,
+				F2F405461F219BFB00C8B17C /* CPScrollContainerViewController.m in Sources */,
 				76131FE81ECA973500CBA227 /* ViewController.m in Sources */,
 				35A1FAD11F03E41900C14873 /* CPMainTableViewController.m in Sources */,
 				76E4CF7C1EE7F42F009921EA /* CPThread2.m in Sources */,
@@ -700,7 +714,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				DEVELOPMENT_TEAM = 56ZT9NLP39;
 				INFOPLIST_FILE = CurriculumProject/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.cream.world.CurriculumProject;
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -715,7 +729,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				DEVELOPMENT_TEAM = 56ZT9NLP39;
 				INFOPLIST_FILE = CurriculumProject/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.cream.world.CurriculumProject;
 				PRODUCT_NAME = "$(TARGET_NAME)";
