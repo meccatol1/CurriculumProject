@@ -57,6 +57,7 @@
 		76DDC8E21EEFEE7C006962C5 /* SnapShotViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 76DDC8E01EEFEE7C006962C5 /* SnapShotViewController.xib */; };
 		76E4CF7C1EE7F42F009921EA /* CPThread2.m in Sources */ = {isa = PBXBuildFile; fileRef = 76E4CF7B1EE7F42F009921EA /* CPThread2.m */; };
 		C75271F429E69FD5C27E660C /* libPods-CurriculumProject.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 425CE85A8EF68C6D7CAC45EC /* libPods-CurriculumProject.a */; };
+		F22FCAC81F285AAB00E91B78 /* CPTestClass.m in Sources */ = {isa = PBXBuildFile; fileRef = F22FCAC71F285AAB00E91B78 /* CPTestClass.m */; };
 		F2F405461F219BFB00C8B17C /* CPScrollContainerViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = F2F405451F219BFB00C8B17C /* CPScrollContainerViewController.m */; };
 /* End PBXBuildFile section */
 
@@ -152,6 +153,8 @@
 		76DDC8E01EEFEE7C006962C5 /* SnapShotViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = SnapShotViewController.xib; sourceTree = "<group>"; };
 		76E4CF7A1EE7F42F009921EA /* CPThread2.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CPThread2.h; sourceTree = "<group>"; };
 		76E4CF7B1EE7F42F009921EA /* CPThread2.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CPThread2.m; sourceTree = "<group>"; };
+		F22FCAC61F285AAB00E91B78 /* CPTestClass.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CPTestClass.h; sourceTree = "<group>"; };
+		F22FCAC71F285AAB00E91B78 /* CPTestClass.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CPTestClass.m; sourceTree = "<group>"; };
 		F2F405441F219BFB00C8B17C /* CPScrollContainerViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CPScrollContainerViewController.h; sourceTree = "<group>"; };
 		F2F405451F219BFB00C8B17C /* CPScrollContainerViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CPScrollContainerViewController.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -389,6 +392,8 @@
 			children = (
 				F2F405441F219BFB00C8B17C /* CPScrollContainerViewController.h */,
 				F2F405451F219BFB00C8B17C /* CPScrollContainerViewController.m */,
+				F22FCAC61F285AAB00E91B78 /* CPTestClass.h */,
+				F22FCAC71F285AAB00E91B78 /* CPTestClass.m */,
 			);
 			name = ScrollViewTesting;
 			sourceTree = "<group>";
@@ -534,6 +539,7 @@
 				35ADC9251F053B9A005D835B /* CPCustomContent_2_ViewController.m in Sources */,
 				76C748761EDBBB6D00C84062 /* CustomOperation.m in Sources */,
 				357D01EB1F05515C00270D2F /* CPCustomContent_4_ViewController.m in Sources */,
+				F22FCAC81F285AAB00E91B78 /* CPTestClass.m in Sources */,
 				354F2C031EE721BE006933C6 /* CPPortThread.m in Sources */,
 				354D79971EE43469003954C3 /* CPThread.m in Sources */,
 				767427911EEE919C00B48DAD /* CPView4ViewController.m in Sources */,
