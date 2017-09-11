@@ -16,6 +16,7 @@
 		354D79971EE43469003954C3 /* CPThread.m in Sources */ = {isa = PBXBuildFile; fileRef = 354D79961EE43469003954C3 /* CPThread.m */; };
 		354F2C001EE71ABF006933C6 /* CPInputThread.m in Sources */ = {isa = PBXBuildFile; fileRef = 354F2BFF1EE71ABF006933C6 /* CPInputThread.m */; };
 		354F2C031EE721BE006933C6 /* CPPortThread.m in Sources */ = {isa = PBXBuildFile; fileRef = 354F2C021EE721BE006933C6 /* CPPortThread.m */; };
+		355FB0BE1F66DC49002ECF9F /* ScrollViewTestingViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 355FB0BD1F66DC49002ECF9F /* ScrollViewTestingViewController.m */; };
 		357D01EB1F05515C00270D2F /* CPCustomContent_4_ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 357D01EA1F05515C00270D2F /* CPCustomContent_4_ViewController.m */; };
 		3590F8081F094F7300D66952 /* CPMainSessionViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3590F8071F094F7300D66952 /* CPMainSessionViewController.m */; };
 		35A1FACE1F03E3F000C14873 /* CPSplitViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 35A1FACD1F03E3F000C14873 /* CPSplitViewController.m */; };
@@ -80,6 +81,8 @@
 		354F2BFF1EE71ABF006933C6 /* CPInputThread.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CPInputThread.m; sourceTree = "<group>"; };
 		354F2C011EE721BE006933C6 /* CPPortThread.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CPPortThread.h; sourceTree = "<group>"; };
 		354F2C021EE721BE006933C6 /* CPPortThread.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CPPortThread.m; sourceTree = "<group>"; };
+		355FB0BC1F66DC49002ECF9F /* ScrollViewTestingViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ScrollViewTestingViewController.h; path = Assets.xcassets/ScrollViewTestingViewController.h; sourceTree = "<group>"; };
+		355FB0BD1F66DC49002ECF9F /* ScrollViewTestingViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ScrollViewTestingViewController.m; path = Assets.xcassets/ScrollViewTestingViewController.m; sourceTree = "<group>"; };
 		357D01E91F05515C00270D2F /* CPCustomContent_4_ViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CPCustomContent_4_ViewController.h; sourceTree = "<group>"; };
 		357D01EA1F05515C00270D2F /* CPCustomContent_4_ViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CPCustomContent_4_ViewController.m; sourceTree = "<group>"; };
 		3590F8061F094F7300D66952 /* CPMainSessionViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CPMainSessionViewController.h; sourceTree = "<group>"; };
@@ -394,6 +397,8 @@
 				F2F405451F219BFB00C8B17C /* CPScrollContainerViewController.m */,
 				F22FCAC61F285AAB00E91B78 /* CPTestClass.h */,
 				F22FCAC71F285AAB00E91B78 /* CPTestClass.m */,
+				355FB0BC1F66DC49002ECF9F /* ScrollViewTestingViewController.h */,
+				355FB0BD1F66DC49002ECF9F /* ScrollViewTestingViewController.m */,
 			);
 			name = ScrollViewTesting;
 			sourceTree = "<group>";
@@ -549,6 +554,7 @@
 				F2F405461F219BFB00C8B17C /* CPScrollContainerViewController.m in Sources */,
 				76131FE81ECA973500CBA227 /* ViewController.m in Sources */,
 				35A1FAD11F03E41900C14873 /* CPMainTableViewController.m in Sources */,
+				355FB0BE1F66DC49002ECF9F /* ScrollViewTestingViewController.m in Sources */,
 				76E4CF7C1EE7F42F009921EA /* CPThread2.m in Sources */,
 				354D79941EE43098003954C3 /* CPView3Controller.m in Sources */,
 				35A1FADA1F04001500C14873 /* CPDetail_2_ViewController.m in Sources */,
