@@ -8,8 +8,9 @@
 
 #import "CPScrollContainerViewController.h"
 
-
 // CollectionViewFlowLayout 테스트
+#import "CPTestClass.h"
+
 @interface CPCustomLayout : UICollectionViewFlowLayout
 
 @end
@@ -48,6 +49,8 @@
     self.customLayout = [CPCustomLayout new];
     self.collectionView.collectionViewLayout = self.customLayout;
     self.currentIndex = 0;
+    
+    [CPTestClass checker];
 }
 
 - (void)didReceiveMemoryWarning {
@@ -126,7 +129,7 @@
     }
     NSEnumerator *enumerator = [aniColurs objectEnumerator];
     
-    [UIView animateWithDuration:0.25 animations:^{
+    [UIView animateWithDuration:0.35 animations:^{
         UIColor *color = nil;
         while (color = [enumerator nextObject]) {
             [self.headerView setBackgroundColor:color];
@@ -149,9 +152,14 @@
 //        // minus 0.5 because we want 0.5 to be 0%
 //        _headerView.backgroundColor = [self fadeFromColor:colours[1] toColor:colours[2] withPercentage:(percentageOffset.x-0.5)*2];
 //    }
-    [UIView performWithoutAnimation:^{
-        [self.headerView setBackgroundColor:[self fadeFromColor:colours[from] toColor:colours[to] withPercentage:progress]];
-    }];
+    [UIView animateWithDuration:0.01
+                     animations:^{
+                         [self.headerView setBackgroundColor:[self fadeFromColor:colours[from] toColor:colours[to] withPercentage:progress]];
+                     }];
+    
+//    [UIView performWithoutAnimation:^{
+//        [self.headerView setBackgroundColor:[self fadeFromColor:colours[from] toColor:colours[to] withPercentage:progress]];
+//    }];
 }
 
 // this is a more generic method to fade between two colours
