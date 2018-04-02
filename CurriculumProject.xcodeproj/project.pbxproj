@@ -16,6 +16,7 @@
 		354D79971EE43469003954C3 /* CPThread.m in Sources */ = {isa = PBXBuildFile; fileRef = 354D79961EE43469003954C3 /* CPThread.m */; };
 		354F2C001EE71ABF006933C6 /* CPInputThread.m in Sources */ = {isa = PBXBuildFile; fileRef = 354F2BFF1EE71ABF006933C6 /* CPInputThread.m */; };
 		354F2C031EE721BE006933C6 /* CPPortThread.m in Sources */ = {isa = PBXBuildFile; fileRef = 354F2C021EE721BE006933C6 /* CPPortThread.m */; };
+		355FB0BE1F66DC49002ECF9F /* ScrollViewTestingViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 355FB0BD1F66DC49002ECF9F /* ScrollViewTestingViewController.m */; };
 		357D01EB1F05515C00270D2F /* CPCustomContent_4_ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 357D01EA1F05515C00270D2F /* CPCustomContent_4_ViewController.m */; };
 		3590F8081F094F7300D66952 /* CPMainSessionViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3590F8071F094F7300D66952 /* CPMainSessionViewController.m */; };
 		35A1FACE1F03E3F000C14873 /* CPSplitViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 35A1FACD1F03E3F000C14873 /* CPSplitViewController.m */; };
@@ -39,6 +40,9 @@
 		76131FF31ECA973500CBA227 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 76131FF11ECA973500CBA227 /* LaunchScreen.storyboard */; };
 		76131FFC1ECA9FEB00CBA227 /* SubViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 76131FFB1ECA9FEB00CBA227 /* SubViewController.m */; };
 		7614BCB11EDFDD33009189B6 /* kitten.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 7614BCB01EDFDD33009189B6 /* kitten.jpg */; };
+		7616E6771F149B2400C8FC69 /* AHTagsLabel.m in Sources */ = {isa = PBXBuildFile; fileRef = 7616E6741F149B2400C8FC69 /* AHTagsLabel.m */; };
+		7616E6781F149B2400C8FC69 /* AHTagView.m in Sources */ = {isa = PBXBuildFile; fileRef = 7616E6761F149B2400C8FC69 /* AHTagView.m */; };
+		7616E67B1F149B3B00C8FC69 /* AHTag.m in Sources */ = {isa = PBXBuildFile; fileRef = 7616E67A1F149B3B00C8FC69 /* AHTag.m */; };
 		764CE00E1F09F017007D9FD4 /* TestViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 764CE00D1F09F017007D9FD4 /* TestViewController.xib */; };
 		765A7D771ECAF603008D5C43 /* Human+Mouth.m in Sources */ = {isa = PBXBuildFile; fileRef = 765A7D761ECAF603008D5C43 /* Human+Mouth.m */; };
 		7666F7391ED7F59A00201030 /* ForwardingObject.m in Sources */ = {isa = PBXBuildFile; fileRef = 7666F7381ED7F59A00201030 /* ForwardingObject.m */; };
@@ -46,6 +50,7 @@
 		767427931EEE926E00B48DAD /* CPView4ViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 767427951EEE926E00B48DAD /* CPView4ViewController.xib */; };
 		767FA4361EDD1482006CF15D /* CPView2Controller.m in Sources */ = {isa = PBXBuildFile; fileRef = 767FA4351EDD1482006CF15D /* CPView2Controller.m */; };
 		76B2310F1F0355E400959DAA /* TestViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 76B2310E1F0355E400959DAA /* TestViewController.m */; };
+		76B89CAD1F14B5FF00B2802A /* CPLabelTestViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 76B89CAC1F14B5FF00B2802A /* CPLabelTestViewController.m */; };
 		76BBE4D61ED6889300E67C05 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 76BBE4D51ED6889300E67C05 /* Foundation.framework */; };
 		76C748761EDBBB6D00C84062 /* CustomOperation.m in Sources */ = {isa = PBXBuildFile; fileRef = 76C748751EDBBB6D00C84062 /* CustomOperation.m */; };
 		76DDC8B81EEF8FE0006962C5 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 76DDC8BA1EEF8FE0006962C5 /* Localizable.strings */; };
@@ -53,6 +58,8 @@
 		76DDC8E21EEFEE7C006962C5 /* SnapShotViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 76DDC8E01EEFEE7C006962C5 /* SnapShotViewController.xib */; };
 		76E4CF7C1EE7F42F009921EA /* CPThread2.m in Sources */ = {isa = PBXBuildFile; fileRef = 76E4CF7B1EE7F42F009921EA /* CPThread2.m */; };
 		C75271F429E69FD5C27E660C /* libPods-CurriculumProject.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 425CE85A8EF68C6D7CAC45EC /* libPods-CurriculumProject.a */; };
+		F22FCAC81F285AAB00E91B78 /* CPTestClass.m in Sources */ = {isa = PBXBuildFile; fileRef = F22FCAC71F285AAB00E91B78 /* CPTestClass.m */; };
+		F2F405461F219BFB00C8B17C /* CPScrollContainerViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = F2F405451F219BFB00C8B17C /* CPScrollContainerViewController.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -74,6 +81,8 @@
 		354F2BFF1EE71ABF006933C6 /* CPInputThread.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CPInputThread.m; sourceTree = "<group>"; };
 		354F2C011EE721BE006933C6 /* CPPortThread.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CPPortThread.h; sourceTree = "<group>"; };
 		354F2C021EE721BE006933C6 /* CPPortThread.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CPPortThread.m; sourceTree = "<group>"; };
+		355FB0BC1F66DC49002ECF9F /* ScrollViewTestingViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ScrollViewTestingViewController.h; path = Assets.xcassets/ScrollViewTestingViewController.h; sourceTree = "<group>"; };
+		355FB0BD1F66DC49002ECF9F /* ScrollViewTestingViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ScrollViewTestingViewController.m; path = Assets.xcassets/ScrollViewTestingViewController.m; sourceTree = "<group>"; };
 		357D01E91F05515C00270D2F /* CPCustomContent_4_ViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CPCustomContent_4_ViewController.h; sourceTree = "<group>"; };
 		357D01EA1F05515C00270D2F /* CPCustomContent_4_ViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CPCustomContent_4_ViewController.m; sourceTree = "<group>"; };
 		3590F8061F094F7300D66952 /* CPMainSessionViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CPMainSessionViewController.h; sourceTree = "<group>"; };
@@ -116,6 +125,12 @@
 		76131FFA1ECA9FEB00CBA227 /* SubViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SubViewController.h; sourceTree = "<group>"; };
 		76131FFB1ECA9FEB00CBA227 /* SubViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SubViewController.m; sourceTree = "<group>"; };
 		7614BCB01EDFDD33009189B6 /* kitten.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = kitten.jpg; sourceTree = "<group>"; };
+		7616E6731F149B2400C8FC69 /* AHTagsLabel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AHTagsLabel.h; sourceTree = "<group>"; };
+		7616E6741F149B2400C8FC69 /* AHTagsLabel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AHTagsLabel.m; sourceTree = "<group>"; };
+		7616E6751F149B2400C8FC69 /* AHTagView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AHTagView.h; sourceTree = "<group>"; };
+		7616E6761F149B2400C8FC69 /* AHTagView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AHTagView.m; sourceTree = "<group>"; };
+		7616E6791F149B3B00C8FC69 /* AHTag.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AHTag.h; sourceTree = "<group>"; };
+		7616E67A1F149B3B00C8FC69 /* AHTag.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AHTag.m; sourceTree = "<group>"; };
 		764CE00D1F09F017007D9FD4 /* TestViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = TestViewController.xib; sourceTree = "<group>"; };
 		765A7D751ECAF603008D5C43 /* Human+Mouth.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "Human+Mouth.h"; sourceTree = "<group>"; };
 		765A7D761ECAF603008D5C43 /* Human+Mouth.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "Human+Mouth.m"; sourceTree = "<group>"; };
@@ -128,6 +143,8 @@
 		767FA4351EDD1482006CF15D /* CPView2Controller.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CPView2Controller.m; sourceTree = "<group>"; };
 		76B2310D1F0355E400959DAA /* TestViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TestViewController.h; sourceTree = "<group>"; };
 		76B2310E1F0355E400959DAA /* TestViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TestViewController.m; sourceTree = "<group>"; };
+		76B89CAB1F14B5FF00B2802A /* CPLabelTestViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CPLabelTestViewController.h; sourceTree = "<group>"; };
+		76B89CAC1F14B5FF00B2802A /* CPLabelTestViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CPLabelTestViewController.m; sourceTree = "<group>"; };
 		76BBE4D51ED6889300E67C05 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		76C748741EDBBB6D00C84062 /* CustomOperation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CustomOperation.h; sourceTree = "<group>"; };
 		76C748751EDBBB6D00C84062 /* CustomOperation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CustomOperation.m; sourceTree = "<group>"; };
@@ -139,6 +156,10 @@
 		76DDC8E01EEFEE7C006962C5 /* SnapShotViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = SnapShotViewController.xib; sourceTree = "<group>"; };
 		76E4CF7A1EE7F42F009921EA /* CPThread2.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CPThread2.h; sourceTree = "<group>"; };
 		76E4CF7B1EE7F42F009921EA /* CPThread2.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CPThread2.m; sourceTree = "<group>"; };
+		F22FCAC61F285AAB00E91B78 /* CPTestClass.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CPTestClass.h; sourceTree = "<group>"; };
+		F22FCAC71F285AAB00E91B78 /* CPTestClass.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CPTestClass.m; sourceTree = "<group>"; };
+		F2F405441F219BFB00C8B17C /* CPScrollContainerViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CPScrollContainerViewController.h; sourceTree = "<group>"; };
+		F2F405451F219BFB00C8B17C /* CPScrollContainerViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CPScrollContainerViewController.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -171,11 +192,81 @@
 			name = Threads;
 			sourceTree = "<group>";
 		};
+		35568CE51F1344AC006AF92A /* Main */ = {
+			isa = PBXGroup;
+			children = (
+				35568CE71F1348D3006AF92A /* Tab1 */,
+				35568CE81F1348F3006AF92A /* Tab2 */,
+				35568CE91F134937006AF92A /* Tab3 */,
+				35568CE61F134553006AF92A /* Category&override examples */,
+				76DDC8DE1EEFEE7C006962C5 /* SnapShotViewController.h */,
+				76DDC8DF1EEFEE7C006962C5 /* SnapShotViewController.m */,
+				76DDC8E01EEFEE7C006962C5 /* SnapShotViewController.xib */,
+				354F2BFD1EE71AA4006933C6 /* Threads */,
+			);
+			name = Main;
+			sourceTree = "<group>";
+		};
+		35568CE61F134553006AF92A /* Category&override examples */ = {
+			isa = PBXGroup;
+			children = (
+				765A7D751ECAF603008D5C43 /* Human+Mouth.h */,
+				765A7D761ECAF603008D5C43 /* Human+Mouth.m */,
+				7666F7371ED7F59A00201030 /* ForwardingObject.h */,
+				7666F7381ED7F59A00201030 /* ForwardingObject.m */,
+				76C748741EDBBB6D00C84062 /* CustomOperation.h */,
+				76C748751EDBBB6D00C84062 /* CustomOperation.m */,
+			);
+			name = "Category&override examples";
+			sourceTree = "<group>";
+		};
+		35568CE71F1348D3006AF92A /* Tab1 */ = {
+			isa = PBXGroup;
+			children = (
+				76131FE61ECA973500CBA227 /* ViewController.h */,
+				76131FE71ECA973500CBA227 /* ViewController.m */,
+				35398C501EF1928500BBAA56 /* View2Controller.h */,
+				35398C511EF1928500BBAA56 /* View2Controller.m */,
+				76131FFA1ECA9FEB00CBA227 /* SubViewController.h */,
+				76131FFB1ECA9FEB00CBA227 /* SubViewController.m */,
+			);
+			name = Tab1;
+			sourceTree = "<group>";
+		};
+		35568CE81F1348F3006AF92A /* Tab2 */ = {
+			isa = PBXGroup;
+			children = (
+				767FA4341EDD1482006CF15D /* CPView2Controller.h */,
+				767FA4351EDD1482006CF15D /* CPView2Controller.m */,
+				35398C4D1EF1839100BBAA56 /* CPView2_2Controller.h */,
+				35398C4E1EF1839100BBAA56 /* CPView2_2Controller.m */,
+			);
+			name = Tab2;
+			sourceTree = "<group>";
+		};
+		35568CE91F134937006AF92A /* Tab3 */ = {
+			isa = PBXGroup;
+			children = (
+				354D79921EE43098003954C3 /* CPView3Controller.h */,
+				354D79931EE43098003954C3 /* CPView3Controller.m */,
+				7674278E1EEE919C00B48DAD /* CPView4ViewController.h */,
+				7674278F1EEE919C00B48DAD /* CPView4ViewController.m */,
+				767427951EEE926E00B48DAD /* CPView4ViewController.xib */,
+				76B2310D1F0355E400959DAA /* TestViewController.h */,
+				76B2310E1F0355E400959DAA /* TestViewController.m */,
+				764CE00D1F09F017007D9FD4 /* TestViewController.xib */,
+			);
+			name = Tab3;
+			sourceTree = "<group>";
+		};
 		3590F8051F094F4400D66952 /* URLSession */ = {
 			isa = PBXGroup;
 			children = (
 				3590F8061F094F7300D66952 /* CPMainSessionViewController.h */,
 				3590F8071F094F7300D66952 /* CPMainSessionViewController.m */,
+				76B89CAB1F14B5FF00B2802A /* CPLabelTestViewController.h */,
+				76B89CAC1F14B5FF00B2802A /* CPLabelTestViewController.m */,
+				7616E6721F149AF800C8FC69 /* Custom Labels */,
 			);
 			name = URLSession;
 			sourceTree = "<group>";
@@ -250,37 +341,11 @@
 				76131FE91ECA973500CBA227 /* Main.storyboard */,
 				76131FE31ECA973500CBA227 /* AppDelegate.h */,
 				76131FE41ECA973500CBA227 /* AppDelegate.m */,
+				F2F405431F219BD700C8B17C /* ScrollViewTesting */,
 				3590F8051F094F4400D66952 /* URLSession */,
 				35ADC91C1F053B3E005D835B /* CustomContainer&Context&Presentation */,
 				35A1FACB1F03E3BA00C14873 /* Transition&Presentation */,
-				76DDC8DE1EEFEE7C006962C5 /* SnapShotViewController.h */,
-				76DDC8DF1EEFEE7C006962C5 /* SnapShotViewController.m */,
-				76DDC8E01EEFEE7C006962C5 /* SnapShotViewController.xib */,
-				7674278E1EEE919C00B48DAD /* CPView4ViewController.h */,
-				7674278F1EEE919C00B48DAD /* CPView4ViewController.m */,
-				767427951EEE926E00B48DAD /* CPView4ViewController.xib */,
-				354D79921EE43098003954C3 /* CPView3Controller.h */,
-				354D79931EE43098003954C3 /* CPView3Controller.m */,
-				76B2310D1F0355E400959DAA /* TestViewController.h */,
-				76B2310E1F0355E400959DAA /* TestViewController.m */,
-				764CE00D1F09F017007D9FD4 /* TestViewController.xib */,
-				354F2BFD1EE71AA4006933C6 /* Threads */,
-				767FA4341EDD1482006CF15D /* CPView2Controller.h */,
-				767FA4351EDD1482006CF15D /* CPView2Controller.m */,
-				35398C4D1EF1839100BBAA56 /* CPView2_2Controller.h */,
-				35398C4E1EF1839100BBAA56 /* CPView2_2Controller.m */,
-				76131FE61ECA973500CBA227 /* ViewController.h */,
-				76131FE71ECA973500CBA227 /* ViewController.m */,
-				35398C501EF1928500BBAA56 /* View2Controller.h */,
-				35398C511EF1928500BBAA56 /* View2Controller.m */,
-				76131FFA1ECA9FEB00CBA227 /* SubViewController.h */,
-				76131FFB1ECA9FEB00CBA227 /* SubViewController.m */,
-				765A7D751ECAF603008D5C43 /* Human+Mouth.h */,
-				765A7D761ECAF603008D5C43 /* Human+Mouth.m */,
-				7666F7371ED7F59A00201030 /* ForwardingObject.h */,
-				7666F7381ED7F59A00201030 /* ForwardingObject.m */,
-				76C748741EDBBB6D00C84062 /* CustomOperation.h */,
-				76C748751EDBBB6D00C84062 /* CustomOperation.m */,
+				35568CE51F1344AC006AF92A /* Main */,
 				76131FEF1ECA973500CBA227 /* Assets.xcassets */,
 				76DDC8BA1EEF8FE0006962C5 /* Localizable.strings */,
 				76131FF11ECA973500CBA227 /* LaunchScreen.storyboard */,
@@ -304,12 +369,38 @@
 			name = "Supporting Files";
 			sourceTree = "<group>";
 		};
+		7616E6721F149AF800C8FC69 /* Custom Labels */ = {
+			isa = PBXGroup;
+			children = (
+				7616E6731F149B2400C8FC69 /* AHTagsLabel.h */,
+				7616E6741F149B2400C8FC69 /* AHTagsLabel.m */,
+				7616E6751F149B2400C8FC69 /* AHTagView.h */,
+				7616E6761F149B2400C8FC69 /* AHTagView.m */,
+				7616E6791F149B3B00C8FC69 /* AHTag.h */,
+				7616E67A1F149B3B00C8FC69 /* AHTag.m */,
+			);
+			name = "Custom Labels";
+			sourceTree = "<group>";
+		};
 		F0E4F882B99BD25AA7167FFC /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
 				425CE85A8EF68C6D7CAC45EC /* libPods-CurriculumProject.a */,
 			);
 			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		F2F405431F219BD700C8B17C /* ScrollViewTesting */ = {
+			isa = PBXGroup;
+			children = (
+				F2F405441F219BFB00C8B17C /* CPScrollContainerViewController.h */,
+				F2F405451F219BFB00C8B17C /* CPScrollContainerViewController.m */,
+				F22FCAC61F285AAB00E91B78 /* CPTestClass.h */,
+				F22FCAC71F285AAB00E91B78 /* CPTestClass.m */,
+				355FB0BC1F66DC49002ECF9F /* ScrollViewTestingViewController.h */,
+				355FB0BD1F66DC49002ECF9F /* ScrollViewTestingViewController.m */,
+			);
+			name = ScrollViewTesting;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -453,14 +544,17 @@
 				35ADC9251F053B9A005D835B /* CPCustomContent_2_ViewController.m in Sources */,
 				76C748761EDBBB6D00C84062 /* CustomOperation.m in Sources */,
 				357D01EB1F05515C00270D2F /* CPCustomContent_4_ViewController.m in Sources */,
+				F22FCAC81F285AAB00E91B78 /* CPTestClass.m in Sources */,
 				354F2C031EE721BE006933C6 /* CPPortThread.m in Sources */,
 				354D79971EE43469003954C3 /* CPThread.m in Sources */,
 				767427911EEE919C00B48DAD /* CPView4ViewController.m in Sources */,
 				7666F7391ED7F59A00201030 /* ForwardingObject.m in Sources */,
 				76131FFC1ECA9FEB00CBA227 /* SubViewController.m in Sources */,
 				76131FEE1ECA973500CBA227 /* CurriculumProject.xcdatamodeld in Sources */,
+				F2F405461F219BFB00C8B17C /* CPScrollContainerViewController.m in Sources */,
 				76131FE81ECA973500CBA227 /* ViewController.m in Sources */,
 				35A1FAD11F03E41900C14873 /* CPMainTableViewController.m in Sources */,
+				355FB0BE1F66DC49002ECF9F /* ScrollViewTestingViewController.m in Sources */,
 				76E4CF7C1EE7F42F009921EA /* CPThread2.m in Sources */,
 				354D79941EE43098003954C3 /* CPView3Controller.m in Sources */,
 				35A1FADA1F04001500C14873 /* CPDetail_2_ViewController.m in Sources */,
@@ -473,14 +567,18 @@
 				35A1FAD71F03FA3900C14873 /* CPCustomAnimationViewController.m in Sources */,
 				76131FE21ECA973500CBA227 /* main.m in Sources */,
 				35ADC9281F053BA4005D835B /* CPCustomContent_3_ViewController.m in Sources */,
+				7616E6771F149B2400C8FC69 /* AHTagsLabel.m in Sources */,
+				76B89CAD1F14B5FF00B2802A /* CPLabelTestViewController.m in Sources */,
 				354F2C001EE71ABF006933C6 /* CPInputThread.m in Sources */,
 				35ADC91F1F053B7E005D835B /* CPCustomContainerViewController.m in Sources */,
+				7616E6781F149B2400C8FC69 /* AHTagView.m in Sources */,
 				76B2310F1F0355E400959DAA /* TestViewController.m in Sources */,
 				76DDC8E11EEFEE7C006962C5 /* SnapShotViewController.m in Sources */,
 				767FA4361EDD1482006CF15D /* CPView2Controller.m in Sources */,
 				35A1FACE1F03E3F000C14873 /* CPSplitViewController.m in Sources */,
 				35398C4F1EF1839100BBAA56 /* CPView2_2Controller.m in Sources */,
 				765A7D771ECAF603008D5C43 /* Human+Mouth.m in Sources */,
+				7616E67B1F149B3B00C8FC69 /* AHTag.m in Sources */,
 				352F9D2A1EE9A3C500EB84CB /* CPView.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -628,7 +726,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				DEVELOPMENT_TEAM = 56ZT9NLP39;
 				INFOPLIST_FILE = CurriculumProject/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.cream.world.CurriculumProject;
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -643,7 +741,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				DEVELOPMENT_TEAM = 56ZT9NLP39;
 				INFOPLIST_FILE = CurriculumProject/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.cream.world.CurriculumProject;
 				PRODUCT_NAME = "$(TARGET_NAME)";
