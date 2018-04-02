@@ -38,6 +38,13 @@ void funcForBlock(void * context) {
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+    
+    NSMutableDictionary *dic = [NSMutableDictionary dictionary];
+    [dic setObject:@"v" forKey:@"k"];
+    NSLog(@"value = %@", dic[@"k"]);
+    id k2 = nil;
+    NSLog(@"key2 = %@, alue2 = %@", k2, dic[k2]);
+    
     // Do any additional setup after loading the view.
     
 #pragma mark - sample
@@ -751,7 +758,7 @@ void funcForBlock(void * context) {
 //        });
 //        NSLog(@"deadLock finished");
 //    });
-//    // deadlock
+    // deadlock
 //    dispatch_sync(dispatch_get_main_queue(), ^{
 //        NSLog(@"deadLock");
 //    });
@@ -1026,6 +1033,43 @@ void funcForBlock(void * context) {
 //        NSLog(@"deadLock");
 //    });
     
+#pragma mark - GCD 동기 스레드 킬 테스트
+    
+//    dispatch_queue_t concurrentQueue0 = dispatch_queue_create("concurrent.label.label0", DISPATCH_QUEUE_CONCURRENT);
+////    dispatch_queue_t concurrentQueue1 = dispatch_queue_create("concurrent.label.label1", DISPATCH_QUEUE_CONCURRENT);
+//    dispatch_queue_t seralQueue0 = dispatch_queue_create("serial.label.label0", DISPATCH_QUEUE_SERIAL);
+//    dispatch_queue_t seralQueue1 = dispatch_queue_create("serial.label.label1", DISPATCH_QUEUE_SERIAL);
+//    
+//    dispatch_async(seralQueue0, ^{
+//        NSLog(@"비동기 큐 시작 %@", [NSThread currentThread]);
+//        
+//        dispatch_async(dispatch_get_main_queue(), ^{
+//            NSLog(@"\t#1 비동기 메인큐 시작 %@", [NSThread currentThread]);
+//            dispatch_async(seralQueue1, ^{
+//                NSLog(@"\t\t 비동기 시리얼큐 시작 %@", [NSThread currentThread]);
+//                
+//                dispatch_async(dispatch_get_main_queue(), ^{
+//                    NSLog(@"\t\t\t#2 비동기 메인큐 시작 %@", [NSThread currentThread]);
+//                    
+//                    dispatch_sync(concurrentQueue0, ^{
+//                        NSLog(@"\t\t\t\t 마지막 테스트 하고 싶은 동기 for 병렬큐 %@", [NSThread currentThread]);
+//                    });
+//                    
+//                    NSLog(@"\t\t\t#2 비동기 메인큐 끝 %@", [NSThread currentThread]);
+//                });
+//                
+//                NSLog(@"\t\t 비동기 시리얼큐 끝 %@", [NSThread currentThread]);
+//            });
+//            
+//            NSLog(@"\t#1 비동기 메인큐 끝 %@", [NSThread currentThread]);
+//        });
+//        
+//        //        dispatch_sync(sQueue, ^{
+//        //            NSLog(@"동기 시리얼큐");
+//        //        });
+//        
+//        NSLog(@"비동기 큐 끝 %@", [NSThread currentThread]);
+//    });
 }
 
 - (void)didReceiveMemoryWarning {
