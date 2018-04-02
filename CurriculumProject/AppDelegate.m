@@ -32,7 +32,6 @@
 - (BOOL)application:(UIApplication *)application willFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
     NSLog(@"willFinishLaunchingWithOptions = %@", launchOptions);
     // hot fix fix test 1.0.0.2
-    // devdev
     return YES;
 }
 
